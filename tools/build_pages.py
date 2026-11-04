@@ -13,7 +13,7 @@ import html, json, os, re
 from datetime import date, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = 'https://mazomoon.com'
+SITE = 'https://www.mazomoon.com'
 IMG = SITE + '/img/og-image.jpg'
 
 PAGES = {
@@ -47,13 +47,19 @@ def meta(title, desc, url, img=IMG, kind='website'):
 <!--meta-end-->'''
 
 
+def show(src, page):
+    """Make the right section visible in the HTML itself, before any script runs."""
+    out = src.replace('<section class="page" data-page="home">', '<section class="page" data-page="home" hidden>', 1)
+    return out.replace(f'<section class="page" data-page="{page}" hidden>', f'<section class="page" data-page="{page}">', 1)
+
+
 def main():
     src = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
     assert '<!--meta-start-->' in src and '<!--title-end-->' in src
     urls = [SITE + '/']
     for path, (title, desc) in PAGES.items():
         url = f'{SITE}/{path}/'
-        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url), src, flags=re.S)
+        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url), show(src, path), flags=re.S)
         out = re.sub(r'<title>.*?</title><!--title-end-->', f'<title>{html.escape(title)}</title><!--title-end-->', out, flags=re.S)
         d = os.path.join(ROOT, path)
         os.makedirs(d, exist_ok=True)
@@ -180,7 +186,7 @@ def build_reviews(src):
     <a class="btn btn-text" href="#contact">Tell me what you thought</a>
   </div>
 </article>'''
-        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url, img, 'article'), src, flags=re.S)
+        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url, img, 'article'), show(src, 'review'), flags=re.S)
         out = re.sub(r'<title>.*?</title><!--title-end-->', lambda m: f'<title>{html.escape(title)}</title><!--title-end-->', out, flags=re.S)
         out = out.replace('<!--review-start--><!--review-end-->', f'<!--review-start-->{page}<!--review-end-->')
         d = os.path.join(rd, p['slug']); os.makedirs(d, exist_ok=True)

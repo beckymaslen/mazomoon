@@ -6,13 +6,13 @@
 <base href="/">
 <!--meta-start-->
 <meta name="description" content="Mazo Moon is a Yorkshire family business making journals, colouring books and stationery. Make a little space for you.">
-<link rel="canonical" href="https://mazomoon.com/">
+<link rel="canonical" href="https://www.mazomoon.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Mazo Moon">
 <meta property="og:title" content="Mazo Moon | Journals, colouring and stationery from Yorkshire">
 <meta property="og:description" content="Mazo Moon is a Yorkshire family business making journals, colouring books and stationery. Make a little space for you.">
-<meta property="og:url" content="https://mazomoon.com/">
-<meta property="og:image" content="https://mazomoon.com/img/og-image.jpg">
+<meta property="og:url" content="https://www.mazomoon.com/">
+<meta property="og:image" content="https://www.mazomoon.com/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -315,7 +315,7 @@ button.pill:hover{border-color:var(--border-strong)}
 .chips{position:sticky;top:calc(var(--hdr,72px) + 8px);z-index:5;background:var(--surface);padding-block:10px;margin-top:-10px}
 @media (max-width:820px){
   .hint-d{display:none}.hint-m{display:flex;margin-top:-12px}
-  .colourin{height:190vh}
+  .colourin{height:150vh}
   .colourin .sticky{gap:10px;padding-block:8px}
   .colourin .label{display:none}
   .colourin .ctext{gap:6px;grid-template-columns:auto 1fr;align-items:end;column-gap:14px}
@@ -330,13 +330,13 @@ button.pill:hover{border-color:var(--border-strong)}
   .chip{flex:none}
 }
 @media (max-width:520px){
-  #shopGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
-  #shopGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
-  #shopGrid .card .small{display:none}
-  #shopGrid .card .strong-s{font-size:13px}
-  #shopGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
-  #shopGrid .card .meta{flex-wrap:wrap;gap:4px}
-  #shopGrid .peek{display:none}
+  #shopGrid,#bookGrid,#journalGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
+  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small{display:none}
+  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s{font-size:13px}
+  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
+  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta{flex-wrap:wrap;gap:4px}
+  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek{display:none}
 }
 
 
@@ -359,7 +359,7 @@ button.pill:hover{border-color:var(--border-strong)}
 .cframe canvas{position:absolute;inset:0;width:100%;height:100%}
 .cframe .pencil{position:absolute;left:0;top:0;width:clamp(70px,9vw,120px);transform-origin:0 100%;pointer-events:none;will-change:transform;transition:opacity .3s}
 .cframe .pencil img{display:block;width:100%;filter:drop-shadow(0 8px 10px rgba(48,49,51,.2))}
-@media (max-width:820px){.colourin{height:240vh}.colourin .sticky{grid-template-columns:1fr;gap:16px;top:calc(env(safe-area-inset-top,0px) + 76px);min-height:auto}.cframe{width:min(100%,calc((100vh - 300px) * .748))}.colourin .pct{font-size:48px}.colourin .ctext p.muted{display:none}}
+@media (max-width:820px){.colourin{height:150vh}.colourin .sticky{grid-template-columns:1fr;gap:16px;top:calc(env(safe-area-inset-top,0px) + 76px);min-height:auto}.cframe{width:min(100%,calc((100vh - 300px) * .748))}.colourin .pct{font-size:48px}.colourin .ctext p.muted{display:none}}
 
 /* open-the-book hover */
 .art.shopimg img{transition:opacity .5s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
@@ -418,6 +418,8 @@ button.pill:hover{border-color:var(--border-strong)}
 .series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px 28px}
 .series{display:grid;gap:4px;align-content:start;padding-top:14px;border-top:1px solid var(--hairline)}
 .series .caption{margin:0}.series .small{margin:0}
+.more-row{margin-top:28px}
+@media (max-width:820px){.series-grid.short .series:nth-child(n+9){display:none}}
 .readlist a{color:inherit;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
 .review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px}
 .review-card{display:grid;gap:8px;align-content:start;color:inherit;text-decoration:none;padding-top:16px;border-top:1px solid var(--hairline)}
@@ -580,7 +582,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
 
   <div class="wrap sec">
     <div class="sec-head">
-      <span class="label">Bestsellers</span>
+      <span class="label">Bestsellers, and something new</span>
       <h2 class="h">The ones people keep coming back for.</h2>
     </div>
     <div class="grid g3" id="homeFavs"></div>
@@ -707,6 +709,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
   <div class="wrap sec-tight">
     <div class="sec-head"><span class="label">The full list</span><h2 class="h">Every book on the shelf.</h2></div>
     <div class="series-grid" id="seriesGrid"></div>
+    <div class="more-row"><button type="button" class="btn btn-secondary" id="seriesMore" hidden>Show the whole list</button></div>
   </div>
   <div class="sunken">
     <div class="wrap sec-tight" style="display:grid;gap:12px">
@@ -1150,7 +1153,7 @@ const colourins=[...document.querySelectorAll('[data-colourin]')].map(sec=>{
   addEventListener('resize',()=>{ if(ready===2){ size(); draw(Math.max(0,lastP),true);} });
   return function(){
     const r=sec.getBoundingClientRect(), vh=innerHeight; if(r.bottom<0||r.top>vh) return;
-    const p=reduce?1:clamp(-r.top/(r.height-vh*.9),0,1);
+    const p=reduce?1:clamp(-r.top/(Math.max(1,r.height-vh)*.85),0,1);
     if(Math.abs(p-lastP)>.002){ lastP=p; if(cv.width!==Math.round(cv.getBoundingClientRect().width*Math.min(2,devicePixelRatio||1))) size(); draw(p); }
   };
 });
@@ -1208,6 +1211,7 @@ document.querySelectorAll('.band').forEach(b=>b.addEventListener('click',()=>b.c
   const mcols=['#3d3a5c','#f1e7da','#a9b39c','#303133','#dcbcb3','#5c4a6b','#c9a24a','#2f4858','#e8ddd0','#6b7a5e'];
   if(mini) mini.innerHTML=READ.slice(0,14).map(([n,a,bk],i)=>{ const c=mcols[i%mcols.length]; return `<span class="spine${i===9?' lean':''}" style="--sc:${c};${light.has(c)?'--sf:#303133;':''}--sh:${Math.min(300,180+bk.length*15)}px;--sw:${Math.min(64,34+bk.length*4)}px" aria-hidden="true"><span>${esc(n)}</span></span>`; }).join('');
   document.getElementById('seriesGrid').innerHTML=READ.map(([n,a,b])=>`<article class="series"><h3 class="strong-s">${esc(n)}</h3><p class="caption">${esc(a)}${span(b)?` · ${span(b)}`:''}</p><p class="small muted">${b.map(esc).join(' · ')}</p></article>`).join('');
+  { const g=document.getElementById('seriesGrid'), m=document.getElementById('seriesMore'); if(READ.length>8){ g.classList.add('short'); m.hidden=false; m.textContent=`Show all ${READ.length} series`; m.addEventListener('click',()=>{ g.classList.remove('short'); m.parentNode.remove(); }); } }
 })();
 
 const turn=document.getElementById('turn');

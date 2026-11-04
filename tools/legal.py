@@ -12,7 +12,7 @@ SHELL = '''<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} | Mazo Moon</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="https://mazomoon.com/{slug}/">
+<link rel="canonical" href="https://www.mazomoon.com/{slug}/">
 <link rel="icon" href="/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
