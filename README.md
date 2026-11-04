@@ -11,3 +11,10 @@ Hosted on GitHub Pages at mazomoon.com (see `CNAME`): every push to `main` publi
 - `links/index.html` is the link-in-bio page for social profiles (mazomoon.com/links). Edit the `links` array in its script to change the buttons.
 
 Deploys: GitHub Pages rebuilds automatically on every push to main. If a deploy stalls, push again.
+
+## Section pages
+Each section has its own address (/shop/, /journals/, /reading/, /little-things/, /our-story/) with its own title and sharing details. These are copies of index.html, so after any change to index.html run:
+
+    python3 tools/build_pages.py
+
+Privacy, Cookies and Terms live in tools/legal.py. Edit the text there, then run `python3 tools/legal.py`.

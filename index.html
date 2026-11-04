@@ -3,10 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="/">
+<!--meta-start-->
 <meta name="description" content="Mazo Moon is a Yorkshire family business making journals, colouring books and stationery. Make a little space for you.">
+<link rel="canonical" href="https://mazomoon.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mazo Moon">
+<meta property="og:title" content="Mazo Moon | Journals, colouring and stationery from Yorkshire">
+<meta property="og:description" content="Mazo Moon is a Yorkshire family business making journals, colouring books and stationery. Make a little space for you.">
+<meta property="og:url" content="https://mazomoon.com/">
+<meta property="og:image" content="https://mazomoon.com/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!--meta-end-->
 <link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Mazo Moon | Journals, colouring and stationery from Yorkshire</title>
+<title>Mazo Moon | Journals, colouring and stationery from Yorkshire</title><!--title-end-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -216,7 +230,7 @@ footer.site .wordmark{background:var(--text-on-inverse);width:180px}
 .foot a:hover{opacity:1;text-decoration:underline}
 .news{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .news input{flex:1 1 200px;min-width:0;background:transparent;color:var(--text-on-inverse);border-color:var(--text-on-inverse)}
-.news input::placeholder{color:var(--text-on-inverse);opacity:.6}
+.news input::placeholder{color:var(--text-on-inverse);opacity:.82}
 .news button{background:var(--text-on-inverse);color:var(--surface-inverse);border:0}
 .legal{border-top:1px solid color-mix(in srgb,var(--text-on-inverse) 20%,transparent);padding-block:20px;font-size:13px;opacity:.75;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
 
@@ -230,14 +244,15 @@ footer.site .wordmark{background:var(--text-on-inverse);width:180px}
 /* ===================== MOTION LAYER ===================== */
 .label .star{display:inline-block}
 /* intro: the wordmark writes itself */
-.intro{position:fixed;inset:0;z-index:60;background:var(--surface);display:grid;place-items:center;transition:transform .9s cubic-bezier(.75,0,.2,1);cursor:pointer}
+.intro{position:fixed;inset:0;z-index:60;background:var(--surface);display:grid;place-items:center;transition:transform .55s cubic-bezier(.75,0,.2,1);cursor:pointer;animation:mmIntroGone .01s 2s forwards}
+@keyframes mmIntroGone{to{visibility:hidden;opacity:0;pointer-events:none}}
 .intro.lift{transform:translateY(-102%)}
 .intro-inner{display:grid;gap:22px;justify-items:center;padding-inline:24px}
 .wmw{position:relative;width:min(72vw,540px)}
-.wmw .wm{display:block;width:100%;aspect-ratio:900/124;background:var(--text);-webkit-mask:url(img/wordmark-mask.png) center/contain no-repeat;mask:url(img/wordmark-mask.png) center/contain no-repeat;clip-path:inset(-10% 100% -10% 0);animation:mmWrite 1.5s .25s cubic-bezier(.55,0,.35,1) forwards}
-.wmw .nib{position:absolute;left:0;bottom:30%;width:clamp(90px,16vw,150px);transform-origin:0 100%;transform:translate(-2%,0) rotate(-8deg);animation:mmNib 1.5s .25s cubic-bezier(.55,0,.35,1) forwards, mmNibOut .4s 1.75s ease forwards;pointer-events:none}
+.wmw .wm{display:block;width:100%;aspect-ratio:900/124;background:var(--text);-webkit-mask:url(img/wordmark-mask.png) center/contain no-repeat;mask:url(img/wordmark-mask.png) center/contain no-repeat;clip-path:inset(-10% 100% -10% 0);animation:mmWrite .75s .1s cubic-bezier(.55,0,.35,1) forwards}
+.wmw .nib{position:absolute;left:0;bottom:30%;width:clamp(90px,16vw,150px);transform-origin:0 100%;transform:translate(-2%,0) rotate(-8deg);animation:mmNib .75s .1s cubic-bezier(.55,0,.35,1) forwards, mmNibOut .3s .85s ease forwards;pointer-events:none}
 .wmw .nib img{display:block;width:100%;filter:drop-shadow(0 10px 12px rgba(48,49,51,.18))}
-.intro .label{opacity:0;animation:mmFade .6s 1.4s ease forwards}
+.intro .label{opacity:0;animation:mmFade .4s .5s ease forwards}
 @keyframes mmWrite{to{clip-path:inset(-10% 0 -10% 0)}}
 @keyframes mmNib{0%{left:0}20%{bottom:44%}40%{bottom:26%}60%{bottom:42%}80%{bottom:28%}100%{left:100%;bottom:36%}}
 @keyframes mmNibOut{to{opacity:0;transform:translate(30px,-30px) rotate(-14deg)}}
@@ -248,8 +263,8 @@ footer.site .wordmark{background:var(--text-on-inverse);width:180px}
 .turn::before{content:"";position:absolute;inset:0 auto 0 0;width:90px;background:linear-gradient(90deg,rgba(48,49,51,.10),transparent)}
 .turn::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 31px,var(--hairline) 31px 32px);opacity:.5}
 .turn:not(.in):not(.out){visibility:hidden}
-.turn.in{transition:transform .42s cubic-bezier(.7,0,.3,1);transform:translateX(0)}
-.turn.out{transition:transform .55s cubic-bezier(.6,0,.2,1);transform:translateX(-105%)}
+.turn.in{transition:transform .2s cubic-bezier(.7,0,.3,1);transform:translateX(0)}
+.turn.out{transition:transform .28s cubic-bezier(.6,0,.2,1);transform:translateX(-105%)}
 
 /* sticker playground */
 .play{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:40px;align-items:center;padding-block:40px 56px}
@@ -259,6 +274,8 @@ footer.site .wordmark{background:var(--text-on-inverse);width:180px}
 .clock{font-size:14px;color:var(--text-muted);font-variant-numeric:tabular-nums}
 .board{position:relative;isolation:isolate;z-index:0;height:clamp(420px,46vw,600px);background:var(--surface-sunken);overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .board::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 80% 0%,rgba(255,255,255,.45),transparent 60%);pointer-events:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .board::before{display:none}}
+:root[data-theme="dark"] .board::before{display:none}
 .journal{position:absolute;left:50%;top:50%;width:min(50.6%,308px);aspect-ratio:3/4;transform:translate(-50%,-50%) rotate(-3deg);background:
   repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 2px,transparent 2px 5px),var(--p-sage);border-radius:3px 10px 10px 3px;box-shadow:0 2px 3px rgba(48,49,51,.12),0 24px 40px rgba(48,49,51,.16),inset 14px 0 0 rgba(0,0,0,.08);transition:box-shadow .3s, transform .4s cubic-bezier(.3,1.5,.5,1)}
 .journal::after{content:"";position:absolute;top:0;bottom:0;right:12%;width:7px;background:var(--p-ink);opacity:.82;border-radius:2px}
@@ -290,6 +307,38 @@ button.pill:hover{border-color:var(--border-strong)}
 .band span{font:italic 500 clamp(22px,2.6vw,32px)/1.2 var(--display);white-space:nowrap;padding-inline:22px;color:var(--text)}
 .band span i{font-style:normal;color:var(--accent);font-size:.6em;vertical-align:middle;padding-left:44px}
 @keyframes mmBand{to{transform:translateX(-50%)}}
+/* review fixes */
+.hint-m{display:none}
+.scrollcue{display:none}
+.band{cursor:pointer}
+.band.paused .band-track{animation-play-state:paused}
+.chips{position:sticky;top:calc(var(--hdr,72px) + 8px);z-index:5;background:var(--surface);padding-block:10px;margin-top:-10px}
+@media (max-width:820px){
+  .hint-d{display:none}.hint-m{display:flex;margin-top:-12px}
+  .colourin{height:190vh}
+  .colourin .sticky{gap:10px;padding-block:8px}
+  .colourin .label{display:none}
+  .colourin .ctext{gap:6px;grid-template-columns:auto 1fr;align-items:end;column-gap:14px}
+  .colourin .ctext > *{grid-column:1 / -1;order:3}
+  .colourin .ctext .pct{grid-column:1;font-size:38px;order:1}
+  .colourin .ctext .scrollcue{grid-column:2;order:2;display:block;margin:0 0 6px;color:var(--text-muted)}
+  .colourin .h{font-size:19px;line-height:1.25}
+  .colourin .btn-row .btn{padding-block:9px;min-height:0}
+  .colourin .cframe{width:min(100%,calc((100svh - 330px) * .748));max-width:calc(100vw - 32px)}
+  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px;top:calc(var(--hdr,64px))}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+}
+@media (max-width:520px){
+  #shopGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  #shopGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
+  #shopGrid .card .small{display:none}
+  #shopGrid .card .strong-s{font-size:13px}
+  #shopGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
+  #shopGrid .card .meta{flex-wrap:wrap;gap:4px}
+  #shopGrid .peek{display:none}
+}
+
 
 /* pen line */
 .penline{position:relative;margin-block:8px 0}
@@ -342,6 +391,9 @@ button.pill:hover{border-color:var(--border-strong)}
 .card .art.tilt{transition:transform .5s cubic-bezier(.3,1.3,.5,1)}
 .card .art.tilt img{transition:transform .6s cubic-bezier(.3,1.3,.5,1)}
 
+/* moving banner: tap or click to pause */
+document.querySelectorAll('.band').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('paused')));
+
 /* bookshelf */
 .shelf-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:end}
 @media (max-width:820px){.shelf-wrap{grid-template-columns:1fr;gap:28px}}
@@ -366,8 +418,8 @@ button.pill:hover{border-color:var(--border-strong)}
 
 /* giant footer wordmark */
 .giant{overflow:hidden;padding-inline:max(16px,env(safe-area-inset-left,0px));padding-bottom:16px}
-.giant .wordmark{width:100%;max-width:none;background:var(--text-on-inverse);opacity:.12;transform:translateY(40%);transition:transform 1.2s cubic-bezier(.2,.8,.2,1),opacity 1.2s}
-.giant.in .wordmark{transform:none;opacity:.16}
+footer.site .giant .wordmark{width:100%;max-width:none;background:var(--text-on-inverse);opacity:.12;transform:translateY(40%);transition:transform 1.2s cubic-bezier(.2,.8,.2,1),opacity 1.2s}
+footer.site .giant.in .wordmark{transform:none;opacity:.22}
 
 @media (prefers-reduced-motion:reduce){
   .band-track{animation:none}
@@ -409,24 +461,25 @@ button.pill:hover{border-color:var(--border-strong)}
     <div class="play-copy rise">
       <span class="label">Mazo Moon <span class="star">✦</span> Yorkshire</span>
       <h1 class="d-xl">Make a little space for you.</h1>
-      <p class="lead">Journals, colouring books and stationery for slower evenings, fuller pages and the little moments that make a day feel like yours.</p>
+      <p class="lead">Keepsake journals for kids and grown-ups, cosy colouring books, and stickers and pens for the little moments that make a day feel like yours.</p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="#journals">Explore journals &amp; colouring</a>
-        <a class="btn btn-secondary" href="#reading">Visit the Reading Corner</a>
+        <a class="btn btn-primary" href="#shop">Shop Mazo Moon</a>
+        <a class="btn btn-secondary" href="#journals">Explore journals &amp; colouring</a>
       </div>
-      <p class="hint"><span class="star">✦</span> Go on, pick up a sticker and give the journal a little personality.</p>
+      <p class="hint hint-d"><span class="star">✦</span> Go on, pick up a sticker and give the journal a little personality.</p>
       <p class="clock" id="clock" aria-live="off"></p>
     </div>
-    <div class="board" id="board" aria-label="Sticker playground: drag our real stickers onto the journal">
+    <div class="board" id="board" role="group" aria-label="Sticker playground: drag our real stickers onto the journal. Use the arrow keys to move between stickers and Enter to stick one on.">
       <div class="journal" id="jtarget"><div class="plate">My little things<small>Mazo Moon</small></div></div>
       <div class="board-ui">
         <span class="pill" id="stuckCount">0 stickers on your journal</span>
         <span style="display:flex;gap:8px;flex-wrap:wrap">
-          <a class="pill go" id="stuckGo" href="#shop" target="_blank" rel="noopener">Shop these stickers</a>
+          <a class="pill go" id="stuckGo" href="#shop" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">Shop these stickers</a>
           <button class="pill" id="shuffle" type="button">New stickers</button>
         </span>
       </div>
     </div>
+    <p class="hint hint-m"><span class="star">✦</span> Drag a sticker onto the journal to give it a little personality.</p>
   </div>
 
   <div class="band" aria-hidden="true"><div class="band-track"><span>Make a little space for you<i>✦</i></span><span>One page at a time<i>✦</i></span><span>Little reminders, everyday spaces<i>✦</i></span><span>The kettle's on<i>✦</i></span><span>Make a little space for you<i>✦</i></span><span>One page at a time<i>✦</i></span><span>Little reminders, everyday spaces<i>✦</i></span><span>The kettle's on<i>✦</i></span></div></div>
@@ -485,7 +538,8 @@ button.pill:hover{border-color:var(--border-strong)}
         <div class="pct"><span data-pct>0</span><small>% coloured</small></div>
         <h2 class="h">The Courtyard Café, one of forty cosy places to escape to.</h2>
         <p class="muted">Keep scrolling and we'll colour it in for you. Then pour a drink, pick a page and do the next one yourself.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="https://www.amazon.co.uk/s?k=Mazo+Moon+A+Cup+of+Somewhere+Else" target="_blank" rel="noopener">Buy on Amazon</a></div>
+        <p class="scrollcue small" aria-hidden="true">Keep scrolling to colour it in ↓</p>
+        <div class="btn-row"><span class="btn btn-secondary" aria-disabled="true">Coming soon to Amazon</span></div>
       </div>
       <div class="cframe"><canvas aria-label="A colouring page called The Courtyard Café being coloured in"></canvas><div class="pencil"><img src="img/cut/pen-red.webp" alt=""></div></div>
     </div>
@@ -494,7 +548,7 @@ button.pill:hover{border-color:var(--border-strong)}
   <div class="wrap sec">
     <div class="sec-head">
       <span class="label">Bestsellers</span>
-      <h2 class="h">Loved on Amazon, made for your desk.</h2>
+      <h2 class="h">The ones people keep coming back for.</h2>
     </div>
     <div class="grid g3" id="homeFavs"></div>
     <div style="margin-top:32px"><a class="btn btn-text" href="#shop">See everything in the shop</a></div>
@@ -552,7 +606,8 @@ button.pill:hover{border-color:var(--border-strong)}
         <div class="pct"><span data-pct>0</span><small>% coloured</small></div>
         <h2 class="h">The Courtyard Café, one of forty cosy places to escape to.</h2>
         <p class="muted">Keep scrolling and we'll colour it in for you. Then pour a drink, pick a page and do the next one yourself.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="https://www.amazon.co.uk/s?k=Mazo+Moon+A+Cup+of+Somewhere+Else" target="_blank" rel="noopener">Buy on Amazon</a></div>
+        <p class="scrollcue small" aria-hidden="true">Keep scrolling to colour it in ↓</p>
+        <div class="btn-row"><span class="btn btn-secondary" aria-disabled="true">Coming soon to Amazon</span></div>
       </div>
       <div class="cframe"><canvas aria-label="A colouring page called The Courtyard Café being coloured in"></canvas><div class="pencil"><img src="img/cut/pen-red.webp" alt=""></div></div>
     </div>
@@ -599,12 +654,12 @@ button.pill:hover{border-color:var(--border-strong)}
   </div>
   <div class="wrap sec-tight" style="padding-top:0">
     <div class="shelf-wrap">
-      <div class="shelf" id="shelf" role="list" aria-label="Reviews on the shelf">
-        <a role="listitem" class="spine" href="#review-sample" style="--sc:#3d3a5c;--sh:290px;--sw:70px" data-t="The book I read twice in one wet October." data-d="A quiet, clever story about starting over in a small seaside town. I finished it on a Sunday and started it again on Monday." data-m="12 October 2026 · Cosy rating 5/5"><span>Read twice in October</span></a>
-        <a role="listitem" class="spine" href="#review-sample" style="--sc:#80615f;--sh:250px;--sw:58px" data-t="Five books for a slow Sunday" data-d="Short, gentle reads you can finish before the roast is ready." data-m="28 September 2026 · Cosy rating 4/5"><span>Five for a slow Sunday</span></a>
-        <a role="listitem" class="spine" href="#review-sample" style="--sc:#a9b39c;--sf:#303133;--sh:310px;--sw:76px" data-t="Why I keep a reading journal" data-d="Notes, quotes and cosy ratings, and how it changed the way I read." data-m="14 September 2026 · Reading tips"><span>Why I keep a reading journal</span></a>
-        <a role="listitem" class="spine" href="#review-sample" style="--sc:#434342;--sh:270px;--sw:62px" data-t="An autumn mystery worth staying up for" data-d="Fog, a lighthouse and a very good twist. Sample review." data-m="2 September 2026 · Cosy rating 4/5"><span>An autumn mystery</span></a>
-        <a role="listitem" class="spine lean" href="#review-sample" style="--sc:#dcbcb3;--sf:#303133;--sh:236px;--sw:54px" data-t="Coming soon: winter comfort reads" data-d="Blankets, snow and long chapters. The next review is on its way." data-m="December 2026"><span>Winter comfort reads</span></a>
+      <div class="shelf" id="shelf" aria-label="Reviews on the shelf">
+        <a class="spine" href="#review-sample" style="--sc:#3d3a5c;--sh:290px;--sw:70px" data-t="The book I read twice in one wet October." data-d="A quiet, clever story about starting over in a small seaside town. I finished it on a Sunday and started it again on Monday." data-m="12 October 2026 · Cosy rating 5/5"><span>Read twice in October</span></a>
+        <a class="spine" href="#review-sample" style="--sc:#80615f;--sh:250px;--sw:58px" data-t="Five books for a slow Sunday" data-d="Short, gentle reads you can finish before the roast is ready." data-m="28 September 2026 · Cosy rating 4/5"><span>Five for a slow Sunday</span></a>
+        <a class="spine" href="#review-sample" style="--sc:#a9b39c;--sf:#303133;--sh:310px;--sw:76px" data-t="Why I keep a reading journal" data-d="Notes, quotes and cosy ratings, and how it changed the way I read." data-m="14 September 2026 · Reading tips"><span>Why I keep a reading journal</span></a>
+        <a class="spine" href="#review-sample" style="--sc:#434342;--sh:270px;--sw:62px" data-t="An autumn mystery worth staying up for" data-d="Fog, a lighthouse and a very good twist. Sample review." data-m="2 September 2026 · Cosy rating 4/5"><span>An autumn mystery</span></a>
+        <a class="spine lean" href="#review-sample" style="--sc:#dcbcb3;--sf:#303133;--sh:236px;--sw:54px" data-t="Coming soon: winter comfort reads" data-d="Blankets, snow and long chapters. The next review is on its way." data-m="December 2026"><span>Winter comfort reads</span></a>
       </div>
       <div class="shelf-card" id="shelfCard" aria-live="polite">
         <span class="label">Pull a book off the shelf</span>
@@ -708,19 +763,19 @@ button.pill:hover{border-color:var(--border-strong)}
       <div style="display:grid;gap:16px;align-content:start">
         <span class="label">Say hello</span>
         <h2 class="d-l">We'd love to hear from you.</h2>
-        <p class="muted">Questions about an order, an idea for a product, or a book we simply have to read. Drop us a note and we'll reply within two working days.</p>
+        <p class="muted">Questions about an order, an idea for a product, or a book we simply have to read. Drop us a note and we'll get back to you as soon as we can.</p>
         <div class="copy"><code id="email">hello@mazomoon.com</code><button type="button" id="copyEmail">Copy</button></div>
         <p class="note">For Amazon orders, the quickest help is through Your Orders on Amazon.</p>
       </div>
       <form class="contact" id="contactForm" name="contact" method="POST" action="https://formsubmit.co/hello@mazomoon.com">
         <input type="hidden" name="_subject" value="New message from mazomoon.com"><input type="hidden" name="_template" value="table"><p hidden><label>Leave this empty <input name="_honey"></label></p>
-        <div class="field"><label for="cName">Your name</label><input id="cName" name="name" autocomplete="name"></div>
-        <div class="field"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="cName">Your name</label><input id="cName" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="cTopic">What's it about?</label>
           <select id="cTopic" name="topic"><option>A product question</option><option>An Amazon order</option><option>A book recommendation</option><option>Something else</option></select></div>
-        <div class="field"><label for="cMsg">Message</label><textarea id="cMsg" name="message"></textarea></div>
+        <div class="field"><label for="cMsg">Message</label><textarea id="cMsg" name="message" required minlength="10"></textarea></div>
         <div><button class="btn btn-primary" type="submit">Send message</button></div>
-        <div class="ok" id="formOk" hidden>Thank you, your message is on its way. We'll reply within two working days.</div>
+        <div class="ok" id="formOk" hidden>Thank you, your message is on its way. We'll get back to you as soon as we can.</div>
       </form>
     </div>
   </div>
@@ -737,7 +792,7 @@ button.pill:hover{border-color:var(--border-strong)}
         <input type="hidden" name="_subject" value="New newsletter sign-up from mazomoon.com"><p hidden><label>Leave this empty <input name="_honey"></label></p>
         <label for="newsEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
         <input id="newsEmail" name="email" type="email" required placeholder="Your email address">
-        <button class="btn" type="submit">Join the letter</button>
+        <button class="btn" type="submit">Get the monthly letter</button>
       </form>
       <p class="small" id="newsOk" style="opacity:.8" hidden>You're on the list. Look out for our monthly letter.</p>
     </div>
@@ -762,7 +817,7 @@ button.pill:hover{border-color:var(--border-strong)}
     </div>
   </div>
   <div class="giant" aria-hidden="true"><span class="wordmark"></span></div>
-  <div class="wrap legal"><span>© 2026 Mazo Moon. Made in Yorkshire.</span><span>Privacy · Cookies · Terms</span></div>
+  <div class="wrap legal"><span>© 2026 Mazo Moon. Made in Yorkshire.</span><span><a href="privacy/">Privacy</a> · <a href="cookies/">Cookies</a> · <a href="terms/">Terms</a></span></div>
 </footer>
 
 <script>
@@ -831,7 +886,7 @@ const posts = [
   {t:'An autumn mystery worth staying up for',d:'Fog, a lighthouse and a very good twist. Sample review.',date:'2 Sep 2026',m:'6 min read',c:'blue',r:'4/5'},
 ];
 const little = [
-  {n:'Clip-On Reading Light',ours:1,a:'B0FQKZRVGD',p:6.99,art:'light',c:'honey',w:'For reading in bed without the big light on. It folds into a bag and lasts for weeks of bedtime chapters.'},
+  {n:'Clip-On Reading Light',ours:1,a:'B0FQKZRVGD',p:6.99,art:'light',c:'honey',w:'For reading in bed without the big light on. Rechargeable, and it folds flat into a bag.'},
   {n:'A proper loose-leaf tea',art:'cup',c:'sage',w:'Something about a teapot makes you sit down for longer. We like a malty breakfast blend in the afternoon.'},
   {n:'3D Blackout Sleep Mask',ours:1,a:'B0GNJP5PDX',p:7.99,art:'mask',c:'plum',w:'For lie-ins and long train journeys. The contoured shape means no pressure on your lashes.'},
   {n:'A soy candle that smells of the outdoors',art:'candle',c:'blush',w:'Fig, cedar or fresh linen. Light it when you sit down to journal, blow it out when you are done.'},
@@ -891,7 +946,7 @@ document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x
     ${bookBtns(x)}
   </article>`).join('');
 document.getElementById('ltList').innerHTML = little.map(x=>`<article class="lt">
-    ${x.img?`<div class="art"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy"></div>`:`<div class="art" data-art="${x.art}" data-c="${x.c}"></div>`}
+    ${x.img?`<div class="art"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy"></div>`:`<div class="art" data-art="${x.art}" data-c="${x.c}">${x.ours&&x.a?amzImg(x.a,x.n):''}</div>`}
     <div class="lt-body">
       <div class="lt-top"><h3 class="t">${x.n}</h3>${x.ours?'<span class="tag">Mazo Moon</span>':''}</div>
       <p class="muted">${x.w}</p>
@@ -909,22 +964,44 @@ function setFilter(f){
 chips.forEach(ch=>ch.addEventListener('click',()=>setFilter(ch.dataset.f)));
 document.querySelectorAll('[data-goto-filter]').forEach(a=>a.addEventListener('click',()=>setFilter(a.dataset.gotoFilter)));
 
-/* routing */
+/* routing: each section has its own address (/shop/, /journals/ ...) */
 const pages=[...document.querySelectorAll('section.page')];
 const navMap={'review-sample':'reading'};
-function route(){
-  let h=(location.hash||'#home').slice(1);
-  let scrollTo=null;
-  if(h==='contact'){ h='our-story'; scrollTo='contact'; }
-  if(!pages.some(p=>p.dataset.page===h)) h='home';
+const META={
+  'home':['/','Mazo Moon | Journals, colouring and stationery from Yorkshire'],
+  'journals':['/journals/','Journals & colouring books | Mazo Moon'],
+  'shop':['/shop/','Shop stickers, pens, journals and more | Mazo Moon'],
+  'reading':['/reading/','The Reading Corner | Mazo Moon'],
+  'review-sample':['/reading/review/','The book I read twice in one wet October | Mazo Moon'],
+  'little-things':['/little-things/','Little Things I Love | Mazo Moon'],
+  'our-story':['/our-story/','Our story and contact | Mazo Moon']
+};
+const isPage=h=>pages.some(p=>p.dataset.page===h);
+function pageFromPath(){
+  const h=location.hash.slice(1);
+  if(h==='contact') return ['our-story','contact'];
+  if(isPage(h)) return [h,null];
+  const path=location.pathname.replace(/index\.html$/,'');
+  for(const [k,[pth]] of Object.entries(META)) if(k!=='home' && path.endsWith(pth)) return [k,null];
+  return ['home',null];
+}
+let firstRoute=true;
+function route(restoreY){
+  let [h,scrollTo]=pageFromPath();
   pages.forEach(p=>p.hidden = p.dataset.page!==h);
   const active=navMap[h]||h;
   document.querySelectorAll('[data-nav]').forEach(a=>{ if(a.dataset.nav===active) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
   nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false');
-  if(scrollTo){ requestAnimationFrame(()=>document.getElementById(scrollTo).scrollIntoView()); } else window.scrollTo(0,0);
+  if(META[h]) document.title=META[h][1];
+  if(scrollTo){ requestAnimationFrame(()=>document.getElementById(scrollTo).scrollIntoView()); }
+  else if(typeof restoreY==='number'){ requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,restoreY))); }
+  else window.scrollTo(0,0);
+  if(!firstRoute){ const t=document.querySelector(`section.page[data-page="${h}"] h1`); if(t){ t.tabIndex=-1; t.focus({preventScroll:true}); } }
+  firstRoute=false;
 }
 const nav=document.getElementById('mainNav'), menuBtn=document.getElementById('menuBtn');
 menuBtn.addEventListener('click',()=>{ const o=nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o?'true':'false'); });
+const hdr=document.querySelector('header.site'); const setHdr=()=>document.documentElement.style.setProperty('--hdr',hdr.offsetHeight+'px'); setHdr(); addEventListener('resize',setHdr);
 
 /* ===================== MOTION LAYER ===================== */
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -936,8 +1013,8 @@ const ss={get(k){try{return sessionStorage.getItem(k)}catch(_){return null}},set
   const el=document.getElementById('intro'); if(!el) return;
   if(reduce||ss.get('mm-intro')){ el.remove(); return; }
   ss.set('mm-intro','1');
-  const go=()=>{ if(el.classList.contains('lift')) return; el.classList.add('lift'); setTimeout(()=>el.remove(),1000); };
-  el.addEventListener('click',go); setTimeout(go,2300);
+  const go=()=>{ if(el.classList.contains('lift')) return; el.classList.add('lift'); setTimeout(()=>el.remove(),600); };
+  el.addEventListener('click',go); setTimeout(go,1000);
 })();
 
 /* Yorkshire clock */
@@ -978,14 +1055,14 @@ const playground=(function(){
       b.style.cssText=`--w:${w}px;--x:${x}px;--y:${y}px;--r:${(Math.random()*28-14).toFixed(1)}deg;--src:url(img/cut/${k}.webp);z-index:${++z}`;
       b.innerHTML=`<img src="img/cut/${k}.webp" alt="" draggable="false">`;
       b.dataset.pack=k.replace(/\d+/,'');
-      board.appendChild(b); live.push(b);
+      b.tabIndex = live.length===0?0:-1; board.appendChild(b); live.push(b);
       setTimeout(()=>b.classList.remove('enter'), reduce?0:220+i*90);
       bind(b);
     });
   }
   function stuck(){ const s=live.filter(b=>b.classList.contains('stuck')); countEl.textContent=`${s.length} sticker${s.length===1?'':'s'} on your journal`;
     if(s.length){ const tally={}; s.forEach(b=>tally[b.dataset.pack]=(tally[b.dataset.pack]||0)+1); const top=Object.entries(tally).sort((a,b)=>b[1]-a[1])[0][0];
-      go.href=AMZ(packs[top].a); go.textContent=`Get the ${packs[top].n.replace(' Stickers','')} pack`; go.classList.add('show'); } else go.classList.remove('show'); }
+      go.href=AMZ(packs[top].a); go.textContent=`Get the ${packs[top].n.replace(' Stickers','')} pack`; go.classList.add('show'); go.tabIndex=0; go.removeAttribute('aria-hidden'); } else { go.classList.remove('show'); go.tabIndex=-1; go.setAttribute('aria-hidden','true'); } }
   function overJournal(b){ const r=b.getBoundingClientRect(), j=target.getBoundingClientRect(); const cx=r.left+r.width/2, cy=r.top+r.height/2; return cx>j.left&&cx<j.right&&cy>j.top&&cy<j.bottom; }
   function bind(b){
     let sx,sy,ox,oy,lx,ly,lt,moved=false,id=null;
@@ -1012,6 +1089,7 @@ const playground=(function(){
     };
     b.addEventListener('pointerup',end); b.addEventListener('pointercancel',end);
     b.addEventListener('keydown',e=>{
+      if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(e.key)){ e.preventDefault(); const i=live.indexOf(b), n=live.length, j=(i+((e.key==='ArrowRight'||e.key==='ArrowDown')?1:-1)+n)%n; live.forEach(x=>x.tabIndex=-1); live[j].tabIndex=0; live[j].focus(); return; }
       if(e.key==='Enter'||e.key===' '){ e.preventDefault(); const j=target.getBoundingClientRect(), br=board.getBoundingClientRect(), w=b.offsetWidth;
         b.style.setProperty('--x',(j.left-br.left+Math.random()*(j.width-w*.8))+'px'); b.style.setProperty('--y',(j.top-br.top+Math.random()*(j.height-w*.8))+'px');
         b.style.zIndex=++z; setTimeout(()=>{ b.classList.add('stuck'); stuck(); },520); }
@@ -1107,13 +1185,27 @@ if(!reduce && matchMedia('(hover:hover)').matches){
 
 const turn=document.getElementById('turn');
 let turning=false;
-function afterRoute(){ const h=(location.hash||'#home').slice(1); if(h==='home'||!h) requestAnimationFrame(()=>playground.ensure()); requestAnimationFrame(onScroll); }
-window.addEventListener('hashchange',()=>{
-  if(reduce||turning){ route(); afterRoute(); return; }
+function afterRoute(){ if(pageFromPath()[0]==='home') requestAnimationFrame(()=>playground.ensure()); requestAnimationFrame(onScroll); }
+function pageTurn(done){
+  if(reduce||turning){ done(); return; }
   turning=true; turn.classList.remove('out'); turn.style.transition='none'; turn.style.transform='translateX(105%)'; void turn.offsetWidth; turn.style.transition=''; turn.style.transform='';
   turn.classList.add('in');
-  setTimeout(()=>{ route(); afterRoute(); turn.classList.remove('in'); turn.classList.add('out'); setTimeout(()=>{ turn.classList.remove('out'); turn.style.transition='none'; turn.style.transform='translateX(105%)'; turning=false; },580); },440);
+  setTimeout(()=>{ done(); turn.classList.remove('in'); turn.classList.add('out'); setTimeout(()=>{ turn.classList.remove('out'); turn.style.transition='none'; turn.style.transform='translateX(105%)'; turning=false; },300); },200);
+}
+function go(page,anchor){
+  const path=META[page][0]+(anchor?'#'+anchor:'');
+  try{ history.replaceState({y:scrollY},''); history.pushState({},'',path); }catch(_){ location.hash=anchor||page; return; }
+  pageTurn(()=>{ route(); afterRoute(); });
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey) return;
+  const h=a.getAttribute('href').slice(1);
+  if(h==='contact'){ e.preventDefault(); if(pageFromPath()[0]==='our-story') document.getElementById('contact').scrollIntoView({behavior:reduce?'auto':'smooth'}); else go('our-story','contact'); return; }
+  if(isPage(h)){ e.preventDefault(); if(pageFromPath()[0]===h && !location.hash){ window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); return; } go(h); }
 });
+addEventListener('popstate',e=>{ const y=e.state&&typeof e.state.y==='number'?e.state.y:undefined; pageTurn(()=>{ route(y); afterRoute(); }); });
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+(function(){ const h=location.hash.slice(1); if(isPage(h)){ try{ history.replaceState({},'',META[h][0]); }catch(_){} } })();
 route(); afterRoute();
 
 /* forms: FormSubmit emails each entry to hello@mazomoon.com */
