@@ -42,7 +42,7 @@ footer{{border-top:1px solid var(--hairline);margin-top:56px;padding-top:20px;fo
 <p class="updated">Last updated {updated}</p>
 {body}
 </main>
-<footer><span>© 2026 Mazo Moon. Made in Yorkshire.</span><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/terms/">Terms</a><a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a></footer>
+<footer><span>© 2026 Mazo Moon Ltd · Company no. 16988519</span><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/terms/">Terms</a><a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a></footer>
 </div>
 </body>
 </html>
@@ -50,7 +50,7 @@ footer{{border-top:1px solid var(--hairline);margin-top:56px;padding-top:20px;fo
 
 PAGES = {
 'privacy': ('Privacy policy', 'How Mazo Moon looks after the personal details you share with us.', '''
-<p>Mazo Moon is a small family business in Yorkshire, England. This page explains what we collect when you use mazomoon.com, why, and what you can ask us to do with it. If you have a question, email <a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a>.</p>
+<p>This website is run by Mazo Moon Ltd, a private limited company registered in England and Wales (company number 16988519), whose registered office is 13-15 Boothtown Road, Halifax, HX3 6EU. Mazo Moon Ltd is responsible for your personal details as the data controller. This page explains what we collect when you use mazomoon.com, why, and what you can ask us to do with it. If you have a question, email <a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a>.</p>
 <h2>What we collect</h2>
 <ul>
 <li><strong>When you send us a message:</strong> your name, email address, the topic you choose and your message.</li>
@@ -87,11 +87,11 @@ PAGES = {
 <p>If we ever add analytics or anything else that uses cookies, we'll update this page and ask for your consent first where the law requires it.</p>
 '''),
 'terms': ('Terms of use', 'The terms for using the Mazo Moon website.', '''
-<p>These terms cover your use of mazomoon.com, which is run by Mazo Moon, a family business in Yorkshire, England. Contact us at <a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a>.</p>
+<p>These terms cover your use of mazomoon.com, which is run by Mazo Moon Ltd, a private limited company registered in England and Wales (company number 16988519). Our registered office is 13-15 Boothtown Road, Halifax, HX3 6EU. Contact us at <a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a>.</p>
 <h2>Buying our products</h2>
 <p>We sell through Amazon. When you buy, your contract is made through Amazon, under <a href="https://www.amazon.co.uk/gp/help/customer/display.html?nodeId=201909000" rel="noopener">Amazon's conditions of use and sale</a>, including its delivery and returns policies. Prices and stock are shown on Amazon and can change there at any time.</p>
 <h2>Our content</h2>
-<p>The words, photos, illustrations, sticker designs and journal pages on this site belong to Mazo Moon. You're welcome to share links to our pages. Please don't copy or reuse our designs or content for commercial purposes without asking us first.</p>
+<p>The words, photos, illustrations, sticker designs and journal pages on this site belong to Mazo Moon Ltd. You're welcome to share links to our pages. Please don't copy or reuse our designs or content for commercial purposes without asking us first.</p>
 <h2>Reviews and recommendations</h2>
 <p>The Reading Corner and Little Things I Love are our honest opinions. When we recommend another company's product, we'll say so clearly.</p>
 <h2>Links to other sites</h2>
