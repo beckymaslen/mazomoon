@@ -30,7 +30,7 @@ PAGES = {
 }
 
 
-def meta(title, desc, url, img=IMG, kind='website'):
+def meta(title, desc, url, img=IMG, kind='website', extra=''):
     t, d = html.escape(title, quote=True), html.escape(desc, quote=True)
     return f'''<!--meta-start-->
 <meta name="description" content="{d}">
@@ -44,6 +44,7 @@ def meta(title, desc, url, img=IMG, kind='website'):
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="Mazo Moon book reviews" href="{SITE}/reading/feed.xml">{extra}
 <!--meta-end-->'''
 
 
@@ -56,6 +57,8 @@ def show(src, page):
 def main():
     src = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
     assert '<!--meta-start-->' in src and '<!--title-end-->' in src
+    posts = load_posts(src)
+    src = static_reviews(src, posts)  # review links are in the HTML for search engines
     urls = [SITE + '/']
     for path, (title, desc) in PAGES.items():
         url = f'{SITE}/{path}/'
@@ -65,13 +68,17 @@ def main():
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(out)
         urls.append(url)
-    urls += build_reviews(src)
+    urls += write_reviews(src, posts)
+    write_feed(posts)
     # unknown addresses fall back to the home page
-    open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(src)
+    open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read())
     for p in ('privacy', 'cookies', 'terms'):
         urls.append(f'{SITE}/{p}/')
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    sm += ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
+    mod = {f'{SITE}/reading/{p["slug"]}/': p['updated'] for p in posts}
+    if posts:
+        mod[f'{SITE}/reading/'] = max(p['updated'] for p in posts)
+    sm += ''.join(f'  <url><loc>{u}</loc>' + (f'<lastmod>{mod[u]}</lastmod>' if u in mod else '') + '</url>\n' for u in urls) + '</urlset>\n'
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(sm)
     open(os.path.join(ROOT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n')
     print('built', ', '.join(PAGES))
@@ -117,8 +124,8 @@ def shelf(src):
     return json.loads(m.group(1))
 
 
-def build_reviews(src):
-    """Make /reading/<slug>/ pages and reviews.json from content/reviews/*.md."""
+def load_posts(src):
+    """Read the published reviews in content/reviews/*.md, newest first."""
     folder = os.path.join(ROOT, 'content', 'reviews')
     read = shelf(src)
     series = {b: (n, a) for n, a, books in read for b in books}
@@ -142,8 +149,53 @@ def build_reviews(src):
         posts.append(dict(slug=slug, title=str(fm['title']), book=book or str(fm['title']), series=n, author=a,
                           date=d.isoformat(), nice=f'{d.day} {MONTHS[d.month - 1]} {d.year}', rating=rating,
                           spoilers=bool(fm.get('spoilers')), cover=cover,
-                          excerpt=str(fm.get('excerpt') or '').strip(), body=to_html(body)))
+                          excerpt=str(fm.get('excerpt') or '').strip(), body=to_html(body),
+                          seo_title=str(fm.get('seo_title') or '').strip(),
+                          seo_description=str(fm.get('seo_description') or '').strip(),
+                          updated=as_date(fm.get('updated') or d).isoformat(), text=plain(to_html(body))))
     posts.sort(key=lambda p: p['date'], reverse=True)
+    return posts
+
+
+def plain(h):
+    return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', h))).strip()
+
+
+def short(t, n=158):
+    return t if len(t) <= n else t[:n].rsplit(' ', 1)[0].rstrip(',.;: ') + '…'
+
+
+def stars_html(r):
+    return f'<span class="stars" aria-label="{r} out of 5">{"★" * r}{"☆" * (5 - r)}</span>' if r else ''
+
+
+def static_reviews(src, posts):
+    """Write the review cards into the Reading Corner HTML, so they don't depend on scripts."""
+    if not posts:
+        return src
+    e = lambda t: html.escape(t, quote=True)
+    cards = ''.join(
+        f'<a class="review-card" href="/reading/{p["slug"]}/">' + (f'<img src="{e(p["cover"])}" alt="" loading="lazy">' if p['cover'] else '')
+        + f'<span class="label">{e(p["book"])}</span><h3 class="strong-s">{e(p["title"])}</h3>'
+        + f'<p class="small muted">{p["nice"]} {stars_html(p["rating"])}</p>' + (f'<p class="small">{e(p["excerpt"])}</p>' if p['excerpt'] else '') + '</a>'
+        for p in posts)
+    src = src.replace('<div class="wrap sec-tight" id="reviewsWrap" hidden>', '<div class="wrap sec-tight" id="reviewsWrap">', 1)
+    return src.replace('<div class="review-grid" id="reviewGrid"></div>', f'<div class="review-grid" id="reviewGrid">{cards}</div>', 1)
+
+
+def write_feed(posts):
+    e = lambda t: html.escape(t, quote=False)
+    items = ''.join(
+        f'<item><title>{e(p["title"])}</title><link>{SITE}/reading/{p["slug"]}/</link><guid>{SITE}/reading/{p["slug"]}/</guid>'
+        f'<pubDate>{datetime.strptime(p["date"], "%Y-%m-%d").strftime("%a, %d %b %Y 09:00:00 +0000")}</pubDate>'
+        f'<description>{e(p["excerpt"] or short(p["text"], 300))}</description></item>\n' for p in posts)
+    rss = ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>\n<title>Mazo Moon: The Reading Corner</title>'
+           f'<link>{SITE}/reading/</link><description>Honest book reviews from Rebecca at Mazo Moon.</description><language>en-gb</language>\n{items}</channel></rss>\n')
+    open(os.path.join(ROOT, 'reading', 'feed.xml'), 'w', encoding='utf-8').write(rss)
+
+
+def write_reviews(src, posts):
+    """Make a /reading/<slug>/ page for each review, plus reviews.json for the bookshelf."""
     # clear out pages for reviews that were deleted or unpublished
     rd = os.path.join(ROOT, 'reading')
     keep = {p['slug'] for p in posts}
@@ -154,12 +206,19 @@ def build_reviews(src):
     urls = []
     for p in posts:
         url = f'{SITE}/reading/{p["slug"]}/'
-        title = f'{p["title"]} | Mazo Moon'
-        desc = p['excerpt'] or f'Rebecca\'s review of {p["book"]}' + (f' by {p["author"]}.' if p['author'] else '.')
+        by = f' by {p["author"]}' if p['author'] else ''
+        if p['seo_title']:
+            title = p['seo_title']
+        elif p['book'].lower() in p['title'].lower():
+            title = f'{p["title"]}: book review | Mazo Moon'
+        else:
+            title = f'{p["title"]}: {p["book"]} review | Mazo Moon'
+        desc = short(p['seo_description'] or p['excerpt'] or f'My honest review of {p["book"]}{by}. {p["text"]}')
+        if len(desc) < 70:
+            desc = short(f'{desc.rstrip(".")}. My honest review of {p["book"]}{by}.')
         img = (SITE + p['cover']) if p['cover'].startswith('/') else (p['cover'] or IMG)
         e = lambda t: html.escape(t, quote=True)
-        stars = (f'<span class="stars" aria-label="{p["rating"]} out of 5">{"★" * p["rating"]}{"☆" * (5 - p["rating"])}</span>'
-                 if p['rating'] else '')
+        stars = stars_html(p['rating'])
         bits = [f'<span>By Rebecca</span>', f'<time datetime="{p["date"]}">{p["nice"]}</time>']
         if stars: bits.append(stars)
         label = e(p['series'] or 'Book review')
@@ -186,7 +245,27 @@ def build_reviews(src):
     <a class="btn btn-text" href="#contact">Tell me what you thought</a>
   </div>
 </article>'''
-        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url, img, 'article'), show(src, 'review'), flags=re.S)
+        ld = {'@context': 'https://schema.org', '@type': 'Review', 'name': p['title'], 'url': url,
+              'datePublished': p['date'], 'dateModified': p['updated'], 'description': desc,
+              'author': {'@type': 'Person', 'name': 'Rebecca', 'url': f'{SITE}/our-story/'},
+              'publisher': {'@type': 'Organization', 'name': 'Mazo Moon', 'url': SITE + '/'},
+              'itemReviewed': {'@type': 'Book', 'name': p['book']}}
+        if p['author']:
+            ld['itemReviewed']['author'] = [{'@type': 'Person', 'name': x.strip()} for x in re.split(r'\s*&\s*|\s+and\s+', p['author'])]
+        if p['series']:
+            ld['itemReviewed']['isPartOf'] = {'@type': 'BookSeries', 'name': p['series']}
+        if p['rating']:
+            ld['reviewRating'] = {'@type': 'Rating', 'ratingValue': p['rating'], 'bestRating': 5, 'worstRating': 1}
+        if p['cover']:
+            ld['image'] = img
+        crumbs = {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE + '/'},
+            {'@type': 'ListItem', 'position': 2, 'name': 'The Reading Corner', 'item': f'{SITE}/reading/'},
+            {'@type': 'ListItem', 'position': 3, 'name': p['title'], 'item': url}]}
+        extra = (f'\n<meta property="article:published_time" content="{p["date"]}">'
+                 f'\n<meta property="article:modified_time" content="{p["updated"]}">'
+                 f'\n<script type="application/ld+json">{json.dumps([ld, crumbs], ensure_ascii=False).replace("</", "<\\/")}</script>')
+        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url, img, 'article', extra), show(src, 'review'), flags=re.S)
         out = re.sub(r'<title>.*?</title><!--title-end-->', lambda m: f'<title>{html.escape(title)}</title><!--title-end-->', out, flags=re.S)
         out = out.replace('<!--review-start--><!--review-end-->', f'<!--review-start-->{page}<!--review-end-->')
         d = os.path.join(rd, p['slug']); os.makedirs(d, exist_ok=True)

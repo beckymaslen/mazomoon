@@ -194,6 +194,14 @@ content:
         label: Short summary
         type: text
         description: One or two sentences. Shows on the Reading Corner and when the link is shared.
+      - name: seo_title
+        label: Search title (optional)
+        type: string
+        description: What Google shows as the headline. Leave blank and I'll use your title plus the book name. Aim for under 60 characters.
+      - name: seo_description
+        label: Search description (optional)
+        type: text
+        description: The line under the headline in Google. Leave blank to use your short summary. Aim for 120 to 155 characters and mention the book and author.
       - name: published
         label: Publish on the website
         type: boolean
