@@ -8,3 +8,4 @@ The Mazo Moon brand site: journals, colouring books and stationery, sold through
 - Contact and newsletter forms post to FormSubmit (formsubmit.co), which emails each entry to hello@mazomoon.com. The very first submission triggers a one-off activation email that must be confirmed.
 
 Hosted on GitHub Pages at mazomoon.com (see `CNAME`): every push to `main` publishes automatically.
+- `links/index.html` is the link-in-bio page for social profiles (mazomoon.com/links). Edit the `links` array in its script to change the buttons.
