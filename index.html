@@ -318,6 +318,7 @@ button.pill:hover{border-color:var(--border-strong)}
 .card:hover .peek{opacity:0}
 /* card tilt */
 .art img.amz{background:#fff;object-fit:contain;padding:6%}
+.card .btn.hc{margin-top:8px}
 .swatches{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 10px}
 .swatches .sw{width:18px;height:18px;border-radius:50%;background:var(--sw);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);transition:transform .2s}
 .swatches .sw:hover,.swatches .sw:focus-visible{transform:scale(1.25)}
@@ -780,12 +781,19 @@ const products = [
   {a:'B0GHG9Q2L6',n:'Hot & Cold Weighted Eye Mask',l:'Warm or cool, your call.',d:'Gel mask for the microwave or the fridge.',cat:'rest',art:'mask',c:'blush'},
 ];
 const books = [
-  {n:'My Adventure Travel Journal',l:'One book for every holiday.',d:'Before you go, on the way and when you\'re there, with games for the boring bits.',spec:'106 pages · 6 × 9 in',img:'adventure-travel-journal'},
-  {n:'Our Journey Together',l:'Your words. Their words.',d:'A shared journal for a grown-up and child to fill in, pass back and keep.',spec:'113 pages · 6 × 9 in',img:'our-journey-together'},
-  {n:'The Year I Started Secondary School',l:'You don\'t have to have it all figured out.',d:'A private, pressure-free place for a big new chapter.',spec:'110 pages · 6 × 9 in',img:'started-secondary'},
-  {n:'The Storymaker\'s Journal',l:'Every story starts with one small idea.',d:'Draw, imagine and create your own adventures, one prompt at a time.',spec:'110 pages · 6 × 9 in',img:'storymakers-journal'},
-  {n:'The Storymaker\'s Comic Book',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic'},
-  {n:'A Cup of Somewhere Else',l:'Cosy colouring for adults.',d:'Forty little places to escape to, one page at a time.',spec:'84 pages · 8.5 × 11 in',img:'cup-of-somewhere-else'},
+  {n:'My Adventure Travel Journal',a:'B0HNY91X4S',l:'One book for every holiday.',d:'Before you go, on the way and when you\'re there, with games for the boring bits.',spec:'106 pages · 6 × 9 in',img:'adventure-travel-journal'},
+  {n:'Our Journey Together',a:'B0HNXQFDD2',l:'Your words. Their words.',d:'A shared journal for a grown-up and child to fill in, pass back and keep.',spec:'113 pages · 6 × 9 in',img:'our-journey-together'},
+  {n:'The Year I Started Secondary School',a:'B0HPGTGRH9',l:'You don\'t have to have it all figured out.',d:'A private, pressure-free place for a big new chapter.',spec:'110 pages · 6 × 9 in',img:'started-secondary'},
+  {n:'The Storymaker\'s Journal',a:'B0HP8HW6B5',l:'Every story starts with one small idea.',d:'Draw, imagine and create your own adventures, one prompt at a time.',spec:'110 pages · 6 × 9 in',img:'storymakers-journal'},
+  {n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic'},
+  {n:'The Little Words Archive',a:'B0GMH7FGRF',h:'B0GMCNFFRL',l:'The things they say, kept safe.',d:'A keepsake journal for remembering the funny, wise and wonderful words children say.',spec:'Paperback or hardcover',art:'journal',c:'honey'},
+  {n:'The Year of Being 7',a:'B0GM15C6P8',h:'B0GM1GL82B',l:'Feelings, confidence and everyday magic.',d:'A keepsake journal for 7-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',art:'journal',c:'blush'},
+  {n:'The Year of Being 8',a:'B0GM5JKMCW',h:'B0GM89ZG4J',l:'Growth, self-trust and everyday moments.',d:'A keepsake journal for 8-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',art:'journal',c:'honey'},
+  {n:'The Year of Being 9',a:'B0GMQLBMR8',h:'B0GM7X4CDH',l:'Strength, curiosity and everyday life.',d:'A keepsake journal for 9-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',art:'journal',c:'sage'},
+  {n:'The Year of Being 10',a:'B0GM2SSLJB',h:'B0GM28DT2C',l:'Perspective, values and everyday life.',d:'A keepsake journal for 10-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',art:'journal',c:'blue'},
+  {n:'The Year of Being 11',a:'B0GM9PC4CM',h:'B0GM7WG4PH',l:'Identity, belonging and everyday life.',d:'A keepsake journal for 11-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',art:'journal',c:'plum'},
+  {n:'The Year of Being 12',a:'B0GM2TPC12',h:'B0GM2SHZWL',l:'Voice, independence and everyday life.',d:'A keepsake journal for 12-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',art:'journal',c:'blush'},
+  {n:'A Cup of Somewhere Else',soon:1,colour:1,l:'Cosy colouring for adults.',d:'Forty little places to escape to, one page at a time.',spec:'84 pages · 8.5 × 11 in',img:'cup-of-somewhere-else'},
 ];
 const posts = [
   {t:'Five books for a slow Sunday',d:'Short, gentle reads you can finish before the roast is ready.',date:'28 Sep 2026',m:'4 min read',c:'sage',r:'4/5'},
@@ -834,17 +842,21 @@ function productCard(x){
 }
 document.getElementById('homeFavs').innerHTML = products.filter(p=>p.fav).map(productCard).join('');
 document.getElementById('journalGrid').innerHTML = products.filter(p=>p.cat==='journals').map(productCard).join('');
+function bookBtns(x){
+  if(x.soon||!x.a) return `<span class="btn btn-secondary" aria-disabled="true">Coming soon to Amazon</span>`;
+  return `<a class="btn btn-primary" href="${AMZ(x.a)}" target="_blank" rel="noopener">${x.h?'Paperback on Amazon':'Buy on Amazon'}</a>`+(x.h?`<a class="btn btn-secondary hc" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover on Amazon</a>`:'');
+}
 document.getElementById('shopGrid').innerHTML = books.map(x=>`<article class="card" data-cat="books">
-    ${artFor({...x,cover:1})}
+    ${artFor({...x,cover:!!x.img})}
     <h3 class="t">${x.n}</h3><p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>
     <div class="meta"><span class="caption">${x.spec}</span></div>
-    <a class="btn btn-primary" href="${S(x.n)}" target="_blank" rel="noopener">Buy on Amazon</a>
+    ${bookBtns(x)}
   </article>`).join('') + products.map(productCard).join('');
-document.getElementById('bookGrid').innerHTML = books.slice(0,5).map(x=>`<article class="card">
-    ${artFor({...x,cover:1})}
+document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x=>`<article class="card">
+    ${artFor({...x,cover:!!x.img})}
     <h3 class="t">${x.n}</h3><p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>
     <div class="meta"><span class="caption">${x.spec}</span></div>
-    <a class="btn btn-primary" href="${S(x.n)}" target="_blank" rel="noopener">Buy on Amazon</a>
+    ${bookBtns(x)}
   </article>`).join('');
 document.getElementById('ltList').innerHTML = little.map(x=>`<article class="lt">
     ${x.img?`<div class="art"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy"></div>`:`<div class="art" data-art="${x.art}" data-c="${x.c}"></div>`}
