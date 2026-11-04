@@ -308,6 +308,10 @@ button.pill:hover{border-color:var(--border-strong)}
 @media (max-width:820px){.colourin{height:240vh}.colourin .sticky{grid-template-columns:1fr;gap:16px;top:calc(env(safe-area-inset-top,0px) + 76px);min-height:auto}.cframe{width:min(100%,calc((100vh - 300px) * .748))}.colourin .pct{font-size:48px}.colourin .ctext p.muted{display:none}}
 
 /* open-the-book hover */
+.art.shopimg img{transition:opacity .5s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.art.shopimg .h{opacity:0;transform:scale(1.04)}
+.card:hover .art.shopimg .h,.card:focus-within .art.shopimg .h{opacity:1;transform:scale(1)}
+.card:hover .art.shopimg .m{transform:scale(1.03)}
 .art.book3d{perspective:1600px}
 .art.book3d .bk{--t:16px;position:absolute;left:50%;top:50%;height:76%;aspect-ratio:var(--ar,.667);transform:translate(-54%,-52%) rotateY(-14deg);transform-style:preserve-3d;transition:transform .9s cubic-bezier(.4,0,.2,1)}
 .art.book3d .bk::after{content:"";position:absolute;left:-6%;right:-18%;bottom:-5%;height:9%;background:radial-gradient(closest-side,rgba(48,49,51,.32),transparent);transform:translateZ(-40px);filter:blur(4px)}
@@ -758,20 +762,20 @@ const products = [
   {a:'B0FQ3BWF4X',n:'Budget Planner',l:'Know where it all goes.',d:'Monthly budgets, bill trackers and savings goals in one calm A5 notebook.',cat:'journals',art:'journal',c:'sage'},
   {a:'B0FQ3CQPLN',n:'Undated Weekly Planner',l:'Start any week you like.',d:'To-do lists, goals and a habit tracker, with no dates to fall behind on.',cat:'journals',art:'journal',c:'blue'},
   {a:'B0FRZC5N4Y',n:'Wellness & Fitness Planner',l:'Look after you.',d:'Meals, sleep, movement and mood, tracked gently day by day.',cat:'journals',art:'journal',c:'blush'},
-  {a:'B0FY3R7ZVM',n:'Needle Tip Gel Pens, 3-pack',l:'Fine lines. Clean notes.',d:'Black, blue and red 0.5mm needle tips for journals, planners and study notes.',cat:'pens',img:'pens-needle',fav:1},
+  {a:'B0FY3R7ZVM',shop:'needle-pens',n:'Needle Tip Gel Pens, 3-pack',l:'Fine lines. Clean notes.',d:'Black, blue and red 0.5mm needle tips for journals, planners and study notes.',cat:'pens',img:'pens-needle',fav:1},
   {a:'B0FQ4DKYMD',n:'Gel Pen Set, 18 colours',l:'Pick your colour.',d:'Nine 0.5mm pens with 18 colours and a visible ink level. Choose a set below.',cat:'pens',art:'pens',c:'plum',v:[['Black','B0FQ4DKYMD','#303133'],['Grey','B0FQ49YQZB','#9a9a98'],['Silver','B0FQ49FYQV','#c9c9c9'],['Gold','B0FQ49XL7B','#c9a24a'],['Beige','B0FQ4BLV6R','#d8c6ab'],['Pink','B0FQ4BLCRV','#e8a3b8'],['Magenta','B0FQ4BC9B6','#b0306f'],['Red','B0FQ4BK59Q','#b8352f'],['Orange','B0FQ4CSSJT','#e07b39'],['Turquoise','B0FQ49KCDY','#2aa6a0'],['Purple','B0FQ4CB8FR','#6d4c8f']]},
-  {a:'B0FY439TS9',n:'Metallic Brush Pens, 3-pack',l:'A little shimmer.',d:'Gold, silver and bronze for lettering, cards and journal headings.',cat:'pens',art:'pens',c:'honey'},
+  {a:'B0FY439TS9',shop:'metallic-brush-pens',n:'Metallic Brush Pens, 3-pack',l:'A little shimmer.',d:'Gold, silver and bronze for lettering, cards and journal headings.',cat:'pens',art:'pens',c:'honey'},
   {a:'B0GQ4S86TS',n:'Fine Point Ballpoint Pens, 10-pack',l:'Quiet, neutral colour.',d:'Quick-dry 0.5mm click pens in soft, earthy shades.',cat:'pens',art:'pens',c:'sage'},
   {a:'B0FY4B2PTR',n:'Pattern Line Pens, 6-piece',l:'Borders in one stroke.',d:'Curve and flower tips for doodled edges and dividers.',cat:'pens',art:'pens',c:'plum'},
-  {a:'B0FY7V22J1',n:'Positive Affirmation Stickers',l:'Little reminders.',d:'50 kind notes to self for journals, planners and water bottles.',cat:'stickers',img:'stickers-affirmation',fav:1},
+  {a:'B0FY7V22J1',shop:'positive-affirmation',n:'Positive Affirmation Stickers',l:'Little reminders.',d:'50 kind notes to self for journals, planners and water bottles.',cat:'stickers',img:'stickers-affirmation',fav:1},
   {a:'B0FQ3Z9NF2',n:'Mental Health Motivational Stickers',l:'Be gentle with yourself.',d:'50 self-care affirmations in waterproof vinyl.',cat:'stickers',art:'stickers',c:'sage'},
-  {a:'B0FY817MDV',n:'Motivational Quote Stickers',l:'A boost in colour.',d:'50 bright, cheerful quotes for laptops, bottles and planners.',cat:'stickers',img:'stickers-motivational'},
-  {a:'B0FY94K1BW',n:'Vintage Quote Stickers',l:'Warm, neutral, timeless.',d:'50 brown-toned literary quote stickers for scrapbooks and journals.',cat:'stickers',img:'stickers-vintage-quote',fav:1},
+  {a:'B0FY817MDV',shop:'motivational',n:'Motivational Quote Stickers',l:'A boost in colour.',d:'50 bright, cheerful quotes for laptops, bottles and planners.',cat:'stickers',img:'stickers-motivational'},
+  {a:'B0FY94K1BW',shop:'vintage-quote',n:'Vintage Quote Stickers',l:'Warm, neutral, timeless.',d:'50 brown-toned literary quote stickers for scrapbooks and journals.',cat:'stickers',img:'stickers-vintage-quote',fav:1},
   {a:'B0GHZBMZ4H',n:'Retro Vintage Word Stickers',l:'Old-school charm.',d:'30 graphic word stickers for planners, tumblers and notebooks.',cat:'stickers',art:'stickers',c:'honey'},
   {a:'B0FYB2Z7WD',n:'Retro Alphabet Stickers',l:'Spell it out.',d:'52 vintage letters for titles, labels and bullet journals.',cat:'stickers',art:'stickers',c:'blush'},
-  {a:'B0GHYJQTXC',n:'Travel Map Stickers',l:'Collect the places.',d:'50 hand-drawn cities and countries for travel journals and suitcases.',cat:'stickers',img:'stickers-travel-map'},
-  {a:'B0FQ42GN9B',n:'Holographic Glitter Stickers',l:'Catch the light.',d:'40 shimmering stickers in waterproof PET vinyl.',cat:'stickers',img:'stickers-holographic'},
-  {a:'B0FQ43L496',n:'Dark Romance Reader Stickers',l:'For your book stack.',d:'50 romantasy stickers for e-readers, journals and book boxes.',cat:'stickers',img:'stickers-dark-romance'},
+  {a:'B0GHYJQTXC',shop:'travel-map',n:'Travel Map Stickers',l:'Collect the places.',d:'50 hand-drawn cities and countries for travel journals and suitcases.',cat:'stickers',img:'stickers-travel-map'},
+  {a:'B0FQ42GN9B',shop:'holographic',n:'Holographic Glitter Stickers',l:'Catch the light.',d:'40 shimmering stickers in waterproof PET vinyl.',cat:'stickers',img:'stickers-holographic'},
+  {a:'B0FQ43L496',shop:'dark-romance',n:'Dark Romance Reader Stickers',l:'For your book stack.',d:'50 romantasy stickers for e-readers, journals and book boxes.',cat:'stickers',img:'stickers-dark-romance'},
   {a:'B0GWFX6BHX',n:'Bookish Witch Stickers',l:'Potions and paperbacks.',d:'50 deep purple apothecary and reading stickers.',cat:'stickers',art:'stickers',c:'plum'},
   {a:'B0GT16VP2P',n:'Vinyl Flower Stickers',l:'A little bouquet.',d:'50 aesthetic floral stickers for bottles, laptops and journals.',cat:'stickers',art:'stickers',c:'blush'},
   {a:'B0GSZZZPN7',n:'Floral Sticker Set, 62pcs',l:'Roses to lavender.',d:'Roses, sunflowers, tulips and lavender, 5 to 7cm each.',cat:'stickers',art:'stickers',c:'sage'},
@@ -782,7 +786,7 @@ const products = [
   {a:'B0GWFW3K6C',n:'Sarcastic Funny Stickers',l:'Say it with a sticker.',d:'50 humorous quote stickers for grown-ups.',cat:'stickers',art:'stickers',c:'sage'},
   {a:'B0FQ48NKCX',n:'Sticky Index Tabs',l:'Find your place.',d:'Writable, repositionable tabs in soft Morandi colours or a big multipack.',cat:'desk',art:'tabs',c:'blue'},
   {a:'B0FQKZRVGD',n:'Clip-On Reading Light',l:'One more chapter.',d:'Foldable, rechargeable book light with warm and cool settings.',cat:'rest',art:'light',c:'honey',fav:1,v:[['Style 1','B0FQKZRVGD','#e7d3a8'],['Style 2','B0FQL4SXXD','#b4a69d']]},
-  {a:'B0FRYHQ97G',n:'NoiseBud Ring Earplugs',l:'Turn the world down.',d:'Soft, reusable silicone rings that take the edge off everyday noise.',cat:'rest',img:'noisebud-pink',v:[['White','B0FRYHQ97G','#f4f1ec'],['Pink','B0FRYLQX7N','#eab3c0'],['Blue','B0FRYJGVR9','#8fb3d9'],['Green','B0FRYGBW79','#9cc3a0'],['Black','B0FRYJ7JTK','#303133']]},
+  {a:'B0FRYHQ97G',shop:'noisebud',n:'NoiseBud Ring Earplugs',l:'Turn the world down.',d:'Soft, reusable silicone rings that take the edge off everyday noise.',cat:'rest',img:'noisebud-pink',v:[['White','B0FRYHQ97G','#f4f1ec'],['Pink','B0FRYLQX7N','#eab3c0'],['Blue','B0FRYJGVR9','#8fb3d9'],['Green','B0FRYGBW79','#9cc3a0'],['Black','B0FRYJ7JTK','#303133']]},
   {a:'B0GNJP5PDX',n:'3D Blackout Sleep Mask',l:'Lights out, gently.',d:'Contoured so nothing presses on your eyes.',cat:'rest',art:'mask',c:'plum'},
   {a:'B0FRYPBFBK',n:'GravityMask Weighted Sleep Mask',l:'A gentle weight.',d:'Micro glass beads and a 3D contour for deeper rest.',cat:'rest',art:'mask',c:'blue'},
   {a:'B0GHFY1HG6',n:'Cooling Eye Mask Set',l:'Cool, calm eyes.',d:'A reusable ice gel mask plus a satin sleep mask.',cat:'rest',art:'mask',c:'sage'},
@@ -836,7 +840,7 @@ function paint(root){ (root||document).querySelectorAll('[data-art]').forEach(el
 
 const price = p => '£' + p.toFixed(2);
 const AR={'storymakers-comic':.707,'cup-of-somewhere-else':.773};
-const artFor = x => (x.img && x.cover) ? `<div class="art cover book3d"><div class="bk" style="--ar:${AR[x.img]||.667}"><img class="inside" src="img/inside-${x.inside||x.img}.jpg" alt="" loading="lazy"><span class="pages" aria-hidden="true"></span><span class="front"><img src="img/${x.img}.jpg" alt="${x.n} cover" loading="lazy"><span class="crease" aria-hidden="true"></span></span></div><span class="peek">Peek inside</span></div>` : x.img ? `<div class="art tilt"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy">${x.a?amzImg(x.a,x.n):''}</div>` : `<div class="art tilt" data-art="${x.art}" data-c="${x.c}">${x.a?amzImg(x.a,x.n):''}</div>`;
+const artFor = x => x.shop ? `<div class="art shopimg"><img class="m" src="img/shop/${x.shop}.jpg" alt="${x.n}" loading="lazy"><img class="h" src="img/shop/${x.shop}-hover.jpg" alt="" loading="lazy" aria-hidden="true"></div>` : (x.img && x.cover) ? `<div class="art cover book3d"><div class="bk" style="--ar:${AR[x.img]||.667}"><img class="inside" src="img/inside-${x.inside||x.img}.jpg" alt="" loading="lazy"><span class="pages" aria-hidden="true"></span><span class="front"><img src="img/${x.img}.jpg" alt="${x.n} cover" loading="lazy"><span class="crease" aria-hidden="true"></span></span></div><span class="peek">Peek inside</span></div>` : x.img ? `<div class="art tilt"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy">${x.a?amzImg(x.a,x.n):''}</div>` : `<div class="art tilt" data-art="${x.art}" data-c="${x.c}">${x.a?amzImg(x.a,x.n):''}</div>`;
 function productCard(x){
   return `<article class="card" data-cat="${x.cat}">
     ${artFor(x)}
