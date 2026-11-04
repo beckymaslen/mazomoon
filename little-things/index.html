@@ -629,6 +629,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
   <div class="wrap sec-tight">
     <div class="sec-head"><span class="label">Keepsake journals</span><h2 class="h">Big adventures. Little things worth remembering.</h2></div>
     <div class="grid g3" id="bookGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
   </div>
   <div class="wrap sec-tight">
     <div class="sec-head"><span class="label">Planners</span><h2 class="h">Make it personal.</h2></div>
@@ -869,18 +870,18 @@ const products = [
 /* shop filter groups, matching the Amazon storefront */
 const GROUP={pens:'pens',desk:'pens',journals:'journals',rest:'rest',stickers:'stickers'};
 const books = [
-  {n:'My Adventure Travel Journal',a:'B0HNY91X4S',l:'One book for every holiday.',d:'Before you go, on the way and when you\'re there, with games for the boring bits.',spec:'106 pages · 6 × 9 in',img:'adventure-travel-journal'},
-  {n:'Our Journey Together',a:'B0HNXQFDD2',l:'Your words. Their words.',d:'A shared journal for a grown-up and child to fill in, pass back and keep.',spec:'113 pages · 6 × 9 in',img:'our-journey-together'},
-  {n:'The Year I Started Secondary School',a:'B0HPGTGRH9',l:'You don\'t have to have it all figured out.',d:'A private, pressure-free place for a big new chapter.',spec:'110 pages · 6 × 9 in',img:'started-secondary'},
-  {n:'The Storymaker\'s Journal',a:'B0HP8HW6B5',l:'Every story starts with one small idea.',d:'Draw, imagine and create your own adventures, one prompt at a time.',spec:'110 pages · 6 × 9 in',img:'storymakers-journal'},
-  {n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic'},
-  {n:'The Little Words Archive',a:'B0GMH7FGRF',h:'B0GMCNFFRL',l:'The things they say, kept safe.',d:'A keepsake journal for remembering the funny, wise and wonderful words children say.',spec:'Paperback or hardcover',img:'little-words',inside:'little-words'},
-  {n:'The Year of Being 7',a:'B0GM15C6P8',h:'B0GM1GL82B',l:'Feelings, confidence and everyday magic.',d:'A keepsake journal for 7-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-7',inside:'year-of-being'},
-  {n:'The Year of Being 8',a:'B0GM5JKMCW',h:'B0GM89ZG4J',l:'Growth, self-trust and everyday moments.',d:'A keepsake journal for 8-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-8',inside:'year-of-being'},
-  {n:'The Year of Being 9',a:'B0GMQLBMR8',h:'B0GM7X4CDH',l:'Strength, curiosity and everyday life.',d:'A keepsake journal for 9-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-9',inside:'year-of-being'},
-  {n:'The Year of Being 10',a:'B0GM2SSLJB',h:'B0GM28DT2C',l:'Perspective, values and everyday life.',d:'A keepsake journal for 10-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-10',inside:'year-of-being'},
-  {n:'The Year of Being 11',a:'B0GM9PC4CM',h:'B0GM7WG4PH',l:'Identity, belonging and everyday life.',d:'A keepsake journal for 11-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-11',inside:'year-of-being'},
-  {n:'The Year of Being 12',a:'B0GM2TPC12',h:'B0GM2SHZWL',l:'Voice, independence and everyday life.',d:'A keepsake journal for 12-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-12',inside:'year-of-being'},
+  {p:9.99,n:'My Adventure Travel Journal',a:'B0HNY91X4S',l:'One book for every holiday.',d:'Before you go, on the way and when you\'re there, with games for the boring bits.',spec:'106 pages · 6 × 9 in',img:'adventure-travel-journal'},
+  {p:9.99,n:'Our Journey Together',a:'B0HNXQFDD2',l:'Your words. Their words.',d:'A shared journal for a grown-up and child to fill in, pass back and keep.',spec:'113 pages · 6 × 9 in',img:'our-journey-together'},
+  {p:9.99,n:'The Year I Started Secondary School',a:'B0HPGTGRH9',l:'You don\'t have to have it all figured out.',d:'A private, pressure-free place for a big new chapter.',spec:'110 pages · 6 × 9 in',img:'started-secondary'},
+  {p:7.99,n:'The Storymaker\'s Journal',a:'B0HP8HW6B5',l:'Every story starts with one small idea.',d:'Draw, imagine and create your own adventures, one prompt at a time.',spec:'110 pages · 6 × 9 in',img:'storymakers-journal'},
+  {p:7.99,n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic'},
+  {p:9.99,n:'The Little Words Archive',a:'B0GMH7FGRF',h:'B0GMCNFFRL',l:'The things they say, kept safe.',d:'A keepsake journal for remembering the funny, wise and wonderful words children say.',spec:'Paperback or hardcover',img:'little-words',inside:'little-words'},
+  {p:9.99,n:'The Year of Being 7',a:'B0GM15C6P8',h:'B0GM1GL82B',l:'Feelings, confidence and everyday magic.',d:'A keepsake journal for 7-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-7',inside:'year-of-being'},
+  {p:9.99,n:'The Year of Being 8',a:'B0GM5JKMCW',h:'B0GM89ZG4J',l:'Growth, self-trust and everyday moments.',d:'A keepsake journal for 8-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-8',inside:'year-of-being'},
+  {p:9.99,n:'The Year of Being 9',a:'B0GMQLBMR8',h:'B0GM7X4CDH',l:'Strength, curiosity and everyday life.',d:'A keepsake journal for 9-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-9',inside:'year-of-being'},
+  {p:9.99,n:'The Year of Being 10',a:'B0GM2SSLJB',h:'B0GM28DT2C',l:'Perspective, values and everyday life.',d:'A keepsake journal for 10-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-10',inside:'year-of-being'},
+  {p:9.99,n:'The Year of Being 11',a:'B0GM9PC4CM',h:'B0GM7WG4PH',l:'Identity, belonging and everyday life.',d:'A keepsake journal for 11-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-11',inside:'year-of-being'},
+  {p:9.99,n:'The Year of Being 12',a:'B0GM2TPC12',h:'B0GM2SHZWL',l:'Voice, independence and everyday life.',d:'A keepsake journal for 12-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-12',inside:'year-of-being'},
   {n:'A Cup of Somewhere Else',soon:1,colour:1,l:'Cosy colouring for adults.',d:'Forty little places to escape to, one page at a time.',spec:'84 pages · 8.5 × 11 in',img:'cup-of-somewhere-else'},
 ];
 const posts = [
@@ -937,7 +938,7 @@ function bookBtns(x){
 const bookCard = x=>`<article class="card" data-cat="${x.colour?'colouring':'journals'}">
     ${artFor({...x,cover:!!x.img})}
     <h3 class="t">${x.n}</h3><p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>
-    <div class="meta"><span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
+    <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
     ${bookBtns(x)}
   </article>`;
 document.getElementById('homeFavs').innerHTML = BEST.map(a=>products.find(p=>p.a===a)).filter(Boolean).map(productCard).join('') + books.filter(x=>x.colour).slice(0,1).map(bookCard).join('');
@@ -945,7 +946,7 @@ document.getElementById('shopGrid').innerHTML = books.map(bookCard).join('') + p
 document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x=>`<article class="card">
     ${artFor({...x,cover:!!x.img})}
     <h3 class="t">${x.n}</h3><p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>
-    <div class="meta"><span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
+    <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
     ${bookBtns(x)}
   </article>`).join('');
 document.getElementById('ltList').innerHTML = little.map(x=>`<article class="lt">
