@@ -564,13 +564,12 @@ button.pill:hover{border-color:var(--border-strong)}
   </div>
   <div class="wrap sec-tight" style="padding-top:0">
     <div class="chips" role="group" aria-label="Filter products">
-      <button class="chip" aria-pressed="true" data-f="all">All</button>
-      <button class="chip" aria-pressed="false" data-f="books">Journals &amp; colouring</button>
-      <button class="chip" aria-pressed="false" data-f="journals">Planners</button>
-      <button class="chip" aria-pressed="false" data-f="pens">Pens</button>
+      <button class="chip" aria-pressed="true" data-f="all">Shop all</button>
       <button class="chip" aria-pressed="false" data-f="stickers">Stickers</button>
-      <button class="chip" aria-pressed="false" data-f="desk">Desk bits</button>
-      <button class="chip" aria-pressed="false" data-f="rest">Rest &amp; reading</button>
+      <button class="chip" aria-pressed="false" data-f="pens">Pens &amp; stationery</button>
+      <button class="chip" aria-pressed="false" data-f="rest">Rest &amp; relaxation</button>
+      <button class="chip" aria-pressed="false" data-f="journals">Journals</button>
+      <button class="chip" aria-pressed="false" data-f="colouring">Colouring books</button>
     </div>
     <div class="grid g4" id="shopGrid"></div>
     <p class="note" style="margin-top:40px">Prices shown are our current Amazon prices and may change on Amazon.</p>
@@ -795,6 +794,8 @@ const products = [
   {a:'B0GHFY1HG6',n:'Cooling Eye Mask Set',l:'Cool, calm eyes.',d:'A reusable ice gel mask plus a satin sleep mask.',cat:'rest',art:'mask',c:'sage'},
   {a:'B0GHG9Q2L6',n:'Hot & Cold Weighted Eye Mask',l:'Warm or cool, your call.',d:'Gel mask for the microwave or the fridge.',cat:'rest',art:'mask',c:'blush'},
 ];
+/* shop filter groups, matching the Amazon storefront */
+const GROUP={pens:'pens',desk:'pens',journals:'journals',rest:'rest',stickers:'stickers'};
 const books = [
   {n:'My Adventure Travel Journal',a:'B0HNY91X4S',l:'One book for every holiday.',d:'Before you go, on the way and when you\'re there, with games for the boring bits.',spec:'106 pages · 6 × 9 in',img:'adventure-travel-journal'},
   {n:'Our Journey Together',a:'B0HNXQFDD2',l:'Your words. Their words.',d:'A shared journal for a grown-up and child to fill in, pass back and keep.',spec:'113 pages · 6 × 9 in',img:'our-journey-together'},
@@ -845,7 +846,7 @@ const price = p => '£' + p.toFixed(2);
 const AR={'storymakers-comic':.707,'cup-of-somewhere-else':.773};
 const artFor = x => x.shop ? `<div class="art shopimg"><img class="m" src="img/shop/${x.shop}.jpg?v=2" alt="${x.n}" loading="lazy"><img class="h" src="img/shop/${x.shop}-hover.jpg?v=2" alt="" loading="lazy" aria-hidden="true"></div>` : (x.img && x.cover) ? `<div class="art cover book3d"><div class="bk" style="--ar:${AR[x.img]||.667}"><img class="inside" src="img/inside-${x.inside||x.img}.jpg" alt="" loading="lazy"><span class="pages" aria-hidden="true"></span><span class="front"><img src="img/${x.img}.jpg" alt="${x.n} cover" loading="lazy"><span class="crease" aria-hidden="true"></span></span></div><span class="peek">Peek inside</span></div>` : x.img ? `<div class="art tilt"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy">${x.a?amzImg(x.a,x.n):''}</div>` : `<div class="art tilt" data-art="${x.art}" data-c="${x.c}">${x.a?amzImg(x.a,x.n):''}</div>`;
 function productCard(x){
-  return `<article class="card" data-cat="${x.cat}">
+  return `<article class="card" data-cat="${GROUP[x.cat]||x.cat}">
     ${artFor(x)}
     <h3 class="t">${x.n}</h3>
     <p class="strong-s">${x.l}</p>
@@ -861,7 +862,7 @@ function bookBtns(x){
   if(x.soon||!x.a) return `<span class="btn btn-secondary" aria-disabled="true">Coming soon to Amazon</span>`;
   return `<a class="btn btn-primary" href="${AMZ(x.a)}" target="_blank" rel="noopener">${x.h?'Paperback on Amazon':'Buy on Amazon'}</a>`;
 }
-document.getElementById('shopGrid').innerHTML = books.map(x=>`<article class="card" data-cat="books">
+document.getElementById('shopGrid').innerHTML = books.map(x=>`<article class="card" data-cat="${x.colour?'colouring':'journals'}">
     ${artFor({...x,cover:!!x.img})}
     <h3 class="t">${x.n}</h3><p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>
     <div class="meta"><span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
