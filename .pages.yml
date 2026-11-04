@@ -1,0 +1,204 @@
+# Settings for the blog editor at https://app.pagescms.org
+# The book list below is refreshed by tools/build_pages.py from the bookshelf.
+media:
+  input: img/reviews
+  output: /img/reviews
+content:
+  - name: reviews
+    label: Book reviews
+    type: collection
+    path: content/reviews
+    filename: "{primary}.md"
+    view:
+      fields: [title, book, date, published]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: The headline for your review, for example "Glow made me cry on the school run".
+      - name: book
+        label: Book
+        type: select
+        required: true
+        description: Pick the book from your shelf. The review gets linked from that spine.
+        options:
+          values:
+            # books-start
+            - "A Blackened Bond"
+            - "A Court of Frost and Starlight"
+            - "A Court of Mist and Fury"
+            - "A Court of Silver Flames"
+            - "A Court of Splintered Harmony"
+            - "A Court of Thorns and Roses"
+            - "A Court of Wings and Ruin"
+            - "A Demon's Guide to the Afterlife"
+            - "A Fire in the Flesh"
+            - "A Game of Fate"
+            - "A Game of Gods"
+            - "A Game of Love and Betrayal"
+            - "A Game of Retribution"
+            - "A Kingdom of Flesh and Fire"
+            - "A Light in the Flame"
+            - "A Shadow in the Ember"
+            - "A Soul of Ash and Blood"
+            - "A Touch of Chaos"
+            - "A Touch of Darkness"
+            - "A Touch of Malice"
+            - "A Touch of Ruin"
+            - "Alchemised"
+            - "Anathema"
+            - "Atlas: The Story of Pa Salt"
+            - "Blood & Steel"
+            - "Blood of Hercules"
+            - "Bonds of Hercules"
+            - "Born of Blood and Ash"
+            - "Brimstone"
+            - "Broken Fae"
+            - "Burn of the Everflame"
+            - "Court of Ice and Ash"
+            - "Crown of Blood and Ruin"
+            - "Crown of Midnight"
+            - "Cursed Fates"
+            - "Dance with the Demon"
+            - "Dark Age"
+            - "Dark Fae"
+            - "Demon’s Advocate"
+            - "Dire Bound"
+            - "Echoes"
+            - "Eldritch"
+            - "Empire of Flame and Thorns"
+            - "Empire of Storms"
+            - "Enchantra"
+            - "Fate of the Sun King"
+            - "Fated Throne"
+            - "Fearless"
+            - "Feathers So Vicious"
+            - "For Whom the Belle Tolls"
+            - "Fourth Wing"
+            - "From Blood and Ash"
+            - "Fury Bound"
+            - "Game of Hate and Lies"
+            - "Gild"
+            - "Gleam"
+            - "Glint"
+            - "Glow"
+            - "Glow of the Everflame"
+            - "Gold"
+            - "Golden Son"
+            - "Goldfinch"
+            - "Heartless Sky"
+            - "Heat of the Everflame"
+            - "Heir of Fire"
+            - "House of Earth and Blood"
+            - "House of Flame and Shadow"
+            - "House of Sky and Breath"
+            - "Inner Demons"
+            - "Insatiable"
+            - "Iron Flame"
+            - "Iron Gold"
+            - "Kingdom of Ash"
+            - "Kiss of the Basilisk"
+            - "Lady of Ashes"
+            - "Lady of Darkness"
+            - "Lady of Embers"
+            - "Lady of Shadows"
+            - "Lady of Starfire"
+            - "Lessons in Chemistry"
+            - "Lightlark"
+            - "Lights Out"
+            - "Luck of the Demon"
+            - "Morning Star"
+            - "Night of Masks and Knives"
+            - "Once Upon a Broken Heart"
+            - "One Dark Window"
+            - "Onyx Storm"
+            - "Phantasma"
+            - "Powerless"
+            - "Queen of Shadows"
+            - "Quicksilver"
+            - "Reckless"
+            - "Red Rising"
+            - "Restitution"
+            - "Restless Stars"
+            - "Rites of the Starling"
+            - "Rule of the Aurora King"
+            - "Ruthless Fae"
+            - "Savage Fae"
+            - "Serpent & Dove"
+            - "Shadow Princess"
+            - "Shadows So Cruel"
+            - "Shield of Sparrows"
+            - "Sorrow and Starlight (Zodiac Academy 8)"
+            - "Spark of the Everflame"
+            - "Speak of the Demon"
+            - "Tale of the Heart Queen"
+            - "The Awakening"
+            - "The Ballad of Falling Dragons"
+            - "The Blackened Blade"
+            - "The Book of Azrael"
+            - "The Crown of Gilded Bones"
+            - "The Cruel Prince"
+            - "The Dawn of the Cursed Queen"
+            - "The Hawthorne Legacy"
+            - "The Hidden Girl"
+            - "The House Witch: A Humorous Romantic Fantasy"
+            - "The Missing Sister"
+            - "The Moon Sister"
+            - "The Murders at Fleat House"
+            - "The Pearl Sister"
+            - "The Primal of Blood and Bone"
+            - "The Reappearance of Rachel Price"
+            - "The Reckoning"
+            - "The Serpent and the Wings of Night"
+            - "The Seven Sisters"
+            - "The Shadow Sister"
+            - "The Storm Sister"
+            - "The Sun Sister"
+            - "The Throne of Broken Gods"
+            - "The War of Two Queens"
+            - "The Wrath of the Fallen"
+            - "Threshing Day"
+            - "Throne of Glass"
+            - "Throne of Ice and Blood"
+            - "To Flame a Wild Flower"
+            - "To Snap a Silver Stem"
+            - "Tower of Dawn"
+            - "Unhinged"
+            - "Vicious Fae"
+            - "Voracious"
+            - "Warrior Fae"
+            - "When the Moon Hatched"            # books-end
+      - name: date
+        label: Date
+        type: date
+      - name: rating
+        label: Stars (1 to 5)
+        type: number
+        options:
+          min: 1
+          max: 5
+      - name: spoilers
+        label: Contains spoilers
+        type: boolean
+        default: false
+      - name: cover
+        label: Book cover (optional)
+        type: image
+      - name: excerpt
+        label: Short summary
+        type: text
+        description: One or two sentences. Shows on the Reading Corner and when the link is shared.
+      - name: published
+        label: Publish on the website
+        type: boolean
+        default: false
+        description: Leave this off to keep it as a draft. Turn it on and save to publish.
+      - name: body
+        label: Review
+        type: rich-text

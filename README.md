@@ -18,3 +18,6 @@ Each section has its own address (/shop/, /journals/, /reading/, /little-things/
     python3 tools/build_pages.py
 
 Privacy, Cookies and Terms live in tools/legal.py. Edit the text there, then run `python3 tools/legal.py`.
+
+## Book reviews (blog)
+Reviews are written in Pages CMS: go to https://app.pagescms.org, sign in with GitHub and open the mazomoon repo, then "Book reviews". Each review is a file in `content/reviews/`. Turn on "Publish on the website" and save; GitHub then rebuilds the site (`.github/workflows/pages.yml`) and the review appears at /reading/<title>/ and on the Reading Corner, linked from its book. Drafts stay off the site. The book dropdown in `.pages.yml` is refreshed from the shelf by `tools/build_pages.py`. Photos go in `img/reviews/`.
