@@ -392,7 +392,7 @@ button.pill:hover{border-color:var(--border-strong)}
 .card .art.tilt img{transition:transform .6s cubic-bezier(.3,1.3,.5,1)}
 
 /* bookshelf */
-.shelf-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:end}
+.shelf-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;align-items:end}
 @media (max-width:820px){.shelf-wrap{grid-template-columns:1fr;gap:28px}}
 .shelf{position:relative;display:flex;align-items:flex-end;gap:6px;padding:0 18px;min-height:340px;border-bottom:14px solid var(--taupe);overflow-x:auto;overflow-y:visible;padding-top:40px}
 .spine{flex:none;position:relative;width:var(--sw,64px);height:var(--sh,260px);background:var(--sc);color:var(--sf,#f7f4ef);border:0;border-radius:3px 3px 0 0;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:14px 0;transition:transform .45s cubic-bezier(.3,1.5,.5,1);box-shadow:inset -6px 0 0 rgba(0,0,0,.10),inset 3px 0 0 rgba(255,255,255,.08);text-decoration:none}
@@ -403,10 +403,12 @@ button.pill:hover{border-color:var(--border-strong)}
 .spine.lean{transform:rotate(7deg);transform-origin:100% 100%;margin-left:12px}
 .spine.lean:hover,.spine.lean.on{transform:translateY(-22px) rotate(4deg)}
 .shelf-card{display:grid;gap:12px;align-content:start;min-height:220px}
-.shelf{scroll-snap-type:x proximity}.shelf .spine{scroll-snap-align:start}
+.shelf{margin-inline:calc(50% - 50vw);padding-inline:max(16px,calc(50vw - 50%));scroll-padding-inline:max(16px,calc(50vw - 50%))}
 .shelf-hint{margin-top:10px}
 .shelf-wrap > div{min-width:0}
-.readlist{margin:0;padding-left:20px;display:grid;gap:4px;font-size:15px;color:var(--text)}
+.readlist{margin:0;padding-left:20px;columns:3 200px;column-gap:32px;font-size:15px;color:var(--text)}
+.readlist li{margin-bottom:4px;break-inside:avoid}
+.shelf-card{min-height:0;padding:24px 0 0;border-top:1px solid var(--hairline)}
 .series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px 28px}
 .series{display:grid;gap:4px;align-content:start;padding-top:14px;border-top:1px solid var(--hairline)}
 .series .caption{margin:0}.series .small{margin:0}
