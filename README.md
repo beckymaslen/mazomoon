@@ -10,4 +10,4 @@ The Mazo Moon brand site: journals, colouring books and stationery, sold through
 Hosted on GitHub Pages at mazomoon.com (see `CNAME`): every push to `main` publishes automatically.
 - `links/index.html` is the link-in-bio page for social profiles (mazomoon.com/links). Edit the `links` array in its script to change the buttons.
 
-Deploys: GitHub Pages rebuilds automatically on every push to main.
+Deploys: GitHub Pages rebuilds automatically on every push to main. If a deploy stalls, push again.
