@@ -679,8 +679,8 @@ button.pill:hover{border-color:var(--border-strong)}
         <div class="copy"><code id="email">hello@mazomoon.com</code><button type="button" id="copyEmail">Copy</button></div>
         <p class="note">For Amazon orders, the quickest help is through Your Orders on Amazon.</p>
       </div>
-      <form class="contact" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact"><p hidden><label>Leave this empty <input name="bot-field"></label></p>
+      <form class="contact" id="contactForm" name="contact" method="POST" action="https://formsubmit.co/hello@mazomoon.com">
+        <input type="hidden" name="_subject" value="New message from mazomoon.com"><input type="hidden" name="_template" value="table"><p hidden><label>Leave this empty <input name="_honey"></label></p>
         <div class="field"><label for="cName">Your name</label><input id="cName" name="name" autocomplete="name"></div>
         <div class="field"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email"></div>
         <div class="field"><label for="cTopic">What's it about?</label>
@@ -700,8 +700,8 @@ button.pill:hover{border-color:var(--border-strong)}
     <div style="display:grid;gap:16px;align-content:start">
       <span class="wordmark" role="img" aria-label="Mazo Moon"></span>
       <p style="opacity:.85;max-width:30em">Make a little space for you. Journals, colouring and stationery from a little family business in Yorkshire.</p>
-      <form class="news" id="newsForm" name="newsletter" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="newsletter">
+      <form class="news" id="newsForm" name="newsletter" method="POST" action="https://formsubmit.co/hello@mazomoon.com">
+        <input type="hidden" name="_subject" value="New newsletter sign-up from mazomoon.com"><p hidden><label>Leave this empty <input name="_honey"></label></p>
         <label for="newsEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
         <input id="newsEmail" name="email" type="email" required placeholder="Your email address">
         <button class="btn" type="submit">Join the letter</button>
@@ -1048,10 +1048,10 @@ window.addEventListener('hashchange',()=>{
 });
 route(); afterRoute();
 
-/* forms (mockup) */
+/* forms: FormSubmit emails each entry to hello@mazomoon.com */
 const sendForm=(id,ok)=>document.getElementById(id).addEventListener('submit',e=>{e.preventDefault();const f=e.currentTarget;
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()})
-  .then(r=>{ if(!r.ok) throw 0; f.reset(); document.getElementById(ok).hidden=false; })
+  fetch('https://formsubmit.co/ajax/hello@mazomoon.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
+  .then(r=>r.json()).then(j=>{ if(String(j.success)!=='true') throw 0; f.reset(); document.getElementById(ok).hidden=false; })
   .catch(()=>{ const o=document.getElementById(ok); o.hidden=false; o.textContent='Sorry, that didn\'t send. Please email hello@mazomoon.com instead.'; });});
 sendForm('contactForm','formOk'); sendForm('newsForm','newsOk');
 document.getElementById('copyEmail').addEventListener('click',e=>{
