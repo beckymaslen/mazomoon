@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cookies | Mazo Moon</title>
-<meta name="description" content="Mazo Moon does not use tracking or advertising cookies.">
+<meta name="description" content="How Mazo Moon uses cookies, and how to change your choice.">
 <link rel="canonical" href="https://www.mazomoon.com/cookies/">
 <link rel="icon" href="/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,24 +25,39 @@ h2{font:600 24px/1.25 "Cormorant Garamond",Georgia,serif;margin:36px 0 8px}
 .updated{color:var(--muted);font-size:14px;margin:0 0 28px}
 ul{padding-left:20px}
 footer{border-top:1px solid var(--hairline);margin-top:56px;padding-top:20px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 20px}
+#mmcBtns{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+#mmcBtns button{font:500 15px/1 Jost,system-ui,sans-serif;min-height:44px;padding:0 22px;border-radius:2px;cursor:pointer;border:1px solid var(--text);background:transparent;color:var(--text)}
+#mmcBtns button.y{background:var(--text);color:var(--surface)}
+#mmcChoice{color:var(--muted)}
 </style>
+<script src="/consent.js" defer></script>
 </head>
 <body>
 <div class="wrap">
 <header><a class="wm" href="/"><span>Mazo Moon home</span></a><a href="/">Back to the site</a></header>
 <main>
 <h1>Cookies</h1>
-<p class="updated">Last updated 4 November 2026</p>
-<p>mazomoon.com doesn't use advertising or tracking cookies, and we don't run analytics that follow you around the web.</p>
-<h2>What the site does store</h2>
+<p class="updated">Last updated 5 November 2026</p>
+<p>mazomoon.com only uses analytics cookies if you say yes. We never use advertising cookies.</p>
+<h2>Your choice</h2>
+<p id="mmcChoice">You haven't chosen yet.</p>
+<div id="mmcBtns"><button type="button" class="y" onclick="mmCookies.choose('granted');document.getElementById('mmcChoice').textContent=mmCookies.label();var b=document.getElementById('mmc');if(b)b.remove()">Accept analytics cookies</button><button type="button" onclick="mmCookies.choose('denied');document.getElementById('mmcChoice').textContent=mmCookies.label();var b=document.getElementById('mmc');if(b)b.remove()">Decline</button></div>
+<h2>Analytics cookies (only if you accept)</h2>
+<p>We use Google Analytics to see which pages people visit, how they found us and which buttons they tap, so we can make the site better. It sets these cookies:</p>
 <ul>
+<li><strong>_ga</strong>: tells one visit from another. Lasts 2 years.</li>
+<li><strong>_ga_5131GXSM7M</strong>: keeps track of your current visit. Lasts 2 years.</li>
+</ul>
+<p>If you decline, Google Analytics doesn't load at all and these cookies aren't set. If you change your mind later, we delete them.</p>
+<h2>What the site stores without asking</h2>
+<ul>
+<li><strong>Your cookie choice:</strong> saved in your browser's local storage so we don't ask on every page.</li>
 <li><strong>Session storage:</strong> the site remembers, for the current visit only, that you've already seen the opening animation, so it doesn't play again on every page. This is cleared when you close the tab.</li>
 </ul>
 <h2>Other websites</h2>
 <p>Our fonts come from Google Fonts, and some product photos load from Amazon. When you tap "Buy on Amazon", you move to Amazon's website, which uses its own cookies under <a href="https://www.amazon.co.uk/cookies" rel="noopener">Amazon's cookie notice</a>.</p>
-<p>If we ever add analytics or anything else that uses cookies, we'll update this page and ask for your consent first where the law requires it.</p>
 </main>
-<footer><span>© 2026 Mazo Moon Ltd · Company no. 16988519</span><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/terms/">Terms</a><a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a></footer>
+<footer><span>© 2026 Mazo Moon Ltd · Company no. 16988519</span><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/cookies/" data-cookie-settings>Cookie settings</a><a href="/terms/">Terms</a><a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a></footer>
 </div>
 </body>
 </html>
