@@ -718,7 +718,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       <span class="label">For your reading nook</span>
       <h2 class="h">A little light for late chapters.</h2>
       <p class="muted" style="max-width:40em">Our clip-on reading light folds flat, charges by USB and has three warm settings that won't wake whoever's next to you.</p>
-      <div class="btn-row"><a class="btn btn-primary" href="https://www.amazon.co.uk/dp/B0FQKZRVGD" target="_blank" rel="noopener">Buy on Amazon <small>£6.99</small></a></div>
+      <div class="btn-row"><a class="btn btn-primary" href="https://www.amazon.co.uk/dp/B0FQKZRVGD?maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&amp;ref_=aa_maas&amp;tag=maas" target="_blank" rel="noopener">Buy on Amazon <small>£6.99</small></a></div>
     </div>
   </div>
 </section>
@@ -814,7 +814,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <div>
       <h4>Find us</h4>
       <ul>
-        <li><a href="https://www.amazon.co.uk/stores/MazoMoon/page/298754B3-2DA8-49CE-B163-4EA6E7FEA0E0" target="_blank" rel="noopener">Mazo Moon on Amazon</a></li>
+        <li><a href="https://www.amazon.co.uk/stores/MazoMoon/page/298754B3-2DA8-49CE-B163-4EA6E7FEA0E0?maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&amp;ref_=aa_maas&amp;tag=maas" target="_blank" rel="noopener">Mazo Moon on Amazon</a></li>
         <li><a href="https://www.instagram.com/mazomoon/" target="_blank" rel="noopener">Instagram</a></li>
         <li><a href="https://uk.pinterest.com/mazomoon/" target="_blank" rel="noopener">Pinterest</a></li>
         <li><a href="#contact" data-goto="our-story">Contact us</a></li>
@@ -827,13 +827,15 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
 
 <script>
 (function(){
-const AMZ = a => 'https://www.amazon.co.uk/dp/' + a;
+// Amazon Attribution tag (campaign "Mazo Moon website"): lets Seller Central report sales that started on this site
+const MAAS = 'maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&ref_=aa_maas&tag=maas';
+const AMZ = a => 'https://www.amazon.co.uk/dp/' + a + '?' + MAAS;
 /* main listing image straight from Amazon; falls back to our own art if Amazon sends nothing */
 const AIMG = a => 'https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=' + a + '&Format=_SL500_&ID=AsinImage&MarketPlace=GB&ServiceVersion=20070822&WS=1';
 const amzImg = (a,n) => `<img class="amz" src="${AIMG(a)}" alt="${n}" loading="lazy" referrerpolicy="no-referrer" onload="if(this.naturalWidth<20)this.remove()" onerror="this.remove()">`;
 
 /* Real products from the FBA inventory report (UK, 23 Oct 2026) */
-const S = q => 'https://www.amazon.co.uk/s?k=Mazo+Moon+' + encodeURIComponent(q).replace(/%20/g,'+');
+const S = q => 'https://www.amazon.co.uk/s?k=Mazo+Moon+' + encodeURIComponent(q).replace(/%20/g,'+') + '&' + MAAS;
 const products = [
   {a:'B0FQ3BWF4X',pic:'budget-planner',p:8.99,n:'Budget Planner',l:'Know where it all goes.',d:'Monthly budgets, bill trackers and savings goals in one calm A5 notebook.',cat:'journals',art:'journal',c:'sage'},
   {a:'B0FQ3CQPLN',pic:'weekly-planner',p:8.99,n:'Undated Weekly Planner',l:'Start any week you like.',d:'To-do lists, goals and a habit tracker, with no dates to fall behind on.',cat:'journals',art:'journal',c:'blue'},
