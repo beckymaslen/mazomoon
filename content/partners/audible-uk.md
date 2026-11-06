@@ -1,6 +1,6 @@
 ---
 name: Audible
-programme: Audible referral (free trial invite)
+programme: Audible referral (free 30 day trial invite)
 domains:
   - https://www.audible.co.uk/ep/invited?source_code=AUKOR1510505267617&share_location=nav&referralCode=4XGJ7LEWYQJ8
 affiliate: true
