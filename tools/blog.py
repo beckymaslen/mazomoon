@@ -757,7 +757,7 @@ CSS = '''<style>
 .post caption{text-align:left;font-weight:500;margin-bottom:8px}.post th,.post td{border-bottom:1px solid var(--hairline);padding:8px 10px;text-align:left;vertical-align:top}.post thead th{color:var(--text-accent);font-size:13px;letter-spacing:.06em}
 .post .bookcard,.post .product,.post .relcard a{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--hairline);border-radius:8px;padding:16px 18px;margin:1.4em 0;background:var(--surface-raised);color:inherit;text-decoration:none}
 .post .bookcard h3,.post .product h3,.post .relcard h3{font:500 22px/1.2 var(--display);margin:4px 0}.post .bookcard p,.post .product p{margin:4px 0}
-.post .product img{width:96px;border-radius:6px}.post .product .btn{margin-top:8px}
+.post .product img,.post .bookcard>img{width:96px;border-radius:6px}.post .bookcard>img{aspect-ratio:2/3;object-fit:cover;flex:none}.post .product .btn{margin-top:8px}
 .post .seriesnav{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--hairline);padding:20px 0;font-size:15px}
 .post .seriesnav a{color:var(--text-accent)}
 .post .more{border-top:1px solid var(--hairline);padding:28px 0 8px}.post .more h2{font:500 28px/1.2 var(--display);margin:0 0 16px}
@@ -783,7 +783,7 @@ TRACK = '''<script>document.addEventListener('click',function(ev){var a=ev.targe
 
 
 def card(p):
-    img = p['featured'] or p['cover']
+    img = (p['cover'] or p['featured']) if p['type'] == 'review' else (p['featured'] or p['cover'])  # reviews show the book cover
     return (f'<a class="review-card" href="{p["path"]}">' + (f'<img src="{e(img)}" alt="" loading="lazy">' if img else '')
             + f'<span class="label">{"Ad · " if p["ad"] else ""}{e(p["book"] if p["type"] == "review" else p["cat_name"])}</span><h3 class="strong-s">{e(p["title"])}</h3>'
             + f'<p class="small muted">{p["nice"]} {stars_html(p["rating"])}</p>' + (f'<p class="small">{e(short(p["excerpt"], 160))}</p>' if p['excerpt'] else '') + '</a>')
@@ -792,8 +792,12 @@ def card(p):
 def link_cards(b, h):
     """Fill in book-card links and related-post cards now every post is known."""
     def bc(m):
-        r = b.review_of(html.unescape(m.group(1)))
-        return m.group(0).replace('<!--bookcard-link-->', f'<p><a href="{r["path"]}">Read my review</a> {stars_html(r["rating"])}</p>' if r else '<p><a href="/reading/">See it on my bookshelf</a></p>')
+        book = html.unescape(m.group(1))
+        r = b.review_of(book)
+        cover = next((o['cover'] for o in sorted(b.all, key=lambda o: not o['listed']) if o['book'] == book and o['cover']), '')
+        out = m.group(0).replace('<aside class="bookcard" data-book="' + m.group(1) + '">',
+                                 '<aside class="bookcard" data-book="' + m.group(1) + '">' + (f'<img src="{e(cover)}" alt="Cover of {e(book)}" loading="lazy">' if cover else ''), 1)
+        return out.replace('<!--bookcard-link-->', f'<p><a href="{r["path"]}">Read my review</a> {stars_html(r["rating"])}</p>' if r else '<p><a href="/reading/">See it on my bookshelf</a></p>')
     h = re.sub(r'<aside class="bookcard" data-book="([^"]*)">.*?</aside>', bc, h, flags=re.S)
 
     def rc(m):
