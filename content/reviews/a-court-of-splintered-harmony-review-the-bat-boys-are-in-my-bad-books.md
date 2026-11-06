@@ -76,7 +76,7 @@ publish:
 ---
 # A Court of Splintered Harmony Review: The Bat Boys Are in My Bad Books
 
-*Spoiler-free review first, followed by a clearly marked discussion of Book 6. No spoilers from Book 7.*
+*Spoiler-free review first, followed by a clearly marked discussion of Book 6.* 
 
 Well, this is awkward. After spending the last few ACOTAR books becoming increasingly attached to Cassian, Rhysand and Azriel, I finished *A Court of Splintered Harmony* wondering whether I actually liked any of them any more. Quite the achievement, considering I was seriously contemplating buying myself a Bat Boys T-shirt before starting this book. That's now firmly on hold. In fact, several characters have been deposited directly into what I like to call my brain bin, where they'll remain until Sarah J. Maas provides a sufficiently convincing explanation for their behaviour.
 
