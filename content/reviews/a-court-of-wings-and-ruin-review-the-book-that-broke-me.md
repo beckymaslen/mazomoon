@@ -150,7 +150,7 @@ But the emotional scenes? Those were something else. By the time I'd finished, I
 What a perfectly reasonable use of my time.
 
 **If you've finished the first two books, I'd absolutely recommend continuing with A Court of Wings and Ruin. Just don't expect your emotions to emerge entirely unscathed.**  
-  
+
 ⚔️ SPOILERS BELOW: LET'S TALK ABOUT A COURT OF WINGS AND RUIN
 
 **Major spoilers for Book 3 from this point onwards. No spoilers from Book 4 or later.**
