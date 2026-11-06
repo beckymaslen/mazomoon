@@ -19,7 +19,7 @@ function setup() {
   sh.getRange(1, 1, 1, HEAD.length).setValues([HEAD]).setFontWeight('bold');
   sh.setFrozenRows(1);
   sh.setColumnWidth(5, 420);
-  sh.getRange('F2:F').insertCheckboxes();
+  // tick boxes are added row by row as comments arrive (a whole column of them would make the sheet look full)
 }
 
 function sheet_() {
