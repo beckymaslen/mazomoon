@@ -102,7 +102,7 @@ PAGES = {
 <ul>
 <li><strong>Your cookie choice:</strong> saved in your browser's local storage so we don't ask on every page.</li>
 <li><strong>Session storage:</strong> the site remembers, for the current visit only, that you've already seen the opening animation, so it doesn't play again on every page. This is cleared when you close the tab.</li>
-<li><strong>The desk on the home page:</strong> local storage remembers your own choices there: whether you've seen the welcome (mm-seen), daytime or moonlight (mm-mode), whether to show labels (mm-labels) and the stickers you've placed (mm-stickers). These stay in your browser, are never sent to us, and you can clear them in your browser settings.</li>
+<li><strong>The desk on the home page:</strong> local storage remembers your own choices there: whether you've seen the welcome (mm-seen), daytime or moonlight (mm-mode), whether to show labels (mm-labels), whether you've hidden the featured journal (mm-spot) and the stickers you've placed (mm-stickers). These stay in your browser, are never sent to us, and you can clear them in your browser settings.</li>
 </ul>
 <h2>Other websites</h2>
 <p>Our fonts come from Google Fonts, and some product photos load from Amazon. When you tap "Buy on Amazon", you move to Amazon's website, which uses its own cookies under <a href="https://www.amazon.co.uk/cookies" rel="noopener">Amazon's cookie notice</a>.</p>

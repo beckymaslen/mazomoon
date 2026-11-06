@@ -81,6 +81,8 @@ window.MM = {
    "spec": "113 pages · 6 × 9 in",
    "price": 9.99,
    "asin": "B0HNXQFDD2",
+   "featured": true,
+   "featureNote": "Dark pages are for the grown-up, light pages are for the child, and you pass it back and forth.",
    "hardcover": null,
    "soon": false,
    "colouring": false,
@@ -88,6 +90,7 @@ window.MM = {
    "pages": [
     "/desk/img/journals/pages/ojt-002.jpg",
     "/desk/img/journals/pages/ojt-010.jpg",
+    "/desk/img/journals/pages/ojt-child.jpg",
     "/desk/img/journals/pages/ojt-036.jpg",
     "/desk/img/journals/pages/ojt-066.jpg",
     "/desk/img/journals/pages/ojt-078.jpg"
@@ -1599,7 +1602,7 @@ window.MM.doodlePens = [
 window.MM.scrapbook = {
   /* Becky's own words and photos (sent 5 Nov 2026). Each page: a title, her text, and up to two photos with alt text. */
   pages: [
-    { title: "Hello, I’m Becky.",
+    { title: "Hello, I’m Rebecca.",
       text: "I’m the person behind Mazo Moon: a mum, a designer and someone who usually has another idea before she’s finished the last one. This is a little look at the things I love and the world behind my small business.",
       photos: [{ src: "/desk/img/story/rebecca.jpg", alt: "Me, Rebecca, smiling in a sunny stone courtyard" }] },
     { title: "Somewhere with a little magic.",

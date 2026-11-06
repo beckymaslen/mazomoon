@@ -18,8 +18,8 @@ const SCENE = {
     book:{ body:[[398,487],[586,486],[589,512],[580,641],[562,652],[331,653],[319,641],[316,616],[388,488]],
       pages:[[323,617],[556,615],[556,642],[325,644]], side:[[556,615],[561,606],[563,639],[556,642]], ribbon:[[337,630],[352,631],[339,677],[325,676]] },
     hot: {
-      laptop:[78,51,22,19,'in'], journal:[20,56,18,20], books:[39,34,19.5,20], lamp:[81,9,18,42,'in'], mug:[64,41,12.5,18],
-      notebook:[38.5,56,32,20,'in'], stickers:[3,65,17,14], puzzle:[24,76,17,13], pens:[15,42,7.5,21], envelope:[57,77,20,15], scrapbook:[75,70,24,21] } },
+      laptop:[78,51,22,18.5,'in'], journal:[20,56,18,20], books:[39,34,19.5,20], lamp:[81,9,18,41.5,'in'], mug:[64,41,12.5,15.5],
+      notebook:[39,58,30.5,16.5,'in'], stickers:[3,65,16.5,14], puzzle:[25,77,15.5,12,'in'], pens:[15,42,7.5,13], envelope:[57,77.5,18.5,14,'in'], scrapbook:[76,71,23,20,'in'] } },
   phone: { day:'/desk/img/scene/day-phone.webp', night:'/desk/img/scene/night-phone.webp', steam:[73.8,40.5,13], size:[788,1400], nb:.6,
     cover:[[23,606],[207,580],[287,727],[66,766]], shade:[13,576,280,257],
     spines:[[[142,410],[350,433],[350,461],[142,437]],[[136,442],[348,467],[348,495],[136,470]],[[136,474],[346,500],[346,524],[136,498]]],
@@ -27,9 +27,12 @@ const SCENE = {
     book:{ body:[[15,607],[26,598],[207,578],[214,581],[289,728],[291,744],[281,752],[70,793],[60,787],[17,624]],
       pages:[[66,766],[276,735],[279,753],[69,782]], side:[[276,735],[287,728],[289,743],[279,753]], ribbon:[[84,769],[96,768],[110,828],[99,831]] },
     hot: {
-      lamp:[1,6,36,20], books:[16,26.5,37,12], journal:[2,41,35,16], mug:[63,38,21,12], pens:[85,33,14,16,'r'],
+      lamp:[1,6,36,20], books:[16,26.5,37,12], journal:[2,41,35,16], mug:[63,38,21,12], pens:[85,33,14,16,'rt'],
       notebook:[38,50.5,53,16.5], stickers:[0,62,30,15,'l'], envelope:[31,68,29,10.5], puzzle:[31,79,26,9], scrapbook:[61,69,38,24] } }
 };
+const PRI = ['laptop', 'journal', 'books'];
+// shorter labels on a phone, so neighbours don't run into each other
+const PHONE_LAB = { mug:'Becky’s desk', pens:'Pens', stickers:'Stickers', envelope:'Letters', puzzle:'Moon & stars', notebook:'Doodle', scrapbook:'My story', lamp:'Day or moonlight' };
 const OBJ = {
   journal:  ['Journals & colouring', 'Journals'],
   books:    ['The Reading Corner', 'Reading Corner'],
@@ -64,8 +67,9 @@ function build(){
   if (root.classList.contains('night')) loadNight(); else $('#imgD').addEventListener('load', () => setTimeout(loadNight, 1500), { once: true });
   document.querySelector('.blur.d').style.backgroundImage = `url(${day})`;
   const st = $('#steam'); st.style.cssText = `--x:${S.steam[0]}%;--y:${S.steam[1]}%;--w:${S.steam[2]}%`;
+  // the shop, the journals and the Reading Corner lead; the little activities have quieter labels
   $('#hots').innerHTML = Object.entries(S.hot).map(([k,[x,y,w,h,lp]]) =>
-    `<button class="hot${lp?' lab-'+lp:''}" type="button" data-k="${k}" style="--x:${x}%;--y:${y}%;--w:${w}%;--h:${h}%" aria-label="${esc(OBJ[k][1])}: ${esc(OBJ[k][0])}"><span class="lab">${esc(layout === 'phone' && k === 'pens' ? 'Pens' : OBJ[k][0])}</span></button>`).join('');
+    `<button class="hot ${PRI.includes(k) ? 'pri' : 'sec'}${lp?' lab-'+lp:''}" type="button" data-k="${k}" style="--x:${x}%;--y:${y}%;--w:${w}%;--h:${h}%" aria-label="${esc(OBJ[k][1])}: ${esc(OBJ[k][0])}"><span class="lab">${esc((layout === 'phone' && PHONE_LAB[k]) || OBJ[k][0])}</span></button>`).join('');
   $('#hots').querySelectorAll('.hot').forEach(b => b.addEventListener('click', () => openObj(b.dataset.k, b)));
 }
 /* perspective transform for the gold spine lettering on the desk's book stack.
@@ -106,7 +110,7 @@ if (!reduce) addEventListener('pointermove', e => {
 });
 
 /* ---------- labels: optional, one control, remembered ---------- */
-function around(on, save = true){ const v = on ?? !stage.classList.contains('around'); stage.classList.toggle('around', v);
+function around(on, save = true){ const v = on ?? !stage.classList.contains('around'); stage.classList.toggle('around', v); if (save) stage.classList.remove('first');
   ['#aroundBtn', '#mExplore'].forEach(s => { const b = $(s); if (b) { b.textContent = v ? 'Hide labels' : 'Show labels'; b.setAttribute('aria-pressed', v); } });
   if (save) store.set('mm-labels', v ? '1' : '0'); }
 $('#aroundBtn').addEventListener('click', () => around());
@@ -1161,14 +1165,33 @@ function runWelcome(done){
 const intro = $('#intro');
 function enterDesk(thenShop){
   store.set('mm-seen', '1'); intro.classList.add('gone'); intro.setAttribute('aria-hidden', 'true');
+  setTimeout(drawSpot, thenShop ? 0 : (reduce ? 0 : 900));
   if (thenShop) setTimeout(() => shopTo('all'), reduce ? 0 : 500); else setTimeout(() => $('#hots .hot')?.focus({ preventScroll:true }), 700);
   // first time in: show every label for a few seconds, then tuck them away unless the visitor chose to keep them
-  if (!thenShop && store.get('mm-labels') == null) { around(true, false); setTimeout(() => { if (store.get('mm-labels') == null) around(false, false); }, 6500); }
+  // first time in: show the main labels (shop, journals, Reading Corner) for a few seconds; Show labels shows them all
+  if (!thenShop && store.get('mm-labels') == null) { stage.classList.add('first'); around(true, false); setTimeout(() => { stage.classList.remove('first'); if (store.get('mm-labels') == null) around(false, false); }, 6500); }
 }
 const riseIntro = () => intro.querySelectorAll('.comp > *, .arr').forEach(f => { f.style.animation = 'none'; void f.offsetWidth; f.style.animation = ''; });
 function playIntro(){ intro.classList.remove('gone'); intro.removeAttribute('aria-hidden');
   runWelcome(() => { riseIntro(); $('#enter').focus({ preventScroll:true }); }); }
 $('#enter').addEventListener('click', () => enterDesk(false));
 $('#introShop').addEventListener('click', () => enterDesk(true));
-if (store.get('mm-seen')) { intro.classList.add('gone'); intro.setAttribute('aria-hidden', 'true'); } else runWelcome(() => { riseIntro(); $('#enter').focus({ preventScroll:true }); });
+
+/* ---------- the featured journal: one real book in the spotlight, with a way to look inside ---------- */
+function drawSpot(){
+  const j = MM.journals.find(x => x.featured); if (!j || store.get('mm-spot') === '0' || $('#spot')) return;
+  const ji = MM.journals.indexOf(j), el = document.createElement('aside');
+  el.className = 'spot'; el.id = 'spot'; el.setAttribute('aria-labelledby', 'spotT');
+  el.innerHTML = `<img src="${j.cover}" alt="Cover of ${esc(j.name)}">
+    <div class="txt"><p class="eyebrow">Featured journal</p><h2 id="spotT">${esc(j.name)}</h2>
+    <p class="about">${esc(j.line)} ${esc(j.about)}</p></div>
+    <div class="acts"><button class="btn" type="button" data-look>Look inside</button><a class="btn line ext" href="${amz(j.asin)}" target="_blank" rel="noopener" data-product="${esc(j.name)}" aria-label="Buy ${esc(j.name)} on Amazon, opens in a new tab">Buy on Amazon</a></div>
+    <button class="x" type="button" aria-label="Hide the featured journal" data-x>×</button>`;
+  document.body.appendChild(el);
+  el.querySelector('[data-look]').addEventListener('click', e => { jIdx = ji; jPage = 0; openObj('journal', e.currentTarget);
+    // open the cover, then turn to the spread with a grown-up page and a child's page side by side
+    setTimeout(() => { if (!$('#b3')) return; b3go(1); setTimeout(() => $('#b3') && b3go(1), reduce ? 0 : 1100); }, reduce ? 0 : 700); });
+  el.querySelector('[data-x]').addEventListener('click', () => { store.set('mm-spot', '0'); el.remove(); $('#hots .hot')?.focus({ preventScroll:true }); });
+}
+if (store.get('mm-seen')) { intro.classList.add('gone'); intro.setAttribute('aria-hidden', 'true'); drawSpot(); } else runWelcome(() => { riseIntro(); $('#enter').focus({ preventScroll:true }); });
 })();
