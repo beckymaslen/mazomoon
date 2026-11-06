@@ -529,7 +529,7 @@ class Blog:
             add('Products and affiliate links', 'Who gifted or paid', 'error', 'name the brand, so the Ad label can say who')
         if p['affiliate'] or p['ad']:
             names = [x['name'] for x in p['affiliate_partners'] if x.get('disclosure')]
-            add('Products and affiliate links', 'Advertising labels', 'ok', ('"Ad" label at the top, on cards and next to links' if p['ad'] else 'disclosure at the top and next to each affiliate link')
+            add('Products and affiliate links', 'Advertising labels', 'ok', ('"Ad" label at the top, on cards and next to links' if p['ad'] else '"Ad" label next to each affiliate link')
                 + (f'; includes the statement {" and ".join(names)} {"requires" if len(names) == 1 else "require"}' if names else ''))
         if not p['cat']:
             add(C, 'Category', 'error', 'pick a category')
@@ -967,7 +967,7 @@ def article(b, p, prev_next=True):
     elif p['ad']:
         disclose = '<p class="disclose"><b>Ad</b> · This post contains affiliate links. If you buy through them, Mazo Moon may earn a commission at no extra cost to you. My opinions are my own.'
     elif p['affiliate']:
-        disclose = '<p class="disclose">Some links in this post are affiliate links, marked "Ad" beside them. If you buy through them, Mazo Moon may earn a commission at no extra cost to you.'
+        disclose = ''  # Rebecca's choice: the "Ad" label on each link is enough; the Amazon statement is in the site footer
     else:
         disclose = ''
     if disclose:
@@ -990,9 +990,8 @@ def article(b, p, prev_next=True):
             return (f'<a class="lp" href="{e(x["url"])}" rel="{rel}" target="_blank"{data}>{pic}<span class="lp-text">'
                     f'<span class="lp-host">{e(x["host"].upper())}{" <span class=adbadge>Ad</span>" if x["aff"] else ""}</span>'
                     f'<span class="lp-title">{e(x["title"])}</span></span></a>')
-        notes = ' '.join(e(pt['disclosure']) for pt in p['affiliate_partners'] if pt.get('disclosure') and any(x['aff'] and x['shop'] == pt.get('name') for x in p['getit']))
         src_html = (f'<section class="getit"><h2>{"Where to get the book" if is_rev else "Links from this post"}</h2><div class="lps">{"".join(gcard(x) for x in p["getit"])}</div>'
-                    + (f'<p class="small muted">{notes}</p>' if notes else '') + '</section>')
+                    + '</section>')
     snav = ''
     if is_rev and p['info'] and p['info']['total'] > 1:
         bs, i = p['info']['books'], p['info']['pos'] - 1
