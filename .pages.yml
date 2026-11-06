@@ -536,7 +536,8 @@ content:
           type: string
           description: Posts with the same collection name are grouped, for example "Fantasy Romance for Beginners".
         - name: sources
-          label: Sources (optional)
+          label: Where to get it (optional)
+          description: Your buy and listen links, such as Amazon and Audible. They show in a drop-down at the bottom of the post, labelled Ad where you may earn from them. Put any real sources in the main article.
           type: object
           list: true
           fields:
@@ -1018,7 +1019,8 @@ content:
           type: string
           description: Posts with the same collection name are grouped, for example "Fantasy Romance for Beginners".
         - name: sources
-          label: Sources (optional)
+          label: Where to get it (optional)
+          description: Your buy and listen links, such as Amazon and Audible. They show in a drop-down at the bottom of the post, labelled Ad where you may earn from them. Put any real sources in the main article.
           type: object
           list: true
           fields:
@@ -1475,7 +1477,8 @@ content:
           type: string
           description: Posts with the same collection name are grouped, for example "Fantasy Romance for Beginners".
         - name: sources
-          label: Sources (optional)
+          label: Where to get it (optional)
+          description: Your buy and listen links, such as Amazon and Audible. They show in a drop-down at the bottom of the post, labelled Ad where you may earn from them. Put any real sources in the main article.
           type: object
           list: true
           fields:
@@ -1911,7 +1914,8 @@ content:
           type: string
           description: Posts with the same collection name are grouped, for example "Fantasy Romance for Beginners".
         - name: sources
-          label: Sources (optional)
+          label: Where to get it (optional)
+          description: Your buy and listen links, such as Amazon and Audible. They show in a drop-down at the bottom of the post, labelled Ad where you may earn from them. Put any real sources in the main article.
           type: object
           list: true
           fields:

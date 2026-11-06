@@ -261,6 +261,7 @@ class Blog:
         p['words'] = len(p['text'].split())
         p['minutes'] = max(1, math.ceil(p['words'] / 230))
         p['excerpt'] = p['excerpt_raw'] or short(plain(p['body_main']) or p['text'], 200)
+        p['getit'] = self.getit_links(p, links)
         p['affiliate_partners'] = [x for x in p['used_partners'].values() if x.get('affiliate', True)]
         p['affiliate'] = bool(links.get('affiliate')) or bool(p['affiliate_partners']) or any(b.get('_block') == 'product' and b.get('affiliate') for b in blocks) or p['relationship'] == 'affiliate'
         p['ad'] = p['relationship'] in ('gifted', 'sponsored') or (p['type'] in ('product_review', 'roundup') and p['affiliate'])
@@ -333,6 +334,26 @@ class Blog:
             tag = '<span class="caption">Ad · affiliate link</span>' if b.get('affiliate') else ''
             return f'<aside class="product">{pic}<div><span class="label">My pick</span><h3>{e(b["name"])}</h3>{to_html(str(b.get("note") or ""))}{link} {tag}</div></aside>'
         return ''
+
+    def getit_links(self, p, links):
+        """The buy and listen links Rebecca adds under Links > sources. Shop links (Amazon, Audible...) count as affiliate links."""
+        out = []
+        for x in as_list(links.get('sources')):
+            if not isinstance(x, dict) or not str(x.get('url') or '').strip():
+                continue
+            url = str(x['url']).strip()
+            host = re.sub(r'^https?://(www\.)?', '', url).split('/')[0].split('?')[0].lower()
+            part = None
+            for pt in self.partners.values():
+                doms = [str(d).lower().replace('www.', '') for d in as_list(pt.get('domains'))]
+                if any(host == d or host.endswith('.' + d) for d in doms):
+                    part = pt
+                    break
+            aff = bool(part and part.get('affiliate', True) and part.get('status') != 'ended')
+            if aff:
+                p['used_partners'][part['key']] = dict(part, affiliate=True)
+            out.append({'title': str(x.get('title') or (part or {}).get('name') or host), 'url': url, 'aff': aff, 'shop': (part or {}).get('name', '')})
+        return out
 
     def offers_html(self, p, offers, product_name=''):
         """Shop buttons for a product: affiliate ones marked sponsored, with each programme's own statement."""
@@ -765,7 +786,8 @@ CSS = '''<style>
 .post .seriesnav a{color:var(--text-accent)}
 .post .more{border-top:1px solid var(--hairline);padding:28px 0 8px}.post .more h2{font:500 28px/1.2 var(--display);margin:0 0 16px}
 .post .more .review-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
-.post .sources{font-size:15px}.post .prevnext{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:15px;padding:20px 0}
+.post .getit{border:1px solid var(--hairline);border-radius:8px;padding:12px 16px;margin:1.6em 0;background:var(--surface-raised)}
+.post .getit summary{cursor:pointer;font:500 20px/1.3 var(--display)}.post .getit ul{margin:12px 0 4px;padding-left:18px}.post .getit li{margin:6px 0}.post .getit p{margin:8px 0 0}.post .prevnext{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:15px;padding:20px 0}
 .post .prevnext a{color:var(--text-accent)}
 .post .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}.post .tags li{font-size:13px;border:1px solid var(--hairline);border-radius:99px;padding:2px 10px}
 .post .catlist{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 32px;padding:0;list-style:none}.post .catlist a{display:block;border:1px solid var(--hairline);border-radius:99px;padding:4px 14px;color:inherit;text-decoration:none;font-size:14px}
@@ -932,8 +954,14 @@ def article(b, p, prev_next=True):
         label = '<span class="adbadge">Ad</span> ' + label
     spoil = '<p class="spoiler-note">Heads up: this review has spoilers.</p>' if p['spoilers'] else ''
     tags = ''.join(f'<li>{e(t)}</li>' for t in p['tags'])
-    sources = [s for s in as_list(p['links'].get('sources')) if isinstance(s, dict) and s.get('url')]
-    src_html = ('<div class="sources"><h2>Sources</h2><ul>' + ''.join(f'<li><a href="{e(s["url"])}" rel="noopener" target="_blank">{e(s.get("title") or s["url"])}</a></li>' for s in sources) + '</ul></div>') if sources else ''
+    src_html = ''
+    if p['getit']:
+        rows = ''.join(f'<li><a href="{e(x["url"])}" rel="{"sponsored nofollow noopener" if x["aff"] else "noopener"}" target="_blank"'
+                       + (f' data-offer="{e(x["shop"])}" data-product="{e(x["title"])}" data-aff="1"' if x['aff'] else '')
+                       + f'>{e(x["title"])}</a>' + (' <span class="adbadge">Ad</span>' if x['aff'] else '') + '</li>' for x in p['getit'])
+        notes = ' '.join(e(pt['disclosure']) for pt in p['affiliate_partners'] if pt.get('disclosure') and any(x['aff'] and x['shop'] == pt.get('name') for x in p['getit']))
+        src_html = (f'<details class="getit"><summary>{"Where to get the book" if is_rev else "Links from this post"}</summary><ul>{rows}</ul>'
+                    + (f'<p class="small muted">{notes}</p>' if notes else '') + '</details>')
     snav = ''
     if is_rev and p['info'] and p['info']['total'] > 1:
         bs, i = p['info']['books'], p['info']['pos'] - 1
