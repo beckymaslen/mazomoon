@@ -475,16 +475,16 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
 <div class="turn" id="turn" aria-hidden="true"></div>
 <header class="site">
   <div class="wrap bar">
-    <a href="#home" class="wordmark" aria-label="Mazo Moon home"><span>Mazo Moon</span></a>
+    <a href="/" class="wordmark" aria-label="Mazo Moon home, the desk"><span>Mazo Moon</span></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
     <nav class="main" id="mainNav" aria-label="Main">
       <ul>
-        <li><a href="#home" data-nav="home">Home</a></li>
-        <li><a href="#journals" data-nav="journals">Journals &amp; Colouring</a></li>
-        <li><a href="#shop" data-nav="shop">Shop Mazo Moon</a></li>
-        <li><a href="#reading" data-nav="reading">The Reading Corner</a></li>
-        <li><a href="#little-things" data-nav="little-things">Little Things I Love</a></li>
-        <li><a href="#our-story" data-nav="our-story">Our Story &amp; Contact</a></li>
+        <li><a href="/" data-nav="home">The desk</a></li>
+        <li><a href="/journals/" data-nav="journals">Journals &amp; Colouring</a></li>
+        <li><a href="/shop/" data-nav="shop">Shop Mazo Moon</a></li>
+        <li><a href="/reading/" data-nav="reading">The Reading Corner</a></li>
+        <li><a href="/little-things/" data-nav="little-things">Little Things I Love</a></li>
+        <li><a href="/our-story/" data-nav="our-story">Our Story &amp; Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -667,7 +667,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <div class="floaty" data-k=".1" style="right:2%;top:190px;width:150px"><img src="img/cut/aff21.webp" alt="" style="animation-delay:-4s"></div>
     <span class="label">Shop Mazo Moon</span>
     <h1 class="d-xl">Everything I make, in one place.</h1>
-    <p class="lead">I sell through Amazon for now, so you get quick Prime delivery and easy returns. Tap "Buy on Amazon" and you'll go straight to the listing.</p>
+    <p class="lead">Shop securely on Amazon, where you'll find the latest prices, delivery options and returns information. Tap "Buy on Amazon" and you'll go straight to the listing.</p>
   </div>
   <div class="wrap sec-tight" style="padding-top:0">
     <div class="chips" role="group" aria-label="Filter products">
@@ -705,9 +705,9 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       </div>
     </div>
   </div>
-  <div class="wrap sec-tight" id="reviewsWrap">
+  <div class="wrap sec-tight" id="reviewsWrap" hidden>
     <div class="sec-head"><span class="label">Reviews</span><h2 class="h">What I thought, honestly.</h2></div>
-    <div class="review-grid" id="reviewGrid"><a class="review-card" href="/reading/the-fist-fae-book-i-read/"><span class="label">A Court of Thorns and Roses</span><h3 class="strong-s">The Fist Fae Book I Read</h3><p class="small muted">4 November 2026 <span class="stars" aria-label="5 out of 5">★★★★★</span></p><p class="small">this was great</p></a></div>
+    <div class="review-grid" id="reviewGrid"></div>
   </div>
   <div class="wrap sec-tight">
     <div class="sec-head"><span class="label">The full list</span><h2 class="h">Every book on the shelf.</h2></div>
@@ -794,22 +794,23 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <div style="display:grid;gap:16px;align-content:start">
       <span class="wordmark" role="img" aria-label="Mazo Moon"></span>
       <p style="opacity:.85;max-width:30em">Make a little space for you. Journals, colouring and stationery, made by Rebecca in Yorkshire.</p>
-      <form class="news" id="newsForm" name="newsletter" method="POST" action="https://formsubmit.co/hello@mazomoon.com">
-        <input type="hidden" name="_subject" value="New newsletter sign-up from mazomoon.com"><p hidden><label>Leave this empty <input name="_honey"></label></p>
+      <form class="news" id="newsForm" name="newsletter" method="POST" action="https://mazomoon.us2.list-manage.com/subscribe/post?u=84d0e303fbeb76a0c2b77b779&amp;id=0c0ea5d4d1&amp;f_id=00b2a0e0f0" target="_blank" novalidate>
+        <p hidden><label>Leave this empty <input name="b_84d0e303fbeb76a0c2b77b779_0c0ea5d4d1" tabindex="-1" value=""></label></p>
         <label for="newsEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
-        <input id="newsEmail" name="email" type="email" required placeholder="Your email address">
+        <input id="newsEmail" name="EMAIL" type="email" required placeholder="Your email address" autocomplete="email">
         <button class="btn" type="submit">Get the monthly letter</button>
       </form>
-      <p class="small" id="newsOk" style="opacity:.8" hidden>You're on the list. Look out for my monthly letter.</p>
+      <p class="small" id="newsOk" style="opacity:.8" role="status" aria-live="polite"></p>
+      <p class="small" style="opacity:.75;margin:0">I send it through Mailchimp, and every letter has an unsubscribe link. <a href="/privacy/">Privacy notice</a></p>
     </div>
     <div>
       <h4>Explore</h4>
       <ul>
-        <li><a href="#journals">Journals &amp; Colouring</a></li>
-        <li><a href="#shop">Shop Mazo Moon</a></li>
-        <li><a href="#reading">The Reading Corner</a></li>
-        <li><a href="#little-things">Little Things I Love</a></li>
-        <li><a href="#our-story">Our Story &amp; Contact</a></li>
+        <li><a href="/journals/" data-nav="journals">Journals &amp; Colouring</a></li>
+        <li><a href="/shop/" data-nav="shop">Shop Mazo Moon</a></li>
+        <li><a href="/reading/" data-nav="reading">The Reading Corner</a></li>
+        <li><a href="/little-things/" data-nav="little-things">Little Things I Love</a></li>
+        <li><a href="/our-story/" data-nav="our-story">Our Story &amp; Contact</a></li>
       </ul>
     </div>
     <div>
@@ -929,7 +930,7 @@ function productCard(x){
     <p class="strong-s">${x.l}</p>
     <p class="small muted">${x.d}</p>
     ${x.v?`<div class="swatches" role="group" aria-label="Choose a colour">${x.v.map((o,i)=>`<a class="sw${i?'':' on'}" href="${AMZ(o[1])}" target="_blank" rel="noopener" title="${o[0]}" aria-label="${o[0]} on Amazon" style="--sw:${o[2]}"></a>`).join('')}</div>`:''}
-    <div class="meta">${x.p?`<span class="price">${price(x.p)}</span>`:''}<span class="caption">Prime delivery</span></div>
+    <div class="meta">${x.p?`<span class="price">${price(x.p)}</span>`:''}<span class="caption">Sold on Amazon</span></div>
     <a class="btn btn-primary" href="${AMZ(x.a)}" target="_blank" rel="noopener">Buy on Amazon</a>
   </article>`;
 }
@@ -1234,8 +1235,8 @@ function go(page,anchor){
   pageTurn(()=>{ route(); afterRoute(); });
 }
 document.addEventListener('click',e=>{
-  const a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey) return;
-  const h=a.getAttribute('href').slice(1);
+  const a=e.target.closest&&e.target.closest('a[href^="#"],a[data-nav]:not([data-nav="home"])'); if(!a||e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey) return;
+  const h=a.dataset.nav||a.getAttribute('href').slice(1);
   if(h==='contact'){ e.preventDefault(); if(pageFromPath()[0]==='our-story') document.getElementById('contact').scrollIntoView({behavior:reduce?'auto':'smooth'}); else go('our-story','contact'); return; }
   if(isPage(h)){ e.preventDefault(); if(pageFromPath()[0]===h && !location.hash){ window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); return; } go(h); }
 });
@@ -1249,7 +1250,24 @@ const sendForm=(id,ok)=>document.getElementById(id).addEventListener('submit',e=
   fetch('https://formsubmit.co/ajax/hello@mazomoon.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
   .then(r=>r.json()).then(j=>{ if(String(j.success)!=='true') throw 0; f.reset(); document.getElementById(ok).hidden=false; })
   .catch(()=>{ const o=document.getElementById(ok); o.hidden=false; o.textContent='Sorry, that didn\'t send. Please email hello@mazomoon.com instead.'; });});
-sendForm('contactForm','formOk'); sendForm('newsForm','newsOk');
+sendForm('contactForm','formOk');
+/* monthly letter: Mailchimp. It only says you're signed up once Mailchimp confirms it. */
+(function(){ const f=document.getElementById('newsForm'), out=document.getElementById('newsOk'), em=document.getElementById('newsEmail'), btn=f.querySelector('button'); let busy=false;
+  const say=t=>{ out.textContent=t; };
+  f.addEventListener('submit',e=>{ e.preventDefault(); if(busy) return; const v=em.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ say('Please check your email address.'); em.setAttribute('aria-invalid','true'); em.focus(); return; }
+    em.removeAttribute('aria-invalid'); busy=true; btn.disabled=true; say('Signing you up…');
+    const cb='mmn'+Date.now().toString(36), sc=document.createElement('script'); let over=false;
+    const end=t=>{ if(over) return; over=true; clearTimeout(tm); sc.remove(); try{ delete window[cb]; }catch(_){ window[cb]=undefined; } busy=false; btn.disabled=false; say(t); };
+    window[cb]=d=>{ const m=String(d&&d.msg||'').replace(/<[^>]*>/g,'').replace(/^\d+ - /,'');
+      if(d&&d.result==='success'){ window.mmTrack&&mmTrack('sign_up',{method:'newsletter',form_location:'footer'}); end(m||'Thank you, you\'re signed up.'); f.reset(); }
+      else end(/already subscribed/i.test(m)?'That email is already on my list, so you\'re all set.':(m||'Something went wrong. Please try again, or email hello@mazomoon.com.')); };
+    const q=new URLSearchParams({EMAIL:v,'b_84d0e303fbeb76a0c2b77b779_0c0ea5d4d1':'',c:cb});
+    sc.src=f.action.replace('/subscribe/post?','/subscribe/post-json?')+'&'+q.toString();
+    sc.onerror=()=>{ end(''); f.submit(); say('Mailchimp has opened in a new tab to finish your sign-up. Please check that tab to see whether it worked.'); };
+    const tm=setTimeout(()=>end('I couldn\'t reach Mailchimp just now. Please try again in a moment, or email hello@mazomoon.com.'),12000);
+    document.head.appendChild(sc); });
+})();
 document.getElementById('copyEmail').addEventListener('click',e=>{
   const t=document.getElementById('email').textContent, b=e.currentTarget;
   const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('email'));const s=getSelection();s.removeAllRanges();s.addRange(r);};

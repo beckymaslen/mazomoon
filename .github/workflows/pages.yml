@@ -22,7 +22,7 @@ jobs:
           python-version: '3.12'
       - run: pip install markdown pyyaml
       - run: python3 tools/build_pages.py
-      - run: rm -rf .git .github content tools
+      - run: rm -rf .git .github content tools src
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

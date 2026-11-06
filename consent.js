@@ -2,7 +2,14 @@
    Analytics only loads after a visitor taps "Accept". Nothing is tracked before that, or after "Decline".
    The choice is kept in this browser (localStorage "mm-consent") and can be changed on /cookies/ or from the footer link. */
 (function () {
-  var GA = 'G-5131GXSM7M', KEY = 'mm-consent', loaded = false;
+  var GA = 'G-5131GXSM7M', KEY = 'mm-consent', loaded = false, granted = false;
+
+  /* Amazon Attribution tags. DEFAULT goes on every Mazo Moon Amazon link. To report an advert on its own, make a tag for it
+     in Amazon Attribution, then add it here under the advert's utm_campaign name, for example:
+       'xmas_stickers': 'maas=maas_adg_...&ref_=aa_maas&tag=maas'
+     Visitors who arrive with ?utm_campaign=xmas_stickers then get that tag on the Amazon links they click. */
+  var DEFAULT_TAG = 'maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&ref_=aa_maas&tag=maas';
+  var CAMPAIGN_TAGS = {};
   function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
 
@@ -11,7 +18,8 @@
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
 
   function startAnalytics() {
-    if (loaded) return; loaded = true;
+    granted = true; saveCampaign();
+    if (loaded) { gtag('consent', 'update', { analytics_storage: 'granted' }); return; } loaded = true;
     gtag('consent', 'update', { analytics_storage: 'granted' });
     gtag('js', new Date());
     gtag('config', GA, { anonymize_ip: true });
@@ -19,6 +27,8 @@
     document.head.appendChild(s);
   }
   function stopAnalytics() {
+    granted = false;
+    try { sessionStorage.removeItem('mm-campaign'); } catch (e) {}
     gtag('consent', 'update', { analytics_storage: 'denied' });
     // remove any Google Analytics cookies already set on this site
     document.cookie.split(';').forEach(function (c) {
@@ -63,15 +73,36 @@
   function label() { var v = get(); return v === 'granted' ? 'You’ve accepted analytics cookies.' : v === 'denied' ? 'You’ve declined analytics cookies.' : 'You haven’t chosen yet.'; }
   function choose(v) { set(v); if (v === 'granted') startAnalytics(); else stopAnalytics(); }
 
-  /* Which product someone taps before going to Amazon. Only sent when analytics was accepted (gtag sends nothing otherwise). */
+  /* Send an analytics event, only while the visitor has accepted. Never put names, emails or messages in params. */
+  function track(name, params) { if (granted && loaded) gtag('event', name, params || {}); }
+
+  /* Which advert brought the visitor here (utm_campaign), kept for this visit so the Amazon links can carry its tag.
+     It's kept in this tab's session storage only after Accept; otherwise only until the page is closed or changed. */
+  var campaign = null;
+  try { campaign = new URLSearchParams(location.search).get('utm_campaign'); } catch (e) {}
+  if (!campaign) { try { campaign = sessionStorage.getItem('mm-campaign'); } catch (e) {} }
+  function saveCampaign() { if (campaign) { try { sessionStorage.setItem('mm-campaign', campaign); } catch (e) {} } }
+  function tagFor() { return (campaign && CAMPAIGN_TAGS[campaign]) || DEFAULT_TAG; }
+
+  var clean = function (t) { return String(t || '').replace(/\s+/g, ' ').trim(); };
+  /* One amazon_click per tap on a Buy link: which product, and where on the site it was. Reported as an outbound click. */
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href*="amazon."]'); if (!a || !loaded) return;
-    var card = a.closest('article, li, .card, .product, section'), h = card && card.querySelector('h1, h2, h3, h4, .name, .title');
-    var m = /\/dp\/([A-Z0-9]{10})/i.exec(a.href), name = (h && h.textContent || a.getAttribute('title') || a.textContent || '').replace(/\s+/g, ' ').trim();
-    gtag('event', 'amazon_click', { product_name: name.slice(0, 100), asin: m ? m[1] : '', link_text: (a.getAttribute('aria-label') || a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100), page_path: location.pathname, transport_type: 'beacon' });
+    var a = e.target.closest && e.target.closest('a[href*="amazon."]'); if (!a) return;
+    var own = /[?&]maas=/.test(a.href);
+    if (own && campaign && CAMPAIGN_TAGS[campaign]) a.href = a.href.replace(/maas=[^&#]*&ref_=aa_maas&tag=maas/, tagFor());
+    if (!(granted && loaded)) return;
+    var card = a.closest('article, li, .card, .product'), h = card && card.querySelector('h1, h2, h3, h4, .name, .title');
+    var name = a.getAttribute('data-product') || (h && h.textContent) || clean(a.getAttribute('aria-label')).replace(/^(Buy |See )/, '').replace(/ on Amazon.*$/, '') || a.getAttribute('title') || a.textContent;
+    var dlg = a.closest('dialog'), sec = a.closest('[data-where], section[data-page]'), title = dlg && (dlg.querySelector('#sheetEyebrow:not(:empty), .eyebrow') || dlg.querySelector('[id$="Title"], h2'));
+    var where = (sec && (sec.getAttribute('data-where') || sec.getAttribute('data-page'))) || (title && clean(title.textContent)) || 'page';
+    var m = /\/dp\/([A-Z0-9]{10})/i.exec(a.href), host = '';
+    try { host = new URL(a.href).hostname; } catch (_) {}
+    track('amazon_click', { product_name: clean(name).slice(0, 100), asin: m ? m[1] : '', link_location: (dlg ? 'desk: ' : '') + where.slice(0, 80),
+      own_product: own, outbound: true, link_domain: host, link_url: a.href.split('?')[0], campaign: campaign || '', page_path: location.pathname, transport_type: 'beacon' });
   }, true);
 
   window.mmCookies = { open: banner, choose: choose, label: label };
+  window.mmTrack = track;
   if (get() === 'granted') startAnalytics();
   function ready() {
     if (!get()) banner();

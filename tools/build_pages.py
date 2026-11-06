@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Make a copy of index.html for each section so it has its own address,
-title and sharing details (mazomoon.com/shop/, /journals/ ...).
+"""Build the site.
+
+The home page (index.html) is the interactive desk: src/desk-body.html plus the head made here,
+with its scripts and pictures in /desk/. Each section (mazomoon.com/shop/, /journals/ ...) is a copy
+of src/site.html with its own address, title and sharing details.
 
 It also turns each book review in content/reviews/*.md (written in Pages CMS,
 see .pages.yml) into its own page at /reading/<slug>/, writes reviews.json for
 the bookshelf, and refreshes the book list in the editor.
 
-Run this after every change to index.html:  python3 tools/build_pages.py
+Run this after every change to src/site.html or src/desk-body.html:  python3 tools/build_pages.py
 (GitHub runs it too on every push, see .github/workflows/pages.yml.)
 """
 import html, json, os, re
@@ -20,7 +23,7 @@ PAGES = {
     'journals': ('Journals & colouring books | Mazo Moon',
                  'Keepsake journals for kids, parents and grown-ups, and cosy colouring books for adults. Made in Yorkshire, delivered by Amazon.'),
     'shop': ('Shop stickers, pens, journals and more | Mazo Moon',
-             'Stickers, gel and brush pens, sleep masks, journals and colouring books from Mazo Moon. Buy on Amazon with Prime delivery.'),
+             'Stickers, gel and brush pens, sleep masks, journals and colouring books from Mazo Moon. Buy securely on Amazon, where you can see current prices and delivery options.'),
     'reading': ('The Reading Corner | Mazo Moon',
                 'Rebecca\'s bookshelf: romantasy and fantasy series she has read, with honest reviews on the way.'),
     'little-things': ('Little Things I Love | Mazo Moon',
@@ -55,7 +58,7 @@ def show(src, page):
 
 
 def main():
-    src = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
+    src = open(os.path.join(ROOT, 'src', 'site.html'), encoding='utf-8').read()
     assert '<!--meta-start-->' in src and '<!--title-end-->' in src
     posts = load_posts(src)
     src = static_reviews(src, posts)  # review links are in the HTML for search engines
@@ -70,8 +73,9 @@ def main():
         urls.append(url)
     urls += write_reviews(src, posts)
     write_feed(posts)
-    # unknown addresses fall back to the home page
-    open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read())
+    desk = write_desk(posts)
+    # unknown addresses show the desk, marked so search engines don't index them
+    open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(desk.replace('<!--meta-start-->', '<meta name="robots" content="noindex">\n<!--meta-start-->', 1))
     for p in ('privacy', 'cookies', 'terms'):
         urls.append(f'{SITE}/{p}/')
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -82,6 +86,42 @@ def main():
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(sm)
     open(os.path.join(ROOT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n')
     print('built', ', '.join(PAGES))
+
+
+HOME_TITLE = 'Mazo Moon | Journals, colouring and stationery from Yorkshire'
+HOME_DESC = 'Mazo Moon is a Yorkshire family business making journals, colouring books and stationery. Make a little space for you.'
+
+
+def write_desk(posts):
+    """index.html: the desk home page, and desk/reviews.js with the published reviews for its bookshelf."""
+    body = open(os.path.join(ROOT, 'src', 'desk-body.html'), encoding='utf-8').read()
+    org = {'@context': 'https://schema.org', '@type': 'Organization', 'name': 'Mazo Moon', 'legalName': 'Mazo Moon Ltd',
+           'url': SITE + '/', 'logo': SITE + '/img/favicon.png', 'email': 'hello@mazomoon.com',
+           'sameAs': ['https://www.instagram.com/mazomoon', 'https://uk.pinterest.com/mazomoon',
+                      'https://www.amazon.co.uk/stores/MazoMoon/page/298754B3-2DA8-49CE-B163-4EA6E7FEA0E0']}
+    head = f'''<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{html.escape(HOME_TITLE)}</title>
+{meta(HOME_TITLE, HOME_DESC, SITE + '/', extra=chr(10) + '<script type="application/ld+json">' + json.dumps(org, ensure_ascii=False) + '</script>')}
+<link rel="icon" href="/img/favicon.png">
+<link rel="apple-touch-icon" href="/img/favicon.png">
+<script src="/consent.js" defer></script>
+'''
+    out = head + body.replace('\n<noscript>', '\n</head>\n<body>\n<noscript>', 1) + '\n</body>\n</html>\n'
+    open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(out)
+    revs = [{'slug': p['slug'], 'book': p['book'], 'title': p['title'], 'url': f'/reading/{p["slug"]}/', 'rating': p['rating'],
+             'spoilers': bool(p['spoilers']), 'date': p['nice'], 'iso': p['date'], 'excerpt': p['excerpt'], 'html': p['body']} for p in posts]
+    open(os.path.join(ROOT, 'desk', 'reviews.js'), 'w', encoding='utf-8').write(
+        '/* Made by tools/build_pages.py from the published reviews in Pages CMS. Don\'t edit by hand. */\n'
+        'window.MM.reviews = ' + json.dumps(revs, ensure_ascii=False, indent=1).replace('</', '<\\/') + ';\n')
+    return out
+
+
+def season():
+    return ['winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter'][date.today().month - 1]
 
 
 MONTHS = 'January February March April May June July August September October November December'.split()

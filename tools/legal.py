@@ -3,7 +3,7 @@
 python3 tools/legal.py"""
 import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-UPDATED = '5 November 2026'
+UPDATED = '6 November 2026'
 
 SHELL = '''<!doctype html>
 <html lang="en-GB">
@@ -59,7 +59,7 @@ PAGES = {
 <h2>What we collect</h2>
 <ul>
 <li><strong>When you send us a message:</strong> your name, email address, the topic you choose and your message.</li>
-<li><strong>When you sign up for the monthly letter:</strong> your email address.</li>
+<li><strong>When you sign up for the monthly letter:</strong> your email address, and your first name if you choose to give it.</li>
 <li><strong>If you accept analytics cookies:</strong> Google Analytics records how the site is used, such as the pages you view, roughly where you are (city or country), the device and browser you use and the site that sent you. We can't see who you are from it. If you decline, none of this is collected.</li>
 </ul>
 <p>We don't ask for anything else, and we never collect payment details. All orders are placed and paid for on Amazon, so Amazon handles your order, delivery and payment details under <a href="https://www.amazon.co.uk/gp/help/customer/display.html?nodeId=201909010" rel="noopener">Amazon's privacy notice</a>.</p>
@@ -72,7 +72,8 @@ PAGES = {
 <p>We never sell your details or share them for anyone else's marketing.</p>
 <h2>Who helps us</h2>
 <ul>
-<li><strong>FormSubmit</strong> (formsubmit.co) passes the contact and sign-up forms to our inbox.</li>
+<li><strong>Mailchimp</strong> (Intuit Mailchimp) keeps the monthly letter list and sends the letter. Your email address and first name, if you give it, are stored by Mailchimp, which may handle them in the United States. See <a href="https://www.intuit.com/privacy/statement/" rel="noopener">Intuit's privacy statement</a>.</li>
+<li><strong>FormSubmit</strong> (formsubmit.co) passes the contact form to our inbox.</li>
 <li><strong>IONOS</strong> hosts our email.</li>
 <li><strong>Google Analytics</strong> (Google Ireland Ltd) measures how the site is used, only if you accept analytics cookies. Google keeps this data for up to 14 months. See <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.</li>
 <li><strong>GitHub Pages</strong> hosts the website and keeps standard server logs, such as IP addresses, for security.</li>
@@ -80,7 +81,7 @@ PAGES = {
 </ul>
 <p>Some of these companies may handle data outside the UK. When they do, they use recognised safeguards such as standard contractual clauses.</p>
 <h2>How long we keep it</h2>
-<p>We keep messages for as long as we need them to help you, and for no more than two years. We keep your email address on the letter list until you unsubscribe.</p>
+<p>We keep messages for as long as we need them to help you, and for no more than two years. We keep your email address on the letter list until you unsubscribe, using the link in any letter.</p>
 <h2>Your rights</h2>
 <p>You can ask to see the details we hold about you, correct them, delete them, or stop receiving the letter. Just email <a href="mailto:hello@mazomoon.com">hello@mazomoon.com</a>. If you're unhappy with how we've handled your details, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a>.</p>
 '''),
@@ -95,11 +96,13 @@ PAGES = {
 <li><strong>_ga</strong>: tells one visit from another. Lasts 2 years.</li>
 <li><strong>_ga_5131GXSM7M</strong>: keeps track of your current visit. Lasts 2 years.</li>
 </ul>
+<p>If you accept and you arrived from one of our adverts, the site also keeps the advert's campaign name in this tab's session storage (mm-campaign), so the Amazon links you tap can tell us which advert they came from. It's cleared when you close the tab.</p>
 <p>If you decline, Google Analytics doesn't load at all and these cookies aren't set. If you change your mind later, we delete them.</p>
 <h2>What the site stores without asking</h2>
 <ul>
 <li><strong>Your cookie choice:</strong> saved in your browser's local storage so we don't ask on every page.</li>
 <li><strong>Session storage:</strong> the site remembers, for the current visit only, that you've already seen the opening animation, so it doesn't play again on every page. This is cleared when you close the tab.</li>
+<li><strong>The desk on the home page:</strong> local storage remembers your own choices there: whether you've seen the welcome (mm-seen), daytime or moonlight (mm-mode), whether to show labels (mm-labels) and the stickers you've placed (mm-stickers). These stay in your browser, are never sent to us, and you can clear them in your browser settings.</li>
 </ul>
 <h2>Other websites</h2>
 <p>Our fonts come from Google Fonts, and some product photos load from Amazon. When you tap "Buy on Amazon", you move to Amazon's website, which uses its own cookies under <a href="https://www.amazon.co.uk/cookies" rel="noopener">Amazon's cookie notice</a>.</p>
