@@ -76,8 +76,6 @@ publish:
 ---
 # A Court of Mist and Fury Review: The Book That Made Me Obsessed
 
-*Romantic Fantasy | First read: July 2024*
-
 **Spoiler-free review first, followed by a spoiler-filled discussion of Book 2. **  
 **No spoilers from later books.**
 
