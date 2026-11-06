@@ -206,6 +206,7 @@ class Blog:
     # -- one post
     def read(self, fname, folder='reviews'):
         fm, raw = front(open(os.path.join(ROOT, 'content', folder, fname), encoding='utf-8').read())
+        fm = flatten(fm)
         stem = os.path.splitext(fname)[0]
         seo, imgs, links, promo, adv, exp, prod = (obj(fm, k) for k in ('seo', 'images', 'links', 'promo', 'advanced', 'experience', 'product'))
         status = str(fm.get('status') or ('published' if fm.get('published') else 'draft')).lower()
@@ -707,6 +708,26 @@ class Blog:
 
     def review_of(self, book):
         return next((o for o in self.reviews if o['book'] == book), None)
+
+
+def flatten(fm):
+    """The editor groups fields into steps (details, publish, and canonical etc. inside seo).
+    Lift them back to the top level, so older files with top-level fields read the same."""
+    fm = dict(fm)
+    for k in ('details', 'publish'):
+        if isinstance(fm.get(k), dict):
+            for kk, v in fm.pop(k).items():
+                if v not in (None, '', []) or kk not in fm:
+                    fm[kk] = v
+    adv = dict(fm.get('advanced') or {})
+    seo = fm.get('seo') if isinstance(fm.get('seo'), dict) else {}
+    for kk in ('canonical', 'noindex', 'old_addresses'):
+        if seo.get(kk) not in (None, '', []):
+            adv[kk] = seo[kk]
+    if fm.get('updated') not in (None, ''):
+        adv['updated'] = fm['updated']
+    fm['advanced'] = adv
+    return fm
 
 
 def similar(a, b):
