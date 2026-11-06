@@ -25,10 +25,9 @@ KINDS = {'review': 'Book review', 'product_review': 'Product review', 'roundup':
 STATIC_PATHS = {'/', '/journals/', '/shop/', '/reading/', '/little-things/', '/our-story/', '/privacy/', '/cookies/', '/terms/',
                 '/links/', '/blog/', '/reading/feed.xml', '/sitemap.xml'}
 e = lambda t: html.escape(str(t or ''), quote=True)
-# Reader comments go through Cusdis (cusdis.com): no reader accounts, and nothing shows until Rebecca approves it.
-# Paste the App ID from the Cusdis dashboard here to switch comments on. Empty = no comment section.
-COMMENTS_APP_ID = ''
-COMMENTS_HOST = 'https://cusdis.com'
+# Reader comments go to Rebecca's own Google Sheet through tools/comments-apps-script.gs: no reader accounts,
+# and nothing shows until she ticks "Show on site". Paste the web app URL (ends in /exec) here. Empty = no comments.
+COMMENTS_URL = ''
 
 
 # ---------------------------------------------------------------- small helpers
@@ -800,28 +799,27 @@ COMMENT_CSS = '''<style>
 </style>'''
 
 COMMENT_JS = '''<script>(function(){var box=document.getElementById('comments');if(!box)return;
-var H=box.dataset.host,A=box.dataset.app,P=box.dataset.page,list=box.querySelector('.clist'),none=box.querySelector('.cnone'),f=box.querySelector('form'),msg=box.querySelector('.cmsg');
+var U=box.dataset.url,P=box.dataset.page,list=box.querySelector('.clist'),none=box.querySelector('.cnone'),f=box.querySelector('form'),msg=box.querySelector('.cmsg');
 function esc(t){var d=document.createElement('div');d.textContent=t==null?'':String(t);return d.innerHTML}
-function when(t){try{return new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}catch(e){return''}}
-function split(c){var m=/^([\u2605\u2606]{5})[^\\n]*\\n+/.exec(c||'');return m?{stars:(m[1].match(/\u2605/g)||[]).length,text:c.slice(m[0].length)}:{stars:0,text:c||''}}
-function one(c,isReply){var s=split(c.content),st=s.stars?'<span class="stars" aria-label="'+s.stars+' out of 5">'+'\u2605'.repeat(s.stars)+'\u2606'.repeat(5-s.stars)+'</span>':'';
-  var r=(c.replies&&c.replies.data||[]).map(function(x){return one(x,true)}).join('');
-  return(isReply?'<div class="reply">':'<li>')+'<div class="who"><b>'+esc(c.moderator||c.moderatorId?'Rebecca':c.by_nickname)+'</b>'+st+'<span>'+when(c.createdAt)+'</span></div><p>'+esc(s.text)+'</p>'+r+(isReply?'</div>':'</li>')}
-fetch(H+'/api/open/comments?appId='+encodeURIComponent(A)+'&pageId='+encodeURIComponent(P)+'&page=1').then(function(r){return r.ok?r.json():null}).then(function(j){
-  var items=j&&j.data&&j.data.data||[];if(!items.length)return;none.hidden=true;list.innerHTML=items.map(function(c){return one(c,false)}).join('')}).catch(function(){});
-f.addEventListener('submit',function(ev){ev.preventDefault();if(f.website.value)return;
-  var n=f.nickname.value.trim(),t=f.content.value.trim(),r=f.querySelector('input[name=rating]:checked'),k=r?+r.value:0;
+function when(t){var d=new Date(t);return isNaN(d)?'':d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
+function stars(n){return n?'<span class="stars" aria-label="'+n+' out of 5">'+'\u2605'.repeat(n)+'\u2606'.repeat(5-n)+'</span>':''}
+fetch(U+'?page='+encodeURIComponent(P)).then(function(r){return r.ok?r.json():null}).then(function(j){
+  var items=j&&j.comments||[];if(!items.length)return;none.hidden=true;
+  list.innerHTML=items.map(function(c){return '<li><div class="who"><b>'+esc(c.name)+'</b>'+stars(Math.min(5,Math.max(0,c.stars|0)))+'<span>'+when(c.date)+'</span></div><p>'+esc(c.text)+'</p>'
+    +(c.reply?'<div class="reply"><div class="who"><b>Rebecca</b></div><p>'+esc(c.reply)+'</p></div>':'')+'</li>'}).join('')}).catch(function(){});
+f.addEventListener('submit',function(ev){ev.preventDefault();
+  var n=f.nickname.value.trim(),t=f.content.value.trim(),r=f.querySelector('input[name=rating]:checked');
   if(!n||!t){msg.textContent='Please add your name and a comment.';return}
-  var c=(k?'\u2605'.repeat(k)+'\u2606'.repeat(5-k)+' ('+k+'/5)\\n\\n':'')+t,btn=f.querySelector('button');btn.disabled=true;msg.textContent='Sending\u2026';
-  fetch(H+'/api/open/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({appId:A,pageId:P,pageUrl:location.href,pageTitle:document.title,nickname:n,email:'',content:c})})
-  .then(function(r){if(!r.ok)throw 0;f.reset();msg.textContent='Thank you! Your comment will appear here once I\u2019ve read it.'})
+  var btn=f.querySelector('button');btn.disabled=true;msg.textContent='Sending\u2026';
+  fetch(U,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({page:P,name:n,stars:r?+r.value:0,text:t,website:f.website.value})})
+  .then(function(r){return r.json()}).then(function(j){if(!j||!j.ok)throw 0;f.reset();msg.textContent='Thank you! Your comment will appear here once I\u2019ve read it.'})
   .catch(function(){msg.textContent='Sorry, that didn\u2019t send. Please try again in a minute.'}).then(function(){btn.disabled=false})});
 })();</script>'''
 
 
 def comments_html(p):
-    """Name, optional star rating and comment. Shows approved comments only (Rebecca approves them in Cusdis)."""
-    if not COMMENTS_APP_ID:
+    """Name, optional star rating and comment. Shows approved comments only (Rebecca ticks them in her Google Sheet)."""
+    if not COMMENTS_URL:
         return ''
     stars = p['type'] in ('review', 'product_review')
     thing = 'the book' if p['type'] == 'review' else 'it'
@@ -830,7 +828,7 @@ def comments_html(p):
         opts = ''.join(f'<input type="radio" name="rating" id="cr{n}" value="{n}"><label for="cr{n}" title="{n} star{"s" if n > 1 else ""}">★<span class="visually-hidden"> {n} out of 5</span></label>' for n in range(5, 0, -1))
         rate = f'<fieldset class="rate"><legend>What did you give {thing}? (optional)</legend><div class="opts">{opts}</div></fieldset>'
     return f'''{COMMENT_CSS}
-  <section class="comments" id="comments" data-host="{COMMENTS_HOST}" data-app="{e(COMMENTS_APP_ID)}" data-page="{e(p["path"])}" aria-labelledby="comments-h">
+  <section class="comments" id="comments" data-url="{e(COMMENTS_URL)}" data-page="{e(p["path"])}" aria-labelledby="comments-h">
     <h2 id="comments-h">What did you think?</h2>
     <p class="small muted">No account needed. I read every comment before it goes up, so yours will appear once I've seen it.</p>
     <form class="contact" novalidate>
