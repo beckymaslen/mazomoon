@@ -1,648 +1,1221 @@
 # Settings for the blog editor at https://app.pagescms.org
-# Every post (book reviews, blog posts, guides, lists, editorials) lives in content/reviews/.
-# tools/blog.py turns them into pages, checks them before they go live, and keeps the
-# book list below in step with the bookshelf (between books-start and books-end).
+# Each kind of post has its own section under "Write", so it only shows the fields it needs.
+# tools/blog.py reads every folder (content/reviews, product-reviews, roundups, posts), checks the posts
+# and builds the pages. It also refreshes the book list between books-start and books-end.
 media:
   input: img/reviews
   output: /img/reviews
-
 components:
   book:
     type: select
     options:
       placeholder: Pick a book from your shelf
       values:
-        # books-start
-        - "A Blackened Bond"
-        - "A Court of Frost and Starlight"
-        - "A Court of Mist and Fury"
-        - "A Court of Silver Flames"
-        - "A Court of Splintered Harmony"
-        - "A Court of Thorns and Roses"
-        - "A Court of Wings and Ruin"
-        - "A Demon's Guide to the Afterlife"
-        - "A Fire in the Flesh"
-        - "A Game of Fate"
-        - "A Game of Gods"
-        - "A Game of Love and Betrayal"
-        - "A Game of Retribution"
-        - "A Kingdom of Flesh and Fire"
-        - "A Light in the Flame"
-        - "A Shadow in the Ember"
-        - "A Soul of Ash and Blood"
-        - "A Touch of Chaos"
-        - "A Touch of Darkness"
-        - "A Touch of Malice"
-        - "A Touch of Ruin"
-        - "Alchemised"
-        - "Anathema"
-        - "Atlas: The Story of Pa Salt"
-        - "Blood & Steel"
-        - "Blood of Hercules"
-        - "Bonds of Hercules"
-        - "Born of Blood and Ash"
-        - "Brimstone"
-        - "Broken Fae"
-        - "Burn of the Everflame"
-        - "Court of Ice and Ash"
-        - "Crown of Blood and Ruin"
-        - "Crown of Midnight"
-        - "Cursed Fates"
-        - "Dance with the Demon"
-        - "Dark Age"
-        - "Dark Fae"
-        - "Demon’s Advocate"
-        - "Dire Bound"
-        - "Echoes"
-        - "Eldritch"
-        - "Empire of Flame and Thorns"
-        - "Empire of Storms"
-        - "Enchantra"
-        - "Fate of the Sun King"
-        - "Fated Throne"
-        - "Fearless"
-        - "Feathers So Vicious"
-        - "For Whom the Belle Tolls"
-        - "Fourth Wing"
-        - "From Blood and Ash"
-        - "Fury Bound"
-        - "Game of Hate and Lies"
-        - "Gild"
-        - "Gleam"
-        - "Glint"
-        - "Glow"
-        - "Glow of the Everflame"
-        - "Gold"
-        - "Golden Son"
-        - "Goldfinch"
-        - "Heartless Sky"
-        - "Heat of the Everflame"
-        - "Heir of Fire"
-        - "House of Earth and Blood"
-        - "House of Flame and Shadow"
-        - "House of Sky and Breath"
-        - "Inner Demons"
-        - "Insatiable"
-        - "Iron Flame"
-        - "Iron Gold"
-        - "Kingdom of Ash"
-        - "Kiss of the Basilisk"
-        - "Lady of Ashes"
-        - "Lady of Darkness"
-        - "Lady of Embers"
-        - "Lady of Shadows"
-        - "Lady of Starfire"
-        - "Lessons in Chemistry"
-        - "Lightlark"
-        - "Lights Out"
-        - "Luck of the Demon"
-        - "Morning Star"
-        - "Night of Masks and Knives"
-        - "Once Upon a Broken Heart"
-        - "One Dark Window"
-        - "Onyx Storm"
-        - "Phantasma"
-        - "Powerless"
-        - "Queen of Shadows"
-        - "Quicksilver"
-        - "Reckless"
-        - "Red Rising"
-        - "Restitution"
-        - "Restless Stars"
-        - "Rites of the Starling"
-        - "Rule of the Aurora King"
-        - "Ruthless Fae"
-        - "Savage Fae"
-        - "Serpent & Dove"
-        - "Shadow Princess"
-        - "Shadows So Cruel"
-        - "Shield of Sparrows"
-        - "Sorrow and Starlight (Zodiac Academy 8)"
-        - "Spark of the Everflame"
-        - "Speak of the Demon"
-        - "Tale of the Heart Queen"
-        - "The Awakening"
-        - "The Ballad of Falling Dragons"
-        - "The Blackened Blade"
-        - "The Book of Azrael"
-        - "The Crown of Gilded Bones"
-        - "The Cruel Prince"
-        - "The Dawn of the Cursed Queen"
-        - "The Hawthorne Legacy"
-        - "The Hidden Girl"
-        - "The House Witch: A Humorous Romantic Fantasy"
-        - "The Missing Sister"
-        - "The Moon Sister"
-        - "The Murders at Fleat House"
-        - "The Pearl Sister"
-        - "The Primal of Blood and Bone"
-        - "The Reappearance of Rachel Price"
-        - "The Reckoning"
-        - "The Serpent and the Wings of Night"
-        - "The Seven Sisters"
-        - "The Shadow Sister"
-        - "The Storm Sister"
-        - "The Sun Sister"
-        - "The Throne of Broken Gods"
-        - "The War of Two Queens"
-        - "The Wrath of the Fallen"
-        - "Threshing Day"
-        - "Throne of Glass"
-        - "Throne of Ice and Blood"
-        - "To Flame a Wild Flower"
-        - "To Snap a Silver Stem"
-        - "Tower of Dawn"
-        - "Unhinged"
-        - "Vicious Fae"
-        - "Voracious"
-        - "Warrior Fae"
-        - "When the Moon Hatched"
-        # books-end
-
+      # books-start
+      - "A Blackened Bond"
+      - "A Court of Frost and Starlight"
+      - "A Court of Mist and Fury"
+      - "A Court of Silver Flames"
+      - "A Court of Splintered Harmony"
+      - "A Court of Thorns and Roses"
+      - "A Court of Wings and Ruin"
+      - "A Demon's Guide to the Afterlife"
+      - "A Fire in the Flesh"
+      - "A Game of Fate"
+      - "A Game of Gods"
+      - "A Game of Love and Betrayal"
+      - "A Game of Retribution"
+      - "A Kingdom of Flesh and Fire"
+      - "A Light in the Flame"
+      - "A Shadow in the Ember"
+      - "A Soul of Ash and Blood"
+      - "A Touch of Chaos"
+      - "A Touch of Darkness"
+      - "A Touch of Malice"
+      - "A Touch of Ruin"
+      - "Alchemised"
+      - "Anathema"
+      - "Atlas: The Story of Pa Salt"
+      - "Blood & Steel"
+      - "Blood of Hercules"
+      - "Bonds of Hercules"
+      - "Born of Blood and Ash"
+      - "Brimstone"
+      - "Broken Fae"
+      - "Burn of the Everflame"
+      - "Court of Ice and Ash"
+      - "Crown of Blood and Ruin"
+      - "Crown of Midnight"
+      - "Cursed Fates"
+      - "Dance with the Demon"
+      - "Dark Age"
+      - "Dark Fae"
+      - "Demon’s Advocate"
+      - "Dire Bound"
+      - "Echoes"
+      - "Eldritch"
+      - "Empire of Flame and Thorns"
+      - "Empire of Storms"
+      - "Enchantra"
+      - "Fate of the Sun King"
+      - "Fated Throne"
+      - "Fearless"
+      - "Feathers So Vicious"
+      - "For Whom the Belle Tolls"
+      - "Fourth Wing"
+      - "From Blood and Ash"
+      - "Fury Bound"
+      - "Game of Hate and Lies"
+      - "Gild"
+      - "Gleam"
+      - "Glint"
+      - "Glow"
+      - "Glow of the Everflame"
+      - "Gold"
+      - "Golden Son"
+      - "Goldfinch"
+      - "Heartless Sky"
+      - "Heat of the Everflame"
+      - "Heir of Fire"
+      - "House of Earth and Blood"
+      - "House of Flame and Shadow"
+      - "House of Sky and Breath"
+      - "Inner Demons"
+      - "Insatiable"
+      - "Iron Flame"
+      - "Iron Gold"
+      - "Kingdom of Ash"
+      - "Kiss of the Basilisk"
+      - "Lady of Ashes"
+      - "Lady of Darkness"
+      - "Lady of Embers"
+      - "Lady of Shadows"
+      - "Lady of Starfire"
+      - "Lessons in Chemistry"
+      - "Lightlark"
+      - "Lights Out"
+      - "Luck of the Demon"
+      - "Morning Star"
+      - "Night of Masks and Knives"
+      - "Once Upon a Broken Heart"
+      - "One Dark Window"
+      - "Onyx Storm"
+      - "Phantasma"
+      - "Powerless"
+      - "Queen of Shadows"
+      - "Quicksilver"
+      - "Reckless"
+      - "Red Rising"
+      - "Restitution"
+      - "Restless Stars"
+      - "Rites of the Starling"
+      - "Rule of the Aurora King"
+      - "Ruthless Fae"
+      - "Savage Fae"
+      - "Serpent & Dove"
+      - "Shadow Princess"
+      - "Shadows So Cruel"
+      - "Shield of Sparrows"
+      - "Sorrow and Starlight (Zodiac Academy 8)"
+      - "Spark of the Everflame"
+      - "Speak of the Demon"
+      - "Tale of the Heart Queen"
+      - "The Awakening"
+      - "The Ballad of Falling Dragons"
+      - "The Blackened Blade"
+      - "The Book of Azrael"
+      - "The Crown of Gilded Bones"
+      - "The Cruel Prince"
+      - "The Dawn of the Cursed Queen"
+      - "The Hawthorne Legacy"
+      - "The Hidden Girl"
+      - "The House Witch: A Humorous Romantic Fantasy"
+      - "The Missing Sister"
+      - "The Moon Sister"
+      - "The Murders at Fleat House"
+      - "The Pearl Sister"
+      - "The Primal of Blood and Bone"
+      - "The Reappearance of Rachel Price"
+      - "The Reckoning"
+      - "The Serpent and the Wings of Night"
+      - "The Seven Sisters"
+      - "The Shadow Sister"
+      - "The Storm Sister"
+      - "The Sun Sister"
+      - "The Throne of Broken Gods"
+      - "The War of Two Queens"
+      - "The Wrath of the Fallen"
+      - "Threshing Day"
+      - "Throne of Glass"
+      - "Throne of Ice and Blood"
+      - "To Flame a Wild Flower"
+      - "To Snap a Silver Stem"
+      - "Tower of Dawn"
+      - "Unhinged"
+      - "Vicious Fae"
+      - "Voracious"
+      - "Warrior Fae"
+      - "When the Moon Hatched"
+      # books-end
 content:
+- name: write
+  label: Write
+  type: group
+  items:
   - name: reviews
-    label: Posts and reviews
-    description: Book reviews and blog posts. Save, then press "Check this post" to see the checklist and the preview link.
+    label: Book reviews
+    description: Reviews of books on your shelf. Save, then press "Check this post" for the checklist and preview link.
     type: collection
     path: content/reviews
-    filename: "{primary}.md"
+    filename: '{primary}.md'
     view:
-      fields: [title, type, status, date]
+      fields:
+      - title
+      - status
+      - date
       primary: title
-      search: [title, book, excerpt]
-      sort: [date, title]
+      search:
+      - title
+      - excerpt
+      sort:
+      - date
+      - title
       default:
         sort: date
         order: desc
     actions:
-      - name: check-post
-        label: Check this post
-        workflow: post-check.yml
-        scope: entry
-      - name: check-all
-        label: Check all posts
-        workflow: post-check.yml
-        scope: collection
+    - name: check-post
+      label: Check this post
+      workflow: post-check.yml
+      scope: entry
+    - name: check-all
+      label: Check all posts
+      workflow: post-check.yml
+      scope: collection
     fields:
-      # ---------- Section 1: the basics ----------
-      - name: type
-        label: What kind of post is this?
+    - name: type
+      type: string
+      hidden: true
+      default: review
+    - name: title
+      label: Headline
+      type: string
+      required: true
+      description: The big headline at the top of the page, for example "Glow made me cry on the school run".
+    - name: book
+      label: Book (for reviews)
+      component: book
+      description: Pick the book from your shelf. The author, series and series number come from it.
+    - name: body
+      label: Your review
+      type: rich-text
+      description: 'Write as much or as little as you like. The box grows as you type. Ideas: What it''s about, What I loved, What didn''t work for me, Romance and spice, Who I''d recommend it to, Final verdict.'
+    - name: rating
+      label: Stars (1 to 5)
+      type: number
+      options:
+        min: 1
+        max: 5
+    - name: spoilers
+      label: This review talks about spoilers
+      type: boolean
+      default: false
+      description: Shows a heads-up at the top. To hide a spoiler until someone taps it, use a Spoiler block below instead.
+    - &id001
+      name: excerpt
+      label: Short summary
+      type: text
+      description: One or two sentences. Shows on cards, in the feed and when the link is shared. Leave it empty and the first lines of the post are used.
+    - &id004
+      name: status
+      label: Status
+      type: select
+      required: true
+      default: draft
+      description: 'Draft: only you can see the preview. Scheduled: goes live by itself at the publish date and time below. Published: live now. Archived: taken off the lists and out of Google, but the page and its address keep working.'
+      options:
+        values:
+        - value: draft
+          label: Draft
+        - value: scheduled
+          label: Scheduled
+        - value: published
+          label: Published
+        - value: archived
+          label: Archived (unpublished, not deleted)
+    - &id005
+      name: date
+      label: Publish date and time
+      type: date
+      options:
+        time: true
+      description: Filled in for you. For a scheduled post, set the time it should go live (UK time). Keep the original date when you update an old post.
+    - name: experience
+      label: Reading experience (optional)
+      description: Shows as a small panel on the review, and lets the site group books by mood, spice and tropes later.
+      type: object
+      fields:
+      - name: romance
+        label: Romance level
         type: select
-        required: true
-        default: review
         options:
           values:
-            - { value: review, label: Book review }
-            - { value: product_review, label: Product review }
-            - { value: roundup, label: Product roundup (for example "10 best reading lights") }
-            - { value: blog, label: Blog or lifestyle post }
-            - { value: guide, label: Reading guide }
-            - { value: listicle, label: List (for example "10 best...") }
-            - { value: editorial, label: Editorial or personal essay }
-      - name: title
-        label: Headline
-        type: string
-        required: true
-        description: The big headline at the top of the page, for example "Glow made me cry on the school run".
-      - name: status
-        label: Status
-        type: select
-        required: true
-        default: draft
-        description: "Draft: only you can see the preview. Scheduled: goes live by itself at the publish date and time below. Published: live now. Archived: taken off the lists and out of Google, but the page and its address keep working."
-        options:
-          values:
-            - { value: draft, label: Draft }
-            - { value: scheduled, label: Scheduled }
-            - { value: published, label: Published }
-            - { value: archived, label: "Archived (unpublished, not deleted)" }
-      - name: date
-        label: Publish date and time
-        type: date
-        options:
-          time: true
-        description: Filled in for you. For a scheduled post, set the time it should go live (UK time). Keep the original date when you update an old post.
-      - name: book
-        label: Book (for reviews)
-        component: book
-        description: The author, series, series number and bookshelf link all come from your shelf, so you don't type them again.
-      - name: category
-        label: Category
-        type: reference
-        options:
-          collection: categories
-          search: name
-          label: "{fields.name}"
-          value: "{name}"
-        description: The main shelf this post sits on, for example Book reviews or Reading guides. Reviews go in Book reviews if you leave this empty.
-      - name: tags
-        label: Topics and tags (optional)
-        type: string
-        list: true
-        description: Moods, themes or genres readers might search for, for example "cosy fantasy" or "audiobooks".
-      - name: author
-        label: Written by
-        type: reference
-        default: rebecca.md
-        options:
-          collection: authors
-          search: name
-          label: "{fields.name}"
-          value: "{name}"
-        description: Links the post to the writer's profile. Leave it as Rebecca unless someone else wrote it.
-      - name: rating
-        label: Stars (1 to 5, reviews)
+          - None
+          - Slow burn
+          - Moderate
+          - Heavy
+      - name: spice
+        label: Spice (0 to 5)
         type: number
         options:
-          min: 1
+          min: 0
           max: 5
-      - name: spoilers
-        label: This review talks about spoilers
-        type: boolean
-        default: false
-        description: Shows a heads-up at the top. To hide a spoiler until someone taps it, use a Spoiler block below instead.
-      - name: excerpt
-        label: Short summary
-        type: text
-        description: One or two sentences. Shows on cards, in the feed and when the link is shared. Leave it empty and the first lines of the post are used.
-      - name: relationship
-        label: Any money or gifts involved?
+      - name: tone
+        label: Emotional tone
         type: select
-        default: none
-        description: "Affiliate links are spotted for you from the products you add. Gifted or paid posts get an \"Ad\" label at the top and on every card, as the ASA asks."
+        options:
+          multiple: true
+          values:
+          - Cosy
+          - Dark
+          - Heartbreaking
+          - Uplifting
+          - Funny
+          - Tense
+          - Romantic
+          - Bittersweet
+          - Gothic
+          - Whimsical
+      - name: pacing
+        label: Pacing
+        type: select
         options:
           values:
-            - { value: none, label: "No, just my own opinion" }
-            - { value: affiliate, label: Affiliate links only }
-            - { value: gifted, label: The product was gifted to me }
-            - { value: sponsored, label: Paid or sponsored post }
-      - { name: brand_partner, label: Who gifted or paid for it (gifted or paid posts), type: string }
-
-      # ---------- Product review and roundup ----------
+          - Slow
+          - Moderate
+          - Fast
+      - name: tropes
+        label: Favourite tropes
+        type: select
+        options:
+          multiple: true
+          values:
+          - Enemies to lovers
+          - Friends to lovers
+          - Found family
+          - Forced proximity
+          - Fated mates
+          - Morally grey love interest
+          - Slow burn
+          - Who did this to you
+          - Touch her and die
+          - Only one bed
+          - Chosen one
+          - Secret royalty
+          - Fake dating
+          - Rivals to lovers
+          - Grumpy and sunshine
+          - Second chance
+          - Arranged marriage
+          - Bargain or deal
+          - Academy setting
+          - Heist
+          - Court intrigue
+          - Dragons
+          - Fae
+          - Vampires
+          - Demons
+          - Gods and mythology
+          - Love triangle
+          - Why choose
+          - Villain gets the girl
+          - Redemption arc
+      - name: more_tropes
+        label: Other tropes (optional)
+        type: string
+        list: true
+      - name: series_status
+        label: Series status
+        type: select
+        options:
+          values:
+          - Standalone
+          - Complete series
+          - Ongoing series
+    - &id002
+      name: relationship
+      label: Any money or gifts involved?
+      type: select
+      default: none
+      description: Affiliate links are spotted for you from the products you add. Gifted or paid posts get an "Ad" label at the top and on every card, as the ASA asks.
+      options:
+        values:
+        - value: none
+          label: No, just my own opinion
+        - value: affiliate
+          label: Affiliate links only
+        - value: gifted
+          label: The product was gifted to me
+        - value: sponsored
+          label: Paid or sponsored post
+    - &id003
+      name: brand_partner
+      label: Who gifted or paid for it (gifted or paid posts)
+      type: string
+    - name: category
+      label: Category
+      type: reference
+      options:
+        collection: categories
+        search: name
+        label: '{fields.name}'
+        value: '{name}'
+      description: Leave empty for Book reviews.
+    - &id006
+      name: tags
+      label: Topics and tags (optional)
+      type: string
+      list: true
+      description: Moods, themes or genres readers might search for, for example "cosy fantasy" or "audiobooks".
+    - &id007
+      name: author
+      label: Written by
+      type: reference
+      default: rebecca.md
+      options:
+        collection: authors
+        search: name
+        label: '{fields.name}'
+        value: '{name}'
+      description: Links the post to the writer's profile. Leave it as Rebecca unless someone else wrote it.
+    - &id008
+      name: blocks
+      label: Extra blocks (optional)
+      description: Add book cards, spoilers, pull quotes, photos with captions, comparison tables, FAQs, related posts or product picks. They appear after the writing above, in this order.
+      type: block
+      list:
+        collapsible:
+          collapsed: true
+      blocks:
+      - name: text
+        label: More writing
+        fields:
+        - name: text
+          label: Writing
+          type: rich-text
+      - name: book_card
+        label: Book card
+        fields:
+        - name: book
+          label: Book
+          component: book
+        - name: note
+          label: A line about it (optional)
+          type: text
+        - name: url
+          label: Shop link (optional)
+          type: string
+        - name: partner
+          label: Shop
+          type: reference
+          options:
+            collection: partners
+            search: name
+            label: '{fields.name}'
+            value: '{name}'
+      - name: product_card
+        label: Product card (from the Product Library)
+        fields:
+        - name: product
+          label: Product
+          type: reference
+          options:
+            collection: products
+            search: name
+            label: '{fields.name}'
+            value: '{name}'
+        - name: badge
+          label: Badge (optional), for example "Best for reading in bed"
+          type: string
+        - name: note
+          label: What I think of it
+          type: rich-text
+      - name: spoiler
+        label: Spoiler (hidden until tapped)
+        fields:
+        - name: label
+          label: Button text
+          type: string
+          default: 'Spoiler: tap to read'
+        - name: text
+          label: Spoiler
+          type: rich-text
+      - name: quote
+        label: Pull quote or highlight
+        fields:
+        - name: text
+          label: Quote
+          type: text
+        - name: source
+          label: Who said it (optional)
+          type: string
+        - name: style
+          label: Style
+          type: select
+          default: pull
+          options:
+            values:
+            - value: pull
+              label: Pull quote from the book
+            - value: highlight
+              label: My personal highlight
+      - name: image
+        label: Photo with caption
+        fields:
+        - name: src
+          label: Photo
+          type: image
+        - name: alt
+          label: What's in the photo (for screen readers and Google)
+          type: string
+        - name: caption
+          label: Caption (optional)
+          type: string
+        - name: credit
+          label: Credit (optional)
+          type: string
+      - name: table
+        label: Comparison table
+        fields:
+        - name: caption
+          label: Table title (optional)
+          type: string
+        - name: header
+          label: Column headings, split with |
+          type: string
+          description: 'For example: Book | Spice | Pace | Ending'
+        - name: rows
+          label: Rows, cells split with |
+          type: string
+          list: true
+      - name: faq
+        label: Questions and answers
+        fields:
+        - name: items
+          label: Questions
+          type: object
+          list: true
+          fields:
+          - name: q
+            label: Question
+            type: string
+          - name: a
+            label: Answer
+            type: text
+      - name: related
+        label: Related post card
+        fields:
+        - name: post
+          label: Web address of the post
+          type: string
+          description: For example /reading/glow-review/ or /blog/cosy-reading-corner/
+        - name: note
+          label: A line about it (optional)
+          type: string
       - name: product
-        label: Product review and roundup (only for those post types)
-        description: Pick products from the Product Library, so their details and shop links are typed in once. Only write what you actually found; nothing here is made up for you.
-        type: object
+        label: One-off product link (not in the Library)
         fields:
-          - name: items
-            label: Product or products
-            type: reference
-            options: { collection: products, search: name, label: "{fields.name}", value: "{name}", multiple: true }
-          - name: tested
-            label: Did you use it yourself?
-            type: select
-            options:
-              values:
-                - { value: used, label: "Yes, I used it myself" }
-                - { value: not_yet, label: "Not yet, based on the details and others' reviews" }
-                - { value: not_used, label: "No, this is a recommendation" }
-          - { name: testing, label: How I used it (for example "every night for three weeks"), type: text }
-          - { name: pros, label: What's good, type: string, list: true }
-          - { name: cons, label: What's not so good, type: string, list: true }
-          - { name: who_for, label: Who it suits, type: text }
-          - { name: verdict, label: My verdict, type: text }
-          - name: alternatives
-            label: Alternatives worth a look
-            type: reference
-            options: { collection: products, search: name, label: "{fields.name}", value: "{name}", multiple: true }
-          - { name: criteria, label: "How I chose (roundups)", type: text, description: "For a roundup: what you looked for and why, for example \"warm light, long battery, gentle on a partner who's asleep\"." }
-
-      # ---------- Section 2: the writing ----------
-      - name: body
-        label: Your post
-        type: rich-text
-        description: "Use H2 and H3 headings, lists, links, tables and photos. Ideas for a review: What it's about, What I loved, What didn't work for me, Romance and spice, Who I'd recommend it to, Final verdict. Short and heartfelt is fine."
-      - name: blocks
-        label: Extra blocks (optional)
-        description: Add book cards, spoilers, pull quotes, photos with captions, comparison tables, FAQs, related posts or product picks. They appear after the writing above, in this order.
-        type: block
-        list:
-          collapsible:
-            collapsed: true
-        blocks:
-          - name: text
-            label: More writing
-            fields:
-              - { name: text, label: Writing, type: rich-text }
-          - name: book_card
-            label: Book card
-            fields:
-              - { name: book, label: Book, component: book }
-              - { name: note, label: A line about it (optional), type: text }
-              - { name: url, label: Shop link (optional), type: string }
-              - name: partner
-                label: Shop
-                type: reference
-                options: { collection: partners, search: name, label: "{fields.name}", value: "{name}" }
-          - name: product_card
-            label: Product card (from the Product Library)
-            fields:
-              - name: product
-                label: Product
-                type: reference
-                options: { collection: products, search: name, label: "{fields.name}", value: "{name}" }
-              - { name: badge, label: "Badge (optional), for example \"Best for reading in bed\"", type: string }
-              - { name: note, label: What I think of it, type: rich-text }
-          - name: spoiler
-            label: Spoiler (hidden until tapped)
-            fields:
-              - { name: label, label: Button text, type: string, default: "Spoiler: tap to read" }
-              - { name: text, label: Spoiler, type: rich-text }
-          - name: quote
-            label: Pull quote or highlight
-            fields:
-              - { name: text, label: Quote, type: text }
-              - { name: source, label: Who said it (optional), type: string }
-              - name: style
-                label: Style
-                type: select
-                default: pull
-                options:
-                  values:
-                    - { value: pull, label: Pull quote from the book }
-                    - { value: highlight, label: My personal highlight }
-          - name: image
-            label: Photo with caption
-            fields:
-              - { name: src, label: Photo, type: image }
-              - { name: alt, label: What's in the photo (for screen readers and Google), type: string }
-              - { name: caption, label: Caption (optional), type: string }
-              - { name: credit, label: Credit (optional), type: string }
-          - name: table
-            label: Comparison table
-            fields:
-              - { name: caption, label: Table title (optional), type: string }
-              - { name: header, label: "Column headings, split with |", type: string, description: "For example: Book | Spice | Pace | Ending" }
-              - { name: rows, label: "Rows, cells split with |", type: string, list: true }
-          - name: faq
-            label: Questions and answers
-            fields:
-              - name: items
-                label: Questions
-                type: object
-                list: true
-                fields:
-                  - { name: q, label: Question, type: string }
-                  - { name: a, label: Answer, type: text }
-          - name: related
-            label: Related post card
-            fields:
-              - name: post
-                label: Post
-                type: reference
-                options: { collection: reviews, search: title, label: "{title}", value: "{name}" }
-              - { name: note, label: A line about it (optional), type: string }
-          - name: product
-            label: One-off product link (not in the Library)
-            fields:
-              - { name: name, label: Product, type: string }
-              - { name: url, label: Link, type: string }
-              - { name: image, label: Picture (optional), type: image }
-              - { name: note, label: Why I like it, type: text }
-              - { name: affiliate, label: This is an affiliate or sponsored link, type: boolean, default: false, description: "Adds the disclosure at the top and marks the link as sponsored. Your own Mazo Moon products aren't affiliate links." }
-
-      # ---------- Reading experience (reviews) ----------
-      - name: experience
-        label: Reading experience (optional, reviews)
-        description: Shows as a small panel on the review, and lets the site group books by mood, spice and tropes later.
-        type: object
-        fields:
-          - name: romance
-            label: Romance level
-            type: select
-            options: { values: [None, Slow burn, Moderate, Heavy] }
-          - name: spice
-            label: Spice (0 to 5)
-            type: number
-            options: { min: 0, max: 5 }
-          - name: tone
-            label: Emotional tone
-            type: select
-            options:
-              multiple: true
-              values: [Cosy, Dark, Heartbreaking, Uplifting, Funny, Tense, Romantic, Bittersweet, Gothic, Whimsical]
-          - name: pacing
-            label: Pacing
-            type: select
-            options: { values: [Slow, Moderate, Fast] }
-          - name: tropes
-            label: Favourite tropes
-            type: select
-            options:
-              multiple: true
-              values: [Enemies to lovers, Friends to lovers, Found family, Forced proximity, Fated mates, Morally grey love interest, Slow burn, Who did this to you, Touch her and die, Only one bed, Chosen one, Secret royalty, Fake dating, Rivals to lovers, Grumpy and sunshine, Second chance, Arranged marriage, Bargain or deal, Academy setting, Heist, Court intrigue, Dragons, Fae, Vampires, Demons, Gods and mythology, Love triangle, Why choose, Villain gets the girl, Redemption arc]
-          - name: more_tropes
-            label: Other tropes (optional)
-            type: string
-            list: true
-          - name: series_status
-            label: Series status
-            type: select
-            options: { values: [Standalone, Complete series, Ongoing series] }
-
-      # ---------- Images and sharing ----------
-      - name: images
-        label: Images and sharing
-        description: The book cover comes from the book. Add your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
-        type: object
-        fields:
-          - { name: featured, label: Featured photo, type: image }
-          - { name: alt, label: What's in the photo, type: string, description: "A short description, for example \"Glow open on a blanket next to a mug of tea\"." }
-          - { name: caption, label: Caption (optional), type: string }
-          - { name: credit, label: Photo credit (optional), type: string }
-          - name: rights
-            label: Where the photo comes from
-            type: select
-            options:
-              values: [My own photo, My own illustration, Stock photo (licence bought), Free licence (credit given), Publisher press image, Made with AI by me, Other]
-          - name: focus
-            label: Keep this part in view when cropped
-            type: select
-            default: center
-            options:
-              values:
-                - { value: center, label: Middle }
-                - { value: top, label: Top }
-                - { value: bottom, label: Bottom }
-                - { value: left, label: Left }
-                - { value: right, label: Right }
-          - { name: cover, label: Book cover (only if the shelf one is wrong), type: image }
-          - { name: social, label: Sharing image (optional), type: image, description: "Leave empty and one is cut from the featured photo (1200 x 630)." }
-          - { name: social_title, label: Sharing title (optional), type: string }
-          - { name: social_description, label: Sharing description (optional), type: text }
-          - { name: pinterest, label: "Pinterest pin (optional, tall 2:3)", type: image, description: "1000 x 1500 works well." }
-
-      # ---------- Search (Google) ----------
-      - name: seo
-        label: Google and search
-        description: All optional. Anything left empty is filled in for you. The preview page shows how it looks in Google.
-        type: object
-        fields:
-          - { name: keyword, label: Main search phrase, type: string, description: "What someone would type into Google to find this, for example \"glow raven kennedy review\"." }
-          - { name: keywords, label: Related searches and questions, type: string, list: true }
-          - name: intent
-            label: What the searcher wants
-            type: select
-            options:
-              values: [Review, Information, Comparison, Recommendation]
-          - name: slug
-            label: Web address
-            type: string
-            pattern:
-              regex: "^[a-z0-9]+(-[a-z0-9]+)*$|^$"
-              message: "Small letters, numbers and dashes only, for example glow-review."
-            description: "The end of the link, for example glow-review. Leave empty to use the file name. Once a post is live, keep this the same (if you change it, the old link still works)."
-          - { name: title, label: Search title, type: string, description: "Leave empty to use your headline plus the book. About 60 characters is a guide, not a rule; Google sometimes writes its own." }
-          - { name: description, label: Search description, type: text, description: "Leave empty to use your short summary. Around 120 to 155 characters, a guide not a rule." }
-
-      # ---------- Links ----------
-      - name: links
-        label: Related reading
-        description: Optional. Related books and posts are suggested for you from the same author, series, tropes and category. Pick some here to put them first.
-        type: object
-        fields:
-          - { name: books, label: Related books, component: book, list: true }
-          - name: posts
-            label: Related posts
-            type: reference
-            options: { collection: reviews, search: title, label: "{title}", value: "{name}", multiple: true }
-          - { name: collection, label: Part of a collection (optional), type: string, description: "Posts with the same collection name are grouped, for example \"Fantasy Romance for Beginners\"." }
-          - name: sources
-            label: Sources (optional)
-            type: object
-            list: true
-            fields:
-              - { name: title, label: Name, type: string }
-              - { name: url, label: Link, type: string }
-          - { name: affiliate, label: This post has affiliate or sponsored links, type: boolean, default: false }
-
-      # ---------- Promotion ----------
-      - name: promo
-        label: Promotion (optional)
-        description: Suggestions are written for you on the preview page. Type here only if you want to change them.
-        type: object
-        fields:
-          - { name: pin_title, label: Pinterest title, type: string }
-          - { name: pin_description, label: Pinterest description, type: text }
-          - { name: instagram, label: Instagram or Facebook caption, type: text }
-          - { name: video_hook, label: TikTok or Reel opening line, type: string }
-          - { name: email_subject, label: Newsletter subject line, type: string }
-          - { name: email_intro, label: Newsletter introduction, type: text }
-
-      # ---------- Advanced ----------
-      - name: advanced
-        label: Advanced (you can ignore this)
-        type: object
-        fields:
-          - { name: updated, label: Last big update, type: date, description: "Only set this when you've properly rewritten or added to the post, not for typo fixes. Google sees it as the updated date." }
-          - { name: canonical, label: Canonical address override, type: string, description: "Only if this post first appeared somewhere else. Leave empty." }
-          - { name: noindex, label: Keep this post out of Google, type: boolean, default: false }
-          - { name: old_addresses, label: Old web addresses that should come here, type: string, list: true, description: "For example /reading/my-old-title/" }
-
-  - name: categories
-    label: Categories
-    description: The main shelves posts sit on. Each one gets its own page at mazomoon.com/blog/topics/...
-    type: collection
-    path: content/categories
-    filename: "{primary}.md"
-    view:
-      fields: [name]
-      primary: name
-    fields:
-      - { name: name, label: Name, type: string, required: true }
-      - { name: description, label: One-line description, type: text }
-      - { name: order, label: Order on the blog page (small numbers first), type: number }
-
-  - name: authors
-    label: Writers
-    type: collection
-    path: content/authors
-    filename: "{primary}.md"
-    view:
-      fields: [name, role]
-      primary: name
-    fields:
-      - { name: name, label: Name, type: string, required: true }
-      - { name: role, label: Role, type: string }
-      - { name: bio, label: Short bio, type: text }
-      - { name: photo, label: Photo, type: image }
-      - { name: url, label: Profile page on the site, type: string, default: /our-story/ }
-      - { name: profiles, label: Social profiles, type: string, list: true }
-
-  - name: products
-    label: Product Library
-    description: Each product once, with all the shops that sell it. Posts pick from here, so a change here updates every post that shows the product.
-    type: collection
-    path: content/products
-    filename: "{primary}.md"
-    view:
-      fields: [name, brand, tested]
-      primary: name
-      search: [name, brand, category]
-    fields:
-      - { name: name, label: Product name, type: string, required: true }
-      - { name: brand, label: Brand, type: string }
-      - { name: model, label: Model (optional), type: string }
-      - { name: category, label: Category, type: string, description: "For example Reading accessories, Stationery, Cosy home." }
-      - { name: description, label: Short factual description, type: text, description: "Facts only: what it is and what it does. Your opinions go in the post." }
-      - { name: features, label: Features, type: string, list: true }
-      - { name: image, label: Photo, type: image, description: "Your own photo, or one you're allowed to use. Don't copy Amazon's photos." }
-      - { name: image_alt, label: What's in the photo, type: string }
-      - name: image_rights
+        - name: name
+          label: Product
+          type: string
+        - name: url
+          label: Link
+          type: string
+        - name: image
+          label: Picture (optional)
+          type: image
+        - name: note
+          label: Why I like it
+          type: text
+        - name: affiliate
+          label: This is an affiliate or sponsored link
+          type: boolean
+          default: false
+          description: Adds the disclosure at the top and marks the link as sponsored. Your own Mazo Moon products aren't affiliate links.
+    - &id009
+      name: images
+      label: Images and sharing
+      description: The book cover comes from the book. Add your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
+      type: object
+      fields:
+      - name: featured
+        label: Featured photo
+        type: image
+      - name: alt
+        label: What's in the photo
+        type: string
+        description: A short description, for example "Glow open on a blanket next to a mug of tea".
+      - name: caption
+        label: Caption (optional)
+        type: string
+      - name: credit
+        label: Photo credit (optional)
+        type: string
+      - name: rights
         label: Where the photo comes from
         type: select
-        options: { values: [My own photo, Brand press kit (permission given), Stock photo (licence bought), Other] }
-      - name: tested
-        label: Have you used it yourself?
-        type: select
-        default: not_yet
         options:
           values:
-            - { value: used, label: Yes }
-            - { value: not_yet, label: Not yet }
-            - { value: not_used, label: No }
-      - { name: observations, label: What I've noticed using it (optional), type: text }
-      - { name: own_product, label: This is a Mazo Moon product, type: boolean, default: false, description: "Your own products aren't affiliate links, so no Ad label is added." }
-      - name: offers
-        label: Where to buy
+          - My own photo
+          - My own illustration
+          - Stock photo (licence bought)
+          - Free licence (credit given)
+          - Publisher press image
+          - Made with AI by me
+          - Other
+      - name: focus
+        label: Keep this part in view when cropped
+        type: select
+        default: center
+        options:
+          values:
+          - value: center
+            label: Middle
+          - value: top
+            label: Top
+          - value: bottom
+            label: Bottom
+          - value: left
+            label: Left
+          - value: right
+            label: Right
+      - name: cover
+        label: Book cover (only if the shelf one is wrong)
+        type: image
+      - name: social
+        label: Sharing image (optional)
+        type: image
+        description: Leave empty and one is cut from the featured photo (1200 x 630).
+      - name: social_title
+        label: Sharing title (optional)
+        type: string
+      - name: social_description
+        label: Sharing description (optional)
+        type: text
+      - name: pinterest
+        label: Pinterest pin (optional, tall 2:3)
+        type: image
+        description: 1000 x 1500 works well.
+    - &id010
+      name: seo
+      label: Google and search
+      description: All optional. Anything left empty is filled in for you. The preview page shows how it looks in Google.
+      type: object
+      fields:
+      - name: keyword
+        label: Main search phrase
+        type: string
+        description: What someone would type into Google to find this, for example "glow raven kennedy review".
+      - name: keywords
+        label: Related searches and questions
+        type: string
+        list: true
+      - name: intent
+        label: What the searcher wants
+        type: select
+        options:
+          values:
+          - Review
+          - Information
+          - Comparison
+          - Recommendation
+      - name: slug
+        label: Web address
+        type: string
+        pattern:
+          regex: ^[a-z0-9]+(-[a-z0-9]+)*$|^$
+          message: Small letters, numbers and dashes only, for example glow-review.
+        description: The end of the link, for example glow-review. Leave empty to use the file name. Once a post is live, keep this the same (if you change it, the old link still works).
+      - name: title
+        label: Search title
+        type: string
+        description: Leave empty to use your headline plus the book. About 60 characters is a guide, not a rule; Google sometimes writes its own.
+      - name: description
+        label: Search description
+        type: text
+        description: Leave empty to use your short summary. Around 120 to 155 characters, a guide not a rule.
+    - &id011
+      name: links
+      label: Related reading
+      description: Optional. Related books and posts are suggested for you from the same author, series, tropes and category. Pick some here to put them first.
+      type: object
+      fields:
+      - name: books
+        label: Related books
+        component: book
+        list: true
+      - name: posts
+        label: Related posts
+        type: string
+        list: true
+        description: Web addresses, for example /reading/glow-review/. Leave empty and related posts are picked for you.
+      - name: collection
+        label: Part of a collection (optional)
+        type: string
+        description: Posts with the same collection name are grouped, for example "Fantasy Romance for Beginners".
+      - name: sources
+        label: Sources (optional)
         type: object
-        list:
-          collapsible:
-            summary: "{fields.partner}"
+        list: true
         fields:
-          - name: partner
-            label: Shop
-            type: reference
-            options: { collection: partners, search: name, label: "{fields.name}", value: "{name}" }
-          - { name: url, label: "Link (paste the full affiliate link, tracking and all)", type: string }
-          - name: status
-            label: Status
-            type: select
-            default: active
-            options: { values: [active, paused, ended] }
-          - { name: checked, label: Last checked, type: date }
-
-  - name: partners
-    label: Shops and affiliate programmes
-    description: Each shop or affiliate programme once, with the wording it needs next to its links.
+        - name: title
+          label: Name
+          type: string
+        - name: url
+          label: Link
+          type: string
+      - name: affiliate
+        label: This post has affiliate or sponsored links
+        type: boolean
+        default: false
+    - &id012
+      name: promo
+      label: Promotion (optional)
+      description: Suggestions are written for you on the preview page. Type here only if you want to change them.
+      type: object
+      fields:
+      - name: pin_title
+        label: Pinterest title
+        type: string
+      - name: pin_description
+        label: Pinterest description
+        type: text
+      - name: instagram
+        label: Instagram or Facebook caption
+        type: text
+      - name: video_hook
+        label: TikTok or Reel opening line
+        type: string
+      - name: email_subject
+        label: Newsletter subject line
+        type: string
+      - name: email_intro
+        label: Newsletter introduction
+        type: text
+    - &id013
+      name: advanced
+      label: Advanced (you can ignore this)
+      type: object
+      fields:
+      - name: updated
+        label: Last big update
+        type: date
+        description: Only set this when you've properly rewritten or added to the post, not for typo fixes. Google sees it as the updated date.
+      - name: canonical
+        label: Canonical address override
+        type: string
+        description: Only if this post first appeared somewhere else. Leave empty.
+      - name: noindex
+        label: Keep this post out of Google
+        type: boolean
+        default: false
+      - name: old_addresses
+        label: Old web addresses that should come here
+        type: string
+        list: true
+        description: For example /reading/my-old-title/
+  - name: product_reviews
+    label: Product reviews
+    description: One product you have used or recommend, with its shop links from the Product Library.
     type: collection
-    path: content/partners
-    filename: "{primary}.md"
+    path: content/product-reviews
+    filename: '{primary}.md'
     view:
-      fields: [name, status]
-      primary: name
+      fields:
+      - title
+      - status
+      - date
+      primary: title
+      search:
+      - title
+      - excerpt
+      sort:
+      - date
+      - title
+      default:
+        sort: date
+        order: desc
+    actions:
+    - name: check-post
+      label: Check this post
+      workflow: post-check.yml
+      scope: entry
+    - name: check-all
+      label: Check all posts
+      workflow: post-check.yml
+      scope: collection
     fields:
-      - { name: name, label: Shop name, type: string, required: true }
-      - { name: programme, label: Affiliate programme, type: string }
-      - { name: domains, label: Web addresses it uses, type: string, list: true, description: "For example amazon.co.uk and amzn.to, so links can be checked." }
-      - { name: affiliate, label: Links to this shop earn me commission, type: boolean, default: true }
-      - { name: disclosure, label: Statement it requires, type: text, description: "Shown next to its links, for example Amazon's \"As an Amazon Associate I earn from qualifying purchases.\"" }
-      - { name: button, label: Button text, type: string, description: "For example View on Amazon." }
-      - name: status
-        label: Status
+    - name: type
+      type: string
+      hidden: true
+      default: product_review
+    - name: title
+      label: Headline
+      type: string
+      required: true
+      description: The big headline at the top of the page, for example "Glow made me cry on the school run".
+    - name: product
+      label: The product
+      description: Pick it from the Product Library. Only write what you actually found; nothing here is made up for you.
+      type: object
+      fields:
+      - name: items
+        label: Product or products
+        type: reference
+        options:
+          collection: products
+          search: name
+          label: '{fields.name}'
+          value: '{name}'
+          multiple: true
+      - name: tested
+        label: Did you use it yourself?
         type: select
-        default: active
         options:
           values:
-            - { value: active, label: Active }
-            - { value: ended, label: Partnership ended (links are hidden and flagged) }
+          - value: used
+            label: Yes, I used it myself
+          - value: not_yet
+            label: Not yet, based on the details and others' reviews
+          - value: not_used
+            label: No, this is a recommendation
+      - name: testing
+        label: How I used it (for example "every night for three weeks")
+        type: text
+      - name: pros
+        label: What's good
+        type: string
+        list: true
+      - name: cons
+        label: What's not so good
+        type: string
+        list: true
+      - name: who_for
+        label: Who it suits
+        type: text
+      - name: verdict
+        label: My verdict
+        type: text
+      - name: alternatives
+        label: Alternatives worth a look
+        type: reference
+        options:
+          collection: products
+          search: name
+          label: '{fields.name}'
+          value: '{name}'
+          multiple: true
+    - name: body
+      label: Your review
+      type: rich-text
+      description: 'Your real experience: what it''s like to use, what surprised you, and how it compares. Original photos help a lot. The box grows as you type.'
+    - name: rating
+      label: Stars (1 to 5, only if you used it)
+      type: number
+      options:
+        min: 1
+        max: 5
+    - *id001
+    - *id002
+    - *id003
+    - *id004
+    - *id005
+    - &id014
+      name: category
+      label: Category
+      type: reference
+      options:
+        collection: categories
+        search: name
+        label: '{fields.name}'
+        value: '{name}'
+      description: The main shelf this post sits on, for example Book reviews or Reading guides. Reviews go in Book reviews if you leave this empty.
+    - *id006
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+  - name: roundups
+    label: Product roundups
+    description: Several products, for example "10 best reading lights".
+    type: collection
+    path: content/roundups
+    filename: '{primary}.md'
+    view:
+      fields:
+      - title
+      - status
+      - date
+      primary: title
+      search:
+      - title
+      - excerpt
+      sort:
+      - date
+      - title
+      default:
+        sort: date
+        order: desc
+    actions:
+    - name: check-post
+      label: Check this post
+      workflow: post-check.yml
+      scope: entry
+    - name: check-all
+      label: Check all posts
+      workflow: post-check.yml
+      scope: collection
+    fields:
+    - name: type
+      type: string
+      hidden: true
+      default: roundup
+    - name: title
+      label: Headline
+      type: string
+      required: true
+      description: The big headline at the top of the page, for example "Glow made me cry on the school run".
+    - name: product
+      label: The products
+      description: Pick them from the Product Library, then add a Product card block for each one where you want it in the writing.
+      type: object
+      fields:
+      - name: items
+        label: Product or products
+        type: reference
+        options:
+          collection: products
+          search: name
+          label: '{fields.name}'
+          value: '{name}'
+          multiple: true
+      - name: tested
+        label: Did you use it yourself?
+        type: select
+        options:
+          values:
+          - value: used
+            label: Yes, I used it myself
+          - value: not_yet
+            label: Not yet, based on the details and others' reviews
+          - value: not_used
+            label: No, this is a recommendation
+      - name: testing
+        label: How I used it (for example "every night for three weeks")
+        type: text
+      - name: criteria
+        label: How I chose (roundups)
+        type: text
+        description: 'For a roundup: what you looked for and why, for example "warm light, long battery, gentle on a partner who''s asleep".'
+    - name: body
+      label: Your roundup
+      type: rich-text
+      description: Introduce the list, then add a Product card block for each product below, in order. The box grows as you type.
+    - *id001
+    - *id002
+    - *id003
+    - *id004
+    - *id005
+    - *id014
+    - *id006
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+  - name: posts
+    label: Blog posts and guides
+    description: Lifestyle posts, reading guides, lists and personal essays.
+    type: collection
+    path: content/posts
+    filename: '{primary}.md'
+    view:
+      fields:
+      - title
+      - status
+      - date
+      primary: title
+      search:
+      - title
+      - excerpt
+      sort:
+      - date
+      - title
+      default:
+        sort: date
+        order: desc
+    actions:
+    - name: check-post
+      label: Check this post
+      workflow: post-check.yml
+      scope: entry
+    - name: check-all
+      label: Check all posts
+      workflow: post-check.yml
+      scope: collection
+    fields:
+    - name: type
+      label: What kind of post is this?
+      type: select
+      required: true
+      default: blog
+      options:
+        values:
+        - value: blog
+          label: Blog or lifestyle post
+        - value: guide
+          label: Reading guide
+        - value: listicle
+          label: List (for example "10 best...")
+        - value: editorial
+          label: Editorial or personal essay
+    - name: title
+      label: Headline
+      type: string
+      required: true
+      description: The big headline at the top of the page, for example "Glow made me cry on the school run".
+    - name: body
+      label: Your post
+      type: rich-text
+      description: Write here. The box grows as you type. Use headings, lists, links, tables and photos.
+    - *id001
+    - name: category
+      label: Category
+      type: reference
+      options:
+        collection: categories
+        search: name
+        label: '{fields.name}'
+        value: '{name}'
+      description: The main shelf this post sits on, for example Cosy living or Reading guides.
+    - *id006
+    - *id004
+    - *id005
+    - *id002
+    - *id003
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+- name: categories
+  label: Categories
+  description: The main shelves posts sit on. Each one gets its own page at mazomoon.com/blog/topics/...
+  type: collection
+  path: content/categories
+  filename: '{primary}.md'
+  view:
+    fields:
+    - name
+    primary: name
+  fields:
+  - name: name
+    label: Name
+    type: string
+    required: true
+  - name: description
+    label: One-line description
+    type: text
+  - name: order
+    label: Order on the blog page (small numbers first)
+    type: number
+- name: authors
+  label: Writers
+  type: collection
+  path: content/authors
+  filename: '{primary}.md'
+  view:
+    fields:
+    - name
+    - role
+    primary: name
+  fields:
+  - name: name
+    label: Name
+    type: string
+    required: true
+  - name: role
+    label: Role
+    type: string
+  - name: bio
+    label: Short bio
+    type: text
+  - name: photo
+    label: Photo
+    type: image
+  - name: url
+    label: Profile page on the site
+    type: string
+    default: /our-story/
+  - name: profiles
+    label: Social profiles
+    type: string
+    list: true
+- name: products
+  label: Product Library
+  description: Each product once, with all the shops that sell it. Posts pick from here, so a change here updates every post that shows the product.
+  type: collection
+  path: content/products
+  filename: '{primary}.md'
+  view:
+    fields:
+    - name
+    - brand
+    - tested
+    primary: name
+    search:
+    - name
+    - brand
+    - category
+  fields:
+  - name: name
+    label: Product name
+    type: string
+    required: true
+  - name: brand
+    label: Brand
+    type: string
+  - name: model
+    label: Model (optional)
+    type: string
+  - name: category
+    label: Category
+    type: string
+    description: For example Reading accessories, Stationery, Cosy home.
+  - name: description
+    label: Short factual description
+    type: text
+    description: 'Facts only: what it is and what it does. Your opinions go in the post.'
+  - name: features
+    label: Features
+    type: string
+    list: true
+  - name: image
+    label: Photo
+    type: image
+    description: Your own photo, or one you're allowed to use. Don't copy Amazon's photos.
+  - name: image_alt
+    label: What's in the photo
+    type: string
+  - name: image_rights
+    label: Where the photo comes from
+    type: select
+    options:
+      values:
+      - My own photo
+      - Brand press kit (permission given)
+      - Stock photo (licence bought)
+      - Other
+  - name: tested
+    label: Have you used it yourself?
+    type: select
+    default: not_yet
+    options:
+      values:
+      - value: used
+        label: true
+      - value: not_yet
+        label: Not yet
+      - value: not_used
+        label: false
+  - name: observations
+    label: What I've noticed using it (optional)
+    type: text
+  - name: own_product
+    label: This is a Mazo Moon product
+    type: boolean
+    default: false
+    description: Your own products aren't affiliate links, so no Ad label is added.
+  - name: offers
+    label: Where to buy
+    type: object
+    list:
+      collapsible:
+        summary: '{fields.partner}'
+    fields:
+    - name: partner
+      label: Shop
+      type: reference
+      options:
+        collection: partners
+        search: name
+        label: '{fields.name}'
+        value: '{name}'
+    - name: url
+      label: Link (paste the full affiliate link, tracking and all)
+      type: string
+    - name: status
+      label: Status
+      type: select
+      default: active
+      options:
+        values:
+        - active
+        - paused
+        - ended
+    - name: checked
+      label: Last checked
+      type: date
+- name: partners
+  label: Shops and affiliate programmes
+  description: Each shop or affiliate programme once, with the wording it needs next to its links.
+  type: collection
+  path: content/partners
+  filename: '{primary}.md'
+  view:
+    fields:
+    - name
+    - status
+    primary: name
+  fields:
+  - name: name
+    label: Shop name
+    type: string
+    required: true
+  - name: programme
+    label: Affiliate programme
+    type: string
+  - name: domains
+    label: Web addresses it uses
+    type: string
+    list: true
+    description: For example amazon.co.uk and amzn.to, so links can be checked.
+  - name: affiliate
+    label: Links to this shop earn me commission
+    type: boolean
+    default: true
+  - name: disclosure
+    label: Statement it requires
+    type: text
+    description: Shown next to its links, for example Amazon's "As an Amazon Associate I earn from qualifying purchases."
+  - name: button
+    label: Button text
+    type: string
+    description: For example View on Amazon.
+  - name: status
+    label: Status
+    type: select
+    default: active
+    options:
+      values:
+      - value: active
+        label: Active
+      - value: ended
+        label: Partnership ended (links are hidden and flagged)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The Mazo Moon blog: book reviews and blog posts written in Pages CMS.
 
-Posts are Markdown files in content/reviews/ (fields are set up in .pages.yml). This module:
+Posts are Markdown files in content/reviews/, product-reviews/, roundups/ and posts/ (fields are set up in .pages.yml). This module:
   - reads every post, fills in what can be worked out (book author, series, reading time, search text ...),
   - checks each one before it goes live (problems that would break a page keep it off the site),
   - writes the article pages, a preview page for every post at /preview/<file name>/ with the checklist,
@@ -18,7 +18,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.mazomoon.com'
 IMG = SITE + '/img/og-image.jpg'
 UK = ZoneInfo('Europe/London')
-POSTS = os.path.join(ROOT, 'content', 'reviews')
+# folder -> the post type its files are, unless a file says otherwise
+FOLDERS = {'reviews': 'review', 'product-reviews': 'product_review', 'roundups': 'roundup', 'posts': 'blog'}
 MONTHS = 'January February March April May June July August September October November December'.split()
 KINDS = {'review': 'Book review', 'product_review': 'Product review', 'roundup': 'Product roundup', 'blog': 'Blog post', 'guide': 'Reading guide', 'listicle': 'List', 'editorial': 'Editorial'}
 STATIC_PATHS = {'/', '/journals/', '/shop/', '/reading/', '/little-things/', '/our-story/', '/privacy/', '/cookies/', '/terms/',
@@ -186,13 +187,15 @@ class Blog:
         self.partners = load_folder('partners')
         self.broken = []
         self.all = []
-        for f in sorted(os.listdir(POSTS)) if os.path.isdir(POSTS) else []:
+        files = [(d, f) for d in FOLDERS if os.path.isdir(os.path.join(ROOT, 'content', d))
+                 for f in sorted(os.listdir(os.path.join(ROOT, 'content', d)))]
+        for d, f in files:
             if f.endswith('.md'):
                 try:
-                    self.all.append(self.read(f))
+                    self.all.append(self.read(f, d))
                 except Exception as ex:  # one bad file mustn't stop the rest of the site building
                     self.broken.append((f, str(ex).splitlines()[0]))
-                    print(f'::error file=content/reviews/{f}::This post could not be read, so it is left off the site: {ex}' if os.environ.get('GITHUB_ACTIONS') else f'  COULD NOT READ {f}: {ex}')
+                    print(f'::error file=content/{d}/{f}::This post could not be read, so it is left off the site: {ex}' if os.environ.get('GITHUB_ACTIONS') else f'  COULD NOT READ {f}: {ex}')
         self.check_all()
         self.live = sorted([p for p in self.all if p['live']], key=lambda p: p['dt'], reverse=True)
         self.listed = [p for p in self.live if p['listed']]
@@ -201,14 +204,14 @@ class Blog:
             self.relate(p)
 
     # -- one post
-    def read(self, fname):
-        fm, raw = front(open(os.path.join(POSTS, fname), encoding='utf-8').read())
+    def read(self, fname, folder='reviews'):
+        fm, raw = front(open(os.path.join(ROOT, 'content', folder, fname), encoding='utf-8').read())
         stem = os.path.splitext(fname)[0]
         seo, imgs, links, promo, adv, exp, prod = (obj(fm, k) for k in ('seo', 'images', 'links', 'promo', 'advanced', 'experience', 'product'))
         status = str(fm.get('status') or ('published' if fm.get('published') else 'draft')).lower()
-        typ = str(fm.get('type') or 'review').lower()
+        typ = str(fm.get('type') or FOLDERS[folder]).lower()
         if typ not in KINDS:
-            typ = 'review'
+            typ = FOLDERS[folder]
         book = str(fm.get('book') or '').strip()
         info = self.books.get(book, {})
         dt = as_datetime(fm.get('date'))
@@ -225,7 +228,7 @@ class Blog:
         blocks = [b for b in as_list(fm.get('blocks')) if isinstance(b, dict)]
         cover = str(imgs.get('cover') or fm.get('cover') or '').strip()
         p = dict(
-            file=fname, stem=stem, fm=fm, type=typ, kind=KINDS[typ], title=str(fm.get('title') or '').strip(), status=status,
+            file=fname, folder=folder, stem=stem, fm=fm, type=typ, kind=KINDS[typ], title=str(fm.get('title') or '').strip(), status=status,
             dt=dt, book=book, info=info, series=info.get('series', ''), book_author=info.get('author') or str(fm.get('book_author') or ''),
             cat=cat, cat_name=(self.cats.get(cat) or {}).get('name') or cat.replace('-', ' ').capitalize(),
             tags=[str(t) for t in as_list(fm.get('tags'))], author=a, rating=rating, spoilers=bool(fm.get('spoilers')),
@@ -314,7 +317,7 @@ class Blog:
                 return ''
             return '<div class="faq"><h2>Questions</h2>' + ''.join(f'<details><summary>{e(i["q"])}</summary><div>{to_html(str(i.get("a") or ""))}</div></details>' for i in items) + '</div>'
         if kind == 'related':
-            return f'<div class="relcard" data-related="{e(ref_key(b.get("post")))}" data-note="{e(b.get("note"))}"></div>' if b.get('post') else ''
+            return f'<div class="relcard" data-related="{e(b.get("post"))}" data-note="{e(b.get("note"))}"></div>' if b.get('post') else ''
         if kind == 'product':
             if not b.get('name'):
                 return ''
@@ -523,6 +526,9 @@ class Blog:
             add(S, 'Web address is unique', 'error', f'{p["path"]} is already a page on the site')
         else:
             add(S, 'Web address is unique', 'ok', p['path'])
+        twin = [o for o in self.all if o is not p and o['stem'] == p['stem'] and (o['folder'], o['file']) < (p['folder'], p['file'])]
+        if twin:
+            add(S, 'File name is unique', 'error', f'another post is also called {p["file"]} (in {twin[0]["folder"]}); rename one')
         t, d = self.seo_title(p), self.seo_desc(p)
         add(S, 'Search title', 'ok' if len(t) <= 65 else 'warn', f'{len(t)} characters' + ('' if len(t) <= 65 else ', Google may shorten it'))
         add(S, 'Search description', 'ok' if 70 <= len(d) <= 170 else 'warn', f'{len(d)} characters' + ('' if 70 <= len(d) <= 170 else ' (around 120 to 155 reads best)'))
@@ -670,8 +676,8 @@ class Blog:
     def relate(self, p):
         pool = [o for o in self.listed if o is not p]
         picked = []
-        for k in [ref_key(x) for x in as_list(p['links'].get('posts'))]:
-            picked += [o for o in pool if o['stem'] == k and o not in picked]
+        for k in as_list(p['links'].get('posts')):
+            picked += [o for o in pool if self.is_post(o, k) and o not in picked]
         trop = set(as_list(p['exp'].get('tropes'))) | set(t.lower() for t in p['tags'])
 
         def score(o):
@@ -693,6 +699,11 @@ class Blog:
             same_author = [b for b, i in self.books.items() if i['author'] == p['book_author'] and i['series_name'] != p['info']['series_name']]
             books += [b for b in same_author if b not in books][:4 - len(books)] if len(books) < 4 else []
         p['related_books'] = list(dict.fromkeys(books))[:4]
+
+    def is_post(self, o, ref):
+        """Does a reference (a web address like /reading/glow/, or a file name) point at post o?"""
+        ref = str(ref or '').strip()
+        return bool(ref) and (o['path'] == self.norm_path(ref) or o['stem'] == ref_key(ref) or ref in o['old'])
 
     def review_of(self, book):
         return next((o for o in self.reviews if o['book'] == book), None)
@@ -765,7 +776,7 @@ def link_cards(b, h):
     h = re.sub(r'<aside class="bookcard" data-book="([^"]*)">.*?</aside>', bc, h, flags=re.S)
 
     def rc(m):
-        o = next((x for x in b.listed if x['stem'] == m.group(1)), None)
+        o = next((x for x in b.listed if b.is_post(x, html.unescape(m.group(1)))), None)
         if not o:
             return ''
         note = html.unescape(m.group(2))
@@ -1174,7 +1185,7 @@ def write(b, src, show, meta):
     for p in b.all:
         if p['errors'] and p['status'] in ('published', 'scheduled'):
             msg = '; '.join(p['errors'])
-            print(f'::warning file=content/reviews/{p["file"]}::Not published yet: {msg}' if os.environ.get('GITHUB_ACTIONS') else f'  NOT PUBLISHED {p["file"]}: {msg}')
+            print(f'::warning file=content/{p["folder"]}/{p["file"]}::Not published yet: {msg}' if os.environ.get('GITHUB_ACTIONS') else f'  NOT PUBLISHED {p["file"]}: {msg}')
     if b.live:
         print('posts:', ', '.join(p['path'] for p in b.live))
     return entries
