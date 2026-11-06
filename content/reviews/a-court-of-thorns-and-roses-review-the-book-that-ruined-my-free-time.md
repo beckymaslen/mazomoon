@@ -59,7 +59,8 @@ publish:
 ---
 # A Court of Thorns and Roses Review: The Book That Ruined My Free Time
 
-**Spoiler-free review first, followed by a spoiler-filled discussion of Book 1.**
+**Spoiler-free review first, followed by a spoiler-filled discussion of Book 1.**  
+**No spoilers from later books.**
 
 In June 2024, I read *A Court of Thorns and Roses* by Sarah J. Maas: I thought I was starting a book.
 
@@ -200,7 +201,8 @@ If you're thinking about giving fantasy romance a go, ACOTAR is a brilliant plac
 
 &nbsp;
 
-# 🌹 SPOILER VERSION BELOW:   
+# 🌹 SPOILER VERSION BELOW:
+
 LET'S TALK ABOUT ACOTAR PROPERLY
 
 **Warning: Major spoilers for A Court of Thorns and Roses (Book 1) from this point onwards. No spoilers from later books.**
