@@ -27,7 +27,7 @@ STATIC_PATHS = {'/', '/journals/', '/shop/', '/reading/', '/little-things/', '/o
 e = lambda t: html.escape(str(t or ''), quote=True)
 # Reader comments go to Rebecca's own Google Sheet through tools/comments-apps-script.gs: no reader accounts,
 # and nothing shows until she ticks "Show on site". Paste the web app URL (ends in /exec) here. Empty = no comments.
-COMMENTS_URL = 'https://script.google.com/macros/s/AKfycbzo6Mebvl3Yl7nyQbabx8JBBDcvGq0CoPvRZK7YvmfGiU0w6RbXjkpuFWL8Ls9WUsSxzA/exec'
+COMMENTS_URL = 'https://script.google.com/macros/s/AKfycby1OZeXdSGIcOc51jFHOuVoxcFcWKjSGNopPlDqPqH0A1-LJ8R2Ja_zF3eYqUA0RE3Ekw/exec'
 
 
 # ---------------------------------------------------------------- small helpers
