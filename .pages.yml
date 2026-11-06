@@ -552,7 +552,7 @@ content:
           default: false
     - name: images
       label: 3. Images
-      description: The book cover comes from the book. Add your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
+      description: Add the book cover and your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
       type: object
       fields:
       - name: featured
@@ -597,7 +597,7 @@ content:
           - value: right
             label: Right
       - name: cover
-        label: Book cover (only if the shelf one is wrong)
+        label: Book cover
         type: image
       - name: social
         label: Sharing image (optional)
@@ -1034,7 +1034,7 @@ content:
           default: false
     - name: images
       label: 3. Images
-      description: The book cover comes from the book. Add your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
+      description: Add the book cover and your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
       type: object
       fields:
       - name: featured
@@ -1079,7 +1079,7 @@ content:
           - value: right
             label: Right
       - name: cover
-        label: Book cover (only if the shelf one is wrong)
+        label: Book cover
         type: image
       - name: social
         label: Sharing image (optional)
@@ -1491,7 +1491,7 @@ content:
           default: false
     - name: images
       label: 3. Images
-      description: The book cover comes from the book. Add your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
+      description: Add the book cover and your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
       type: object
       fields:
       - name: featured
@@ -1536,7 +1536,7 @@ content:
           - value: right
             label: Right
       - name: cover
-        label: Book cover (only if the shelf one is wrong)
+        label: Book cover
         type: image
       - name: social
         label: Sharing image (optional)
@@ -1927,7 +1927,7 @@ content:
           default: false
     - name: images
       label: 3. Images
-      description: The book cover comes from the book. Add your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
+      description: Add the book cover and your own photo here for the top of the post and for sharing (at least 1200 pixels wide).
       type: object
       fields:
       - name: featured
@@ -1972,7 +1972,7 @@ content:
           - value: right
             label: Right
       - name: cover
-        label: Book cover (only if the shelf one is wrong)
+        label: Book cover
         type: image
       - name: social
         label: Sharing image (optional)
