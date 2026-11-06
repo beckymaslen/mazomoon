@@ -11,7 +11,9 @@ built by tools/blog.py: their pages, previews, the blog and category pages, feed
 Run this after every change to src/site.html or src/desk-body.html:  python3 tools/build_pages.py
 (GitHub runs it too on every push, see .github/workflows/pages.yml.)
 """
-import html, json, os, re, sys
+import hashlib
+import html
+import re, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import blog  # noqa: E402  the reviews and blog posts
@@ -116,13 +118,17 @@ def write_desk(posts):
 <link rel="apple-touch-icon" href="/img/favicon.png">
 <script src="/consent.js" defer></script>
 '''
-    out = head + body.replace('\n<noscript>', '\n</head>\n<body>\n<noscript>', 1) + '\n</body>\n</html>\n'
-    open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(out)
     revs = [{'slug': p['slug'], 'book': p['book'], 'title': p['title'], 'url': f'/reading/{p["slug"]}/', 'rating': p['rating'],
              'spoilers': bool(p['spoilers']), 'date': p['nice'], 'iso': p['date'], 'excerpt': p['excerpt'], 'html': p['body']} for p in posts]
     open(os.path.join(ROOT, 'desk', 'reviews.js'), 'w', encoding='utf-8').write(
         '/* Made by tools/build_pages.py from the published reviews in Pages CMS. Don\'t edit by hand. */\n'
         'window.MM.reviews = ' + json.dumps(revs, ensure_ascii=False, indent=1).replace('</', '<\\/') + ';\n')
+    # stamp each desk script with a hash of its contents, so browsers fetch the new file as soon as it changes
+    for name in ('content.js', 'reviews.js', 'app.js'):
+        tag = hashlib.md5(open(os.path.join(ROOT, 'desk', name), 'rb').read()).hexdigest()[:10]
+        body = re.sub(r'src="/desk/' + re.escape(name) + r'(\?v=[0-9a-f]+)?"', f'src="/desk/{name}?v={tag}"', body)
+    out = head + body.replace('\n<noscript>', '\n</head>\n<body>\n<noscript>', 1) + '\n</body>\n</html>\n'
+    open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(out)
     return out
 
 
