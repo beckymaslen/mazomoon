@@ -173,6 +173,7 @@ content:
       - title
       - publish.status
       - publish.date
+      - views
       primary: title
       search:
       - title
@@ -695,6 +696,10 @@ content:
         label: Last big update
         type: date
         description: Only set this when you've properly rewritten or added to the post, not for typo fixes. Google sees it as the updated date.
+    - name: views
+      label: Views
+      type: number
+      description: Filled in for you each morning from your Google Sheet (Views tab). Counts every time someone opens the post. No need to change it.
   - name: product_reviews
     label: Product reviews
     description: One product you have used or recommend, with its shop links from the Product Library.
@@ -706,6 +711,7 @@ content:
       - title
       - publish.status
       - publish.date
+      - views
       primary: title
       search:
       - title
@@ -1178,6 +1184,10 @@ content:
         label: Last big update
         type: date
         description: Only set this when you've properly rewritten or added to the post, not for typo fixes. Google sees it as the updated date.
+    - name: views
+      label: Views
+      type: number
+      description: Filled in for you each morning from your Google Sheet (Views tab). Counts every time someone opens the post. No need to change it.
   - name: roundups
     label: Product roundups
     description: Several products, for example "10 best reading lights".
@@ -1189,6 +1199,7 @@ content:
       - title
       - publish.status
       - publish.date
+      - views
       primary: title
       search:
       - title
@@ -1636,6 +1647,10 @@ content:
         label: Last big update
         type: date
         description: Only set this when you've properly rewritten or added to the post, not for typo fixes. Google sees it as the updated date.
+    - name: views
+      label: Views
+      type: number
+      description: Filled in for you each morning from your Google Sheet (Views tab). Counts every time someone opens the post. No need to change it.
   - name: posts
     label: Blog posts and guides
     description: Lifestyle posts, reading guides, lists and personal essays.
@@ -1647,6 +1662,7 @@ content:
       - title
       - publish.status
       - publish.date
+      - views
       primary: title
       search:
       - title
@@ -2073,6 +2089,10 @@ content:
         label: Last big update
         type: date
         description: Only set this when you've properly rewritten or added to the post, not for typo fixes. Google sees it as the updated date.
+    - name: views
+      label: Views
+      type: number
+      description: Filled in for you each morning from your Google Sheet (Views tab). Counts every time someone opens the post. No need to change it.
 - name: categories
   label: Categories
   description: The main shelves posts sit on. Each one gets its own page at mazomoon.com/blog/topics/...

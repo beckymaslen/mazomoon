@@ -839,6 +839,14 @@ f.addEventListener('submit',function(ev){ev.preventDefault();
 })();</script>'''
 
 
+def view_ping(p):
+    """Adds one to this post's view total in Rebecca's Google Sheet. No cookies, nothing stored on the device."""
+    if not COMMENTS_URL:
+        return ''
+    return ('<script>if(location.pathname===' + json.dumps(p['path']) + ')fetch(' + json.dumps(COMMENTS_URL + '?view=')
+            + '+encodeURIComponent(location.pathname),{mode:"no-cors",keepalive:true}).catch(function(){});</script>')
+
+
 def comments_html(p):
     """Name, optional star rating and comment. Shows approved comments only (Rebecca ticks them in her Google Sheet)."""
     if not COMMENTS_URL:
@@ -1003,7 +1011,7 @@ def article(b, p, prev_next=True):
     {src_html}
     {f'<ul class="tags" aria-label="Topics">{tags}</ul>' if tags else ''}
   </div>
-  {comments_html(p)}
+  {comments_html(p)}{view_ping(p)}
   {snav}{more}{pn}
   {TRACK}
   <div class="review-foot sec-tight" style="padding-top:24px">
