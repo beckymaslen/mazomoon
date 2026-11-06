@@ -25,6 +25,10 @@ KINDS = {'review': 'Book review', 'product_review': 'Product review', 'roundup':
 STATIC_PATHS = {'/', '/journals/', '/shop/', '/reading/', '/little-things/', '/our-story/', '/privacy/', '/cookies/', '/terms/',
                 '/links/', '/blog/', '/reading/feed.xml', '/sitemap.xml'}
 e = lambda t: html.escape(str(t or ''), quote=True)
+# Reader comments go through Cusdis (cusdis.com): no reader accounts, and nothing shows until Rebecca approves it.
+# Paste the App ID from the Cusdis dashboard here to switch comments on. Empty = no comment section.
+COMMENTS_APP_ID = ''
+COMMENTS_HOST = 'https://cusdis.com'
 
 
 # ---------------------------------------------------------------- small helpers
@@ -779,6 +783,70 @@ CSS = '''<style>
 </style>'''
 
 
+COMMENT_CSS = '''<style>
+.post .comments{border-top:1px solid var(--hairline);padding:28px 0 8px}.post .comments h2{font:500 28px/1.2 var(--display);margin:0 0 6px}
+.post .comments form.contact{margin:18px 0 28px;max-width:640px}
+.post .rate{border:0;margin:0;padding:0;display:grid;gap:6px}.post .rate legend{font-size:14px;font-weight:500;padding:0;margin-bottom:6px}
+.post .rate .opts{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:2px}
+.post .rate input{position:absolute;opacity:0;width:1px;height:1px}
+.post .rate label{font-size:30px;line-height:1;cursor:pointer;color:var(--hairline);padding:2px}
+.post .rate input:checked~label,.post .rate label:hover,.post .rate label:hover~label{color:var(--text-accent)}
+.post .rate input:focus-visible+label{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+.post .clist{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.post .clist>li{background:var(--surface-raised);border:1px solid var(--hairline);border-radius:8px;padding:14px 18px}
+.post .clist .who{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:14px;color:var(--text-muted)}.post .clist .who b{color:var(--text);font-weight:500;font-size:16px}
+.post .clist p{margin:6px 0 0;white-space:pre-line}.post .clist .reply{margin:10px 0 0 14px;padding-left:12px;border-left:2px solid var(--accent)}
+.post .cmsg{font-size:15px}.post .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>'''
+
+COMMENT_JS = '''<script>(function(){var box=document.getElementById('comments');if(!box)return;
+var H=box.dataset.host,A=box.dataset.app,P=box.dataset.page,list=box.querySelector('.clist'),none=box.querySelector('.cnone'),f=box.querySelector('form'),msg=box.querySelector('.cmsg');
+function esc(t){var d=document.createElement('div');d.textContent=t==null?'':String(t);return d.innerHTML}
+function when(t){try{return new Date(t).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}catch(e){return''}}
+function split(c){var m=/^([\u2605\u2606]{5})[^\\n]*\\n+/.exec(c||'');return m?{stars:(m[1].match(/\u2605/g)||[]).length,text:c.slice(m[0].length)}:{stars:0,text:c||''}}
+function one(c,isReply){var s=split(c.content),st=s.stars?'<span class="stars" aria-label="'+s.stars+' out of 5">'+'\u2605'.repeat(s.stars)+'\u2606'.repeat(5-s.stars)+'</span>':'';
+  var r=(c.replies&&c.replies.data||[]).map(function(x){return one(x,true)}).join('');
+  return(isReply?'<div class="reply">':'<li>')+'<div class="who"><b>'+esc(c.moderator||c.moderatorId?'Rebecca':c.by_nickname)+'</b>'+st+'<span>'+when(c.createdAt)+'</span></div><p>'+esc(s.text)+'</p>'+r+(isReply?'</div>':'</li>')}
+fetch(H+'/api/open/comments?appId='+encodeURIComponent(A)+'&pageId='+encodeURIComponent(P)+'&page=1').then(function(r){return r.ok?r.json():null}).then(function(j){
+  var items=j&&j.data&&j.data.data||[];if(!items.length)return;none.hidden=true;list.innerHTML=items.map(function(c){return one(c,false)}).join('')}).catch(function(){});
+f.addEventListener('submit',function(ev){ev.preventDefault();if(f.website.value)return;
+  var n=f.nickname.value.trim(),t=f.content.value.trim(),r=f.querySelector('input[name=rating]:checked'),k=r?+r.value:0;
+  if(!n||!t){msg.textContent='Please add your name and a comment.';return}
+  var c=(k?'\u2605'.repeat(k)+'\u2606'.repeat(5-k)+' ('+k+'/5)\\n\\n':'')+t,btn=f.querySelector('button');btn.disabled=true;msg.textContent='Sending\u2026';
+  fetch(H+'/api/open/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({appId:A,pageId:P,pageUrl:location.href,pageTitle:document.title,nickname:n,email:'',content:c})})
+  .then(function(r){if(!r.ok)throw 0;f.reset();msg.textContent='Thank you! Your comment will appear here once I\u2019ve read it.'})
+  .catch(function(){msg.textContent='Sorry, that didn\u2019t send. Please try again in a minute.'}).then(function(){btn.disabled=false})});
+})();</script>'''
+
+
+def comments_html(p):
+    """Name, optional star rating and comment. Shows approved comments only (Rebecca approves them in Cusdis)."""
+    if not COMMENTS_APP_ID:
+        return ''
+    stars = p['type'] in ('review', 'product_review')
+    thing = 'the book' if p['type'] == 'review' else 'it'
+    rate = ''
+    if stars:
+        opts = ''.join(f'<input type="radio" name="rating" id="cr{n}" value="{n}"><label for="cr{n}" title="{n} star{"s" if n > 1 else ""}">★<span class="visually-hidden"> {n} out of 5</span></label>' for n in range(5, 0, -1))
+        rate = f'<fieldset class="rate"><legend>What did you give {thing}? (optional)</legend><div class="opts">{opts}</div></fieldset>'
+    return f'''{COMMENT_CSS}
+  <section class="comments" id="comments" data-host="{COMMENTS_HOST}" data-app="{e(COMMENTS_APP_ID)}" data-page="{e(p["path"])}" aria-labelledby="comments-h">
+    <h2 id="comments-h">What did you think?</h2>
+    <p class="small muted">No account needed. I read every comment before it goes up, so yours will appear once I've seen it.</p>
+    <form class="contact" novalidate>
+      <p hidden><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></p>
+      <div class="field"><label for="cNick">Your name</label><input id="cNick" name="nickname" autocomplete="given-name" maxlength="60" required></div>
+      {rate}
+      <div class="field"><label for="cText">Your comment</label><textarea id="cText" name="content" maxlength="3000" required></textarea></div>
+      <div><button class="btn btn-primary" type="submit">Post comment</button></div>
+      <p class="cmsg" role="status" aria-live="polite"></p>
+    </form>
+    <ul class="clist"></ul>
+    <p class="cnone small muted">No comments yet. Be the first!</p>
+  </section>
+  {COMMENT_JS}'''
+
+
 TRACK = '''<script>document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[data-offer]');if(!a||!window.mmTrack)return;mmTrack('affiliate_click',{retailer:a.dataset.offer,product_name:(a.dataset.product||'').slice(0,100),affiliate:a.dataset.aff==='1',page_path:location.pathname,outbound:true,transport_type:'beacon'})});</script>'''
 
 
@@ -909,6 +977,7 @@ def article(b, p, prev_next=True):
     {src_html}
     {f'<ul class="tags" aria-label="Topics">{tags}</ul>' if tags else ''}
   </div>
+  {comments_html(p)}
   {snav}{more}{pn}
   {TRACK}
   <div class="review-foot sec-tight" style="padding-top:24px">
