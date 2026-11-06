@@ -1,0 +1,26 @@
+# The "Check this post" and "Check all posts" buttons in Pages CMS run this.
+# It checks the saved post(s) and writes the checklist and preview link to the run's summary.
+# A red cross means something would stop the post going live; suggestions don't.
+name: Check posts
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Sent by Pages CMS
+        required: false
+        default: '{}'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install markdown pyyaml pillow
+      - name: Check
+        env:
+          PAYLOAD: ${{ inputs.payload }}
+        run: python3 tools/blog.py --check --links --payload "$PAYLOAD"

@@ -1,9 +1,13 @@
-# Builds the site (section pages and book reviews) and publishes it to GitHub Pages
+# Builds the site (section pages, book reviews and blog posts) and publishes it to GitHub Pages
 # on every push to main, including posts saved in the Pages CMS editor.
+# It also wakes up every hour to put scheduled posts live once their time comes (it only
+# redeploys when a post is due).
 name: Publish site
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '7 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
@@ -11,23 +15,37 @@ permissions:
   id-token: write
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      due: ${{ steps.due.outputs.due }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install markdown pyyaml
-      - run: python3 tools/build_pages.py
-      - run: rm -rf .git .github content tools src
-      - uses: actions/upload-pages-artifact@v3
+      - run: pip install markdown pyyaml pillow
+      - name: Is a scheduled post due?
+        id: due
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python3 tools/blog.py --due > /dev/null
+          else
+            echo "due=yes" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.due.outputs.due == 'yes'
+        run: python3 tools/build_pages.py
+      - if: steps.due.outputs.due == 'yes'
+        run: rm -rf .git .github content tools src
+      - if: steps.due.outputs.due == 'yes'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: .
   deploy:
     needs: build
+    if: needs.build.outputs.due == 'yes'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

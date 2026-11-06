@@ -20,5 +20,14 @@ Each section has its own address (/shop/, /journals/, /reading/, /little-things/
 
 Privacy, Cookies and Terms live in tools/legal.py. Edit the text there, then run `python3 tools/legal.py`.
 
-## Book reviews (blog)
-Reviews are written in Pages CMS: go to https://app.pagescms.org, sign in with GitHub and open the mazomoon repo, then "Book reviews". Each review is a file in `content/reviews/`. Turn on "Publish on the website" and save; GitHub then rebuilds the site (`.github/workflows/pages.yml`) and the review appears at /reading/<title>/ and on the Reading Corner, linked from its book. Drafts stay off the site. The book dropdown in `.pages.yml` is refreshed from the shelf by `tools/build_pages.py`. Photos go in `img/reviews/`.
+## Blog and book reviews
+Posts are written in Pages CMS: go to https://app.pagescms.org, sign in with GitHub, open the mazomoon repo, then "Posts and reviews". Each post is a file in `content/reviews/` (the folder name stayed the same so old links keep working). Alongside it the editor has Categories (`content/categories/`), Writers (`content/authors/`), the Product Library (`content/products/`) and Shops and affiliate programmes (`content/partners/`).
+
+- **Post types:** book review, product review, product roundup, blog or lifestyle post, reading guide, list and editorial. Book reviews live at /reading/<address>/, everything else at /blog/<address>/, with the blog home at /blog/ and a page per category at /blog/topics/<category>/.
+- **Status:** Draft, Scheduled (goes live by itself at its date and time; the publish workflow checks every hour), Published, or Archived (page kept, hidden from lists and Google).
+- **Preview and checklist:** every post gets an unlisted, noindex preview at /preview/<file name>/ with the checklist, Google and sharing previews, a promotion pack (Pinterest, Instagram, newsletter text with tracked links) and a phone view. The "Check this post" button in the editor runs `.github/workflows/post-check.yml` and writes the same checklist to the run summary.
+- **Blocking problems** (no writing, no book on a review, a clashing web address, a missing shop, stars on something not used, gifted or paid with no brand named) keep a post off the site until fixed; everything else is a suggestion.
+- **Affiliate links:** products and their shop links are entered once in the Product Library. Affiliate links get `rel="sponsored"`, an "Ad" note and the shop's own statement (Amazon's "As an Amazon Associate I earn from qualifying purchases."). Product reviews and roundups with affiliate links, and gifted or paid posts, get an "Ad" label at the top and on their cards. Clicks are sent to Google Analytics as `affiliate_click` (only after cookie consent).
+- **Built automatically:** reading time, author, series and series position from the shelf, search title and description, canonical, robots (max-image-preview:large), Open Graph, Review/BlogPosting/Product and breadcrumb JSON-LD, sitemap with images, the RSS feed at /reading/feed.xml, posts.json, related posts and books, series navigation, a 1200 x 630 sharing image cut from the featured photo, and redirects from old addresses.
+
+All of this is in `tools/blog.py`; `python3 tools/blog.py --check` prints the checklist locally. The book dropdown in `.pages.yml` is refreshed from the shelf on every build. Photos go in `img/reviews/`.

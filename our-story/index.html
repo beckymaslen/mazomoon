@@ -990,7 +990,7 @@ function pageFromPath(){
   if(h==='contact') return ['our-story','contact'];
   if(isPage(h)) return [h,null];
   const path=location.pathname.replace(/index\.html$/,'');
-  if(/\/reading\/[^/]+\/$/.test(path) && document.querySelector('section[data-page="review"] h1')) return ['review',null];
+  if(/\/(reading|blog|preview)\/.+\/$/.test(path) && document.querySelector('section[data-page="review"] h1')) return ['review',null];
   for(const [k,[pth]] of Object.entries(META)) if(k!=='home' && path.endsWith(pth)) return [k,null];
   return ['home',null];
 }
