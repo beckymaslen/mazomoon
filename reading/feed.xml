@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel>
-<title>Mazo Moon: The Reading Corner</title><link>https://www.mazomoon.com/reading/</link><description>Honest book reviews from Rebecca at Mazo Moon.</description><language>en-gb</language>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
+<title>Mazo Moon: reviews and blog</title><link>https://www.mazomoon.com/blog/</link><atom:link href="https://www.mazomoon.com/reading/feed.xml" rel="self" type="application/rss+xml"/><description>Honest book reviews and notes from Rebecca at Mazo Moon.</description><language>en-gb</language>
 </channel></rss>
