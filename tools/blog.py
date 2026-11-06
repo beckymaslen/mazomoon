@@ -1091,7 +1091,7 @@ def panel(b, p):
     def box(label, key, rows=3):
         return (f'<div><div class="row"><label for="mm-{key}">{label}</label><button type="button" data-copy="mm-{key}">Copy</button></div>'
                 f'<textarea id="mm-{key}" rows="{rows}" readonly>{e(pr[key])}</textarea></div>')
-    promo = ('<p class="mmp-note">Written for you from the post. Change any of these in the Promotion section of the editor. Links carry tracking tags, so you can see in Google Analytics where readers came from.</p><div class="mmp-copy">'
+    promo = ('<p class="mmp-note">Written for you from the post. Links carry tracking tags, so you can see in Google Analytics where readers came from.</p><div class="mmp-copy">'
              + box('Pinterest title', 'pin_title', 2) + box('Pinterest description', 'pin_description', 4) + box('Pinterest link', 'pin_url', 2)
              + box('Instagram or Facebook caption', 'instagram', 9) + box('TikTok or Reel opening line', 'video_hook', 2) + box('Link for social posts', 'social_url', 2)
              + box('Newsletter subject line', 'email_subject', 2) + box('Newsletter introduction', 'email_intro', 4) + box('Newsletter link', 'email_url', 2)
