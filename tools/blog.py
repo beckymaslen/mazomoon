@@ -988,7 +988,7 @@ def article(b, p, prev_next=True):
             rel = 'sponsored nofollow noopener' if x['aff'] else 'noopener'
             data = f' data-offer="{e(x["shop"])}" data-product="{e(x["title"])}" data-aff="1"' if x['aff'] else ''
             return (f'<a class="lp" href="{e(x["url"])}" rel="{rel}" target="_blank"{data}>{pic}<span class="lp-text">'
-                    f'<span class="lp-host">{e(x["host"].upper())}{" <span class=adbadge>Ad</span>" if x["aff"] else ""}</span>'
+                    f'<span class="lp-host">{e(x["host"].upper())}</span>'
                     f'<span class="lp-title">{e(x["title"])}</span></span></a>')
         src_html = (f'<section class="getit"><h2>{"Where to get the book" if is_rev else "Links from this post"}</h2><div class="lps">{"".join(gcard(x) for x in p["getit"])}</div>'
                     + '</section>')
