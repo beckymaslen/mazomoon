@@ -548,6 +548,10 @@ content:
           - name: url
             label: Link
             type: string
+          - name: image
+            label: Picture (optional)
+            type: image
+            description: Shown on the link card. Leave empty and Amazon links use your book cover.
         - name: affiliate
           label: This post has affiliate or sponsored links
           type: boolean
@@ -1036,6 +1040,10 @@ content:
           - name: url
             label: Link
             type: string
+          - name: image
+            label: Picture (optional)
+            type: image
+            description: Shown on the link card. Leave empty and Amazon links use your book cover.
         - name: affiliate
           label: This post has affiliate or sponsored links
           type: boolean
@@ -1499,6 +1507,10 @@ content:
           - name: url
             label: Link
             type: string
+          - name: image
+            label: Picture (optional)
+            type: image
+            description: Shown on the link card. Leave empty and Amazon links use your book cover.
         - name: affiliate
           label: This post has affiliate or sponsored links
           type: boolean
@@ -1941,6 +1953,10 @@ content:
           - name: url
             label: Link
             type: string
+          - name: image
+            label: Picture (optional)
+            type: image
+            description: Shown on the link card. Leave empty and Amazon links use your book cover.
         - name: affiliate
           label: This post has affiliate or sponsored links
           type: boolean

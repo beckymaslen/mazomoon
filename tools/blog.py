@@ -97,6 +97,11 @@ def nice(d):
     return f'{d.day} {MONTHS[d.month - 1]} {d.year}'
 
 
+def site_of(d):
+    """'https://www.audible.co.uk/ep/...' or 'audible.co.uk' -> 'audible.co.uk' (people paste whole links into Domains)."""
+    return re.sub(r'^[a-z]+://', '', str(d or '').strip().lower()).split('/')[0].split('?')[0].replace('www.', '', 1)
+
+
 def as_list(v):
     if v in (None, ''):
         return []
@@ -345,14 +350,16 @@ class Blog:
             host = re.sub(r'^https?://(www\.)?', '', url).split('/')[0].split('?')[0].lower()
             part = None
             for pt in self.partners.values():
-                doms = [str(d).lower().replace('www.', '') for d in as_list(pt.get('domains'))]
+                doms = [site_of(d) for d in as_list(pt.get('domains'))]
                 if any(host == d or host.endswith('.' + d) for d in doms):
                     part = pt
                     break
             aff = bool(part and part.get('affiliate', True) and part.get('status') != 'ended')
             if aff:
                 p['used_partners'][part['key']] = dict(part, affiliate=True)
-            out.append({'title': str(x.get('title') or (part or {}).get('name') or host), 'url': url, 'aff': aff, 'shop': (part or {}).get('name', '')})
+            out.append({'title': str(x.get('title') or (part or {}).get('name') or host), 'url': url, 'aff': aff, 'shop': (part or {}).get('name', ''),
+                        'host': host, 'image': img_url(x.get('image')) if x.get('image') else '',
+                        'book_link': bool(part and 'amazon' in str(part.get('key', '')))})
         return out
 
     def offers_html(self, p, offers, product_name=''):
@@ -371,7 +378,7 @@ class Blog:
                 p['offer_problems'].append(('error', f'{product_name}: the {part["name"]} link isn\'t a full https:// web address'))
                 continue
             host = re.sub(r'^https://(www\.)?', '', url).split('/')[0].lower()
-            doms = [str(d).lower().replace('www.', '') for d in as_list(part.get('domains'))]
+            doms = [site_of(d) for d in as_list(part.get('domains'))]
             if doms and not any(host == d or host.endswith('.' + d) for d in doms):
                 p['offer_problems'].append(('warn', f'{product_name}: the {part["name"]} link goes to {host}, not {", ".join(doms)}'))
             if part.get('status') == 'ended' or o.get('status') in ('ended', 'paused'):
@@ -786,8 +793,15 @@ CSS = '''<style>
 .post .seriesnav a{color:var(--text-accent)}
 .post .more{border-top:1px solid var(--hairline);padding:28px 0 8px}.post .more h2{font:500 28px/1.2 var(--display);margin:0 0 16px}
 .post .more .review-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
-.post .getit{border:1px solid var(--hairline);border-radius:8px;padding:12px 16px;margin:1.6em 0;background:var(--surface-raised)}
-.post .getit summary{cursor:pointer;font:500 20px/1.3 var(--display)}.post .getit ul{margin:12px 0 4px;padding-left:18px}.post .getit li{margin:6px 0}.post .getit p{margin:8px 0 0}.post .prevnext{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:15px;padding:20px 0}
+.post .getit{margin:2em 0 1.6em}.post .getit h2{font:500 26px/1.2 var(--display);margin:0 0 14px}.post .getit p{margin:10px 0 0}
+.post .lps{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.post .lp{display:flex;flex-direction:column;border:1px solid var(--hairline);border-radius:10px;overflow:hidden;background:var(--surface-raised);color:inherit;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.post .lp:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.post .lp-img{display:block;aspect-ratio:1.91/1;overflow:hidden;background:var(--surface-feature)}.post .lp-img img{width:100%;height:100%;object-fit:cover;display:block}
+.post .lp-cover{padding:12px;background:var(--surface-feature)}.post .lp-cover img{object-fit:contain}
+.post .lp-tile{display:grid;place-items:center;font:500 30px/1 var(--display);color:var(--text-on-feature);letter-spacing:.02em}
+.post .lp-text{display:grid;gap:4px;padding:12px 16px 14px;background:var(--surface)}
+.post .lp-host{font-size:12px;letter-spacing:.08em;color:var(--text-muted);display:flex;gap:8px;align-items:center}.post .lp-title{font-weight:500;font-size:17px;line-height:1.3}.post .prevnext{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:15px;padding:20px 0}
 .post .prevnext a{color:var(--text-accent)}
 .post .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}.post .tags li{font-size:13px;border:1px solid var(--hairline);border-radius:99px;padding:2px 10px}
 .post .catlist{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 32px;padding:0;list-style:none}.post .catlist a{display:block;border:1px solid var(--hairline);border-radius:99px;padding:4px 14px;color:inherit;text-decoration:none;font-size:14px}
@@ -964,12 +978,21 @@ def article(b, p, prev_next=True):
     tags = ''.join(f'<li>{e(t)}</li>' for t in p['tags'])
     src_html = ''
     if p['getit']:
-        rows = ''.join(f'<li><a href="{e(x["url"])}" rel="{"sponsored nofollow noopener" if x["aff"] else "noopener"}" target="_blank"'
-                       + (f' data-offer="{e(x["shop"])}" data-product="{e(x["title"])}" data-aff="1"' if x['aff'] else '')
-                       + f'>{e(x["title"])}</a>' + (' <span class="adbadge">Ad</span>' if x['aff'] else '') + '</li>' for x in p['getit'])
+        def gcard(x):
+            if x['image']:
+                pic = f'<span class="lp-img"><img src="{e(x["image"])}" alt="" loading="lazy"></span>'
+            elif x['book_link'] and p['cover']:
+                pic = f'<span class="lp-img lp-cover"><img src="{e(p["cover"])}" alt="" loading="lazy"></span>'
+            else:
+                pic = f'<span class="lp-img lp-tile" aria-hidden="true">{e(x["shop"] or x["host"])}</span>'
+            rel = 'sponsored nofollow noopener' if x['aff'] else 'noopener'
+            data = f' data-offer="{e(x["shop"])}" data-product="{e(x["title"])}" data-aff="1"' if x['aff'] else ''
+            return (f'<a class="lp" href="{e(x["url"])}" rel="{rel}" target="_blank"{data}>{pic}<span class="lp-text">'
+                    f'<span class="lp-host">{e(x["host"].upper())}{" <span class=adbadge>Ad</span>" if x["aff"] else ""}</span>'
+                    f'<span class="lp-title">{e(x["title"])}</span></span></a>')
         notes = ' '.join(e(pt['disclosure']) for pt in p['affiliate_partners'] if pt.get('disclosure') and any(x['aff'] and x['shop'] == pt.get('name') for x in p['getit']))
-        src_html = (f'<details class="getit"><summary>{"Where to get the book" if is_rev else "Links from this post"}</summary><ul>{rows}</ul>'
-                    + (f'<p class="small muted">{notes}</p>' if notes else '') + '</details>')
+        src_html = (f'<section class="getit"><h2>{"Where to get the book" if is_rev else "Links from this post"}</h2><div class="lps">{"".join(gcard(x) for x in p["getit"])}</div>'
+                    + (f'<p class="small muted">{notes}</p>' if notes else '') + '</section>')
     snav = ''
     if is_rev and p['info'] and p['info']['total'] > 1:
         bs, i = p['info']['books'], p['info']['pos'] - 1
