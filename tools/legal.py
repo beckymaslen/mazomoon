@@ -59,6 +59,7 @@ PAGES = {
 <h2>What we collect</h2>
 <ul>
 <li><strong>When you send us a message:</strong> your name, email address, the topic you choose and your message.</li>
+<li><strong>When you leave a comment on a review or post:</strong> the name you give, your star rating if you choose one, your comment and the page it's on. Comments only appear on the site once Rebecca has read and approved them, and your name and comment are then public. Ask us any time and we'll remove yours.</li>
 <li><strong>When you sign up for the monthly letter:</strong> your email address, and your first name if you choose to give it.</li>
 <li><strong>If you accept analytics cookies:</strong> Google Analytics records how the site is used, such as the pages you view, roughly where you are (city or country), the device and browser you use and the site that sent you. We can't see who you are from it. If you decline, none of this is collected.</li>
 </ul>
@@ -66,6 +67,7 @@ PAGES = {
 <h2>Why we use it</h2>
 <ul>
 <li>To reply to your message. Our lawful basis is our legitimate interest in answering you.</li>
+<li>To show approved comments under the post they're about. Our lawful basis is our legitimate interest in running a reader conversation you chose to join.</li>
 <li>To send the monthly letter you asked for. Our lawful basis is your consent, and every letter has a way to unsubscribe.</li>
 <li>To understand which pages are useful so we can improve the site. Our lawful basis is your consent, which you can change at any time on the <a href="/cookies/">Cookies</a> page.</li>
 </ul>
@@ -74,6 +76,7 @@ PAGES = {
 <ul>
 <li><strong>Mailchimp</strong> (Intuit Mailchimp) keeps the monthly letter list and sends the letter. Your email address and first name, if you give it, are stored by Mailchimp, which may handle them in the United States. See <a href="https://www.intuit.com/privacy/statement/" rel="noopener">Intuit's privacy statement</a>.</li>
 <li><strong>FormSubmit</strong> (formsubmit.co) passes the contact form to our inbox.</li>
+<li><strong>Google Sheets</strong> (Google Ireland Ltd) stores the comments readers leave, so your browser connects to Google when you read or post a comment. See <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.</li>
 <li><strong>IONOS</strong> hosts our email.</li>
 <li><strong>Google Analytics</strong> (Google Ireland Ltd) measures how the site is used, only if you accept analytics cookies. Google keeps this data for up to 14 months. See <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.</li>
 <li><strong>GitHub Pages</strong> hosts the website and keeps standard server logs, such as IP addresses, for security.</li>
