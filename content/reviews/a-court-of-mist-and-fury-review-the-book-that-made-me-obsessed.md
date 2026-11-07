@@ -43,17 +43,16 @@ details:
         url: https://www.audible.co.uk/ep/invited?source_code=AUKOR1510505267617&share_location=nav&referralCode=4XGJ7LEWYQJ8
     affiliate: false
 images:
-  featured: /img/reviews/A Court of Mist and Fury Review-1.png
-  alt: ACOMAF book, candlelight, foliage, gold rose illustration, midnight-purple
-    star field
+  featured: /img/reviews/ACOMAF_review_header_v3.jpg
+  alt: "My A Court of Mist and Fury review graphic, a hand holding a phone playing the audiobook, with my handwritten notes and star rating"
   caption: "A Court of Mist and Fury Review: The Book That Made Me Obsessed"
   rights: My own photo
-  focus: right
+  focus: center
   cover: /img/reviews/acomaf.jpg
   social_title: "A Court of Mist and Fury Review: The Book That Made Me Obsessed"
   social_description: From Rhysand's wedding interruption to the twists that
     changed everything, here's why ACOMAF made me obsessed with romantasy.
-  pinterest: /img/reviews/A Court of Mist and Fury Review-2.png
+  pinterest: /img/reviews/ACOMAF_review_pin_v3.jpg
 seo:
   keyword: a court of mist and fury review
   keywords:

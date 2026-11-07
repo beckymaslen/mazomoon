@@ -41,16 +41,15 @@ details:
         url: https://www.audible.co.uk/ep/invited?source_code=AUKOR1510505267617&share_location=nav&referralCode=4XGJ7LEWYQJ8
     affiliate: false
 images:
-  featured: /img/reviews/ACOWAR_review_header_MazoMoon_1200x630.jpg
-  alt: deep blue-purple starry background, elegant gold title in the centre, gold
-    botanical arch on the right.
+  featured: /img/reviews/ACOWAR_review_header_v3.jpg
+  alt: "My A Court of Wings and Ruin review graphic, a hand holding a phone playing the audiobook, with my handwritten notes and star rating"
   rights: My own photo
-  focus: right
+  focus: center
   cover: /img/reviews/81cy-wYWnGL._SL1500_.jpg
   social_title: "A Court of Wings and Ruin Review: The Book That Broke Me"
   social_description: My emotional ACOWAR review, from the moments that gave me
     goosebumps to the devastating scenes that left me sobbing.
-  pinterest: /img/reviews/ACOWAR_review_pin_MazoMoon_1000x1500.jpg
+  pinterest: /img/reviews/ACOWAR_review_pin_v3.jpg
 seo:
   keyword: a court of wings and ruin review
   keywords:

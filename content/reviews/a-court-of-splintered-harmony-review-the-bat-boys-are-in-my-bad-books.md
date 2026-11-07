@@ -46,7 +46,8 @@ details:
         url: https://www.audible.co.uk/ep/invited?source_code=AUKOR1510505267617&share_location=nav&referralCode=4XGJ7LEWYQJ8
     affiliate: false
 images:
-  featured: /img/reviews/ACOSH_review_header_MazoMoon_1200x630.jpg
+  featured: /img/reviews/ACOSH_review_header_v3.jpg
+  alt: "My A Court of Splintered Harmony review graphic, a hand holding a phone playing the audiobook, with my handwritten notes and star rating"
   rights: My own photo
   focus: center
   cover: /img/reviews/Dr9q5dSWu5m7-UUcCGWZHrA2zLi_wZ_jXDsdFx5HEnf6cnBym0U0mGd5BRdK1Lkb4IW0FshMGJnZ-9Kz3sIb4hSxIneTCIX9J9QofWP4hjEuGdw7xrBgQQ8yKAH7EXZ3O9J1C6CAz7w5cWfVfXpmIlv-QZCLtirQ44g08sNkF4349o3F-ukJPZV731mJzyOI.jpeg
@@ -54,7 +55,7 @@ images:
   social_description: My honest ACOTAR Book 6 review, from the Crescent City
     connections to Nesta's treatment and why the Bat Boys are officially testing
     my patience.
-  pinterest: /img/reviews/ACOSH_review_pin_MazoMoon_1000x1500.jpg
+  pinterest: /img/reviews/ACOSH_review_pin_v3.jpg
 seo:
   keyword: a court of splintered harmony review
   keywords:

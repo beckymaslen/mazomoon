@@ -44,16 +44,16 @@ details:
         url: https://www.audible.co.uk/ep/invited?source_code=AUKOR1510505267617&share_location=nav&referralCode=4XGJ7LEWYQJ8
     affiliate: false
 images:
-  featured: /img/reviews/ACOFAS_review_header_MazoMoon_1200x630.jpg
-  alt: soft winter foliage and the established gold floral arch
+  featured: /img/reviews/ACOFAS_review_header_v3.jpg
+  alt: "My A Court of Frost and Starlight review graphic, a hand holding a phone playing the audiobook, with my handwritten notes and star rating"
   rights: My own photo
-  focus: left
+  focus: center
   cover: /img/reviews/81Xpwm7JwaL._SL1500_.jpg
   social_title: "A Court of Frost and Starlight Review: The Book I Couldn't Finish
     for Two Years"
   social_description: Two years, three rereads of the earlier books and one very
     slow Winter Solstice. Here's why ACOFAS eventually won me over.
-  pinterest: /img/reviews/ACOFAS_review_pin_MazoMoon_1000x1500.jpg
+  pinterest: /img/reviews/ACOFAS_review_pin_v3.jpg
 seo:
   keyword: a court of frost and starlight review
   keywords:

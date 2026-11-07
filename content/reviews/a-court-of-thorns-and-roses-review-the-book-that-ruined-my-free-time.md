@@ -37,11 +37,12 @@ details:
         url: https://www.audible.co.uk/ep/invited?source_code=AUKOR1510505267617&share_location=nav&referralCode=4XGJ7LEWYQJ8
     affiliate: false
 images:
-  featured: /img/reviews/ACOTAR_review_header_MazoMoon_v2_1200x630.jpg
+  featured: /img/reviews/ACOTAR_review_header_v3.jpg
+  alt: "My A Court of Thorns and Roses review graphic, a hand holding a phone playing the audiobook, with my handwritten notes and star rating"
   rights: My own photo
-  focus: right
+  focus: center
   cover: /img/reviews/COTAR.jpg
-  pinterest: /img/reviews/pinACOTAR_review_pin_MazoMoon_1000x1500.jpg
+  pinterest: /img/reviews/ACOTAR_review_pin_v3.jpg
 seo:
   keyword: a court of thorns and roses review
   keywords:

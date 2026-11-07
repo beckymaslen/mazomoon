@@ -47,14 +47,15 @@ details:
         url: https://www.audible.co.uk/ep/invited?source_code=AUKOR1510505267617&share_location=nav&referralCode=4XGJ7LEWYQJ8
     affiliate: false
 images:
-  featured: /img/reviews/ACOSF_review_header_MazoMoon_1200x630.jpg
+  featured: /img/reviews/ACOSF_review_header_v3.jpg
+  alt: "My A Court of Silver Flames review graphic, a hand holding a phone playing the audiobook, with my handwritten notes and star rating"
   rights: My own photo
   focus: center
   cover: /img/reviews/914Mis-1+AL._SL1500_.jpg
   social_title: "A Court of Silver Flames Review: I Almost Gave Up on Nesta "
   social_description: I struggled to get into Nesta's story, but Cassian, the
     Valkyries and a brilliant redemption arc eventually won me over.
-  pinterest: /img/reviews/ACOSF_review_pin_MazoMoon_1000x1500.jpg
+  pinterest: /img/reviews/ACOSF_review_pin_v3.jpg
 seo:
   keyword: a court of silver flames review
   keywords:
