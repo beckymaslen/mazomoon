@@ -279,10 +279,10 @@ window.MM = {
    "line": "Cosy colouring for adults.",
    "about": "Forty little places to escape to, one page at a time.",
    "spec": "84 pages · 8.5 × 11 in",
-   "price": null,
-   "asin": null,
+   "price": 9.99,
+   "asin": "B0HQMNRV6L",
    "hardcover": null,
-   "soon": true,
+   "soon": false,
    "colouring": true,
    "cover": "/desk/img/journals/cup-of-somewhere-else.jpg",
    "pages": [
