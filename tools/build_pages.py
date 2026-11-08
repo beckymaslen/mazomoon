@@ -54,6 +54,42 @@ def meta(title, desc, url, img=IMG, kind='website', extra=''):
 <!--meta-end-->'''
 
 
+def site_books(src):
+    """The `books` list from src/site.html's script, as dicts (title n, ASIN a, price p, description d ...)."""
+    block = re.search(r'const books = \[(.*?)\n\];', src, re.S).group(1)
+    out = []
+    for line in re.findall(r'\{(.*?)\},?\s*$', block, re.M):
+        b = {}
+        for k, v in re.findall(r"(\w+):('(?:[^'\\]|\\.)*'|[\d.]+)", line):
+            b[k] = v[1:-1].replace("\\'", "'") if v.startswith("'") else float(v)
+        out.append(b)
+    return out
+
+
+def books_ld(src, url):
+    """Book details for Google (schema.org JSON-LD): every published book, its author, cover and its Amazon page."""
+    items = []
+    for b in site_books(src):
+        if b.get('soon') or not b.get('a'):
+            continue  # not on Amazon yet
+        pages = re.match(r'(\d+) pages', b.get('spec', ''))
+        book = {'@type': 'Book', 'name': b['n'], 'description': b.get('d', ''),
+                'author': {'@type': 'Person', 'name': 'Rebecca Maslen'},
+                'publisher': {'@type': 'Organization', 'name': 'Mazo Moon', 'url': SITE + '/'},
+                'inLanguage': 'en-GB', 'bookFormat': 'https://schema.org/Paperback',
+                'genre': 'Colouring book' if b.get('colour') else 'Journal',
+                'url': url, 'sameAs': f'https://www.amazon.co.uk/dp/{b["a"]}'}
+        # no price here on purpose: Amazon sets the live price, and a price that doesn't match it confuses Google
+        if b.get('img'):
+            book['image'] = f'{SITE}/img/{b["img"]}.jpg'
+        if pages:
+            book['numberOfPages'] = int(pages.group(1))
+        items.append({'@type': 'ListItem', 'position': len(items) + 1, 'item': book})
+    ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'Mazo Moon journals and colouring books',
+          'itemListElement': items}
+    return '\n<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace('</', '<\\/') + '</script>'
+
+
 def show(src, page):
     """Make the right section visible in the HTML itself, before any script runs."""
     out = src.replace('<section class="page" data-page="home">', '<section class="page" data-page="home" hidden>', 1)
@@ -68,7 +104,8 @@ def main():
     urls = [SITE + '/']
     for path, (title, desc) in PAGES.items():
         url = f'{SITE}/{path}/'
-        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url), show(src, path), flags=re.S)
+        extra = books_ld(src, url) if path == 'journals' else ''
+        out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url, extra=extra), show(src, path), flags=re.S)
         out = re.sub(r'<title>.*?</title><!--title-end-->', f'<title>{html.escape(title)}</title><!--title-end-->', out, flags=re.S)
         d = os.path.join(ROOT, path)
         os.makedirs(d, exist_ok=True)
