@@ -292,6 +292,44 @@ window.MM = {
     "/desk/img/journals/pages/cup-023.jpg",
     "/desk/img/journals/pages/cup-047.jpg"
    ]
+  },
+  {
+   "name": "A Little Everyday Magic",
+   "line": "Ordinary things, misbehaving.",
+   "about": "Forty cosy village corners, each with a small piece of magic to find and colour.",
+   "spec": "84 pages · 8.5 × 11 in",
+   "price": 9.99,
+   "asin": null,
+   "hardcover": null,
+   "soon": true,
+   "colouring": true,
+   "cover": "/desk/img/journals/little-everyday-magic.jpg",
+   "pages": [
+    "/desk/img/journals/pages/magic-005.jpg",
+    "/desk/img/journals/pages/magic-011.jpg",
+    "/desk/img/journals/pages/magic-021.jpg",
+    "/desk/img/journals/pages/magic-029.jpg",
+    "/desk/img/journals/pages/magic-049.jpg"
+   ]
+  },
+  {
+   "name": "Just One More Chapter",
+   "line": "Cosy colouring for book lovers.",
+   "about": "Forty bookish places to colour, each with its own little story.",
+   "spec": "84 pages · 8.5 × 11 in",
+   "price": 9.99,
+   "asin": null,
+   "hardcover": null,
+   "soon": true,
+   "colouring": true,
+   "cover": "/desk/img/journals/just-one-more-chapter.jpg",
+   "pages": [
+    "/desk/img/journals/pages/jomc-005.jpg",
+    "/desk/img/journals/pages/jomc-009.jpg",
+    "/desk/img/journals/pages/jomc-015.jpg",
+    "/desk/img/journals/pages/jomc-021.jpg",
+    "/desk/img/journals/pages/jomc-031.jpg"
+   ]
   }
  ],
  "products": [

@@ -887,6 +887,8 @@ const books = [
   {p:9.99,n:'The Year of Being 11',a:'B0GM9PC4CM',h:'B0GM7WG4PH',l:'Identity, belonging and everyday life.',d:'A keepsake journal for 11-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-11',inside:'year-of-being'},
   {p:9.99,n:'The Year of Being 12',a:'B0GM2TPC12',h:'B0GM2SHZWL',l:'Voice, independence and everyday life.',d:'A keepsake journal for 12-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-12',inside:'year-of-being'},
   {p:9.99,n:'A Cup of Somewhere Else',a:'B0HQMNRV6L',colour:1,l:'Cosy colouring for adults.',d:'Forty little places to escape to, one page at a time.',spec:'84 pages · 8.5 × 11 in',img:'cup-of-somewhere-else'},
+  {p:9.99,n:'A Little Everyday Magic',soon:1,colour:1,l:'Ordinary things, misbehaving.',d:'Forty cosy village corners, each with a small piece of magic to find and colour.',spec:'84 pages · 8.5 × 11 in',img:'little-everyday-magic'},
+  {p:9.99,n:'Just One More Chapter',soon:1,colour:1,l:'Cosy colouring for book lovers.',d:'Forty bookish places to colour, each with its own little story.',spec:'84 pages · 8.5 × 11 in',img:'just-one-more-chapter'},
 ];
 const posts = [
   {t:'Five books for a slow Sunday',d:'Short, gentle reads you can finish before the roast is ready.',date:'28 Sep 2026',m:'4 min read',c:'sage',r:'4/5'},
@@ -920,7 +922,7 @@ const svgs = {
 function paint(root){ (root||document).querySelectorAll('[data-art]').forEach(el=>{ if(el.dataset.done) return; const f=svgs[el.dataset.art]; if(f){ el.insertAdjacentHTML('afterbegin', f(el.dataset.c||'sage')); el.dataset.done=1; } }); }
 
 const price = p => '£' + p.toFixed(2);
-const AR={'storymakers-comic':.707,'cup-of-somewhere-else':.773};
+const AR={'storymakers-comic':.707,'cup-of-somewhere-else':.773,'little-everyday-magic':.773,'just-one-more-chapter':.773};
 const artFor = x => x.pic ? `<div class="art shopimg"><img class="m" src="img/products/${x.pic}.jpg?v=2" alt="${x.n}" loading="lazy"></div>` : x.shop ? `<div class="art shopimg"><img class="m" src="img/shop/${x.shop}.jpg?v=2" alt="${x.n}" loading="lazy"><img class="h" src="img/shop/${x.shop}-hover.jpg?v=2" alt="" loading="lazy" aria-hidden="true"></div>` : (x.img && x.cover) ? `<div class="art cover book3d"><div class="bk" style="--ar:${AR[x.img]||.667}"><img class="inside" src="img/inside-${x.inside||x.img}.jpg" alt="" loading="lazy"><span class="pages" aria-hidden="true"></span><span class="front"><img src="img/${x.img}.jpg" alt="${x.n} cover" loading="lazy"><span class="crease" aria-hidden="true"></span></span></div><span class="peek">Peek inside</span></div>` : x.img ? `<div class="art tilt"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy">${x.a?amzImg(x.a,x.n):''}</div>` : `<div class="art tilt" data-art="${x.art}" data-c="${x.c}">${x.a?amzImg(x.a,x.n):''}</div>`;
 function productCard(x){
   return `<article class="card" data-cat="${GROUP[x.cat]||x.cat}">
