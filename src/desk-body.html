@@ -662,6 +662,8 @@ dialog.sheet.night-sheet{background:#1b1834;color:#f1e8dc;width:min(820px,calc(1
 /* label hierarchy: the shop, journals and Reading Corner lead */
 .hot.pri .lab{background:#303133;color:#f7f4ef;font-weight:500;box-shadow:0 6px 18px -8px rgba(0,0,0,.5)}
 .hot.sec .lab{background:rgba(247,244,239,.86);color:#4a4542;font-size:12.5px;padding:4px 10px 5px}
+/* journals and Reading Corner keep their size but use the same colours as the other titles */
+.hot.pri[data-k="journal"] .lab,.hot.pri[data-k="books"] .lab{background:rgba(247,244,239,.86);color:#4a4542}
 .mobile .hot.sec .lab{font-size:11px;padding:4px 8px 5px}
 .around .hot.sec::before{box-shadow:0 0 0 1.5px rgba(247,244,239,.55)}
 .around.first .hot.sec:not(:hover):not(:focus-visible) .lab{opacity:0}
