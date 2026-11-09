@@ -56,6 +56,8 @@ def price(p):
 
 
 def buy_button(p, where, label=None, cls='btn btn-primary', asin=None):
+    if p.get('soon'):  # not on Amazon yet: the button goes to the "tell me when it's out" sign-up
+        return f'<a class="{cls}" href="#notify">Tell me when it’s out</a>'
     label = label or 'Buy on Amazon'
     pr = f' <small>{price(p["price"])}</small>' if p.get('price') else ''
     return (f'<a class="{cls}" href="{e(amz(asin or p["asin"]))}" target="_blank" rel="noopener" '
@@ -171,6 +173,15 @@ def head(title, desc, url, img, ld, kind='product'):
 
 CSS_V = '1'
 
+NOTIFY = '''<form class="notify" id="notify" method="POST" action="https://mazomoon.us2.list-manage.com/subscribe/post?u=84d0e303fbeb76a0c2b77b779&amp;id=0c0ea5d4d1&amp;f_id=00b2a0e0f0" target="_blank">
+          <p class="strong-s">Coming soon to Amazon. I’ll email you the day it’s out.</p>
+          <p hidden><label>Leave this empty <input name="b_84d0e303fbeb76a0c2b77b779_0c0ea5d4d1" tabindex="-1" value=""></label></p>
+          <label for="notifyEmail" class="vh">Email address</label>
+          <input id="notifyEmail" name="EMAIL" type="email" required placeholder="Your email address" autocomplete="email">
+          <button class="btn btn-primary" type="submit">Tell me when it’s out</button>
+          <p class="caption">This signs you up to my monthly letter through Mailchimp. Every letter has an unsubscribe link. <a href="/privacy/">Privacy notice</a></p>
+        </form>'''
+
 
 # ---------------------------------------------------------------- one product page
 
@@ -189,7 +200,9 @@ def page(p, by_slug):
     images = [absu(hero_img[0])] + [absu(g[0]) for g in gal if g[0] != hero_img[0]][:5]
     thing = {'@context': 'https://schema.org', '@type': 'Book' if is_book else 'Product', 'name': p['name'],
              'description': p['description'], 'image': images, 'url': url,
-             'brand': {'@type': 'Brand', 'name': 'Mazo Moon'}, 'sameAs': f'https://www.amazon.co.uk/dp/{p["asin"]}'}
+             'brand': {'@type': 'Brand', 'name': 'Mazo Moon'}}
+    if p.get('asin'):
+        thing['sameAs'] = f'https://www.amazon.co.uk/dp/{p["asin"]}'
     if is_book:
         thing.update({'author': {'@type': 'Person', 'name': 'Rebecca Maslen'},
                       'publisher': {'@type': 'Organization', 'name': 'Mazo Moon', 'url': SITE + '/'},
@@ -198,7 +211,7 @@ def page(p, by_slug):
         thing.pop('brand')
         if p.get('pages_count'):
             thing['numberOfPages'] = p['pages_count']
-    else:
+    elif p.get('asin'):
         thing['sku'] = p['asin']
     # no price or star ratings here on purpose: Amazon sets the live price, and Google only allows
     # review stars for reviews collected on this site.
@@ -235,14 +248,14 @@ def page(p, by_slug):
     <ul class="for">{for_list}</ul>
     {variants}
     <div class="btn-row">{buy_button(p, where + ': hero', p.get('buy_label'))}{hc}<a class="btn btn-text" href="#proof">{e(p.get('peek', 'Take a look inside'))}</a></div>
-    <p class="caption">Sold and delivered by Amazon, so checkout, delivery and returns are the ones you already know.</p>
+    <p class="caption">{'Coming soon to Amazon. Leave your email and I’ll tell you the day it’s out.' if p.get('soon') else 'Sold and delivered by Amazon, so checkout, delivery and returns are the ones you already know.'}</p>
   </div>
   <div class="hero-art">
     <figure class="{stage_cls}"><img id="heroImg" src="{e(hero_img[0])}" alt="{e(hero_img[1])}" width="1200" height="1200" fetchpriority="high"></figure>
     {thumbs}
   </div>
 </section>
-<div class="proofbar"><div class="wrap"><span>{'Written and designed by Rebecca' if is_book else 'Chosen by Rebecca'}, in Yorkshire</span><span>{e(p['proofbar'])}</span><a href="{e(amz(p['asin'], True))}" target="_blank" rel="noopener" data-product="{e(p['name'])}" data-where="{where}: reviews">Read the reviews on Amazon</a></div></div>'''
+<div class="proofbar"><div class="wrap"><span>{'Written and designed by Rebecca' if is_book else 'Chosen by Rebecca'}, in Yorkshire</span><span>{e(p['proofbar'])}</span>{'<span>Coming soon to Amazon</span>' if p.get('soon') else f'<a href="{e(amz(p["asin"], True))}" target="_blank" rel="noopener" data-product="{e(p["name"])}" data-where="{where}: reviews">Read the reviews on Amazon</a>'}</div></div>'''
 
     # 02 problem, 03 approach
     prob = p['problem']
@@ -268,19 +281,28 @@ def page(p, by_slug):
   <ol class="feats">{feats}</ol>
 </section>'''
 
+    # the ages / versions in a collection, each with its own page
+    fam = [by_slug[x] for x in p.get('family', []) if x in by_slug]
+    if fam:
+        offer += (f'<section class="wrap sec-tight" data-where="{where}: family"><div class="sec-head"><p class="label">{e(p.get("family_label", "Choose one"))}</p><h2 class="h">{e(p.get("family_h", "Find the right one"))}</h2></div><div class="rel">' + ''.join(
+            f'<a class="relcard" href="/products/{r["slug"]}/"><span class="art{" cover" if r.get("hero_cover") else ""}"><img src="{e((r.get("hero") or r["gallery"][0])[0])}" alt="" loading="lazy"></span><span class="t">{e(r["name"])}</span><span class="small muted">{e(r["card"])}</span></a>'
+            for r in fam) + '</div></section>')
+
     # 05 proof
     pr = p['proof']
-    figs = ''.join(f'<figure class="shot{" tall" if len(g) > 2 and g[2] == "tall" else ""}"><img src="{e(g[0])}" alt="{e(g[1])}" loading="lazy"><figcaption>{e(g[1])}</figcaption></figure>' for g in gal)
+    kind = lambda g: g[2] if len(g) > 2 else ''
+    figs = ''.join(f'<figure class="shot {kind(g)}"><img src="{e(g[0])}" alt="{e(g[1])}" loading="lazy"><figcaption>{e(g[1])}</figcaption></figure>' for g in gal)
+    gcls = 'gallery spreads' if all(kind(g) == 'spread' for g in gal) else 'gallery'
     quotes = ''
     if p.get('quotes'):  # real customer words only, with where they came from
         quotes = '<div class="quotes">' + ''.join(f'<blockquote><p>“{e(q["text"])}”</p><cite>{e(q["who"])}</cite></blockquote>' for q in p['quotes']) + '</div>'
     proof = f'''<section class="sunken" id="proof" data-where="{where}: proof">
   <div class="wrap sec">
     <div class="sec-head"><p class="label">{e(pr.get('label', 'Take a look inside'))}</p><h2 class="d-l">{pr['h']}</h2><p class="lead">{pr['p']}</p></div>
-    <div class="gallery">{figs}</div>
+    <div class="{gcls}">{figs}</div>
     {quotes}
     <div class="note">
-      <figure class="portrait"><img src="/img/rebecca.jpg" alt="Rebecca, founder of Mazo Moon" loading="lazy"></figure>
+      <figure class="portrait"><img src="/img/rebecca-portrait.jpg" alt="Rebecca, founder of Mazo Moon" loading="lazy"></figure>
       <div class="prose"><p class="label">A note from Rebecca</p>{paras(pr['note'])}<p class="sign">Rebecca x</p></div>
     </div>
   </div>
@@ -316,10 +338,9 @@ def page(p, by_slug):
       <div><p class="label">The simple bit</p><h2 class="d-l">{p['decision']['h']}</h2><ul class="plain">{terms}</ul></div>
       <div class="price-card">
         <p class="t">{e(p['name'])}</p>
-        <p class="bigprice">{price(p['price']) if p.get('price') else ''}<small>{e(p['decision'].get('price_note', 'at the time of writing'))}</small></p>
+        <p class="bigprice">{price(p['price']) if p.get('price') else ''}<small>{e(p['decision'].get('price_note', 'planned price' if p.get('soon') else 'at the time of writing'))}</small></p>
         {opts}
-        <div class="btn-col">{buy_button(p, where + ': decision', p.get('buy_label'))}{hc2}</div>
-        <p class="caption">Amazon shows today's price and delivery date before you pay. Prices can change, and Amazon's page is always the right one.</p>
+        {NOTIFY if p.get('soon') else f'<div class="btn-col">{buy_button(p, where + ": decision", p.get("buy_label"))}{hc2}</div><p class="caption">Amazon shows today’s price and delivery date before you pay. Prices can change, and Amazon’s page is always the right one.</p>'}
       </div>
     </div>
   </div>
@@ -380,7 +401,7 @@ def index_page(items):
             f'\n<body>\n{HEADER.format(j="", s="")}\n<main id="main">\n{body}\n</main>\n{FOOTER}\n{SCRIPT}\n</body>\n</html>\n')
 
 
-REQUIRED = ['name', 'asin', 'kind', 'group', 'label', 'title', 'description', 'h1', 'lead', 'for', 'proofbar', 'card',
+REQUIRED = ['name', 'kind', 'group', 'label', 'title', 'description', 'h1', 'lead', 'for', 'proofbar', 'card',
             'gallery', 'problem', 'approach', 'offer', 'proof', 'inside', 'specs', 'decision', 'faq', 'close']
 
 
@@ -409,12 +430,19 @@ def write():
 def asin_pages():
     """{ASIN: '/products/<slug>/'} so the shop and journals cards can link to their sales page."""
     m = {}
-    for p in load():
-        m[p['asin']] = f'/products/{p["slug"]}/'
+    items = load()
+    for p in items:  # a collection page only fills gaps: each age's own page wins
         for v in p.get('variants', []) + p.get('hardcovers', []):
             m.setdefault(v['asin'], f'/products/{p["slug"]}/')
+    for p in items:
+        url = f'/products/{p["slug"]}/'
+        m[p['name']] = url  # books not on Amazon yet are matched by name
+        if p.get('hub'):
+            continue
+        if p.get('asin'):
+            m[p['asin']] = url
         if p.get('hardcover'):
-            m[p['hardcover']] = f'/products/{p["slug"]}/'
+            m[p['hardcover']] = url
     return m
 
 

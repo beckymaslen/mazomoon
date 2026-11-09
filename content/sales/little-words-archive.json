@@ -60,29 +60,24 @@
  },
  "gallery": [
   [
-   "/desk/img/journals/pages/lw-002.jpg",
-   "“This archive belongs to”, with name and birthday",
-   "tall"
+   "/img/sales/little-words-archive/spread-002.jpg",
+   "The first pages: who this archive belongs to",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/lw-006.jpg",
-   "Words you used your own way",
-   "tall"
+   "/img/sales/little-words-archive/spread-006.jpg",
+   "Words they used their own way",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/lw-016.jpg",
-   "Something you once said",
-   "tall"
+   "/img/sales/little-words-archive/spread-016.jpg",
+   "Something they once said, and the story behind it",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/lw-017.jpg",
-   "About this moment: when, where and why",
-   "tall"
-  ],
-  [
-   "/desk/img/journals/pages/lw-101.jpg",
-   "A Note for the Future",
-   "tall"
+   "/img/sales/little-words-archive/spread-100.jpg",
+   "A note for the future",
+   "spread"
   ]
  ],
  "proof": {

@@ -58,34 +58,29 @@
  },
  "gallery": [
   [
-   "/desk/img/journals/pages/ojt-002.jpg",
+   "/img/sales/our-journey-together/spread-002.jpg",
    "Welcome, Grown-Up: how the journal works",
-   "tall"
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/ojt-010.jpg",
-   "Yes, please! or No, thanks! Tick, then compare",
-   "tall"
+   "/img/sales/our-journey-together/spread-010.jpg",
+   "Yes, please! or No, thanks! You on the left, them on the right",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/ojt-036.jpg",
+   "/img/sales/our-journey-together/spread-036.jpg",
    "Top 6 places I’ve visited, as postcards",
-   "tall"
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/ojt-066.jpg",
+   "/img/sales/our-journey-together/spread-066.jpg",
    "Our Family Tree, to draw together",
-   "tall"
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/ojt-078.jpg",
-   "Who would you be if you were a superhero?",
-   "tall"
-  ],
-  [
-   "/desk/img/journals/pages/ojt-child.jpg",
-   "A light page for your child: what I love right now",
-   "tall"
+   "/img/sales/our-journey-together/spread-078.jpg",
+   "Who would you be? Then the same question for them",
+   "spread"
   ]
  ],
  "proof": {

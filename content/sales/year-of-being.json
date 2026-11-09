@@ -86,39 +86,34 @@
  },
  "gallery": [
   [
-   "/desk/img/journals/pages/y8-003.jpg",
-   "“Hello, you!” from The Year of Being 8",
-   "tall"
+   "/img/sales/year-of-being-8/spread-002.jpg",
+   "Hello, you! and how to use this journal",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/y8-006.jpg",
-   "About Me: draw a picture of yourself",
-   "tall"
+   "/img/sales/year-of-being-8/spread-006.jpg",
+   "About me: strengths and what makes me special",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/y8-010.jpg",
-   "How I Feel Sometimes",
-   "tall"
+   "/img/sales/year-of-being-8/spread-010.jpg",
+   "Feelings, and what helps with big ones",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/y8-018.jpg",
-   "Awesome School Days",
-   "tall"
+   "/img/sales/year-of-being-8/spread-018.jpg",
+   "School life: my school and my class",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/y8-048.jpg",
-   "A Day In My Life",
-   "tall"
-  ],
-  [
-   "/desk/img/journals/pages/y10-010.jpg",
-   "A page from The Year of Being 10",
-   "tall"
+   "/img/sales/year-of-being-8/spread-048.jpg",
+   "A day in my life",
+   "spread"
   ]
  ],
  "proof": {
   "h": "Real pages from the books",
-  "p": "Shown here from the age 8 and age 10 journals. Each age has its own questions in the same style.",
+  "p": "Shown here from the age 8 journal. Each age has its own questions in the same style, and you can see more on each age’s page.",
   "note": [
    "I wanted a birthday present that would still matter in ten years. Each journal opens with a note telling them that some days they’ll have lots to say, and other days just a little, and both are perfectly fine.",
    "They look lovely lined up on a shelf, one for every year."
@@ -227,5 +222,16 @@
    "name": "Age 12",
    "asin": "B0GM2SHZWL"
   }
- ]
+ ],
+ "hub": true,
+ "family": [
+  "year-of-being-7",
+  "year-of-being-8",
+  "year-of-being-9",
+  "year-of-being-10",
+  "year-of-being-11",
+  "year-of-being-12"
+ ],
+ "family_label": "One for each age",
+ "family_h": "Choose their age"
 }

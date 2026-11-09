@@ -58,29 +58,34 @@
  },
  "gallery": [
   [
-   "/desk/img/journals/pages/adv-002.jpg",
-   "The welcome page: “Greetings, young explorer!”",
-   "tall"
+   "/img/sales/adventure-travel-journal/aplus-1.jpg",
+   "Before you go, on the way, and when you’re there",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/adv-025.jpg",
-   "My Passport, to fill in before you go",
-   "tall"
+   "/img/sales/adventure-travel-journal/aplus-2.jpg",
+   "A new one for every trip, with boredom busters built in",
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/adv-036.jpg",
+   "/img/sales/adventure-travel-journal/aplus-3.jpg",
+   "A Day on My Trip, and a page to draw it",
+   "spread"
+  ],
+  [
+   "/img/sales/adventure-travel-journal/spread-024.jpg",
+   "My Passport, filled in before you go",
+   "spread"
+  ],
+  [
+   "/img/sales/adventure-travel-journal/spread-036.jpg",
    "A big I-Spy picture for the journey",
-   "tall"
+   "spread"
   ],
   [
-   "/desk/img/journals/pages/adv-042.jpg",
-   "Flag matching: Spain, Italy, France and more",
-   "tall"
-  ],
-  [
-   "/desk/img/journals/pages/adv-056.jpg",
-   "A Day on My Trip, with moods and weather",
-   "tall"
+   "/img/sales/adventure-travel-journal/spread-056.jpg",
+   "Pages for each day once you’ve arrived",
+   "spread"
   ]
  ],
  "proof": {

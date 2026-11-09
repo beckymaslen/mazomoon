@@ -140,11 +140,11 @@ nav.main a[aria-current="page"]{color:var(--text);border-bottom-color:var(--acce
 .quotes blockquote{margin:0;padding:24px;background:var(--surface-raised);border:1px solid var(--hairline);display:grid;gap:10px}
 .quotes p{font:italic 500 22px/30px var(--display)}
 .quotes cite{font-style:normal;font-size:13px;color:var(--text-muted)}
-.note{display:grid;grid-template-columns:180px minmax(0,1fr);gap:36px;align-items:start;margin-top:56px;padding-top:40px;border-top:1px solid var(--hairline)}
-.portrait{margin:0;aspect-ratio:9/10;overflow:hidden;background:var(--surface)}
+.note{display:grid;grid-template-columns:200px minmax(0,1fr);gap:36px;align-items:start;margin-top:56px;padding-top:40px;border-top:1px solid var(--hairline)}
+.portrait{margin:0;aspect-ratio:356/452;overflow:hidden;background:var(--surface);border-radius:var(--r-sm)}
 .portrait img{width:100%;height:100%;object-fit:cover}
 .sign{font:italic 500 24px/1 var(--display);color:var(--text-accent)}
-@media (max-width:600px){.note{grid-template-columns:96px minmax(0,1fr);gap:18px}}
+@media (max-width:600px){.note{grid-template-columns:112px minmax(0,1fr);gap:18px}}
 
 /* 06 inside */
 .split{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:start}
@@ -216,3 +216,12 @@ footer.site .wordmark{background:var(--text-on-inverse);width:180px}
 .legal{border-top:1px solid color-mix(in srgb,var(--text-on-inverse) 20%,transparent);padding-block:20px 90px;font-size:13px;opacity:.75;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
 @media (min-width:861px){.legal{padding-bottom:20px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* coming soon sign-up */
+.notify{display:grid;gap:12px}
+.notify input{font:400 16px/24px var(--sans);color:var(--text);background:var(--surface-raised);border:1px solid var(--border-strong);border-radius:var(--r-sm);padding:12px;width:100%}
+
+/* open-book spreads */
+.gallery.spreads{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px}
+.shot.spread img{aspect-ratio:1200/862;object-fit:cover;box-shadow:none;background:none}
+@media (max-width:700px){.gallery.spreads{grid-template-columns:1fr}}

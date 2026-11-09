@@ -835,8 +835,9 @@ const MAAS = 'maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&ref_=aa_ma
 const AMZ = a => 'https://www.amazon.co.uk/dp/' + a + '?' + MAAS;
 /* each product's own sales page (/products/...), filled in by tools/build_pages.py from content/sales */
 const SALES = {};
-const T = x => SALES[x.a] ? `<h3 class="t"><a class="t-link" href="${SALES[x.a]}">${x.n}</a></h3>` : `<h3 class="t">${x.n}</h3>`;
-const MORE = x => SALES[x.a] ? `<a class="more-link" href="${SALES[x.a]}">Look inside and read more</a>` : '';
+const SP = x => SALES[x.a] || SALES[x.n];
+const T = x => SP(x) ? `<h3 class="t"><a class="t-link" href="${SP(x)}">${x.n}</a></h3>` : `<h3 class="t">${x.n}</h3>`;
+const MORE = x => SP(x) ? `<a class="more-link" href="${SP(x)}">Look inside and read more</a>` : '';
 /* main listing image straight from Amazon; falls back to our own art if Amazon sends nothing */
 const AIMG = a => 'https://ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=' + a + '&Format=_SL500_&ID=AsinImage&MarketPlace=GB&ServiceVersion=20070822&WS=1';
 const amzImg = (a,n) => `<img class="amz" src="${AIMG(a)}" alt="${n}" loading="lazy" referrerpolicy="no-referrer" onload="if(this.naturalWidth<20)this.remove()" onerror="this.remove()">`;
