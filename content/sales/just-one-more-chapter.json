@@ -1,0 +1,189 @@
+{
+ "slug": "just-one-more-chapter",
+ "name": "Just One More Chapter",
+ "soon": true,
+ "price": 9.99,
+ "kind": "book",
+ "group": "colouring",
+ "order": 20,
+ "pages_count": 84,
+ "label": "Cosy colouring book for book lovers · coming soon",
+ "title": "Just One More Chapter: cosy colouring book for book lovers | Mazo Moon",
+ "description": "A cosy colouring book for adults who love books: forty bookish places to colour, from a bookshop in the storm to a blanket fort. Coming soon to Amazon.",
+ "card": "Forty bookish places to colour.",
+ "h1": "For readers who say <em>“just one more chapter”</em>",
+ "lead": "A cosy colouring book for book lovers, with forty bookish places to colour, each with its own little story.",
+ "for": [
+  "For readers with a to-be-read pile taller than they are",
+  "For bookshop wanderers and library lovers",
+  "For a gift for the friend who always has a book on the go"
+ ],
+ "proofbar": "84 pages · 8.5 × 11 in",
+ "hero": [
+  "/desk/img/journals/just-one-more-chapter.jpg",
+  "Just One More Chapter cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "Some nights your eyes are too tired to read",
+  "p": [
+   "You want the cosy feeling of a good book, but it’s late, the words are swimming, and the phone is right there.",
+   "Scrolling never gives you the same calm as turning a page."
+  ]
+ },
+ "approach": {
+  "h": "Colour the places books take you",
+  "p": [
+   "Every page is a bookish little world: a bookshop in a storm, a teetering to-be-read tower, a little free library at the end of a lane, a blanket fort with a sleeping dog.",
+   "It’s the same slow, calm feeling as reading, for the nights when you’d rather hold a pencil."
+  ]
+ },
+ "offer": {
+  "h": "Forty bookish scenes to colour",
+  "p": "Detailed, cosy line art for grown-ups who love books.",
+  "features": [
+   [
+    "Forty bookish places",
+    "Bookshops, reading nooks, libraries and blanket forts, each with a name."
+   ],
+   [
+    "Little stories",
+    "Every scene has a title and a small story of its own to find in the detail."
+   ],
+   [
+    "Room to colour",
+    "A big 8.5 × 11 in page, so there’s space for fine detail."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/img/sales/just-one-more-chapter/aplus-1.jpg",
+   "A bookshop in a storm, a secret library, a laundry pile losing to an audiobook",
+   "aplus"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/aplus-2.jpg",
+   "Ten of the forty chapters to colour",
+   "aplus"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/aplus-3.jpg",
+   "A little story on the left, your picture on the right",
+   "aplus"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/aplus-4.jpg",
+   "For the book club and for the 2 a.m. reader",
+   "aplus"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/spread-005.jpg",
+   "The Bookshop in the Storm",
+   "spread"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/spread-009.jpg",
+   "The Washing Can Wait",
+   "spread"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/spread-015.jpg",
+   "The To-Be-Read Tower",
+   "spread"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/spread-021.jpg",
+   "The Little Free Library",
+   "spread"
+  ],
+  [
+   "/img/sales/just-one-more-chapter/spread-031.jpg",
+   "The Blanket Fort",
+   "spread"
+  ]
+ ],
+ "proof": {
+  "h": "A first look inside",
+  "p": "These are real pages from the book. It isn’t on Amazon yet, so you’re seeing them first.",
+  "note": [
+   "I made this one for every reader who has said “just one more chapter” at midnight. The Washing Can Wait is my kind of page.",
+   "Leave your email below and I’ll tell you the day it’s out."
+  ]
+ },
+ "inside": {
+  "h": "What’s in the book",
+  "items": [
+   "Forty detailed bookish scenes",
+   "A title for every picture",
+   "A mix of simpler and fuller designs",
+   "A large 8.5 × 11 in page size",
+   "84 pages in total"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "84"
+  ],
+  [
+   "Designs",
+   "40"
+  ],
+  [
+   "Size",
+   "8.5 × 11 in (21.6 × 27.9 cm)"
+  ],
+  [
+   "Made by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Available",
+   "Coming soon to Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "Coming soon to Amazon",
+  "points": [
+   "It will be sold and delivered by Amazon, like my other books.",
+   "Leave your email and I’ll tell you the day it goes live.",
+   "The planned price is shown, and Amazon will show the final price on the day."
+  ]
+ },
+ "faq": [
+  [
+   "When is it out?",
+   "Soon. Leave your email on this page and I’ll tell you the day it’s on Amazon."
+  ],
+  [
+   "Is it like A Cup of Somewhere Else?",
+   "It’s in the same cosy style, but every scene is about books and reading. A Cup of Somewhere Else is about places to escape to."
+  ],
+  [
+   "Is it for adults?",
+   "Yes, it’s designed for adults, with fine detail. Older children who love detailed colouring may enjoy it too."
+  ],
+  [
+   "What should I colour with?",
+   "Colouring pencils give the softest results. Gel pens and fine liners are lovely for small details."
+  ],
+  [
+   "Will it be a good gift?",
+   "For a book lover, absolutely. It pairs nicely with a reading light or a book."
+  ]
+ ],
+ "close": {
+  "h": "Be the first to know",
+  "p": "Forty bookish places, coming soon."
+ },
+ "related": [
+  "cup-of-somewhere-else",
+  "little-everyday-magic",
+  "dark-romance-stickers"
+ ]
+}

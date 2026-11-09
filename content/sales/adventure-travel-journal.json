@@ -1,0 +1,175 @@
+{
+ "slug": "adventure-travel-journal",
+ "name": "My Adventure Travel Journal",
+ "asin": "B0HNY91X4S",
+ "price": 9.99,
+ "kind": "book",
+ "group": "journals",
+ "order": 10,
+ "pages_count": 106,
+ "label": "Travel journal for children",
+ "title": "My Adventure Travel Journal for Kids: holiday activity book and diary | Mazo Moon",
+ "description": "A travel journal for children: a passport page, I-Spy, flag matching and daily trip pages, with games for the journey. 106 pages, 6 × 9 in. By Mazo Moon.",
+ "card": "Before you go, on the way and when you get there.",
+ "h1": "One book for <em>every</em> holiday",
+ "lead": "A travel journal for young explorers, with games for the boring bits and space to keep the best bits.",
+ "for": [
+  "For children who ask “are we nearly there yet?” before you reach the motorway",
+  "For families who want a holiday kept in words and drawings, not just photos",
+  "For a car, a plane, a ferry or a rainy afternoon in a caravan"
+ ],
+ "proofbar": "106 pages · 6 × 9 in",
+ "hero": [
+  "/img/adventure-travel-journal.jpg",
+  "My Adventure Travel Journal cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "Holidays go by so fast, and the travelling bit can feel so slow",
+  "p": [
+   "Long journeys make little people restless. Screens fill the gap, but they don’t leave anything behind when the battery runs out.",
+   "And once you’re home, the trip blurs. The photos stay on a phone, and the funny thing that happened on day three gets forgotten by October."
+  ]
+ },
+ "approach": {
+  "h": "Give them something to do on the way, and something to keep afterwards",
+  "p": [
+   "This journal follows the trip in order: getting ready, on the way, and once you’ve arrived. The travel pages are full of games, and the holiday pages are short and simple, so filling them in feels like fun rather than homework.",
+   "By the end they’ve made their own record of the holiday, in their own handwriting."
+  ]
+ },
+ "offer": {
+  "h": "A travel companion that fits in a rucksack",
+  "p": "Three chapters that follow the trip, with puzzles and prompts on every page.",
+  "features": [
+   [
+    "Games for the journey",
+    "I-Spy, flag matching and other travel puzzles to fill the long stretches."
+   ],
+   [
+    "A page for each day",
+    "Mood faces, the weather, what happened, and three things that made them happy."
+   ],
+   [
+    "Their own passport",
+    "A pretend passport page with places they’ve already been and a space to draw themselves."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/img/sales/adventure-travel-journal/aplus-1.jpg",
+   "Before you go, on the way, when you’re there: four sections of the journal",
+   "aplus"
+  ],
+  [
+   "/img/sales/adventure-travel-journal/aplus-2.jpg",
+   "A day on my trip, with moods, weather and a page to draw it",
+   "aplus"
+  ],
+  [
+   "/img/sales/adventure-travel-journal/aplus-3.jpg",
+   "Dots and boxes and other games for the journey",
+   "aplus"
+  ],
+  [
+   "/img/sales/adventure-travel-journal/spread-024.jpg",
+   "My Passport, filled in before you go",
+   "spread"
+  ],
+  [
+   "/img/sales/adventure-travel-journal/spread-036.jpg",
+   "A big I-Spy picture for the journey",
+   "spread"
+  ],
+  [
+   "/img/sales/adventure-travel-journal/spread-056.jpg",
+   "Pages for each day once you’ve arrived",
+   "spread"
+  ]
+ ],
+ "proof": {
+  "h": "Real pages from the book",
+  "p": "These are straight from the printed interior, so you can see exactly what your child will be filling in.",
+  "note": [
+   "I made this journal so the journey becomes part of the holiday rather than the bit everyone puts up with. Every page has a job: keep hands busy on the way, or keep a memory once you’re there.",
+   "I designed every page myself, and I kept the writing spaces small enough that nobody feels they have to fill a whole page."
+  ]
+ },
+ "inside": {
+  "h": "Everything in the journal",
+  "items": [
+   "A welcome page and a “this journal belongs to” name page",
+   "Chapter 1: getting ready, with a passport page to fill in",
+   "Chapter 2: on the way, with I-Spy, flag matching and travel puzzles",
+   "Chapter 3: you’ve arrived, with a page for each day of the trip",
+   "Mood faces, weather symbols and “3 things that made me happy today” prompts",
+   "106 pages in total, on cream paper"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "106"
+  ],
+  [
+   "Size",
+   "6 × 9 in (15.2 × 22.9 cm)"
+  ],
+  [
+   "Paper",
+   "Cream"
+  ],
+  [
+   "Written by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Sold by",
+   "Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "One book, one price, delivered by Amazon",
+  "points": [
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
+  ]
+ },
+ "faq": [
+  [
+   "What age is it for?",
+   "It’s written for primary school children who can read and write a little. Younger children can do it with a grown-up helping with the writing, and the puzzles work for everyone."
+  ],
+  [
+   "Is it for one holiday or lots of trips?",
+   "It’s designed to cover one holiday from start to finish, with a page for each day. Many families buy one per trip so each holiday gets its own book."
+  ],
+  [
+   "Does it work for a holiday at home in the UK?",
+   "Yes. Nothing in it assumes you’re going abroad. The flag matching is just a puzzle, and the daily pages work for a caravan in Whitby as well as a flight to Spain."
+  ],
+  [
+   "Can they use felt tips?",
+   "Pencils, crayons and gel pens are best. Heavy felt tips can show through to the other side of the page."
+  ],
+  [
+   "Does it come gift wrapped?",
+   "Amazon sometimes offers gift options at checkout. The book arrives plain, so it’s ready to wrap yourself."
+  ]
+ ],
+ "close": {
+  "h": "Pack it with the snacks",
+  "p": "Your next trip, kept in their own words and drawings."
+ },
+ "related": [
+  "our-journey-together",
+  "storymakers-journal",
+  "travel-map-stickers"
+ ]
+}
