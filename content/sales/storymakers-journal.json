@@ -1,0 +1,171 @@
+{
+ "slug": "storymakers-journal",
+ "name": "The Storymaker’s Journal",
+ "asin": "B0HP8HW6B5",
+ "price": 7.99,
+ "kind": "book",
+ "group": "journals",
+ "order": 40,
+ "pages_count": 110,
+ "label": "Creative writing journal for kids",
+ "title": "The Storymaker’s Journal: creative writing and drawing prompts for kids | Mazo Moon",
+ "description": "A story-writing journal for children: build characters, map worlds, try comic challenges and story starters. 110 pages of prompts, 6 × 9 in, by Mazo Moon.",
+ "card": "Characters, worlds and story starters.",
+ "h1": "Every story starts with <em>one small idea</em>",
+ "lead": "Draw, imagine and create your own adventures, one prompt at a time.",
+ "for": [
+  "For children who are full of ideas but stuck at a blank page",
+  "For doodlers, daydreamers and comic fans",
+  "For quiet afternoons, half term and long car journeys"
+ ],
+ "proofbar": "110 pages · 6 × 9 in",
+ "hero": [
+  "/img/storymakers-journal.jpg",
+  "The Storymaker’s Journal cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "“I don’t know what to write”",
+  "p": [
+   "Most children love making things up, until someone hands them a blank page and says “write a story”. Then the ideas vanish.",
+   "Starting is the hardest part. A whole story feels like too much, so they don’t start at all."
+  ]
+ },
+ "approach": {
+  "h": "Build the story in small pieces",
+  "p": [
+   "Instead of asking for a whole story, this journal starts small: invent a character, draw a map, try a comic challenge. Bit by bit, they collect the pieces of a story without noticing.",
+   "Then they turn their favourite idea into a story of their very own. Some pages are marked TOGETHER, for doing side by side with a grown-up."
+  ]
+ },
+ "offer": {
+  "h": "A toolkit for young storytellers",
+  "p": "Prompts that do the hard part, starting, so the fun part can take over.",
+  "features": [
+   [
+    "Characters",
+    "Profiles to fill in: what they’re good at, what scares them, what they want more than anything, their secret."
+   ],
+   [
+    "Worlds",
+    "Maps to draw with mountains, rivers, towns and a secret hiding place, plus a map key."
+   ],
+   [
+    "Comic challenges",
+    "How comics work, a sound effects bank to borrow from, and panels to fill."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/desk/img/journals/pages/sty-002.jpg",
+   "Welcome, Storymaker",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/sty-011.jpg",
+   "Character Profile: draw them, then get to know them",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/sty-029.jpg",
+   "Map My World, on a dotted grid",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/sty-074.jpg",
+   "How Comics Work: panels, bubbles and sound effects",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/sty-094.jpg",
+   "Sound Effects Bank: WHOOSH! SPLAT! KABOOM!",
+   "tall"
+  ]
+ ],
+ "proof": {
+  "h": "Real pages from the book",
+  "p": "A mix of drawing and writing, so it suits children who’d rather draw than write, and the other way round.",
+  "note": [
+   "I made this for children with big imaginations who freeze at a blank page. Breaking a story into small, playful pieces takes the pressure off.",
+   "The pages can be done in any order, so they can follow whatever they’re excited about that day."
+  ]
+ },
+ "inside": {
+  "h": "Everything in the journal",
+  "items": [
+   "A welcome page and a “this book belongs to the storymaker” page",
+   "Character profiles and creature pages",
+   "World maps with a map key",
+   "Story starters to get going",
+   "Comic challenges, tips and a sound effects bank",
+   "TOGETHER pages for a grown-up and child",
+   "110 pages in total, on cream paper"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "110"
+  ],
+  [
+   "Size",
+   "6 × 9 in (15.2 × 22.9 cm)"
+  ],
+  [
+   "Paper",
+   "Cream"
+  ],
+  [
+   "Written by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Sold by",
+   "Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "One book, lots of stories",
+  "points": [
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
+  ]
+ },
+ "faq": [
+  [
+   "What age is it for?",
+   "It suits children from about seven to eleven. Younger children can draw their answers and do the TOGETHER pages with a grown-up."
+  ],
+  [
+   "My child doesn’t like writing. Will they enjoy it?",
+   "There’s plenty of drawing: characters, maps and comics. Many children end up writing more because they’ve got something they want to say."
+  ],
+  [
+   "How is it different from The Storymaker’s Comic Book?",
+   "This journal is about inventing characters, worlds and story ideas, with a little comic making. The Comic Book is A4 and is all comics: twelve to make from start to finish."
+  ],
+  [
+   "Do they need to do it in order?",
+   "No. Every page works on its own, so they can jump to whatever looks fun."
+  ],
+  [
+   "Is it useful for school?",
+   "It isn’t a workbook, but the habits it builds, like planning a character or a setting, are the same ones used in creative writing at school."
+  ]
+ ],
+ "close": {
+  "h": "Their next story starts here",
+  "p": "Hand them the first small idea and see where it goes."
+ },
+ "related": [
+  "storymakers-comic",
+  "adventure-travel-journal",
+  "needle-tip-gel-pens"
+ ]
+}

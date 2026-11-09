@@ -1,0 +1,175 @@
+{
+ "slug": "storymakers-comic",
+ "name": "The Storymaker’s Comic Book",
+ "asin": "B0HQ58GQHC",
+ "price": 7.99,
+ "kind": "book",
+ "group": "journals",
+ "order": 50,
+ "pages_count": 110,
+ "label": "Make-your-own comic book for kids",
+ "title": "The Storymaker’s Comic Book: blank comic book for kids, A4 | Mazo Moon",
+ "description": "An A4 make-your-own comic book for children: 12 comics, each with a cover page and 7 pages of panels, plus tips, sound effects and a certificate. 110 pages.",
+ "card": "Twelve comics to make, start to finish.",
+ "h1": "Every hero starts with <em>a pencil</em>",
+ "lead": "Twelve comics to make, with panels, prompts and plenty of POW.",
+ "for": [
+  "For children who draw comics on the back of everything",
+  "For superhero fans and future cartoonists",
+  "For anyone who needs a story idea to get them going"
+ ],
+ "proofbar": "110 pages · A4",
+ "hero": [
+  "/img/storymakers-comic.jpg",
+  "The Storymaker’s Comic Book cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "Drawing panels by hand takes forever",
+  "p": [
+   "Children who love comics usually spend half their time ruling wonky boxes and the other half running out of paper. The story gets lost before it’s finished.",
+   "Loose sheets go missing, and a brilliant comic ends up in the recycling."
+  ]
+ },
+ "approach": {
+  "h": "The panels are ready. They just bring the story.",
+  "p": [
+   "Every comic in this book has its own cover page and seven pages of ready-drawn panels in different layouts. There’s an idea at the bottom of each cover in case they’re stuck.",
+   "When they’ve finished, it’s a real book of twelve comics, with their name on every one."
+  ]
+ },
+ "offer": {
+  "h": "A proper comic book, made by them",
+  "p": "Big A4 pages with plenty of room to draw.",
+  "features": [
+   [
+    "12 complete comics",
+    "Each one has a cover to design, a title, and seven pages of panels."
+   ],
+   [
+    "How to make a comic",
+    "Five simple steps, from picking an idea to designing the cover, plus top tips."
+   ],
+   [
+    "Sound effects and a certificate",
+    "POW, BOOM, SPLAT bursts to copy, and an official Comic Creator certificate at the end."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/desk/img/journals/pages/com-003.jpg",
+   "How to make a comic, in five steps",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/com-007.jpg",
+   "Sound effects to copy, and empty bursts for their own",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/com-009.jpg",
+   "Comic No. 01: a cover page with an idea to start",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/com-010.jpg",
+   "Ready-drawn panels with speech bubbles",
+   "tall"
+  ],
+  [
+   "/desk/img/journals/pages/com-109.jpg",
+   "The official Comic Creator certificate",
+   "tall"
+  ]
+ ],
+ "proof": {
+  "h": "Real pages from the book",
+  "p": "The panel layouts change from page to page, so every comic looks different.",
+  "note": [
+   "I made this for the children who are always drawing comics on scraps of paper. Now the whole lot is in one book they can keep and show off.",
+   "I love the certificate at the end. Finishing a whole comic book is a real achievement, and it deserves a proper fuss."
+  ]
+ },
+ "inside": {
+  "h": "Everything in the book",
+  "items": [
+   "How to make a comic: five steps and top tips",
+   "A sound effects page to copy from",
+   "12 comics, each with a cover page and 7 pages of panels",
+   "A story idea on every cover page",
+   "Space for title, author, start and finish dates",
+   "An official Comic Creator certificate",
+   "110 pages in total, A4, on white paper"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "110"
+  ],
+  [
+   "Size",
+   "A4 (21 × 29.7 cm)"
+  ],
+  [
+   "Paper",
+   "White"
+  ],
+  [
+   "Comics",
+   "12"
+  ],
+  [
+   "Written by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Sold by",
+   "Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "One book, twelve comics",
+  "points": [
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
+  ]
+ },
+ "faq": [
+  [
+   "What age is it for?",
+   "Roughly six to twelve. Younger children can draw the pictures and dictate the words, and older ones will enjoy planning proper stories."
+  ],
+  [
+   "What should they draw with?",
+   "Pencil first, then pens or colouring pencils. The pages are white so colours look bright. Heavy markers may show through."
+  ],
+  [
+   "Do they need to be good at drawing?",
+   "No. The book itself says stick figures are absolutely fine. Clear is better than perfect."
+  ],
+  [
+   "How is it different from The Storymaker’s Journal?",
+   "This one is all comics, on big A4 pages. The Journal is smaller and covers characters, worlds and story ideas, with a little comic making."
+  ],
+  [
+   "Is it good for two children to share?",
+   "With twelve comics there’s room to take turns, but most children like having their own book with their name on the certificate."
+  ]
+ ],
+ "close": {
+  "h": "Twelve comics are waiting",
+  "p": "All they need is a pencil and a hero."
+ },
+ "related": [
+  "storymakers-journal",
+  "adventure-travel-journal",
+  "needle-tip-gel-pens"
+ ]
+}

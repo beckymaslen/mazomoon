@@ -17,6 +17,7 @@ import re, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import blog  # noqa: E402  the reviews and blog posts
+import sales  # noqa: E402  the product sales pages (/products/...)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.mazomoon.com'
@@ -101,6 +102,8 @@ def main():
     assert '<!--meta-start-->' in src and '<!--title-end-->' in src
     b = blog.Blog(src)  # every post in content/reviews, checked (see tools/blog.py)
     src = blog.static_cards(src, b)  # review links are in the HTML for search engines
+    # the shop and journals cards link to each product's own sales page
+    src = src.replace('const SALES = {};', 'const SALES = ' + json.dumps(sales.asin_pages()) + ';', 1)
     urls = [SITE + '/']
     for path, (title, desc) in PAGES.items():
         url = f'{SITE}/{path}/'
@@ -112,6 +115,8 @@ def main():
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(out)
         urls.append(url)
     posts = blog.write(b, src, show, meta)  # {url: (lastmod, [images])} for the sitemap
+    for u, im in sales.write().items():  # product sales pages
+        posts.setdefault(u, ('', im))
     desk = write_desk(b.reviews)
     # unknown addresses show the desk, marked so search engines don't index them
     open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(desk.replace('<!--meta-start-->', '<meta name="robots" content="noindex">\n<!--meta-start-->', 1))

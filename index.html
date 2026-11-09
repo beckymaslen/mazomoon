@@ -686,6 +686,8 @@ dialog.sheet.night-sheet{background:#1b1834;color:#f1e8dc;width:min(820px,calc(1
 /* label hierarchy: the shop, journals and Reading Corner lead */
 .hot.pri .lab{background:#303133;color:#f7f4ef;font-weight:500;box-shadow:0 6px 18px -8px rgba(0,0,0,.5)}
 .hot.sec .lab{background:rgba(247,244,239,.86);color:#4a4542;font-size:12.5px;padding:4px 10px 5px}
+/* journals and Reading Corner keep their size but use the same colours as the other titles */
+.hot.pri[data-k="journal"] .lab,.hot.pri[data-k="books"] .lab{background:rgba(247,244,239,.86);color:#4a4542}
 .mobile .hot.sec .lab{font-size:11px;padding:4px 8px 5px}
 .around .hot.sec::before{box-shadow:0 0 0 1.5px rgba(247,244,239,.55)}
 .around.first .hot.sec:not(:hover):not(:focus-visible) .lab{opacity:0}
@@ -771,9 +773,9 @@ dialog.sheet.night-sheet{background:#1b1834;color:#f1e8dc;width:min(820px,calc(1
 <dialog class="slip" id="slip" aria-labelledby="slipTitle"><div id="slipBody"></div></dialog>
 <dialog class="menu" id="menu" aria-label="Menu"><div class="in" id="menuBody"></div></dialog>
 
-<script src="/desk/content.js"></script>
-<script src="/desk/reviews.js"></script>
-<script src="/desk/app.js"></script>
+<script src="/desk/content.js?v=1477ccd657"></script>
+<script src="/desk/reviews.js?v=1eaf290182"></script>
+<script src="/desk/app.js?v=2f3b14aaae"></script>
 
 </body>
 </html>
