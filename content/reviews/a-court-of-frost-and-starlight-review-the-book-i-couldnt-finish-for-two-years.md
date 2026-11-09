@@ -73,6 +73,7 @@ publish:
   status: published
   date: 2026-11-06T19:55
   updated: 2026-11-06
+views: 1
 ---
 # A Court of Frost and Starlight Review: The Book I Couldn't Finish for Two Years
 

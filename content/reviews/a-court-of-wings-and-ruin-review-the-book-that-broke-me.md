@@ -68,6 +68,7 @@ publish:
   status: published
   date: 2026-11-06T19:10
   updated: 2026-11-06
+views: 1
 ---
 # A Court of Wings and Ruin Review: The Book That Broke Me
 
