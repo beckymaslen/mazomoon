@@ -224,10 +224,11 @@ def page(p, by_slug):
 
     # 01 opening
     thumbs = ''
-    if len(gal) > 1:
+    tgal = [g for g in gal if not (len(g) > 2 and g[2] == 'aplus')]  # A+ panels are too wide for the hero stage
+    if len(tgal) > 1:
         thumbs = '<div class="thumbs" data-thumbs="heroImg" role="group" aria-label="More pictures">' + ''.join(
             f'<button type="button" data-src="{e(s)}" data-alt="{e(a)}" aria-pressed="{str(i == 0).lower()}" aria-label="Show: {e(a)}"><img src="{e(s)}" alt="" loading="lazy" width="80" height="80"></button>'
-            for i, (s, a) in enumerate((g[0], g[1]) for g in [hero_img] + [g for g in gal if g[0] != hero_img[0]][:5])) + '</div>'
+            for i, (s, a) in enumerate((g[0], g[1]) for g in [hero_img] + [g for g in tgal if g[0] != hero_img[0]][:5])) + '</div>'
     stage_cls = 'stage cover' if p.get('hero_cover') else 'stage'
     variants = ''
     if p.get('variants'):
@@ -292,7 +293,7 @@ def page(p, by_slug):
     pr = p['proof']
     kind = lambda g: g[2] if len(g) > 2 else ''
     figs = ''.join(f'<figure class="shot {kind(g)}"><img src="{e(g[0])}" alt="{e(g[1])}" loading="lazy"><figcaption>{e(g[1])}</figcaption></figure>' for g in gal)
-    gcls = 'gallery spreads' if all(kind(g) == 'spread' for g in gal) else 'gallery'
+    gcls = 'gallery spreads' if all(kind(g) in ('spread', 'aplus') for g in gal) else 'gallery'
     quotes = ''
     if p.get('quotes'):  # real customer words only, with where they came from
         quotes = '<div class="quotes">' + ''.join(f'<blockquote><p>“{e(q["text"])}”</p><cite>{e(q["who"])}</cite></blockquote>' for q in p['quotes']) + '</div>'

@@ -58,14 +58,19 @@
  },
  "gallery": [
   [
-   "/img/sales/started-secondary/spread-002.jpg",
-   "Welcome to your next chapter",
-   "spread"
+   "/img/sales/started-secondary/aplus-1.jpg",
+   "Welcome to your next chapter, and section one: This is me",
+   "aplus"
   ],
   [
-   "/img/sales/started-secondary/spread-028.jpg",
-   "My First Day",
-   "spread"
+   "/img/sales/started-secondary/aplus-2.jpg",
+   "My first day and first day memories",
+   "aplus"
+  ],
+  [
+   "/img/sales/started-secondary/aplus-3.jpg",
+   "Hopes and worries, and look how far I’ve come",
+   "aplus"
   ],
   [
    "/img/sales/started-secondary/spread-032.jpg",

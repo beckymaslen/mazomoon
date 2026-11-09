@@ -224,4 +224,7 @@ footer.site .wordmark{background:var(--text-on-inverse);width:180px}
 /* open-book spreads */
 .gallery.spreads{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px}
 .shot.spread img{aspect-ratio:1200/862;object-fit:cover;box-shadow:none;background:none}
+.shot.aplus{grid-column:1/-1}
+.shot.aplus img{aspect-ratio:auto;height:auto;box-shadow:none;background:none;border-radius:4px}
+.shot.aplus figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:700px){.gallery.spreads{grid-template-columns:1fr}}
