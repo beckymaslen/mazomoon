@@ -1,15 +1,15 @@
 {
  "slug": "little-everyday-magic",
+ "asin": "B0HR61HP7C",
  "name": "A Little Everyday Magic",
- "soon": true,
  "price": 9.99,
  "kind": "book",
  "group": "colouring",
  "order": 30,
  "pages_count": 84,
- "label": "Cosy village colouring book · coming soon",
+ "label": "Cosy village colouring book",
  "title": "A Little Everyday Magic: cosy village colouring book for adults | Mazo Moon",
- "description": "A cosy colouring book for adults: forty village corners, from a railway halt to a midnight bakery, each with a small piece of magic to find. Coming soon to Amazon.",
+ "description": "A cosy colouring book for adults: forty village corners, from a railway halt to a midnight bakery, each with a small piece of magic to find.",
  "card": "Ordinary things, misbehaving.",
  "h1": "Ordinary things, <em>misbehaving</em>",
  "lead": "A cosy colouring book with forty village corners, each hiding a small piece of magic to find and colour.",
@@ -104,11 +104,11 @@
   ]
  ],
  "proof": {
-  "h": "A first look inside",
-  "p": "These are real pages from the book. It isn’t on Amazon yet, so you’re seeing them first.",
+  "h": "Real pages from the book",
+  "p": "These are the actual line drawings, straight from the printed book.",
   "note": [
    "I love the idea that ordinary things might be quietly up to something when nobody’s looking. Each page has a little piece of that.",
-   "Leave your email below and I’ll tell you the day it’s out."
+   "Every picture is printed on its own page, so you can colour with pens or pencils."
   ]
  },
  "inside": {
@@ -143,23 +143,19 @@
    "Rebecca Maslen, Mazo Moon"
   ],
   [
-   "Available",
-   "Coming soon to Amazon UK"
+   "Sold by",
+   "Amazon UK"
   ]
  ],
  "decision": {
-  "h": "Coming soon to Amazon",
+  "h": "One book, forty little pieces of magic",
   "points": [
-   "It will be sold and delivered by Amazon, like my other books.",
-   "Leave your email and I’ll tell you the day it goes live.",
-   "The planned price is shown, and Amazon will show the final price on the day."
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
   ]
  },
  "faq": [
-  [
-   "When is it out?",
-   "Soon. Leave your email on this page and I’ll tell you the day it’s on Amazon."
-  ],
   [
    "What is the “magic” in each picture?",
    "Something small and gentle that isn’t quite ordinary, like a loaf rising too high or a tag floating away. Finding it is part of the fun."
@@ -178,8 +174,8 @@
   ]
  ],
  "close": {
-  "h": "Be the first to know",
-  "p": "Forty village corners, each with a little magic. Coming soon."
+  "h": "Take your time",
+  "p": "The village isn’t going anywhere."
  },
  "related": [
   "cup-of-somewhere-else",

@@ -1,15 +1,15 @@
 {
  "slug": "just-one-more-chapter",
+ "asin": "B0HR61TKFL",
  "name": "Just One More Chapter",
- "soon": true,
  "price": 9.99,
  "kind": "book",
  "group": "colouring",
  "order": 20,
  "pages_count": 84,
- "label": "Cosy colouring book for book lovers · coming soon",
+ "label": "Cosy colouring book for book lovers",
  "title": "Just One More Chapter: cosy colouring book for book lovers | Mazo Moon",
- "description": "A cosy colouring book for adults who love books: forty bookish places to colour, from a bookshop in the storm to a blanket fort. Coming soon to Amazon.",
+ "description": "A cosy colouring book for adults who love books: forty bookish places to colour, from a bookshop in the storm to a blanket fort, each with its own little story.",
  "card": "Forty bookish places to colour.",
  "h1": "For readers who say <em>“just one more chapter”</em>",
  "lead": "A cosy colouring book for book lovers, with forty bookish places to colour, each with its own little story.",
@@ -104,11 +104,11 @@
   ]
  ],
  "proof": {
-  "h": "A first look inside",
-  "p": "These are real pages from the book. It isn’t on Amazon yet, so you’re seeing them first.",
+  "h": "Real pages from the book",
+  "p": "These are the actual line drawings, straight from the printed book.",
   "note": [
    "I made this one for every reader who has said “just one more chapter” at midnight. The Washing Can Wait is my kind of page.",
-   "Leave your email below and I’ll tell you the day it’s out."
+   "Every picture is printed on its own page, so you can colour with pens or pencils."
   ]
  },
  "inside": {
@@ -143,23 +143,19 @@
    "Rebecca Maslen, Mazo Moon"
   ],
   [
-   "Available",
-   "Coming soon to Amazon UK"
+   "Sold by",
+   "Amazon UK"
   ]
  ],
  "decision": {
-  "h": "Coming soon to Amazon",
+  "h": "One book, forty bookish places",
   "points": [
-   "It will be sold and delivered by Amazon, like my other books.",
-   "Leave your email and I’ll tell you the day it goes live.",
-   "The planned price is shown, and Amazon will show the final price on the day."
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
   ]
  },
  "faq": [
-  [
-   "When is it out?",
-   "Soon. Leave your email on this page and I’ll tell you the day it’s on Amazon."
-  ],
   [
    "Is it like A Cup of Somewhere Else?",
    "It’s in the same cosy style, but every scene is about books and reading. A Cup of Somewhere Else is about places to escape to."
@@ -178,8 +174,8 @@
   ]
  ],
  "close": {
-  "h": "Be the first to know",
-  "p": "Forty bookish places, coming soon."
+  "h": "Put the kettle on",
+  "p": "Then just one more chapter. Or one more page."
  },
  "related": [
   "cup-of-somewhere-else",

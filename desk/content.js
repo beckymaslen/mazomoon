@@ -299,9 +299,9 @@ window.MM = {
    "about": "Forty cosy village corners, each with a small piece of magic to find and colour.",
    "spec": "84 pages · 8.5 × 11 in",
    "price": 9.99,
-   "asin": null,
+   "asin": "B0HR61HP7C",
    "hardcover": null,
-   "soon": true,
+   "soon": false,
    "colouring": true,
    "cover": "/desk/img/journals/little-everyday-magic.jpg",
    "pages": [
@@ -318,9 +318,9 @@ window.MM = {
    "about": "Forty bookish places to colour, each with its own little story.",
    "spec": "84 pages · 8.5 × 11 in",
    "price": 9.99,
-   "asin": null,
+   "asin": "B0HR61TKFL",
    "hardcover": null,
-   "soon": true,
+   "soon": false,
    "colouring": true,
    "cover": "/desk/img/journals/just-one-more-chapter.jpg",
    "pages": [
