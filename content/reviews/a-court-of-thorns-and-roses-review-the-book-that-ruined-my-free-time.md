@@ -57,7 +57,7 @@ publish:
   status: published
   date: 2026-11-06T17:16
   updated: 2026-11-06
-views: 1
+views: 3
 ---
 # A Court of Thorns and Roses Review: The Book That Ruined My Free Time
 
