@@ -32,7 +32,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&family=Cinzel:wght@700&family=Playfair+Display:wght@600&display=swap">
 <style>
 /* Layout: one calm editorial column on warm ivory, square colour-blocks frame products, one rosewood band per view. Tokens from the MazoMoon design system. */
 :root{
@@ -453,6 +453,82 @@ button.pill:hover{border-color:var(--border-strong)}
 .review-foot{border-top:1px solid var(--hairline);padding-top:24px;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center}
 .shelf .plant{flex:none;width:70px;height:120px;align-self:flex-end;margin-left:auto;position:relative}
 
+/* reading corner: the same dark library as the desk's Reading Corner pop-up */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.libroom{background:#2c2420;color:#f1e8dc;border-radius:16px;padding:clamp(20px,3.4vw,40px);box-shadow:0 30px 60px -36px rgba(0,0,0,.6)}
+.libroom .label{color:#d8b9a3}
+.libroom .libt{font:500 clamp(30px,4.4vw,46px)/1.08 var(--display);margin:6px 0 0;color:#f6eee3}
+.libroom .libl{color:#e2d6c8;max-width:44em;margin:10px 0 0}
+.libroom .lhelp{color:#cdbfb1;margin:4px 0 0}
+.shtools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 4px}
+.shtools input{flex:1 1 240px;min-width:0;font:inherit;font-size:15px;padding:10px 16px;border-radius:999px;border:1px solid rgba(241,232,220,.3);background:rgba(241,232,220,.07);color:#f1e8dc}
+.shtools input::placeholder{color:#b7a99b}
+.shtools input:focus-visible,.libroom .lbtn:focus-visible{outline:2px solid #e4c98a;outline-offset:2px}
+.libroom .lbtn{font:500 15px/1 var(--sans);padding:12px 22px;border-radius:999px;border:1px solid rgba(241,232,220,.4);background:transparent;color:#f1e8dc;cursor:pointer}
+.libroom .lbtn:hover{background:rgba(241,232,220,.08)}
+.slist{margin:10px 0 14px;max-height:min(46vh,420px);overflow:auto;border:1px solid rgba(241,232,220,.14);border-radius:12px;padding:6px 6px 8px}
+.slist>p{margin:6px 10px;color:#cdbfb1}
+.slist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:2px 8px}
+.slist button{all:unset;box-sizing:border-box;display:grid;gap:2px;width:100%;padding:9px 10px;border-radius:8px;cursor:pointer}
+.slist button:hover,.slist button:focus-visible{background:rgba(241,232,220,.09)}
+.slist button:focus-visible{outline:2px solid #e4c98a}
+.slist .sn{font:500 17px/1.25 var(--display);color:#f6eee3}
+.slist .sa{font-size:13px;line-height:18px;color:#cdbfb1}.slist .sa b{color:#e4c98a;font-weight:600}
+.slist .sb{font-size:13px;line-height:18px;color:#e2d6c8;font-style:italic}
+.shelf2{position:relative;margin-top:22px;border-radius:8px;overflow:hidden;
+  background:#2a211c radial-gradient(rgba(255,240,220,.07) 1px,transparent 1.6px) 0 0/22px 22px;box-shadow:inset 0 0 70px rgba(0,0,0,.55)}
+.srow{display:flex;align-items:flex-end;gap:3px;overflow-x:auto;overflow-y:hidden;padding:64px 48px 0;min-height:360px;scrollbar-width:thin;scrollbar-color:rgba(241,232,220,.3) transparent;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+.srow::after{content:"";flex:none;width:30px}
+.spn{flex:none;width:var(--w);height:var(--h);border:0;padding:0;background:none;cursor:pointer;transform-origin:50% 100%;position:relative;will-change:transform}
+.spn canvas{display:block;width:100%;height:100%;border-radius:2px 2px 1px 1px;box-shadow:3px 0 5px -1px rgba(0,0,0,.5),-1px 0 2px rgba(0,0,0,.35)}
+.spn:focus-visible{outline:2px solid #e4c98a;outline-offset:3px}
+.spn[aria-pressed="true"] canvas{box-shadow:0 0 0 1px rgba(228,201,138,.7),3px 6px 14px rgba(0,0,0,.6)}
+.spn.rev::after{content:"";position:absolute;left:50%;top:-2px;width:9px;height:26px;transform:translateX(-50%);background:linear-gradient(#e4c98a,#b8913f);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);box-shadow:0 2px 3px rgba(0,0,0,.4);pointer-events:none}
+.spn.miss{opacity:.28}.spn.hit canvas{box-shadow:0 0 0 2px #e4c98a,3px 6px 14px rgba(0,0,0,.6)}
+.sledge{height:20px;background:linear-gradient(#16110e,#0e0b09 40%,#241b16);box-shadow:0 14px 18px -8px rgba(0,0,0,.7);position:relative}
+.sledge::before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.45))}
+.libroom .shelf-hint{color:#cdbfb1;margin:10px 0 0}
+@media (max-width:760px){.srow{min-height:280px;padding:52px 28px 0}}
+/* the open book */
+.rbook{--rp-bg:#f6efe2;--rp-ink:#2f2a27;--rp-soft:#6a5f57;--rp-accent:#80615f;--rp-pad:36px;position:relative;margin-top:28px;perspective:2000px;scroll-margin-top:90px}
+.rbook .spread{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--rp-bg);color:var(--rp-ink);border-radius:6px;
+  background-image:linear-gradient(90deg,rgba(0,0,0,.06),transparent 6%,transparent 44%,rgba(80,50,20,.16) 50%,transparent 56%,transparent 94%,rgba(0,0,0,.07)),
+  radial-gradient(ellipse at 50% 40%,transparent 55%,rgba(150,110,60,.14));box-shadow:0 34px 60px -30px rgba(0,0,0,.8),0 2px 0 #ddd1bd,0 4px 0 #cfc1aa;transform-style:preserve-3d}
+.rpage{padding:var(--rp-pad);min-height:440px;display:grid;align-content:start;gap:10px;backface-visibility:hidden}
+.rpage .label{color:var(--rp-accent)}
+.rpage h2{font:600 34px/1.05 var(--display);margin:0;color:var(--rp-ink)}
+.rpage .muted,.rpage .small{color:var(--rp-soft)}
+.toc ol{margin:6px 0 0;padding:0;list-style:none;display:grid;border-top:1px solid rgba(47,42,39,.12)}
+.toc li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px solid rgba(47,42,39,.12);font-size:15px;line-height:22px}
+.toc .when{color:var(--rp-soft);font-size:12.5px;white-space:nowrap}
+.toc .rlink{color:var(--rp-accent);font-weight:500;font-size:13px;white-space:nowrap}
+.toc .soon{color:var(--rp-soft);font-style:italic;font-size:13px;white-space:nowrap}
+.rv{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:start}
+.rv img{grid-row:span 5;width:92px;aspect-ratio:2/3;object-fit:cover;border-radius:3px;box-shadow:0 10px 18px -10px rgba(0,0,0,.5)}
+.rv>*:not(img){grid-column:2;margin:0}
+.rv h3{font:600 25px/1.15 var(--display);margin:0;color:var(--rp-ink)}
+.rv h3 a{color:inherit;text-decoration:none}.rv h3 a:hover{text-decoration:underline;text-decoration-color:var(--rp-accent);text-underline-offset:4px}
+.rv .rbk{font-size:14px;color:var(--rp-soft)}.rv .rbk strong{color:var(--rp-ink);font-weight:500}
+.rv .meta{color:var(--rp-soft);font-size:13.5px;display:flex;gap:10px;align-items:center}
+.rv .meta .stars{color:#b0904f}
+.rv .pex{font-size:15px;line-height:24px}
+.rv .golink{color:var(--rp-accent);font-weight:500;font-size:14.5px;text-decoration:underline;text-underline-offset:3px}
+.rv .spoil{display:inline-block;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#7e2a2a;border:1px solid rgba(126,42,42,.35);border-radius:999px;padding:1px 9px;justify-self:start}
+.rpage hr{border:0;border-top:1px solid rgba(47,42,39,.15);margin:18px 0}
+.rpage .empty{display:grid;place-content:center;text-align:center;min-height:360px;gap:8px}
+.rpage .empty .t{font:italic 500 28px/1.2 var(--display);color:var(--rp-soft);margin:0}
+.rpage .empty .small{margin:0}
+.rbook.swing .rpage:last-child{transform-origin:0 50%;animation:swingL .9s cubic-bezier(.3,.7,.2,1)}
+@keyframes swingL{from{transform:rotateY(-110deg);opacity:.2}to{transform:none;opacity:1}}
+@media (max-width:760px){
+  .rbook .spread{grid-template-columns:1fr;background-image:radial-gradient(ellipse at 50% 40%,transparent 55%,rgba(150,110,60,.14))}
+  .rpage{min-height:0;--rp-pad:22px}.rpage+.rpage{border-top:1px dashed rgba(47,42,39,.18)}
+  .rbook.swing .rpage{animation:none!important}.rbook.swing .spread{animation:swingL .8s cubic-bezier(.3,.7,.2,1);transform-origin:0 50%}
+  .rv img{width:72px}.rpage h2{font-size:28px}
+}
+@media (prefers-reduced-motion:reduce){.rbook.swing .rpage,.rbook.swing .spread{animation:none!important}}
+
 /* floating products */
 .floaty{position:absolute;pointer-events:none;will-change:transform}
 .floaty img{display:block;width:100%;filter:drop-shadow(0 16px 20px rgba(48,49,51,.18));animation:mmBob 6s ease-in-out infinite}
@@ -697,21 +773,20 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
   <div class="wrap page-hero rise">
     <span class="label">The Reading Corner</span>
     <h1 class="d-xl">What I've been reading lately.</h1>
-    <p class="lead">My shelf so far: 144 books from 52 series and standalones, mostly romantasy and fantasy with plenty of fae, dragons and morally grey men. Honest reviews are on their way. No spoilers, plenty of tea.</p>
+    <p class="lead">My shelf so far: 144 books from 52 series and standalones, mostly romantasy and fantasy with plenty of fae, dragons and morally grey men. Honest reviews, clearly marked spoilers and plenty of tea.</p>
   </div>
   <div class="wrap sec-tight" style="padding-top:0">
-    <div class="shelf-wrap">
-      <div>
-        <div class="shelf" id="shelf" role="group" aria-label="My bookshelf. Each book is a series I've read, newest first."></div>
-        <p class="small muted shelf-hint">Scroll along the shelf and pick a spine to see the series.</p>
-      </div>
-      <div class="shelf-card" id="shelfCard" aria-live="polite">
-        <span class="label">Pulled off the shelf</span>
-        <h2 class="h" data-k="t"></h2>
-        <p class="postmeta" data-k="m"></p>
-        <ol class="readlist" data-k="l"></ol>
-        <p class="small muted" data-k="r">Dates are roughly when I started each one. Reviews coming soon.</p>
-      </div>
+    <div class="libroom">
+      <span class="label">My bookshelf</span>
+      <h2 class="libt">One more chapter. Always.</h2>
+      <p class="libl" id="libLead">Every book I've read so far, newest first. Choose a spine to explore a series. A gold ribbon means I've written a review.</p>
+      <div class="shtools"><label class="sr-only" for="shq">Search my shelf</label><input type="search" id="shq" placeholder="Search by book, series or author" autocomplete="off" aria-describedby="shqHelp">
+        <button type="button" class="lbtn" id="shList" aria-pressed="false" aria-controls="slist">List view</button></div>
+      <p class="small lhelp" id="shqHelp">Searching lists the matching books below and highlights their spines on the shelf.</p>
+      <div class="slist" id="slist" hidden></div>
+      <div class="shelf2"><div class="srow" id="shelf" role="group" aria-label="My bookshelf, scroll sideways for more. Each book is a series I've read, newest first."></div><div class="sledge" aria-hidden="true"></div></div>
+      <p class="small shelf-hint">Scroll along the shelf and pick a spine to open it.</p>
+      <div class="rbook" id="rbook" aria-live="polite" hidden></div>
     </div>
   </div>
   <div class="wrap sec-tight" id="reviewsWrap">
@@ -1075,7 +1150,7 @@ f.addEventListener('submit',function(ev){ev.preventDefault();
 const MAAS = 'maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&ref_=aa_maas&tag=maas';
 const AMZ = a => 'https://www.amazon.co.uk/dp/' + a + '?' + MAAS;
 /* each product's own sales page (/products/...), filled in by tools/build_pages.py from content/sales */
-const SALES = {"B0GM15C6P8": "/products/year-of-being-7/", "B0GM5JKMCW": "/products/year-of-being-8/", "B0GMQLBMR8": "/products/year-of-being-9/", "B0GM2SSLJB": "/products/year-of-being-10/", "B0GM9PC4CM": "/products/year-of-being-11/", "B0GM2TPC12": "/products/year-of-being-12/", "B0GM1GL82B": "/products/year-of-being-7/", "B0GM89ZG4J": "/products/year-of-being-8/", "B0GM7X4CDH": "/products/year-of-being-9/", "B0GM28DT2C": "/products/year-of-being-10/", "B0GM7WG4PH": "/products/year-of-being-11/", "B0GM2SHZWL": "/products/year-of-being-12/", "B0FRYHQ97G": "/products/noisebud-earplugs/", "B0FRYLQX7N": "/products/noisebud-earplugs/", "B0FRYJGVR9": "/products/noisebud-earplugs/", "B0FRYGBW79": "/products/noisebud-earplugs/", "B0FRYJ7JTK": "/products/noisebud-earplugs/", "My Adventure Travel Journal": "/products/adventure-travel-journal/", "B0HNY91X4S": "/products/adventure-travel-journal/", "Our Journey Together": "/products/our-journey-together/", "B0HNXQFDD2": "/products/our-journey-together/", "The Year I Started Secondary School": "/products/started-secondary/", "B0HPGTGRH9": "/products/started-secondary/", "The Storymaker\u2019s Journal": "/products/storymakers-journal/", "B0HP8HW6B5": "/products/storymakers-journal/", "The Storymaker\u2019s Comic Book": "/products/storymakers-comic/", "B0HQ58GQHC": "/products/storymakers-comic/", "The Little Words Archive": "/products/little-words-archive/", "B0GMH7FGRF": "/products/little-words-archive/", "B0GMCNFFRL": "/products/little-words-archive/", "The Year of Being journals": "/products/year-of-being/", "The Year of Being 7": "/products/year-of-being-7/", "The Year of Being 8": "/products/year-of-being-8/", "The Year of Being 9": "/products/year-of-being-9/", "The Year of Being 10": "/products/year-of-being-10/", "The Year of Being 11": "/products/year-of-being-11/", "The Year of Being 12": "/products/year-of-being-12/", "A Cup of Somewhere Else": "/products/cup-of-somewhere-else/", "B0HQMNRV6L": "/products/cup-of-somewhere-else/", "Just One More Chapter": "/products/just-one-more-chapter/", "A Little Everyday Magic": "/products/little-everyday-magic/", "Positive Affirmation Stickers": "/products/positive-affirmation-stickers/", "B0FY7V22J1": "/products/positive-affirmation-stickers/", "Vintage Quote Stickers": "/products/vintage-quote-stickers/", "B0FY94K1BW": "/products/vintage-quote-stickers/", "Holographic Glitter Stickers": "/products/holographic-stickers/", "B0FQ42GN9B": "/products/holographic-stickers/", "Dark Romance Reader Stickers": "/products/dark-romance-stickers/", "B0FQ43L496": "/products/dark-romance-stickers/", "Travel Map Stickers": "/products/travel-map-stickers/", "B0GHYJQTXC": "/products/travel-map-stickers/", "Motivational Quote Stickers": "/products/motivational-quote-stickers/", "B0FY817MDV": "/products/motivational-quote-stickers/", "Needle Tip Gel Pens, 3-pack": "/products/needle-tip-gel-pens/", "B0FY3R7ZVM": "/products/needle-tip-gel-pens/", "Metallic Brush Pens, 3-pack": "/products/metallic-brush-pens/", "B0FY439TS9": "/products/metallic-brush-pens/", "NoiseBud Ring Earplugs": "/products/noisebud-earplugs/"};
+const SALES = {"B0GM15C6P8": "/products/year-of-being-7/", "B0GM5JKMCW": "/products/year-of-being-8/", "B0GMQLBMR8": "/products/year-of-being-9/", "B0GM2SSLJB": "/products/year-of-being-10/", "B0GM9PC4CM": "/products/year-of-being-11/", "B0GM2TPC12": "/products/year-of-being-12/", "B0GM1GL82B": "/products/year-of-being-7/", "B0GM89ZG4J": "/products/year-of-being-8/", "B0GM7X4CDH": "/products/year-of-being-9/", "B0GM28DT2C": "/products/year-of-being-10/", "B0GM7WG4PH": "/products/year-of-being-11/", "B0GM2SHZWL": "/products/year-of-being-12/", "B0FRYHQ97G": "/products/noisebud-earplugs/", "B0FRYLQX7N": "/products/noisebud-earplugs/", "B0FRYJGVR9": "/products/noisebud-earplugs/", "B0FRYGBW79": "/products/noisebud-earplugs/", "B0FRYJ7JTK": "/products/noisebud-earplugs/", "My Adventure Travel Journal": "/products/adventure-travel-journal/", "B0HNY91X4S": "/products/adventure-travel-journal/", "Our Journey Together": "/products/our-journey-together/", "B0HNXQFDD2": "/products/our-journey-together/", "The Year I Started Secondary School": "/products/started-secondary/", "B0HPGTGRH9": "/products/started-secondary/", "The Storymaker\u2019s Journal": "/products/storymakers-journal/", "B0HP8HW6B5": "/products/storymakers-journal/", "The Storymaker\u2019s Comic Book": "/products/storymakers-comic/", "B0HQ58GQHC": "/products/storymakers-comic/", "The Little Words Archive": "/products/little-words-archive/", "B0GMH7FGRF": "/products/little-words-archive/", "B0GMCNFFRL": "/products/little-words-archive/", "The Year of Being journals": "/products/year-of-being/", "The Year of Being 7": "/products/year-of-being-7/", "The Year of Being 8": "/products/year-of-being-8/", "The Year of Being 9": "/products/year-of-being-9/", "The Year of Being 10": "/products/year-of-being-10/", "The Year of Being 11": "/products/year-of-being-11/", "The Year of Being 12": "/products/year-of-being-12/", "A Cup of Somewhere Else": "/products/cup-of-somewhere-else/", "B0HQMNRV6L": "/products/cup-of-somewhere-else/", "Just One More Chapter": "/products/just-one-more-chapter/", "B0HR61TKFL": "/products/just-one-more-chapter/", "A Little Everyday Magic": "/products/little-everyday-magic/", "B0HR61HP7C": "/products/little-everyday-magic/", "Positive Affirmation Stickers": "/products/positive-affirmation-stickers/", "B0FY7V22J1": "/products/positive-affirmation-stickers/", "Vintage Quote Stickers": "/products/vintage-quote-stickers/", "B0FY94K1BW": "/products/vintage-quote-stickers/", "Holographic Glitter Stickers": "/products/holographic-stickers/", "B0FQ42GN9B": "/products/holographic-stickers/", "Dark Romance Reader Stickers": "/products/dark-romance-stickers/", "B0FQ43L496": "/products/dark-romance-stickers/", "Travel Map Stickers": "/products/travel-map-stickers/", "B0GHYJQTXC": "/products/travel-map-stickers/", "Motivational Quote Stickers": "/products/motivational-quote-stickers/", "B0FY817MDV": "/products/motivational-quote-stickers/", "Needle Tip Gel Pens, 3-pack": "/products/needle-tip-gel-pens/", "B0FY3R7ZVM": "/products/needle-tip-gel-pens/", "Metallic Brush Pens, 3-pack": "/products/metallic-brush-pens/", "B0FY439TS9": "/products/metallic-brush-pens/", "NoiseBud Ring Earplugs": "/products/noisebud-earplugs/"};
 const SP = x => SALES[x.a] || SALES[x.n];
 const T = x => SP(x) ? `<h3 class="t"><a class="t-link" href="${SP(x)}">${x.n}</a></h3>` : `<h3 class="t">${x.n}</h3>`;
 const MORE = x => SP(x) ? `<a class="more-link" href="${SP(x)}">Look inside and read more</a>` : '';
@@ -1135,8 +1210,8 @@ const books = [
   {p:9.99,n:'The Year of Being 11',a:'B0GM9PC4CM',h:'B0GM7WG4PH',l:'Identity, belonging and everyday life.',d:'A keepsake journal for 11-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-11',inside:'year-of-being'},
   {p:9.99,n:'The Year of Being 12',a:'B0GM2TPC12',h:'B0GM2SHZWL',l:'Voice, independence and everyday life.',d:'A keepsake journal for 12-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-12',inside:'year-of-being'},
   {p:9.99,n:'A Cup of Somewhere Else',a:'B0HQMNRV6L',colour:1,l:'Cosy colouring for adults.',d:'Forty little places to escape to, one page at a time.',spec:'84 pages · 8.5 × 11 in',img:'cup-of-somewhere-else'},
-  {p:9.99,n:'A Little Everyday Magic',soon:1,colour:1,l:'Ordinary things, misbehaving.',d:'Forty cosy village corners, each with a small piece of magic to find and colour.',spec:'84 pages · 8.5 × 11 in',img:'little-everyday-magic'},
-  {p:9.99,n:'Just One More Chapter',soon:1,colour:1,l:'Cosy colouring for book lovers.',d:'Forty bookish places to colour, each with its own little story.',spec:'84 pages · 8.5 × 11 in',img:'just-one-more-chapter'},
+  {p:9.99,n:'A Little Everyday Magic',a:'B0HR61HP7C',colour:1,l:'Ordinary things, misbehaving.',d:'Forty cosy village corners, each with a small piece of magic to find and colour.',spec:'84 pages · 8.5 × 11 in',img:'little-everyday-magic'},
+  {p:9.99,n:'Just One More Chapter',a:'B0HR61TKFL',colour:1,l:'Cosy colouring for book lovers.',d:'Forty bookish places to colour, each with its own little story.',spec:'84 pages · 8.5 × 11 in',img:'just-one-more-chapter'},
 ];
 const posts = [
   {t:'Five books for a slow Sunday',d:'Short, gentle reads you can finish before the roast is ready.',date:'28 Sep 2026',m:'4 min read',c:'sage',r:'4/5'},
@@ -1204,7 +1279,7 @@ document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x
     <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
     ${bookBtns(x)}
   </article>`).join('');
-document.getElementById('ltList').innerHTML = little.map(x=>`<article class="lt">
+document.getElementById('ltList').innerHTML = little.map(x=>`<article class="libt">
     ${x.pic?`<div class="art"><img src="img/products/${x.pic}.jpg?v=2" alt="${x.n}" loading="lazy"></div>`:x.img?`<div class="art"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy"></div>`:`<div class="art" data-art="${x.art}" data-c="${x.c}">${x.ours&&x.a?amzImg(x.a,x.n):''}</div>`}
     <div class="lt-body">
       <div class="lt-top"><h3 class="t">${x.n}</h3>${x.ours?'<span class="tag">Mazo Moon</span>':''}</div>
@@ -1443,24 +1518,176 @@ document.querySelectorAll('.band').forEach(b=>b.addEventListener('click',()=>b.c
   const WHEN={"A Court of Thorns and Roses": "2024-06", "A Court of Mist and Fury": "2024-07", "A Court of Wings and Ruin": "2024-07", "A Court of Frost and Starlight": "2024-07", "A Court of Silver Flames": "2024-08", "Throne of Glass": "2025-04", "Crown of Midnight": "2025-06", "Heir of Fire": "2025-06", "Queen of Shadows": "2025-06", "Empire of Storms": "2025-06", "Tower of Dawn": "2025-07", "Kingdom of Ash": "2025-07", "House of Earth and Blood": "2025-05", "House of Sky and Breath": "2025-05", "House of Flame and Shadow": "2025-05", "Fourth Wing": "2025-03", "Iron Flame": "2025-03", "Onyx Storm": "2025-03", "Powerless": "2025-03", "Reckless": "2025-03", "Fearless": "2025-04", "From Blood and Ash": "2025-03", "A Kingdom of Flesh and Fire": "2025-04", "The Crown of Gilded Bones": "2025-04", "The War of Two Queens": "2025-04", "A Soul of Ash and Blood": "2025-04", "The Primal of Blood and Bone": "2025-09", "A Shadow in the Ember": "2025-04", "A Light in the Flame": "2025-04", "A Fire in the Flesh": "2025-04", "Born of Blood and Ash": "2025-04", "The Awakening": "2025-11", "Ruthless Fae": "2025-12", "The Reckoning": "2025-12", "Shadow Princess": "2025-12", "Cursed Fates": "2025-12", "Fated Throne": "2025-12", "Heartless Sky": "2025-12", "Sorrow and Starlight (Zodiac Academy 8)": "2026-01", "Restless Stars": "2026-01", "Dark Fae": "2026-03", "Savage Fae": "2026-04", "Vicious Fae": "2026-04", "Broken Fae": "2026-04", "Warrior Fae": "2026-04", "Lady of Darkness": "2026-08", "Lady of Shadows": "2026-08", "Lady of Ashes": "2026-08", "Lady of Embers": "2026-08", "Lady of Starfire": "2026-08", "Court of Ice and Ash": "2026-06", "Night of Masks and Knives": "2026-06", "Game of Hate and Lies": "2026-06", "The Book of Azrael": "2026-02", "The Throne of Broken Gods": "2026-02", "The Dawn of the Cursed Queen": "2026-02", "The Wrath of the Fallen": "2026-02", "Rule of the Aurora King": "2025-11", "Fate of the Sun King": "2025-11", "Tale of the Heart Queen": "2025-11", "Gild": "2025-06", "Glint": "2025-06", "Gleam": "2025-06", "Spark of the Everflame": "2025-05", "Glow of the Everflame": "2025-05", "Heat of the Everflame": "2025-06", "The Blackened Blade": "2025-06", "A Blackened Bond": "2025-06", "Feathers So Vicious": "2025-06", "Shadows So Cruel": "2025-06", "Quicksilver": "2025-04", "Brimstone": "2026-02", "When the Moon Hatched": "2026-05", "The Ballad of Falling Dragons": "2026-05", "To Snap a Silver Stem": "2026-06", "To Flame a Wild Flower": "2026-06", "Shield of Sparrows": "2026-07", "Dire Bound": "2026-05", "Fury Bound": "2026-05", "Anathema": "2026-03", "Eldritch": "2026-04", "Phantasma": "2026-04", "Enchantra": "2026-04", "Blood of Hercules": "2026-04", "Bonds of Hercules": "2026-04", "Speak of the Demon": "2026-03", "Dance with the Demon": "2026-04", "Inner Demons": "2026-04", "Luck of the Demon": "2026-04", "Demon’s Advocate": "2026-04", "Blood & Steel": "2025-07", "The Serpent and the Wings of Night": "2025-04", "The Cruel Prince": "2025-05", "Serpent & Dove": "2025-05", "For Whom the Belle Tolls": "2025-05", "Kiss of the Basilisk": "2026-05", "Once Upon a Broken Heart": "2025-08", "The House Witch: A Humorous Romantic Fantasy": "2025-09", "Empire of Flame and Thorns": "2025-10", "Throne of Ice and Blood": "2025-10", "A Touch of Darkness": "2025-09", "A Touch of Ruin": "2025-09", "A Touch of Malice": "2025-09", "A Touch of Chaos": "2025-09", "A Game of Fate": "2025-09", "A Game of Retribution": "2025-09", "A Game of Gods": "2025-09", "Red Rising": "2026-08", "Golden Son": "2026-08", "Morning Star": "2026-08", "Iron Gold": "2026-08", "Dark Age": "2026-08", "Insatiable": "2026-02", "Voracious": "2026-03", "Restitution": "2026-03", "Unhinged": "2025-11", "Echoes": "2025-11", "Lights Out": "2026-04", "The Seven Sisters": "2025-01", "The Hidden Girl": "2025-01", "Alchemised": "2025-11", "Glow": "2026-10", "Gold": "2026-10", "Goldfinch": "2026-10", "Burn of the Everflame": "2026-10", "A Court of Splintered Harmony": "2026-10", "Threshing Day": "2026-09", "One Dark Window": "2026-09", "A Demon's Guide to the Afterlife": "2026-10", "Lessons in Chemistry": "2024-11", "The Reappearance of Rachel Price": "2024-09", "The Hawthorne Legacy": "2022-02", "The Murders at Fleat House": "2022-05"};
   const cols=['#3d3a5c','#80615f','#a9b39c','#434342','#dcbcb3','#5c4a6b','#8c6d5a','#2f4858','#b48a78','#6b7a5e','#c9a24a','#4a3f55'];
   const light=new Set(['#a9b39c','#dcbcb3','#c9a24a','#b48a78','#f1e7da','#e8ddd0']);
-  const card=document.getElementById('shelfCard');
-  const esc=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], mon=w=>MON[+w.slice(5)-1]+' '+w.slice(0,4);
   const span=b=>{ const d=b.map(t=>WHEN[t]).filter(Boolean).sort(); if(!d.length) return ''; const x=mon(d[0]), y=mon(d[d.length-1]); return x===y?x:`${x} to ${y}`; };
-  shelf.innerHTML=READ.map(([n,a,b],i)=>{ const c=cols[i%cols.length], h=Math.min(330,200+b.length*16), w=Math.min(78,40+b.length*5);
-    return `<button type="button" class="spine${i%9===8?' lean':''}" style="--sc:${c};${light.has(c)?'--sf:#303133;':''}--sh:${h}px;--sw:${w}px" data-i="${i}" aria-label="${esc(n)} by ${esc(a)}, ${b.length} book${b.length>1?'s':''}"><span>${esc(n)}</span></button>`; }).join('');
-  const show=sp=>{ cur=sp; const [n,a,b]=READ[+sp.dataset.i]; shelf.querySelectorAll('.spine').forEach(s=>s.classList.toggle('on',s===sp));
-    card.querySelector('[data-k="t"]').textContent=n;
-    card.querySelector('[data-k="m"]').textContent=`${a} · ${b.length} book${b.length>1?'s':''} read${span(b)?' · '+span(b):''}`;
-    card.querySelector('[data-k="l"]').innerHTML=b.map(t=>{ const r=REV[t]; return `<li>${r?`<a href="/reading/${r.slug}/">${esc(t)}</a>`:esc(t)}${WHEN[t]?` <span class="when">${mon(WHEN[t])}</span>`:''}${r?' <span class="when">· review</span>':''}</li>`; }).join('');
-    const nr=b.filter(t=>REV[t]).length; card.querySelector('[data-k="r"]').textContent=nr?`Dates are roughly when I started each one. Tap a linked title to read my review.`:'Dates are roughly when I started each one. Reviews coming soon.'; };
-  let REV={}, cur=null;
-  shelf.querySelectorAll('.spine').forEach(sp=>{ sp.addEventListener('mouseenter',()=>show(sp)); sp.addEventListener('focus',()=>show(sp)); sp.addEventListener('click',()=>show(sp)); });
-  show(shelf.querySelector('.spine'));
-  fetch('/reviews.json').then(r=>r.ok?r.json():[]).then(list=>{ if(!list.length) return;
-    list.forEach(r=>{ REV[r.book]=r; }); if(cur) show(cur);
-    const stars=n=>n?`<span class="stars" aria-label="${n} out of 5">${'★'.repeat(n)}${'☆'.repeat(5-n)}</span>`:'';
-    document.getElementById('reviewGrid').innerHTML=list.map(r=>`<a class="review-card" href="/reading/${r.slug}/">${r.cover?`<img src="${esc(r.cover)}" alt="" loading="lazy">`:''}<span class="label">${esc(r.book)}</span><h3 class="strong-s">${esc(r.title)}</h3><p class="small muted">${esc(r.nice)} ${stars(r.rating)}</p>${r.excerpt?`<p class="small">${esc(r.excerpt)}</p>`:''}</a>`).join('');
+  const stars=n=>n?`<span class="stars" aria-label="${n} out of 5">${'★'.repeat(n)}${'☆'.repeat(5-n)}</span>`:'';
+  const SHELF=READ.map(([series,author,books])=>({series,author,books:books.map(t=>({title:t,when:WHEN[t]||''}))}));
+  const total=SHELF.reduce((n,x)=>n+x.books.length,0);
+  document.getElementById('libLead').textContent=`My reading log so far: ${total} books from ${SHELF.length} series and standalones, newest first. Choose a spine to explore a series. A gold ribbon means I’ve written a review.`;
+  let REVS=[], sel=-1;
+  const revsOf=x=>REVS.filter(r=>x.books.some(b=>b.title===r.book));
+
+  /* the spines are drawn exactly as on the desk: every series gets its own cloth, leather or paper, foil and ornament */
+  const hash=t=>{ let h=2166136261; for(const c of t){ h^=c.charCodeAt(0); h=Math.imul(h,16777619); } return h>>>0; };
+  const rng=seed=>()=>{ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; };
+  const pick=(r,a)=>a[Math.floor(r()*a.length)];
+  const BASES=[['#1d2547','cloth'],['#14182e','leather'],['#5a1a22','leather'],['#2c4a3a','cloth'],['#3a2440','cloth'],['#1f3b4d','cloth'],
+    ['#111214','paper'],['#7e2a2a','paper'],['#efe6d4','aged'],['#e8dcc6','aged'],['#2f2a26','leather'],['#5b3a29','leather'],
+    ['#80615f','cloth'],['#20334a','paper'],['#6b5a2a','cloth'],['#c9a19a','paper'],['#41506b','paper'],['#3b2a1f','leather']];
+  const FOILS={gold:['#7a5a22','#e9cf8a','#a9843c','#fff1c4','#8a6628'],silver:['#6d7279','#e7eaee','#9aa1a8','#ffffff','#7c838a'],copper:['#6e3a22','#e6a47a','#9c5634','#ffd7bb','#7a4026']};
+  const MOTIFS=['bands','moon','deco','vine','orbit','stars','block','frame'];
+  const FONTS=[['600','Cormorant Garamond',false],['700','Cinzel',true],['500','Jost',true],['600','Playfair Display',false],['italic 500','Cormorant Garamond',false]];
+  const phone=()=>matchMedia('(max-width:760px)').matches;
+  const spineSize=x=>{ const ph=phone()?.78:1, r=rng(hash(x.series+'size')), n=x.books.length;
+    return {w:Math.round(Math.min(78,30+n*6.5+r()*8)*ph), h:Math.round((236+r()*52)*ph)}; };
+  function drawSpine(cv,sr,w,h){
+    const D=2, r=rng(hash(sr.series)), W=w*D, H=h*D; cv.width=W; cv.height=H;
+    const x=cv.getContext('2d'); x.scale(D,D);
+    const [base,kind]=BASES[hash(sr.series)%BASES.length];
+    const lt=kind==='aged'||base==='#c9a19a';
+    const F=FOILS[lt?pick(r,['gold','copper']):kind==='leather'?pick(r,['gold','gold','silver']):pick(r,['gold','gold','gold','silver','copper'])];
+    const motif=kind==='leather'&&r()<.6?'bands':pick(r,MOTIFS);
+    const [fw,fam,caps]=pick(r,FONTS);
+    const ink=lt?'#2c2522':null;
+    x.fillStyle=base; x.fillRect(0,0,w,h);
+    const img=x.getImageData(0,0,W,H), d=img.data;
+    const lo=document.createElement('canvas'); lo.width=Math.max(2,W/5|0); lo.height=Math.max(2,H/5|0);
+    const lx=lo.getContext('2d'), ld=lx.createImageData(lo.width,lo.height);
+    for(let i=0;i<ld.data.length;i+=4){ const v=r()*255; ld.data[i]=ld.data[i+1]=ld.data[i+2]=v; ld.data[i+3]=255; }
+    lx.putImageData(ld,0,0); const big=document.createElement('canvas'); big.width=W; big.height=H;
+    const bx=big.getContext('2d'); bx.imageSmoothingEnabled=true; bx.drawImage(lo,0,0,W,H); const low=bx.getImageData(0,0,W,H).data;
+    for(let y=0;y<H;y++) for(let X=0;X<W;X++){
+      const i=(y*W+X)*4; let v=(r()-.5)*14;
+      if(kind==='cloth') v+=(((X>>1)+(y>>1))&1?7:-7)+(r()-.5)*8;
+      else if(kind==='leather') v+=(low[i]-128)*.1+(r()<.03?-18:0)+(r()-.5)*10;
+      else if(kind==='aged'){ v+=(low[i]-128)*.06; const e=Math.min(X,W-X,y,H-y)/(W*.5); v-=Math.max(0,1-e)*26; }
+      else v*=.5;
+      d[i]+=v; d[i+1]+=v; d[i+2]+=v*(kind==='aged'?.7:1);
+    }
+    x.putImageData(img,0,0); x.setTransform(D,0,0,D,0,0);
+    if(kind==='aged') for(let k=0;k<10;k++){ x.fillStyle=`rgba(140,100,50,${.05+r()*.08})`; x.beginPath(); x.arc(r()*w,r()*h,.6+r()*2.2,0,7); x.fill(); }
+    const foil=document.createElement('canvas'); foil.width=W; foil.height=H; const f=foil.getContext('2d'); f.scale(D,D);
+    const paint=()=>{ if(ink) return ink; const g=f.createLinearGradient(0,0,w,h*.35); F.forEach((c,i)=>g.addColorStop(i/(F.length-1),c)); return g; };
+    f.fillStyle=f.strokeStyle=paint(); f.lineWidth=1;
+    const cx=w/2;
+    const star=(X,Y,R)=>{ f.beginPath(); for(let i=0;i<8;i++){ const a=i*Math.PI/4, q=i%2?R*.32:R; f.lineTo(X+Math.cos(a)*q,Y+Math.sin(a)*q); } f.closePath(); f.fill(); };
+    if(motif==='bands'){ for(const t of [.08,.2,.8,.92]){ f.fillRect(4,h*t-1.5,w-8,1); f.fillRect(4,h*t+2,w-8,.6);
+        x.fillStyle='rgba(0,0,0,.28)'; x.fillRect(0,h*t+3.4,w,1.6); x.fillStyle='rgba(255,255,255,.10)'; x.fillRect(0,h*t-2.6,w,1.2); } }
+    if(motif==='moon'){ const Y=h*.74, R=Math.min(w*.26,11); f.beginPath(); f.arc(cx,Y,R,0,7); f.fill(); f.globalCompositeOperation='destination-out'; f.beginPath(); f.arc(cx+R*.45,Y-R*.2,R*.86,0,7); f.fill(); f.globalCompositeOperation='source-over';
+      for(let k=0;k<5;k++) star(6+r()*(w-12),h*(.08+r()*.12),1.2+r()*1.6); }
+    if(motif==='stars') for(let k=0;k<12;k++) star(5+r()*(w-10),h*(.06+r()*.9)*(k%2?.25:1)+(k%2?h*.7:0),.8+r()*1.5);
+    if(motif==='deco'){ f.strokeRect(4.5,4.5,w-9,h-9); f.strokeRect(7,7,w-14,h-14); for(const t of [.12,.86]){ f.beginPath(); f.moveTo(7,h*t); f.lineTo(cx,h*t-6); f.lineTo(w-7,h*t); f.stroke(); } }
+    if(motif==='frame'){ f.lineWidth=1.4; f.strokeRect(3.5,3.5,w-7,h-7); f.lineWidth=.7; f.strokeRect(6,6,w-12,h-12); star(cx,h*.9,3); }
+    if(motif==='vine'){ f.lineWidth=.9; f.beginPath(); for(let y=6;y<h-6;y+=2) f.lineTo(cx+Math.sin(y/14)*(w*.3),y); f.stroke();
+      for(let y=16;y<h-10;y+=22){ const X=cx+Math.sin(y/14)*(w*.3), s2=y%44?1:-1; f.beginPath(); f.ellipse(X+s2*4,y,4,1.8,s2*.6,0,7); f.fill(); }
+      x.fillStyle=lt?'rgba(239,230,212,.85)':base; }
+    if(motif==='orbit'){ const Y=h*.8; f.lineWidth=.7; for(const q of [.3,.42]){ f.beginPath(); f.ellipse(cx,Y,w*q,w*q*.38,-.3,0,7); f.stroke(); } f.beginPath(); f.arc(cx,Y,w*.12,0,7); f.fill(); star(cx+w*.28,Y-8,2); }
+    if(motif==='block'){ const g=x.createLinearGradient(0,h*.7,0,h); g.addColorStop(0,'rgba(0,0,0,0)'); g.addColorStop(1,pick(r,['rgba(176,144,79,.55)','rgba(128,97,95,.6)','rgba(28,33,64,.7)'])); x.fillStyle=g; x.fillRect(0,h*.62,w,h*.38); }
+    const T=caps?sr.series.toUpperCase():sr.series, words=T.split(/\s+/), auth=sr.author||'';
+    const font=px=>`${fw} ${px}px "${fam}", Georgia, serif`;
+    const zone=motif==='bands'?[h*.22,h*.78]:motif==='moon'||motif==='orbit'?[h*.1,h*.64]:[h*.08,h*.8];
+    const zoneH=zone[1]-zone[0];
+    const stackFit=()=>{ if(w<54||words.length>5) return 0; f.font=font(10); const long=Math.max(...words.map(t=>f.measureText(t).width));
+      const px=Math.min(15,10*(w-14)/long); return px>=9.5&&words.length*px*1.08<zoneH?px:0; };
+    const px=stackFit();
+    if(motif==='bands'&&!ink){ x.fillStyle='rgba(0,0,0,.25)'; x.fillRect(5,zone[0],w-10,zoneH); }
+    if(px){ f.font=font(px); f.textAlign='center'; f.textBaseline='middle'; const y0=zone[0]+zoneH/2-(words.length-1)*px*.54;
+      words.forEach((t,i)=>f.fillText(t,cx,y0+i*px*1.08)); }
+    else { f.save(); f.translate(cx,zone[0]); f.rotate(Math.PI/2); f.textBaseline='middle'; f.textAlign='left';
+      let p2=Math.min(w*.44,22); f.font=font(p2); const tw=f.measureText(T).width; if(tw>zoneH*.94){ p2*=zoneH*.94/tw; f.font=font(p2); }
+      f.fillText(T,(zoneH-f.measureText(T).width)/2,0); f.restore(); }
+    if(auth){ const last=auth.split(' ').pop().toUpperCase(); f.font=`500 ${Math.min(8.5,w*.17)}px Jost, sans-serif`; f.textAlign='center'; f.textBaseline='middle';
+      if(f.measureText(last).width<w-8){ f.letterSpacing='1px'; f.fillText(last,cx,h*(motif==='bands'?.86:.955)); } }
+    if(!ink){ f.globalCompositeOperation='destination-out'; for(let k=0;k<w*h*.05;k++){ f.fillStyle=`rgba(0,0,0,${r()*.7})`; f.fillRect(r()*w,r()*h,.6,.6); } f.globalCompositeOperation='source-over'; }
+    x.setTransform(1,0,0,1,0,0); x.globalAlpha=.5; x.filter='blur(.6px)'; x.globalCompositeOperation='multiply'; x.drawImage(foil,0,1.2); x.filter='none';
+    x.globalAlpha=1; x.globalCompositeOperation='source-over'; x.drawImage(foil,0,0); x.setTransform(D,0,0,D,0,0);
+    const g=x.createLinearGradient(0,0,w,0);
+    [[0,'rgba(0,0,0,.55)'],[.07,'rgba(0,0,0,.12)'],[.28,'rgba(255,255,255,.16)'],[.42,'rgba(255,255,255,.04)'],[.75,'rgba(0,0,0,.10)'],[1,'rgba(0,0,0,.6)']].forEach(([o,c])=>g.addColorStop(o,c));
+    x.fillStyle=g; x.fillRect(0,0,w,h);
+    const v=x.createLinearGradient(0,0,0,h); v.addColorStop(0,'rgba(0,0,0,.22)'); v.addColorStop(.04,'rgba(0,0,0,0)'); v.addColorStop(.97,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,.3)');
+    x.fillStyle=v; x.fillRect(0,0,w,h);
+  }
+
+  shelf.innerHTML=SHELF.map((x,i)=>{ const {w,h}=spineSize(x), n=x.books.length;
+    return `<button type="button" class="spn" data-i="${i}" aria-pressed="false" style="--w:${w}px;--h:${h}px" tabindex="${i?-1:0}" aria-label="${esc(x.series)} by ${esc(x.author)}, ${n} book${n>1?'s':''}"><canvas width="${w}" height="${h}" aria-hidden="true"></canvas></button>`; }).join('');
+  const items=[...shelf.querySelectorAll('.spn')];
+  { let k=0; const fonts=['600 12px "Cormorant Garamond"','italic 500 12px "Cormorant Garamond"','700 12px Cinzel','500 12px Jost','600 12px "Playfair Display"'];
+    const step=()=>{ const t=performance.now(); while(k<items.length&&performance.now()-t<12){ const b=items[k], x=SHELF[+b.dataset.i], {w,h}=spineSize(x); drawSpine(b.querySelector('canvas'),x,w,h); k++; } if(k<items.length) requestAnimationFrame(step); };
+    Promise.race([Promise.all(fonts.map(f=>document.fonts.load(f))),new Promise(r=>setTimeout(r,1500))]).catch(()=>{}).then(step); }
+
+  /* the fan: spines near the pointer lift and lean apart, like fingers walking along the shelf */
+  const FX={curve:130,gap:14,tilt:7,lift:18};
+  let px=null, raf=0, idle=0; const cur=items.map(()=>({x:0,y:0,r:0}));
+  const frame=()=>{ raf=0; let moving=false; const rr=shelf.getBoundingClientRect();
+    items.forEach((b,i)=>{ const c=cur[i], mid=b.offsetLeft-shelf.scrollLeft+b.offsetWidth/2+rr.left;
+      let tx=0, ty=i===sel?-30:0, tr=0;
+      if(px!==null){ const dx=mid-px, u=dx/FX.curve, fall=Math.exp(-u*u); tx=FX.gap*Math.tanh(dx/(FX.curve*.55)); ty=Math.min(ty,-FX.lift*fall); tr=FX.tilt*2.33*u*fall; }
+      const k=reduce?1:.2; c.x+=(tx-c.x)*k; c.y+=(ty-c.y)*k; c.r+=(tr-c.r)*k;
+      if(Math.abs(tx-c.x)+Math.abs(ty-c.y)+Math.abs(tr-c.r)>.05) moving=true;
+      b.style.transform=`translate(${c.x.toFixed(2)}px,${c.y.toFixed(2)}px) rotate(${c.r.toFixed(2)}deg)`; });
+    if(moving) raf=requestAnimationFrame(frame); };
+  const kick=()=>{ if(!raf) raf=requestAnimationFrame(frame); };
+  if(!reduce){
+    shelf.addEventListener('pointermove',e=>{ if(e.pointerType==='mouse'||e.pointerType==='pen'){ px=e.clientX; kick(); } });
+    shelf.addEventListener('pointerleave',e=>{ if(e.pointerType!=='touch'){ px=null; kick(); } });
+    shelf.addEventListener('scroll',()=>{ if(matchMedia('(hover: none)').matches){ const rr=shelf.getBoundingClientRect(); px=rr.left+rr.width/2; clearTimeout(idle); idle=setTimeout(()=>{ px=null; kick(); },500); } kick(); },{passive:true});
+    shelf.addEventListener('focusin',e=>{ const b=e.target.closest('.spn'); if(!b) return; const rr=b.getBoundingClientRect(); px=rr.left+rr.width/2; kick(); });
+    shelf.addEventListener('focusout',()=>{ px=null; kick(); });
+  }
+  shelf.addEventListener('wheel',e=>{ if(Math.abs(e.deltaX)>Math.abs(e.deltaY)) return; const max=shelf.scrollWidth-shelf.clientWidth;
+    if((e.deltaY>0&&shelf.scrollLeft<max-1)||(e.deltaY<0&&shelf.scrollLeft>0)){ e.preventDefault(); shelf.scrollLeft+=e.deltaY; } },{passive:false});
+  shelf.addEventListener('keydown',e=>{ const b=e.target.closest('.spn'); if(!b) return; const i=items.indexOf(b);
+    const j=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:e.key==='Home'?0:e.key==='End'?items.length-1:-1;
+    if(j<0||j>=items.length||j===i) return; e.preventDefault(); b.tabIndex=-1; items[j].tabIndex=0; items[j].focus(); items[j].scrollIntoView({block:'nearest',inline:'nearest'}); });
+
+  /* the open book: the series on one page, my reviews on the other */
+  const book=document.getElementById('rbook');
+  function drawBook(animate){
+    const x=SHELF[sel]; if(!x) return;
+    const revs=revsOf(x), dated=x.books.filter(b=>b.when).map(b=>b.when).sort();
+    const toc=`<div class="rpage toc"><span class="label">Pulled off the shelf</span><h2>${esc(x.series)}</h2>
+      <p class="muted">${esc(x.author)} · ${x.books.length} book${x.books.length>1?'s':''}${dated.length?` · ${span(x.books.map(b=>b.title))}`:''}</p>
+      <ol>${x.books.map(b=>{ const r=revs.find(v=>v.book===b.title);
+        return `<li><span>${esc(b.title)}${b.when?` <span class="when">${mon(b.when)}</span>`:''}</span>${r?`<a href="/reading/${r.slug}/" class="rlink">My review</a>`:`<span class="soon">Read</span>`}</li>`; }).join('')}</ol>
+      <p class="small">Dates are roughly when I started each one, from my Audible history.</p></div>`;
+    const art=`<div class="rpage">${revs.length?`<span class="label">My review${revs.length>1?'s':''}</span>`+revs.map(r=>`<article class="rv">${r.cover?`<img src="${esc(r.cover)}" alt="" loading="lazy">`:''}
+        <p class="rbk"><strong>${esc(r.book)}</strong></p>
+        <h3><a href="/reading/${r.slug}/">${esc(r.title)}</a></h3>
+        <p class="meta">${stars(r.rating)}<span>${esc(r.nice||'')}</span></p>
+        ${r.excerpt?`<p class="pex">${esc(r.excerpt)}</p>`:''}
+        <p><a class="golink" href="/reading/${r.slug}/">Read my full review</a></p></article>`).join('<hr>')
+      :`<div class="empty"><span class="label">From my reading log</span><p class="t">Read, not reviewed yet.</p><p class="small">When I write about this one, it will appear here.</p></div>`}</div>`;
+    book.hidden=false; book.innerHTML=`<div class="spread">${toc+art}</div>`;
+    if(animate&&!reduce){ book.classList.remove('swing'); void book.offsetWidth; book.classList.add('swing'); }
+  }
+  const choose=(i,scrollBook)=>{ sel=i; items.forEach((b,k)=>{ b.setAttribute('aria-pressed',k===i); b.tabIndex=k===i?0:-1; }); kick(); drawBook(scrollBook);
+    if(scrollBook) book.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'}); };
+  shelf.addEventListener('click',e=>{ const b=e.target.closest('.spn'); if(b) choose(+b.dataset.i,true); });
+
+  /* search and list view */
+  const q=document.getElementById('shq'), lb=document.getElementById('shList'), sl=document.getElementById('slist'); let listOn=false;
+  const drawList=()=>{ const t=q.value.trim().toLowerCase(), show=listOn||!!t; sl.hidden=!show;
+    const all=SHELF.map((x,i)=>({x,i,m:!t||[x.series,x.author,...x.books.map(b=>b.title)].some(v=>v.toLowerCase().includes(t))})), hits=all.filter(v=>v.m);
+    all.forEach(({i,m})=>{ items[i].classList.toggle('hit',!!t&&m); items[i].classList.toggle('miss',!!t&&!m); });
+    if(t&&hits.length){ const b=items[hits[0].i]; shelf.scrollTo({left:b.offsetLeft-shelf.clientWidth/2+b.offsetWidth/2,behavior:reduce?'auto':'smooth'}); }
+    if(!show) return;
+    sl.innerHTML=hits.length?`<p class="small" role="status">${hits.length} of ${SHELF.length} on my shelf</p><ul>${hits.map(({x,i})=>{
+        const bk=t?x.books.filter(b=>b.title.toLowerCase().includes(t)):[];
+        return `<li><button type="button" data-i="${i}"><span class="sn">${esc(x.series)}</span><span class="sa">${esc(x.author)} · ${x.books.length} book${x.books.length>1?'s':''}${revsOf(x).length?' · <b>Reviewed</b>':''}</span>${bk.length&&!(bk.length===1&&bk[0].title===x.series)?`<span class="sb">${bk.map(b=>esc(b.title)).join(', ')}</span>`:''}</button></li>`; }).join('')}</ul>`
+      :`<p class="small" role="status">Nothing on my shelf matches “${esc(q.value.trim())}”.</p>`; };
+  q.addEventListener('input',drawList);
+  lb.addEventListener('click',()=>{ listOn=!listOn; lb.setAttribute('aria-pressed',listOn); lb.textContent=listOn?'Hide the list':'List view'; drawList(); });
+  sl.addEventListener('click',e=>{ const b=e.target.closest('button[data-i]'); if(!b) return; const i=+b.dataset.i;
+    const sp=items[i]; shelf.scrollTo({left:sp.offsetLeft-shelf.clientWidth/2+sp.offsetWidth/2,behavior:reduce?'auto':'smooth'}); choose(i,true); });
+
+  /* reviews from Pages CMS: gold ribbons on the shelf, and the first reviewed series open to start with */
+  fetch('/reviews.json').then(r=>r.ok?r.json():[]).then(list=>{ if(!list.length) return; REVS=list;
+    SHELF.forEach((x,i)=>{ if(revsOf(x).length){ items[i].classList.add('rev'); items[i].setAttribute('aria-label',items[i].getAttribute('aria-label')+', reviewed'); } });
+    if(sel<0){ const first=SHELF.findIndex(x=>revsOf(x).length); if(first>=0) choose(first,false); } else drawBook(false);
+    if(!document.querySelector('#reviewGrid .review-card')){
+      document.getElementById('reviewGrid').innerHTML=list.map(r=>`<a class="review-card" href="/reading/${r.slug}/">${r.cover?`<img src="${esc(r.cover)}" alt="" loading="lazy">`:''}<span class="label">${esc(r.book)}</span><h3 class="strong-s">${esc(r.title)}</h3><p class="small muted">${esc(r.nice)} ${stars(r.rating)}</p>${r.excerpt?`<p class="small">${esc(r.excerpt)}</p>`:''}</a>`).join('');
+    }
     document.getElementById('reviewsWrap').hidden=false;
   }).catch(()=>{});
   const mini=document.getElementById('miniShelf');
