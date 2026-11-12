@@ -151,16 +151,22 @@ const I={
   sticker:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h14v9l-6 7H5z"/><path d="M13 20v-5a2 2 0 0 1 2-2h4"/></svg>',
   cup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M9 3c-1 1.5 1 2.5 0 4M12 3c-1 1.5 1 2.5 0 4"/></svg>',
   heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>',
+  pen:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 4l5 5L9 20H4v-5z"/><path d="M13 6l5 5"/></svg>',
+  pencil:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16"/><path d="M8 15c2-4 3 1 5-3s2 2 3 0"/></svg>',
+  moon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 15A8 8 0 0 1 9 5a8 8 0 1 0 10 10z"/></svg>',
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg>',
   mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13"/><path d="m3 7 9 7 9-7"/></svg>'
 };
 const links=[
-  {t:'Shop Mazo Moon on Amazon',s:'Journals, stickers, pens and calm bits',h:'https://www.amazon.co.uk/stores/MazoMoon/page/298754B3-2DA8-49CE-B163-4EA6E7FEA0E0?'+MAAS,i:'bag',tab:'var(--blush)',hero:1},
-  {t:'The Year of Being…',s:'Keepsake journals for ages 7 to 12',h:'/journals/',i:'star',tab:'var(--honey)',nw:1},
-  {t:'Journals & colouring',s:'Pages to plan, fill and wander through',h:'/journals/',i:'book',tab:'var(--sage)'},
-  {t:'Sticker packs',s:'Little reminders for everyday spaces',h:'/shop/',i:'sticker',tab:'var(--blue)'},
-  {t:'The Reading Corner',s:'Honest reviews, plenty of tea',h:'/reading/',i:'cup',tab:'var(--plum)'},
-  {t:'Little things I love',s:'Small comforts worth sharing',h:'/little-things/',i:'heart',tab:'var(--blush)'},
-  {t:'Say hello',s:'Questions, ideas or just a natter',h:'/our-story/#contact',i:'mail',tab:'var(--sage)'}
+  {t:'Stickers',s:'Little reminders for everyday spaces',h:'https://www.amazon.co.uk/stores/page/73DFC740-CE20-4697-BA96-53EC28130B3A?'+MAAS,i:'sticker',tab:'var(--blue)'},
+  {t:'Kids journals',s:'Keepsake journals to fill and treasure',h:'https://www.amazon.co.uk/stores/page/C9FD7E12-0264-4604-9F63-3E4BF264284F?'+MAAS,i:'star',tab:'var(--honey)'},
+  {t:'Kids activity & drawing books',s:'Comics, stories and pages to doodle on',h:'https://www.amazon.co.uk/stores/page/05BEAA98-D95E-40D3-AAF7-9F004EDF1FA0?'+MAAS,i:'pencil',tab:'var(--sage)'},
+  {t:'Adult colouring books',s:'Slow pages to colour and wander through',h:'https://www.amazon.co.uk/stores/page/574CB505-1263-46CF-9804-2291B501D6C0?'+MAAS,i:'book',tab:'var(--plum)'},
+  {t:'Pens',s:'Fine needle tip gel pens in lots of colours',h:'https://www.amazon.co.uk/stores/page/E17B6F9E-EF57-4D12-8484-7519364938E0?'+MAAS,i:'pen',tab:'var(--blush)'},
+  {t:'Earbuds & sleep masks',s:'Soft NoiseBuds and masks for calmer rest',h:'https://www.amazon.co.uk/stores/page/507344C8-7E00-4174-8806-5BC9013998A9?'+MAAS,i:'moon',tab:'var(--blue)'},
+  {t:'The Reading Corner',s:'My book blog. Honest reviews, plenty of tea',h:'/reading/',i:'cup',tab:'var(--honey)'},
+  {t:'Mazo Moon Amazon store',s:'Everything I make, all in one place',h:'https://www.amazon.co.uk/stores/page/298754B3-2DA8-49CE-B163-4EA6E7FEA0E0?'+MAAS,i:'bag',tab:'var(--blush)',hero:1},
+  {t:'mazomoon.com',s:'The main website',h:'/',i:'home',tab:'var(--sage)'}
 ];
 const ext=h=>/^https?:/.test(h);
 document.getElementById('links').innerHTML=links.map((l,k)=>`<li><a class="lk${l.hero?' hero':''}" href="${l.h}"${ext(l.h)?' target="_blank" rel="noopener"':''} style="--tab:${l.tab};--t:${(k%2?.6:-.6)}deg;--d:${(1.5+k*.08).toFixed(2)}s">
