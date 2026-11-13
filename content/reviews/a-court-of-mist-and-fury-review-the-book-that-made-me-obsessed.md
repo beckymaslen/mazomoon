@@ -72,7 +72,7 @@ publish:
   status: published
   date: 2026-11-06T18:23
   updated: 2026-11-06
-views: 6
+views: 9
 ---
 # A Court of Mist and Fury Review: The Book That Made Me Obsessed
 
