@@ -120,7 +120,7 @@ def main():
     desk = write_desk(b.reviews)
     # unknown addresses show the desk, marked so search engines don't index them
     open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(desk.replace('<!--meta-start-->', '<meta name="robots" content="noindex">\n<!--meta-start-->', 1))
-    for p in ('privacy', 'cookies', 'terms'):
+    for p in ('privacy', 'cookies', 'terms', 'comic'):  # comic/ is a hand-written landing page
         urls.append(f'{SITE}/{p}/')
     mod = {u: (lm, im) for u, (lm, im) in posts.items()}
     if b.reviews:
