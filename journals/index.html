@@ -766,14 +766,15 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
 <section class="page" data-page="reading" hidden>
   <div class="wrap page-hero rise">
     <span class="label">The Reading Corner</span>
-    <h1 class="d-xl">What I've been reading lately.</h1>
-    <p class="lead">My shelf so far: 144 books from 52 series and standalones, mostly romantasy and fantasy with plenty of fae, dragons and morally grey men. Honest reviews, clearly marked spoilers and plenty of tea.</p>
+    <h1 class="d-xl">Books I've read, loved and occasionally ranted about.</h1>
+    <p class="lead">I've read 140+ books across 52 series (and a couple of standalones) in the last 2-3 years. Mostly fantasy and romance, with a questionable number of fictional men I'm far too invested in.</p>
+    <p class="lead">This is where I am beginning to keep track of everything, including the books I couldn't put down, the ones that broke my heart and the ones I probably wouldn’t recommend. I’m going through each one to remember the read and write a blog on each. Spoilers are marked, because I'm not a monster.</p>
   </div>
   <div class="wrap sec-tight" style="padding-top:0">
     <div class="libroom">
       <span class="label">My bookshelf</span>
-      <h2 class="libt">One more chapter. Always.</h2>
-      <p class="libl" id="libLead">Every book I've read so far, newest first. Choose a spine to explore a series. A gold ribbon means I've written a review.</p>
+      <h2 class="libt">The evidence of my reading addiction 😅🙈</h2>
+      <p class="libl" id="libLead">All 140+ books, organised by series, with my most recent reads first. Tap a spine to see what's in the series. If there's a gold ribbon, I've written a review.</p>
       <div class="shtools"><label class="sr-only" for="shq">Search my shelf</label><input type="search" id="shq" placeholder="Search by book, series or author" autocomplete="off" aria-describedby="shqHelp">
         <button type="button" class="lbtn" id="shList" aria-pressed="false" aria-controls="slist">List view</button></div>
       <p class="small lhelp" id="shqHelp">Searching lists the matching books below and highlights their spines on the shelf.</p>
@@ -1284,8 +1285,6 @@ document.querySelectorAll('.band').forEach(b=>b.addEventListener('click',()=>b.c
   const span=b=>{ const d=b.map(t=>WHEN[t]).filter(Boolean).sort(); if(!d.length) return ''; const x=mon(d[0]), y=mon(d[d.length-1]); return x===y?x:`${x} to ${y}`; };
   const stars=n=>n?`<span class="stars" aria-label="${n} out of 5">${'★'.repeat(n)}${'☆'.repeat(5-n)}</span>`:'';
   const SHELF=READ.map(([series,author,books])=>({series,author,books:books.map(t=>({title:t,when:WHEN[t]||''}))}));
-  const total=SHELF.reduce((n,x)=>n+x.books.length,0);
-  document.getElementById('libLead').textContent=`My reading log so far: ${total} books from ${SHELF.length} series and standalones, newest first. Choose a spine to explore a series. A gold ribbon means I’ve written a review.`;
   let REVS=[], sel=-1;
   const revsOf=x=>REVS.filter(r=>x.books.some(b=>b.title===r.book));
 
