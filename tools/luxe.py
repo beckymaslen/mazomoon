@@ -335,7 +335,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
 
 <footer>
   <span class="wordmark" role="img" aria-label="Mazo Moon"></span>
-  <nav aria-label="Site"><a href="/">Home</a><a href="/journals/">Journals</a><a href="/colouring-books/">Colouring books</a><a href="/create-your-own/">Create your own</a><a href="/shop/">Shop</a><a href="/products/">All products</a><a href="/our-story/">Our Story &amp; Contact</a><a href="{e(maas_store)}" target="_blank" rel="noopener" data-where="footer">Amazon store</a></nav>
+  <nav aria-label="Site"><a href="/">Home</a><a href="/journals/">Journals</a><a href="/colouring/">Colouring books</a><a href="/create/">Create your own</a><a href="/shop/">Shop</a><a href="/products/">All products</a><a href="/our-story/">Our Story &amp; Contact</a><a href="{e(maas_store)}" target="_blank" rel="noopener" data-where="footer">Amazon store</a></nav>
   <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/cookies/" data-cookie-settings>Cookie settings</a><a href="/terms/">Terms</a></nav>
   <p>© 2026 Mazo Moon Ltd. Registered in England, company no. 16988519. Made in Yorkshire.</p>
 </footer>
