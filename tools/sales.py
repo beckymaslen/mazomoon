@@ -172,6 +172,7 @@ def head(title, desc, url, img, ld, kind='product'):
 
 
 CSS_V = '1'
+LUXE_V = '1'
 
 NOTIFY = '''<form class="notify" id="notify" method="POST" action="https://mazomoon.us2.list-manage.com/subscribe/post?u=84d0e303fbeb76a0c2b77b779&amp;id=0c0ea5d4d1&amp;f_id=00b2a0e0f0" target="_blank">
           <p class="strong-s">Coming soon to Amazon. I’ll email you the day it’s out.</p>
@@ -221,6 +222,9 @@ def page(p, by_slug):
         {'@type': 'ListItem', 'position': 3, 'name': p['name'], 'item': url}]}
     faq = {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
         {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in p['faq']]}
+    if p.get('luxe'):  # the /comic/ design, see tools/luxe.py
+        import luxe
+        return luxe.page(p, by_slug, url, [thing, crumbs, faq], amz, price, STORE, LUXE_V)
 
     # 01 opening
     thumbs = ''
@@ -408,9 +412,10 @@ REQUIRED = ['name', 'kind', 'group', 'label', 'title', 'description', 'h1', 'lea
 
 def write():
     """Write every product page and the list. Returns the page addresses with their pictures, for the sitemap."""
-    global CSS_V
+    global CSS_V, LUXE_V
     import hashlib
     CSS_V = hashlib.md5(open(os.path.join(ROOT, 'products', 'sales.css'), 'rb').read()).hexdigest()[:10]
+    LUXE_V = hashlib.md5(open(os.path.join(ROOT, 'products', 'luxe.css'), 'rb').read()).hexdigest()[:10]
     items = load()
     by = {p['slug']: p for p in items}
     out = {}
