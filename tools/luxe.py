@@ -152,7 +152,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     mates = [by_slug[s] for s in p.get('related', []) if s in by_slug and by_slug[s].get('asin') and by_slug[s].get('price') and not by_slug[s].get('soon') and not by_slug[s].get('hub')][:2]
     if len(mates) == 2:
         items = [p] + mates
-        cart = 'https://www.amazon.co.uk/gp/aws/cart/add.html?' + '&amp;'.join(f'ASIN.{i + 1}={x["asin"]}&amp;Quantity.{i + 1}=1' for i, x in enumerate(items))
+        cart = e(maas_store)  # Amazon's multi-item basket link breaks in the app, so the button opens the storefront
         total = price(sum(x['price'] for x in items))
         tiles = []
         for x in items:
@@ -165,7 +165,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     <div class="kit">
       <div><p class="label">Complete the set</p><h2 class="serif" id="kitH">{e(L.get("kit", "Make it a set"))}</h2></div>
       <div class="kit-items">{'<span class="plus" aria-hidden="true">+</span>'.join(tiles)}</div>
-      <a class="cta" href="{cart}" target="_blank" rel="noopener" data-where="{e(where)}: kit all">Add all three to Amazon basket<span>{total}</span></a>
+      <a class="cta" href="{cart}" target="_blank" rel="noopener" data-where="{e(where)}: kit store">Find all three in my Amazon shop<span>{total}</span></a>
     </div>'''
 
     inside = ''.join(f'<li>{e(x)}</li>' for x in p['inside']['items'])
