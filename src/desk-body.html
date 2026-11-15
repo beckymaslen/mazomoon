@@ -304,6 +304,19 @@ dialog.menu[open]{animation:menuIn .4s cubic-bezier(.2,.85,.25,1)}
 .mgrp h3{margin:0 0 2px;font-size:11.5px}
 .mgrp + .mgrp{margin-top:4px}
 .menu .mgrp li button,.menu .mgrp li a{color:inherit;font-size:20px;padding:10px 0}
+.menu .mshop li a{font-size:25px;padding:12px 0}
+.menu .mgrp li a::after{content:"→";font:400 15px/1 var(--sans);color:var(--ink-soft);align-self:center;opacity:.55;transition:transform .2s,opacity .2s}
+.menu .mgrp li a:hover::after,.menu .mgrp li a:focus-visible::after{opacity:1;transform:translateX(3px)}
+.menu .mplay ul{display:flex;flex-wrap:wrap;gap:8px;padding-top:6px}
+.menu .mplay li button{width:auto;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font:500 15px/1.2 var(--sans)}
+.menu .mplay li button:hover{background:rgba(0,0,0,.04)}
+.menu .mabout li a{font-size:18px;padding:9px 0}
+.mctl{display:flex;justify-content:space-between;align-items:center;padding:14px 0 2px;border-top:1px solid var(--line);margin-top:6px}
+.mctl .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.mctl .seg button{border:0;background:none;border-radius:999px;padding:6px 14px;font:500 13px/1 var(--sans);color:var(--ink-soft);cursor:pointer}
+.mctl .seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);cursor:default}
+.menu .mabout li:last-child a{border-bottom:0}
+@media (max-width:600px){dialog.menu{width:100vw;max-width:100vw}}
 .msec{display:grid;justify-items:start;gap:8px;padding-top:6px}
 .msec .quiet{font-size:14px}
 .menu li small{font:400 13px/1.2 var(--sans);color:var(--ink-soft);align-self:center}

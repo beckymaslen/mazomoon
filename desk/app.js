@@ -1079,20 +1079,22 @@ setSeason(season);
 
 /* ---------- menu ---------- */
 function openMenu(){
-  // items: a website address (/...), a desk object to open, or an action (a:...)
+  // shopping first, reading second, the desk's little activities third; settings sit apart from the links
   const night = root.classList.contains('night');
-  const G = [
-    ['Shop Mazo Moon', [['/shop/','Shop All'], ['/create/','Create Your Own'], ['/colouring/','Colouring Books'], ['/journals/','Journals']]],
-    ['Read & Discover', [['/reading/','The Reading Corner'], ['mug','What’s on Becky’s Desk']]],
-    ['Take a Little Break', [['notebook','Doodle'], ['stickers','Stickers'], ['puzzle','Moon & Stars']]],
-    ['About Mazo Moon', [['/our-story/','Our Story'], ['/our-story/#contact','Contact'], ['a:lamp','Appearance', night ? 'Night · switch to day' : 'Day · switch to night']]]
-  ];
-  const item = ([k, t, sub]) => k.startsWith('/') ? `<li><a href="${k}">${esc(t)}</a></li>`
-    : k.startsWith('a:') ? `<li><button type="button" data-a="${k.slice(2)}">${esc(t)}${sub ? `<small>${esc(sub)}</small>` : ''}</button></li>`
-    : `<li><button type="button" data-k="${k}">${esc(t)}</button></li>`;
+  const link = ([href, t]) => `<li><a href="${href}">${esc(t)}</a></li>`;
+  const play = ([k, t]) => `<li><button type="button" data-k="${k}">${esc(t)}</button></li>`;
   $('#menuBody').innerHTML = `
     <div class="row" style="justify-content:space-between"><span class="eyebrow">Menu</span><button class="back" type="button" data-close>Close</button></div>
-    ${G.map(([g, list]) => `<section class="mgrp" aria-label="${esc(g)}"><h3 class="eyebrow">${esc(g)}</h3><ul>${list.map(item).join('')}</ul></section>`).join('')}
+    <nav class="mgrp mshop" aria-label="Shop Mazo Moon"><h3 class="eyebrow">Shop Mazo Moon</h3><ul>
+      ${[['/shop/','Shop All'], ['/create/','Create Your Own'], ['/colouring/','Colouring Books'], ['/journals/','Journals']].map(link).join('')}</ul></nav>
+    <nav class="mgrp mread" aria-label="Read and discover"><h3 class="eyebrow">Read &amp; Discover</h3><ul>
+      ${link(['/reading/','The Reading Corner'])}${play(['mug','What’s on Becky’s Desk'])}</ul></nav>
+    <section class="mgrp mplay" aria-label="Take a little break"><h3 class="eyebrow">Take a Little Break</h3><ul>
+      ${[['notebook','Doodle'], ['stickers','Stickers'], ['puzzle','Moon & Stars']].map(play).join('')}</ul></section>
+    <nav class="mgrp mabout" aria-label="About Mazo Moon"><h3 class="eyebrow">About Mazo Moon</h3><ul>
+      ${[['/our-story/','Our Story'], ['/our-story/#contact','Contact']].map(link).join('')}</ul></nav>
+    <div class="mctl" role="group" aria-label="Appearance"><span class="eyebrow">Appearance</span>
+      <span class="seg"><button type="button" ${night ? 'data-a="lamp"' : ''} aria-pressed="${!night}">Day</button><button type="button" ${night ? '' : 'data-a="lamp"'} aria-pressed="${night}">Night</button></span></div>
     <p class="small muted mlegal"><a href="/privacy/">Privacy</a> · <a href="/cookies/">Cookies</a> · <a href="/cookies/" data-cookie-settings>Cookie settings</a> · <a href="/terms/">Terms</a></p>
     <p class="small muted">© Mazo Moon Ltd, company no. 16988519</p>`;
   menu.showModal();
