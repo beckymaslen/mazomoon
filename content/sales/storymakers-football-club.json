@@ -1,0 +1,185 @@
+{
+ "slug": "storymakers-football-club",
+ "name": "The Storymaker’s Football Club Book",
+ "price": 7.99,
+ "soon": true,
+ "kind": "book",
+ "group": "create",
+ "pages_count": 112,
+ "label": "Design-your-own football club book for kids",
+ "title": "The Storymaker’s Football Club Book: design your own football clubs, A4 | Mazo Moon",
+ "description": "An A4 activity book for children who love football: build six clubs from name and badge to kits, stadiums, squads and a dice football season, with a Manager of the Season certificate. 112 pages.",
+ "card": "Six football clubs to build, start to finish.",
+ "h1": "Every club starts with <em>a pencil</em>",
+ "lead": "For children who love football and dream of running their own club.",
+ "for": [
+  "For children who know every player in the squad",
+  "For future managers who’d pick a better team than the real one",
+  "For football fans who love to draw and design"
+ ],
+ "proofbar": "112 pages · A4",
+ "hero": [
+  "/img/storymakers-football-club.jpg",
+  "The Storymaker’s Football Club Book cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "They’ve got big ideas for a football club",
+  "p": [
+   "Children who love football already have opinions about kits, badges and who should be up front. Usually it all ends up on the back of an envelope.",
+   "A blank notebook doesn’t tell them where to start, so the club never gets past a name."
+  ]
+ },
+ "approach": {
+  "h": "Fifteen pages, from new name to lifting the cup",
+  "p": [
+   "The book takes young managers through six complete clubs. Each one goes from a brand new name all the way to lifting the cup, fifteen pages at a time.",
+   "A club idea waits at the start of every club for anyone who gets stuck. The rest is up to them."
+  ]
+ },
+ "offer": {
+  "h": "A whole football world, made by them",
+  "p": "Big A4 pages with room to design every detail.",
+  "features": [
+   [
+    "6 complete clubs",
+    "Names, badges, kits, stadiums and squads, fifteen pages per club."
+   ],
+   [
+    "Manager’s Academy",
+    "Ten lessons on names, badges, kits, stadiums, positions, formations and tactics."
+   ],
+   [
+    "A dice football season",
+    "League tables to fill in, and a Manager of the Season certificate at the very end."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/img/sales/storymakers-football-club/back.jpg",
+   "The back cover: what’s inside the book",
+   "aplus"
+  ]
+ ],
+ "proof": {
+  "h": "A look at the book",
+  "p": "Interior pages coming soon.",
+  "note": [
+   "I made this for the children who are always drawing kits and badges and arguing about the team sheet. Now they get to run the whole club.",
+   "The dice football season is my favourite part. Every match is a surprise, and the league table really matters."
+  ]
+ },
+ "inside": {
+  "h": "Everything in the book",
+  "items": [
+   "Ten Manager’s Academy lessons: names, badges, kits, stadiums, positions, formations and tactics",
+   "6 complete clubs, fifteen pages each",
+   "Kit templates and stadium plans",
+   "Squad lists and player cards",
+   "A dice football season with league tables",
+   "A club idea at the start of every club",
+   "A Manager of the Season certificate",
+   "112 pages in total, A4, on white paper"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "112"
+  ],
+  [
+   "Size",
+   "A4 (21 × 29.7 cm)"
+  ],
+  [
+   "Paper",
+   "White"
+  ],
+  [
+   "Clubs",
+   "6"
+  ],
+  [
+   "Written by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Sold by",
+   "Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "One book, six clubs",
+  "points": [
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
+  ],
+  "price_note": "planned price"
+ },
+ "faq": [
+  [
+   "What age is it for?",
+   "Roughly six to twelve. Younger children can design the badges and kits, and older ones will enjoy the formations, tactics and the full season."
+  ],
+  [
+   "Do they need dice?",
+   "Yes, one ordinary dice for the football season. Any dice from a board game will do."
+  ],
+  [
+   "Do they need to be good at drawing?",
+   "No. Kits, badges and stadiums can be as simple or as detailed as they like."
+  ],
+  [
+   "How is it different from The Storymaker’s Comic Book?",
+   "The Comic Book is for telling stories in panels. This one is all about building and managing football clubs."
+  ]
+ ],
+ "close": {
+  "h": "Six clubs are waiting",
+  "p": "Draw. Design. Kick off!"
+ },
+ "related": [
+  "storymakers-comic",
+  "storymakers-video-game",
+  "needle-tip-gel-pens"
+ ],
+ "luxe": {
+  "word": "KICK OFF",
+  "specs": [
+   "A4 · Paperback",
+   "112 pp · White paper"
+  ],
+  "strip": [
+   "Ages 6 to 12",
+   "6 clubs to build",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "award",
+    "Six clubs"
+   ],
+   [
+    "grid",
+    "Kits and badges"
+   ],
+   [
+    "dice",
+    "Dice season"
+   ],
+   [
+    "burst",
+    "Manager’s Academy"
+   ]
+  ],
+  "gift": "A Christmas present they’ll actually use",
+  "kit": "The little manager’s kit"
+ },
+ "order": 20
+}

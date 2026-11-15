@@ -201,3 +201,10 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margi
 .colours{display:flex;gap:12px;flex-wrap:wrap}
 .colours .sw{width:40px;height:40px;border-radius:50%;border:1px solid var(--hairline);background:var(--sw);cursor:pointer;padding:0;box-shadow:inset 0 0 0 3px var(--surface)}
 .colours .sw[aria-pressed="true"]{outline:2px solid var(--text);outline-offset:2px}
+
+/* coming soon: the sign-up form */
+.soon-form .notify{display:grid;gap:10px;background:var(--sunken);border-radius:8px;padding:24px 18px}
+.soon-form input[type=email]{min-height:48px;padding:0 14px;border:1px solid var(--hairline);border-radius:4px;font:inherit;background:#fff}
+.soon-form .btn{min-height:52px;border:0;border-radius:4px;background:var(--action);color:var(--on-action);font:500 15px var(--sans);cursor:pointer}
+.soon-form .caption{font-size:13px;color:var(--muted);line-height:20px}
+.soon-form .strong-s{font-weight:500}

@@ -1,0 +1,186 @@
+{
+ "slug": "storymakers-video-game",
+ "name": "The Storymaker’s Video Game Book",
+ "price": 7.99,
+ "soon": true,
+ "kind": "book",
+ "group": "create",
+ "pages_count": 112,
+ "label": "Design-your-own video game book for kids",
+ "title": "The Storymaker’s Video Game Book: design your own video games, A4 | Mazo Moon",
+ "description": "An A4 activity book for children who love games: design six video games from the big idea to heroes, bosses, levels, pixel art and box art, with a Certified Game Designer certificate. 112 pages.",
+ "card": "Six video games to design, start to finish.",
+ "h1": "Every game starts with <em>a pencil</em>",
+ "lead": "For children who love to play games and dream up their own.",
+ "for": [
+  "For children who always say “I’d make it like this”",
+  "For future game designers and pixel artists",
+  "For gamers who love to draw their own worlds"
+ ],
+ "proofbar": "112 pages · A4",
+ "hero": [
+  "/img/storymakers-video-game.jpg",
+  "The Storymaker’s Video Game Book cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "They’ve got a game in their head",
+  "p": [
+   "Children who love games are always inventing their own: the hero, the boss, the secret level. Most of it never leaves their head.",
+   "A blank notebook doesn’t show them how a game comes together, so the idea fizzles out."
+  ]
+ },
+ "approach": {
+  "h": "Fifteen pages, from big idea to the shop shelf",
+  "p": [
+   "The book takes young designers through six complete games. Each one goes from the big idea all the way to the box on the shop shelf, fifteen pages at a time.",
+   "A game idea waits at the start of every game for anyone who gets stuck. The rest is up to them."
+  ]
+ },
+ "offer": {
+  "h": "Six games, designed by them",
+  "p": "Big A4 pages with room for every level and pixel.",
+  "features": [
+   [
+    "6 complete games",
+    "Heroes, bosses, levels and worlds, fifteen pages per game."
+   ],
+   [
+    "Game Designer Academy",
+    "Ten lessons on heroes, bosses, levels and pixel art."
+   ],
+   [
+    "Box art and playtests",
+    "Title screens, box art, playtest pages and a Certified Game Designer certificate."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/img/sales/storymakers-video-game/back.jpg",
+   "The back cover: what’s inside the book",
+   "aplus"
+  ]
+ ],
+ "proof": {
+  "h": "A look at the book",
+  "p": "Interior pages coming soon.",
+  "note": [
+   "I made this for the children who are always telling me about the game they’re going to make one day. Now they can make six.",
+   "I love the box art page. Seeing their game “on the shop shelf” makes it feel real."
+  ]
+ },
+ "inside": {
+  "h": "Everything in the book",
+  "items": [
+   "Ten Game Designer Academy lessons: heroes, bosses, levels and pixel art",
+   "6 complete games, fifteen pages each",
+   "Hero sheets and pixel grids",
+   "World maps and level grids",
+   "Title screens and box art",
+   "Playtest pages",
+   "A game idea at the start of every game",
+   "A Certified Game Designer certificate",
+   "112 pages in total, A4, on white paper"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "112"
+  ],
+  [
+   "Size",
+   "A4 (21 × 29.7 cm)"
+  ],
+  [
+   "Paper",
+   "White"
+  ],
+  [
+   "Games",
+   "6"
+  ],
+  [
+   "Written by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Sold by",
+   "Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "One book, six games",
+  "points": [
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
+  ],
+  "price_note": "planned price"
+ },
+ "faq": [
+  [
+   "What age is it for?",
+   "Roughly six to twelve. Younger children love the heroes and pixel art, and older ones will enjoy planning levels and bosses."
+  ],
+  [
+   "Do they need a computer or console?",
+   "No. Everything happens on paper with a pencil. No screens needed."
+  ],
+  [
+   "Do they need to be good at drawing?",
+   "No. Pixel grids make characters easy, and stick figures are fine for everything else."
+  ],
+  [
+   "How is it different from The Storymaker’s Comic Book?",
+   "The Comic Book is for telling stories in panels. This one is about designing whole video games, from the hero to the box art."
+  ]
+ ],
+ "close": {
+  "h": "Six games are waiting",
+  "p": "Draw. Design. Press start!"
+ },
+ "related": [
+  "storymakers-comic",
+  "storymakers-football-club",
+  "needle-tip-gel-pens"
+ ],
+ "luxe": {
+  "word": "LEVEL UP",
+  "specs": [
+   "A4 · Paperback",
+   "112 pp · White paper"
+  ],
+  "strip": [
+   "Ages 6 to 12",
+   "6 games to make",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "spark",
+    "Six games"
+   ],
+   [
+    "person",
+    "Heroes and bosses"
+   ],
+   [
+    "grid",
+    "Pixel art"
+   ],
+   [
+    "map",
+    "Level maps"
+   ]
+  ],
+  "gift": "A Christmas present they’ll actually use",
+  "kit": "The little game designer’s kit"
+ },
+ "order": 30
+}
