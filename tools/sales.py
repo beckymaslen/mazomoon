@@ -290,7 +290,7 @@ def page(p, by_slug):
     fam = [by_slug[x] for x in p.get('family', []) if x in by_slug]
     if fam:
         offer += (f'<section class="wrap sec-tight" data-where="{where}: family"><div class="sec-head"><p class="label">{e(p.get("family_label", "Choose one"))}</p><h2 class="h">{e(p.get("family_h", "Find the right one"))}</h2></div><div class="rel">' + ''.join(
-            f'<a class="relcard" href="/products/{r["slug"]}/"><span class="art{" cover" if r.get("hero_cover") else ""}"><img src="{e((r.get("hero") or r["gallery"][0])[0])}" alt="" loading="lazy"></span><span class="t">{e(r["name"])}</span><span class="small muted">{e(r["card"])}</span></a>'
+            f'<a class="relcard" href="{href(r)}"><span class="art{" cover" if r.get("hero_cover") else ""}"><img src="{e((r.get("hero") or r["gallery"][0])[0])}" alt="" loading="lazy"></span><span class="t">{e(r["name"])}</span><span class="small muted">{e(r["card"])}</span></a>'
             for r in fam) + '</div></section>')
 
     # 05 proof
@@ -366,7 +366,7 @@ def page(p, by_slug):
     rel_html = ''
     if rel:
         rel_html = '<section class="wrap sec" data-where="' + where + ': related"><div class="sec-head"><p class="label">You might also like</p><h2 class="h">More from the desk</h2></div><div class="rel">' + ''.join(
-            f'<a class="relcard" href="/products/{r["slug"]}/"><span class="art{" cover" if r.get("hero_cover") else ""}"><img src="{e((r.get("hero") or r["gallery"][0])[0])}" alt="" loading="lazy"></span><span class="t">{e(r["name"])}</span><span class="small muted">{e(r["card"])}</span></a>'
+            f'<a class="relcard" href="{href(r)}"><span class="art{" cover" if r.get("hero_cover") else ""}"><img src="{e((r.get("hero") or r["gallery"][0])[0])}" alt="" loading="lazy"></span><span class="t">{e(r["name"])}</span><span class="small muted">{e(r["card"])}</span></a>'
             for r in rel) + '</div></section>'
     close = f'''<section class="close" data-where="{where}: close">
   <div class="wrap sec narrow center">
@@ -385,6 +385,23 @@ def page(p, by_slug):
             f'\n<body>\n{nav}\n<main id="main">\n{body}\n</main>\n{FOOTER}\n{SCRIPT}\n</body>\n</html>\n')
 
 
+def href(p):
+    """Where a product's page lives. "moved_to" sends an old /products/ address to a hand-made page (the comic is at /comic/)."""
+    return p.get('moved_to') or f'/products/{p["slug"]}/'
+
+
+def moved_page(p):
+    """A tiny page at the old address that sends people (and search engines) to the new one."""
+    to = SITE + p['moved_to']
+    return f'''<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>{e(p['name'])} | Mazo Moon</title>
+<meta name="robots" content="noindex"><link rel="canonical" href="{to}">
+<meta http-equiv="refresh" content="0; url={p['moved_to']}">
+<script>location.replace({json.dumps(p['moved_to'])}+location.search+location.hash)</script></head>
+<body><p>This page has moved to <a href="{p['moved_to']}">{to}</a>.</p></body></html>
+'''
+
+
 def index_page(items):
     url = f'{SITE}/products/'
     title = 'All Mazo Moon products: journals, colouring books, stickers and pens'
@@ -395,10 +412,10 @@ def index_page(items):
         if not xs:
             continue
         blocks += f'<section class="wrap sec-tight"><h2 class="h">{e(name)}</h2><div class="rel">' + ''.join(
-            f'<a class="relcard" href="/products/{p["slug"]}/"><span class="art{" cover" if p.get("hero_cover") else ""}"><img src="{e((p.get("hero") or p["gallery"][0])[0])}" alt="" loading="lazy"></span><span class="t">{e(p["name"])}</span><span class="small muted">{e(p["card"])}</span></a>'
+            f'<a class="relcard" href="{href(p)}"><span class="art{" cover" if p.get("hero_cover") else ""}"><img src="{e((p.get("hero") or p["gallery"][0])[0])}" alt="" loading="lazy"></span><span class="t">{e(p["name"])}</span><span class="small muted">{e(p["card"])}</span></a>'
             for p in xs) + '</div></section>'
     ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'Mazo Moon products', 'itemListElement': [
-        {'@type': 'ListItem', 'position': i, 'url': f'{SITE}/products/{p["slug"]}/', 'name': p['name']} for i, p in enumerate(items, 1)]}
+        {'@type': 'ListItem', 'position': i, 'url': SITE + href(p), 'name': p['name']} for i, p in enumerate(items, 1)]}
     body = f'''<section class="wrap page-hero"><p class="label">Everything I make and sell</p><h1 class="d-xl">Find the right one for you</h1><p class="lead">Each product has its own page, with who it's for, a proper look inside and honest answers. When you're ready, the button takes you to Amazon.</p></section>
 {blocks}
 <div style="height:48px"></div>'''
@@ -426,6 +443,9 @@ def write():
             assert os.path.exists(ROOT + g[0]), f'{p["slug"]}: picture {g[0]} not found'
         d = os.path.join(ROOT, 'products', p['slug'])
         os.makedirs(d, exist_ok=True)
+        if p.get('moved_to'):
+            open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(moved_page(p))
+            continue  # the new page is in the sitemap already
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(page(p, by))
         out[f'{SITE}/products/{p["slug"]}/'] = [absu(g[0]) for g in p['gallery'][:6]]
     open(os.path.join(ROOT, 'products', 'index.html'), 'w', encoding='utf-8').write(index_page(items))
@@ -439,9 +459,9 @@ def asin_pages():
     items = load()
     for p in items:  # a collection page only fills gaps: each age's own page wins
         for v in p.get('variants', []) + p.get('hardcovers', []):
-            m.setdefault(v['asin'], f'/products/{p["slug"]}/')
+            m.setdefault(v['asin'], href(p))
     for p in items:
-        url = f'/products/{p["slug"]}/'
+        url = href(p)
         m[p['name']] = url  # books not on Amazon yet are matched by name
         if p.get('hub'):
             continue

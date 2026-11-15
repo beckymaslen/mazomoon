@@ -156,7 +156,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
         total = price(sum(x['price'] for x in items))
         tiles = []
         for x in items:
-            href = buy if x is p else e(f'/products/{x["slug"]}/')
+            href = buy if x is p else e(x.get('moved_to') or f'/products/{x["slug"]}/')
             ext = ' target="_blank" rel="noopener" data-where="' + e(where) + ': kit"' if x is p else ''
             img = (x.get('hero') or x['gallery'][0])[0]
             short = x['name'].split(',')[0]
