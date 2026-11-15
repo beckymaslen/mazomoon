@@ -183,5 +183,37 @@
   "year-of-being-9",
   "year-of-being-11",
   "year-of-being"
- ]
+ ],
+ "luxe": {
+  "word": "TEN",
+  "specs": [
+   "6 × 9 in · Paperback or hardcover",
+   "102 pp"
+  ],
+  "strip": [
+   "Age 10",
+   "Year 5 or Year 6",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "person",
+    "All about me"
+   ],
+   [
+    "heart",
+    "Feelings & people"
+   ],
+   [
+    "spark",
+    "Dreams & wishes"
+   ],
+   [
+    "pencil",
+    "A note to future me"
+   ]
+  ],
+  "gift": "A birthday present that still matters in ten years",
+  "kit": "Keep the years together"
+ }
 }

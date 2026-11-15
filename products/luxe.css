@@ -47,7 +47,7 @@ p,h1,h2,h3{margin:0}
 .bar a svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .bar .wordmark{width:100px;color:var(--ink)}
 .speclabels{position:relative;z-index:1;display:flex;justify-content:space-between;padding:8px 20px 0;opacity:.9}
-.big{--n:6;position:relative;z-index:1;text-align:center;margin:4px 0 0;font-weight:800;font-size:clamp(44px,calc(140vw / var(--n)),176px);white-space:nowrap;line-height:.9;letter-spacing:-.04em}
+.big{--n:6;position:relative;z-index:1;text-align:center;margin:4px 0 0;font-weight:800;font-size:clamp(44px,calc(125vw / var(--n)),176px);white-space:nowrap;line-height:.9;letter-spacing:-.04em}
 .show{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-start;margin-top:clamp(-90px,-7vw,-24px);min-height:clamp(280px,74vw,430px)}
 .show::after{content:"";position:absolute;left:18%;right:18%;bottom:-30px;height:56px;border-radius:50%;background:radial-gradient(closest-side,rgba(5,4,20,.55),transparent)}
 .book{position:relative;width:clamp(170px,46vw,300px);border-radius:2px 6px 6px 2px;overflow:hidden;transform:rotate(-4deg);box-shadow:0 30px 40px -16px rgba(8,6,28,.7),0 6px 12px rgba(8,6,28,.25);animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
@@ -71,6 +71,10 @@ p,h1,h2,h3{margin:0}
 .thumbs button:hover{transform:translateY(-2px)}
 .thumbs button[aria-pressed="true"]{border-color:var(--text)}
 .thumbs img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+.formats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.formats button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:56px;padding:10px 14px;border-radius:4px;border:1.5px solid var(--hairline);background:var(--surface);color:var(--text);font:500 14px/18px var(--sans);text-align:left;cursor:pointer;transition:border-color .2s ease}
+.formats button small{font-weight:400;font-size:12px;line-height:16px;color:var(--muted)}
+.formats button[aria-pressed="true"]{border-color:var(--text)}
 .gift{display:flex;align-items:center;gap:10px;font-size:13px;line-height:18px}
 .gift svg{width:18px;height:18px;flex:none;fill:none;stroke:#80615f;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 

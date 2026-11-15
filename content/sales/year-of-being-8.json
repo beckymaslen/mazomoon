@@ -16,7 +16,7 @@
  "h1": "Being eight, <em>in their own words</em>",
  "lead": "A keepsake journal for eight-year-olds to fill in, look back on and keep. This year’s theme: growth, self-trust and everyday moments.",
  "for": [
-  "For a eightth birthday present that means a bit more",
+  "For an eighth birthday present that means a bit more",
   "For children who like to write, draw and think things through",
   "For parents who want this year remembered in their child’s own words"
  ],
@@ -168,7 +168,7 @@
   ],
   [
    "Is it a good birthday present?",
-   "Yes. It’s a thoughtful present for a eightth birthday, and lovely to give alongside a set of pens."
+   "Yes. It’s a thoughtful present for an eighth birthday, and lovely to give alongside a set of pens."
   ],
   [
    "What if they start partway through the year?",
@@ -183,5 +183,49 @@
   "year-of-being-7",
   "year-of-being-9",
   "year-of-being"
+ ],
+ "luxe": {
+  "word": "EIGHT",
+  "specs": [
+   "6 × 9 in · Paperback or hardcover",
+   "102 pp"
+  ],
+  "strip": [
+   "Age 8",
+   "Year 3 or Year 4",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "person",
+    "All about me"
+   ],
+   [
+    "heart",
+    "Feelings & people"
+   ],
+   [
+    "spark",
+    "Dreams & wishes"
+   ],
+   [
+    "pencil",
+    "A note to future me"
+   ]
+  ],
+  "gift": "A birthday present that still matters in ten years",
+  "kit": "Keep the years together"
+ },
+ "quotes": [
+  {
+   "title": "A little snapshot of being eight",
+   "text": "Bought this for my daughter’s birthday and she absolutely loves it. She’s been writing about her friends, favourite things and all sorts of random thoughts. I had a peek at a few pages she wanted to show me and some of her answers were hilarious. Such a nice keepsake.",
+   "stars": 5
+  },
+  {
+   "title": "Really pleased with this",
+   "text": "My 8-year-old likes having something that’s just his, and this has been great. He can fill it in himself without needing me to explain everything, although sometimes we sit and do a few pages together. It’s lovely seeing his confidence grow with writing too.",
+   "stars": 5
+  }
  ]
 }

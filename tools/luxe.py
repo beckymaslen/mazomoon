@@ -11,6 +11,7 @@ The "luxe" block (everything else comes from the normal fields of the json):
   "gift":     one line under the price (optional)
   "kit":      the heading of the "Complete the set" box (optional); the set is this product plus the first two "related"
   "block", "ink": colours for the colour block and the giant word (optional, default navy and gold)
+A second Amazon ASIN in "hardcover" adds a Paperback / Hardcover choice.
 Real customer reviews only, in "quotes": [{"title": "...", "text": "...", "stars": 5}].
 """
 import html
@@ -68,6 +69,14 @@ SCRIPT = '''<script>
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* paperback or hardcover: point every Buy button at the chosen one */
+  var fm=document.querySelector('.formats');
+  if(fm)fm.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    fm.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+  });
   /* share */
   document.getElementById('share').addEventListener('click',function(ev){
     ev.preventDefault();
@@ -163,6 +172,17 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     specs = ''.join(f'<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in p['specs'])
     faq = ''.join(f'<details{" open" if i == 0 else ""}><summary>{e(q)}</summary><p>{e(a)}</p></details>' for i, (q, a) in enumerate(p['faq']))
     pr = price(p['price'])
+    fmt_label = 'Paperback'
+    formats = ''
+    if p.get('hardcover'):  # paperback or hardcover: a two-way choice that changes every Buy link
+        fmt_label = 'Paperback or hardcover'
+        hc = e(amz(p['hardcover']))
+        formats = (f'<div class="formats" role="group" aria-label="Format">'
+                   f'<button type="button" aria-pressed="true" data-href="{buy}" data-fmt="Paperback · {pr}">Paperback<small>{pr}</small></button>'
+                   f'<button type="button" aria-pressed="false" data-href="{hc}" data-fmt="Hardcover">Hardcover<small>price on Amazon</small></button></div>')
+        pr_hero = 'From ' + pr
+    else:
+        pr_hero = pr
     gift = f'<p class="gift">{GIFT}{e(L["gift"])}</p>' if L.get('gift') else ''
     lds = ''.join(_ld(x) for x in ld)
 
@@ -220,11 +240,12 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
         <p class="by">Designed by Rebecca in Yorkshire</p>
       </div>
       <div class="row">
-        <div><div class="price">{pr}</div><div class="fmt">Paperback</div></div>
+        <div><div class="price">{pr_hero}</div><div class="fmt">{fmt_label}</div></div>
         <div class="thumbs" role="group" aria-label="Look inside">{thumbs}</div>
       </div>
+      {formats}
       {gift}
-      <a class="cta" id="heroBuy" href="{buy}" target="_blank" rel="noopener" data-product="{e(name)}" data-where="{e(where)}: hero">Buy on Amazon{ARROW}</a>
+      <a class="cta" id="heroBuy" data-buy href="{buy}" target="_blank" rel="noopener" data-product="{e(name)}" data-where="{e(where)}: hero">Buy on Amazon{ARROW}</a>
     </div>
   </div>
 
@@ -274,7 +295,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     <div class="wrap">
       <h2 id="closeH">{e(p['close']['h'])}.</h2>
       <p>{e(p['close']['p'])}</p>
-      <a class="cta light" href="{buy}" target="_blank" rel="noopener" data-product="{e(name)}" data-where="{e(where)}: close">Buy on Amazon · {pr}{ARROW}</a>
+      <a class="cta light" data-buy href="{buy}" target="_blank" rel="noopener" data-product="{e(name)}" data-where="{e(where)}: close">Buy on Amazon{ARROW}</a>
     </div>
   </section>
 </main>
@@ -288,8 +309,8 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
 
 <div class="buybar" id="buybar">
   <img src="{e(cover)}" alt="">
-  <div><b>{e(name)}</b><span>{pr} · Paperback</span></div>
-  <a href="{buy}" target="_blank" rel="noopener" data-product="{e(name)}" data-where="{e(where)}: bar">Buy</a>
+  <div><b>{e(name)}</b><span id="barFmt">Paperback · {pr}</span></div>
+  <a data-buy href="{buy}" target="_blank" rel="noopener" data-product="{e(name)}" data-where="{e(where)}: bar">Buy</a>
 </div>
 {SCRIPT}
 </body>

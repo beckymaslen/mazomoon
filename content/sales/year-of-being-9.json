@@ -16,7 +16,7 @@
  "h1": "Being nine, <em>in their own words</em>",
  "lead": "A keepsake journal for nine-year-olds to fill in, look back on and keep. This year’s theme: strength, curiosity and everyday life.",
  "for": [
-  "For a nineth birthday present that means a bit more",
+  "For a ninth birthday present that means a bit more",
   "For children who like to write, draw and think things through",
   "For parents who want this year remembered in their child’s own words"
  ],
@@ -168,7 +168,7 @@
   ],
   [
    "Is it a good birthday present?",
-   "Yes. It’s a thoughtful present for a nineth birthday, and lovely to give alongside a set of pens."
+   "Yes. It’s a thoughtful present for a ninth birthday, and lovely to give alongside a set of pens."
   ],
   [
    "What if they start partway through the year?",
@@ -183,5 +183,37 @@
   "year-of-being-8",
   "year-of-being-10",
   "year-of-being"
- ]
+ ],
+ "luxe": {
+  "word": "NINE",
+  "specs": [
+   "6 × 9 in · Paperback or hardcover",
+   "102 pp"
+  ],
+  "strip": [
+   "Age 9",
+   "Year 4 or Year 5",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "person",
+    "All about me"
+   ],
+   [
+    "heart",
+    "Feelings & people"
+   ],
+   [
+    "spark",
+    "Dreams & wishes"
+   ],
+   [
+    "pencil",
+    "A note to future me"
+   ]
+  ],
+  "gift": "A birthday present that still matters in ten years",
+  "kit": "Keep the years together"
+ }
 }
