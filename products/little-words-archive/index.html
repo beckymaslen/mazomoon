@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
-<link rel="stylesheet" href="/products/luxe.css?v=c1b218333a">
+<link rel="stylesheet" href="/products/luxe.css?v=5d1caf18b0">
 <script src="/consent.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "The Little Words Archive", "description": "A keepsake journal for remembering the funny, wise and wonderful things children say. Paperback or hardcover, 102 pages, 6 × 9 in. By Mazo Moon.", "image": ["https://www.mazomoon.com/img/little-words.jpg", "https://www.mazomoon.com/img/sales/little-words-archive/aplus-1.jpg", "https://www.mazomoon.com/img/sales/little-words-archive/aplus-2.jpg", "https://www.mazomoon.com/img/sales/little-words-archive/aplus-3.jpg", "https://www.mazomoon.com/img/sales/little-words-archive/spread-016.jpg", "https://www.mazomoon.com/img/sales/little-words-archive/spread-100.jpg"], "url": "https://www.mazomoon.com/products/little-words-archive/", "sameAs": "https://www.amazon.co.uk/dp/B0GMH7FGRF", "author": {"@type": "Person", "name": "Rebecca Maslen"}, "publisher": {"@type": "Organization", "name": "Mazo Moon", "url": "https://www.mazomoon.com/"}, "inLanguage": "en-GB", "bookFormat": "https://schema.org/Paperback", "genre": "Journal", "numberOfPages": 102}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Mazo Moon", "item": "https://www.mazomoon.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.mazomoon.com/products/"}, {"@type": "ListItem", "position": 3, "name": "The Little Words Archive", "item": "https://www.mazomoon.com/products/little-words-archive/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What age is it for?", "acceptedAnswer": {"@type": "Answer", "text": "It’s for the grown-up to fill in, from the first words in toddlerhood right through the funny things primary school children come out with."}}, {"@type": "Question", "name": "Should I choose the paperback or the hardcover?", "acceptedAnswer": {"@type": "Answer", "text": "The pages are the same. Choose hardcover for a gift or if you want it to last on a shelf for years, and paperback if you’d like it lighter and a little cheaper."}}, {"@type": "Question", "name": "Is it a good baby shower gift?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It’s a gift that comes into its own a year or two later, once the first words arrive, and it doesn’t date."}}, {"@type": "Question", "name": "Can I use it for more than one child?", "acceptedAnswer": {"@type": "Answer", "text": "You can, by writing their name with each entry, but most families like one book per child so each one has their own keepsake."}}, {"@type": "Question", "name": "Does it come gift wrapped?", "acceptedAnswer": {"@type": "Answer", "text": "Amazon sometimes offers gift options at checkout. Otherwise it arrives ready for you to wrap."}}]}</script>
 </head>
@@ -153,6 +153,16 @@
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){

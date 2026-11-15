@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
-<link rel="stylesheet" href="/products/luxe.css?v=c1b218333a">
+<link rel="stylesheet" href="/products/luxe.css?v=5d1caf18b0">
 <script src="/consent.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "My Adventure Travel Journal", "description": "A travel journal for children: a passport page, I-Spy, flag matching and daily trip pages, with games for the journey. 106 pages, 6 × 9 in. By Mazo Moon.", "image": ["https://www.mazomoon.com/img/adventure-travel-journal.jpg", "https://www.mazomoon.com/img/sales/adventure-travel-journal/aplus-1.jpg", "https://www.mazomoon.com/img/sales/adventure-travel-journal/aplus-2.jpg", "https://www.mazomoon.com/img/sales/adventure-travel-journal/aplus-3.jpg", "https://www.mazomoon.com/img/sales/adventure-travel-journal/spread-024.jpg", "https://www.mazomoon.com/img/sales/adventure-travel-journal/spread-036.jpg"], "url": "https://www.mazomoon.com/products/adventure-travel-journal/", "sameAs": "https://www.amazon.co.uk/dp/B0HNY91X4S", "author": {"@type": "Person", "name": "Rebecca Maslen"}, "publisher": {"@type": "Organization", "name": "Mazo Moon", "url": "https://www.mazomoon.com/"}, "inLanguage": "en-GB", "bookFormat": "https://schema.org/Paperback", "genre": "Journal", "numberOfPages": 106}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Mazo Moon", "item": "https://www.mazomoon.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.mazomoon.com/products/"}, {"@type": "ListItem", "position": 3, "name": "My Adventure Travel Journal", "item": "https://www.mazomoon.com/products/adventure-travel-journal/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What age is it for?", "acceptedAnswer": {"@type": "Answer", "text": "It’s written for primary school children who can read and write a little. Younger children can do it with a grown-up helping with the writing, and the puzzles work for everyone."}}, {"@type": "Question", "name": "Is it for one holiday or lots of trips?", "acceptedAnswer": {"@type": "Answer", "text": "It’s designed to cover one holiday from start to finish, with a page for each day. Many families buy one per trip so each holiday gets its own book."}}, {"@type": "Question", "name": "Does it work for a holiday at home in the UK?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Nothing in it assumes you’re going abroad. The flag matching is just a puzzle, and the daily pages work for a caravan in Whitby as well as a flight to Spain."}}, {"@type": "Question", "name": "Can they use felt tips?", "acceptedAnswer": {"@type": "Answer", "text": "Pencils, crayons and gel pens are best. Heavy felt tips can show through to the other side of the page."}}, {"@type": "Question", "name": "Does it come gift wrapped?", "acceptedAnswer": {"@type": "Answer", "text": "Amazon sometimes offers gift options at checkout. The book arrives plain, so it’s ready to wrap yourself."}}]}</script>
 </head>
@@ -153,6 +153,16 @@
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
-<link rel="stylesheet" href="/products/luxe.css?v=c1b218333a">
+<link rel="stylesheet" href="/products/luxe.css?v=5d1caf18b0">
 <script src="/consent.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "The Year of Being 8", "description": "A keepsake journal for eight-year-olds about growth, self-trust and everyday moments: feelings, friends, school, hobbies and a note for future me. Paperback or hardcover, 102 pages, 6 × 9 in.", "image": ["https://www.mazomoon.com/img/year-of-being-8.jpg", "https://www.mazomoon.com/img/sales/year-of-being-8/aplus-1.jpg", "https://www.mazomoon.com/img/sales/year-of-being-8/aplus-2.jpg", "https://www.mazomoon.com/img/sales/year-of-being-8/spread-002.jpg", "https://www.mazomoon.com/img/sales/year-of-being-8/spread-006.jpg", "https://www.mazomoon.com/img/sales/year-of-being-8/spread-010.jpg"], "url": "https://www.mazomoon.com/products/year-of-being-8/", "sameAs": "https://www.amazon.co.uk/dp/B0GM5JKMCW", "author": {"@type": "Person", "name": "Rebecca Maslen"}, "publisher": {"@type": "Organization", "name": "Mazo Moon", "url": "https://www.mazomoon.com/"}, "inLanguage": "en-GB", "bookFormat": "https://schema.org/Paperback", "genre": "Journal", "numberOfPages": 102}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Mazo Moon", "item": "https://www.mazomoon.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.mazomoon.com/products/"}, {"@type": "ListItem", "position": 3, "name": "The Year of Being 8", "item": "https://www.mazomoon.com/products/year-of-being-8/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it right for my eight-year-old?", "acceptedAnswer": {"@type": "Answer", "text": "It’s written for children who are eight, or turning eight. If they’re between ages, choose the year they’re about to start, as they’ll fill it in over the coming months."}}, {"@type": "Question", "name": "Will they need help filling it in?", "acceptedAnswer": {"@type": "Answer", "text": "Most children this age can use it on their own, with help spelling now and then. Many pages can be drawn rather than written."}}, {"@type": "Question", "name": "Paperback or hardcover?", "acceptedAnswer": {"@type": "Answer", "text": "The pages are the same. Hardcover is sturdier and lasts better on a shelf, and paperback is lighter and a little cheaper."}}, {"@type": "Question", "name": "Is it a good birthday present?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It’s a thoughtful present for an eighth birthday, and lovely to give alongside a set of pens."}}, {"@type": "Question", "name": "What if they start partway through the year?", "acceptedAnswer": {"@type": "Answer", "text": "That’s fine. Nothing is dated, so they can start any time and fill it in at their own pace."}}]}</script>
 </head>
@@ -153,6 +153,16 @@
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){

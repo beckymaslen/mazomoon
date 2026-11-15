@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
-<link rel="stylesheet" href="/products/luxe.css?v=c1b218333a">
+<link rel="stylesheet" href="/products/luxe.css?v=5d1caf18b0">
 <script src="/consent.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "A Little Everyday Magic", "description": "A cosy colouring book for adults: forty village corners, from a railway halt to a midnight bakery, each with a small piece of magic to find.", "image": ["https://www.mazomoon.com/desk/img/journals/little-everyday-magic.jpg", "https://www.mazomoon.com/img/sales/little-everyday-magic/aplus-1.jpg", "https://www.mazomoon.com/img/sales/little-everyday-magic/aplus-2.jpg", "https://www.mazomoon.com/img/sales/little-everyday-magic/aplus-3.jpg", "https://www.mazomoon.com/img/sales/little-everyday-magic/aplus-4.jpg", "https://www.mazomoon.com/img/sales/little-everyday-magic/spread-005.jpg"], "url": "https://www.mazomoon.com/products/little-everyday-magic/", "sameAs": "https://www.amazon.co.uk/dp/B0HR61HP7C", "author": {"@type": "Person", "name": "Rebecca Maslen"}, "publisher": {"@type": "Organization", "name": "Mazo Moon", "url": "https://www.mazomoon.com/"}, "inLanguage": "en-GB", "bookFormat": "https://schema.org/Paperback", "genre": "Colouring book", "numberOfPages": 84}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Mazo Moon", "item": "https://www.mazomoon.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.mazomoon.com/products/"}, {"@type": "ListItem", "position": 3, "name": "A Little Everyday Magic", "item": "https://www.mazomoon.com/products/little-everyday-magic/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the “magic” in each picture?", "acceptedAnswer": {"@type": "Answer", "text": "Something small and gentle that isn’t quite ordinary, like a loaf rising too high or a tag floating away. Finding it is part of the fun."}}, {"@type": "Question", "name": "Is it for adults?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it’s designed for adults, with fine detail. Older children who love detailed colouring may enjoy it too."}}, {"@type": "Question", "name": "What should I colour with?", "acceptedAnswer": {"@type": "Answer", "text": "Colouring pencils give the softest results. Gel pens and fine liners are lovely for small details."}}, {"@type": "Question", "name": "How is it different from my other colouring books?", "acceptedAnswer": {"@type": "Answer", "text": "A Cup of Somewhere Else is cosy places to escape to, and Just One More Chapter is all about books. This one is village life with a touch of magic."}}]}</script>
 </head>
@@ -153,6 +153,16 @@
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){

@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
-<link rel="stylesheet" href="/products/luxe.css?v=c1b218333a">
+<link rel="stylesheet" href="/products/luxe.css?v=5d1caf18b0">
 <script src="/consent.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "Just One More Chapter", "description": "A cosy colouring book for adults who love books: forty bookish places to colour, from a bookshop in the storm to a blanket fort, each with its own little story.", "image": ["https://www.mazomoon.com/desk/img/journals/just-one-more-chapter.jpg", "https://www.mazomoon.com/img/sales/just-one-more-chapter/aplus-1.jpg", "https://www.mazomoon.com/img/sales/just-one-more-chapter/aplus-2.jpg", "https://www.mazomoon.com/img/sales/just-one-more-chapter/aplus-3.jpg", "https://www.mazomoon.com/img/sales/just-one-more-chapter/aplus-4.jpg", "https://www.mazomoon.com/img/sales/just-one-more-chapter/spread-005.jpg"], "url": "https://www.mazomoon.com/products/just-one-more-chapter/", "sameAs": "https://www.amazon.co.uk/dp/B0HR61TKFL", "author": {"@type": "Person", "name": "Rebecca Maslen"}, "publisher": {"@type": "Organization", "name": "Mazo Moon", "url": "https://www.mazomoon.com/"}, "inLanguage": "en-GB", "bookFormat": "https://schema.org/Paperback", "genre": "Colouring book", "numberOfPages": 84}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Mazo Moon", "item": "https://www.mazomoon.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.mazomoon.com/products/"}, {"@type": "ListItem", "position": 3, "name": "Just One More Chapter", "item": "https://www.mazomoon.com/products/just-one-more-chapter/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it like A Cup of Somewhere Else?", "acceptedAnswer": {"@type": "Answer", "text": "It’s in the same cosy style, but every scene is about books and reading. A Cup of Somewhere Else is about places to escape to."}}, {"@type": "Question", "name": "Is it for adults?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it’s designed for adults, with fine detail. Older children who love detailed colouring may enjoy it too."}}, {"@type": "Question", "name": "What should I colour with?", "acceptedAnswer": {"@type": "Answer", "text": "Colouring pencils give the softest results. Gel pens and fine liners are lovely for small details."}}, {"@type": "Question", "name": "Will it be a good gift?", "acceptedAnswer": {"@type": "Answer", "text": "For a book lover, absolutely. It pairs nicely with a reading light or a book."}}]}</script>
 </head>
@@ -153,6 +153,16 @@
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){

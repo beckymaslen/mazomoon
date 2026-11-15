@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
-<link rel="stylesheet" href="/products/luxe.css?v=c1b218333a">
+<link rel="stylesheet" href="/products/luxe.css?v=5d1caf18b0">
 <script src="/consent.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "Our Journey Together", "description": "A pass-back-and-forth journal for a grown-up and child: dark pages for you, light pages for them, and pages you fill in together. 113 pages, 6 × 9 in.", "image": ["https://www.mazomoon.com/img/our-journey-together.jpg", "https://www.mazomoon.com/img/sales/our-journey-together/aplus-1.jpg", "https://www.mazomoon.com/img/sales/our-journey-together/aplus-2.jpg", "https://www.mazomoon.com/img/sales/our-journey-together/aplus-3.jpg", "https://www.mazomoon.com/img/sales/our-journey-together/spread-010.jpg", "https://www.mazomoon.com/img/sales/our-journey-together/spread-036.jpg"], "url": "https://www.mazomoon.com/products/our-journey-together/", "sameAs": "https://www.amazon.co.uk/dp/B0HNXQFDD2", "author": {"@type": "Person", "name": "Rebecca Maslen"}, "publisher": {"@type": "Organization", "name": "Mazo Moon", "url": "https://www.mazomoon.com/"}, "inLanguage": "en-GB", "bookFormat": "https://schema.org/Paperback", "genre": "Journal", "numberOfPages": 113}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Mazo Moon", "item": "https://www.mazomoon.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.mazomoon.com/products/"}, {"@type": "ListItem", "position": 3, "name": "Our Journey Together", "item": "https://www.mazomoon.com/products/our-journey-together/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What age is it for?", "acceptedAnswer": {"@type": "Answer", "text": "It works best from around seven, once your child can write a few sentences on their own. Younger children can draw their answers or tell you what to write."}}, {"@type": "Question", "name": "Does it have to be a parent?", "acceptedAnswer": {"@type": "Answer", "text": "Not at all. It works for any grown-up and child: grandparents, step-parents, aunties, uncles, godparents or carers."}}, {"@type": "Question", "name": "Do we have to do it in order?", "acceptedAnswer": {"@type": "Answer", "text": "No. Pick any page you like. The only rule is that you pass it back when you’re done."}}, {"@type": "Question", "name": "What if my child doesn’t want to write much?", "acceptedAnswer": {"@type": "Answer", "text": "That’s fine. Many pages can be answered with a tick, a word or a drawing. The point is the connection, not the handwriting."}}, {"@type": "Question", "name": "Is it a good gift?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it makes a thoughtful gift for a birthday or Christmas, or for a grandparent who lives far away to post back and forth."}}]}</script>
 </head>
@@ -153,6 +153,16 @@
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){

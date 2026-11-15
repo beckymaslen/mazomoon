@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
-<link rel="stylesheet" href="/products/luxe.css?v=c1b218333a">
+<link rel="stylesheet" href="/products/luxe.css?v=5d1caf18b0">
 <script src="/consent.js" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Book", "name": "The Year I Started Secondary School", "description": "A private, pressure-free journal for starting secondary school: first day, map of my school, calm toolkit and friendships. For Year 6 and Year 7. 110 pages.", "image": ["https://www.mazomoon.com/img/started-secondary.jpg", "https://www.mazomoon.com/img/sales/started-secondary/aplus-1.jpg", "https://www.mazomoon.com/img/sales/started-secondary/aplus-2.jpg", "https://www.mazomoon.com/img/sales/started-secondary/aplus-3.jpg", "https://www.mazomoon.com/img/sales/started-secondary/spread-032.jpg", "https://www.mazomoon.com/img/sales/started-secondary/spread-046.jpg"], "url": "https://www.mazomoon.com/products/started-secondary/", "sameAs": "https://www.amazon.co.uk/dp/B0HPGTGRH9", "author": {"@type": "Person", "name": "Rebecca Maslen"}, "publisher": {"@type": "Organization", "name": "Mazo Moon", "url": "https://www.mazomoon.com/"}, "inLanguage": "en-GB", "bookFormat": "https://schema.org/Paperback", "genre": "Journal", "numberOfPages": 110}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Mazo Moon", "item": "https://www.mazomoon.com/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.mazomoon.com/products/"}, {"@type": "ListItem", "position": 3, "name": "The Year I Started Secondary School", "item": "https://www.mazomoon.com/products/started-secondary/"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When should I give it to them?", "acceptedAnswer": {"@type": "Answer", "text": "Any time from the end of Year 6 to the first term of Year 7. Some pages are for before they start, and lots are for the first weeks, but they can start whenever they like."}}, {"@type": "Question", "name": "Is it only for nervous children?", "acceptedAnswer": {"@type": "Answer", "text": "No. Plenty of children are excited, and the journal keeps the good moments too. It just also has room for the wobbles."}}, {"@type": "Question", "name": "Will they need help filling it in?", "acceptedAnswer": {"@type": "Answer", "text": "Most eleven-year-olds can use it on their own. It’s designed to be private, so it’s best to let them choose what to share."}}, {"@type": "Question", "name": "Is it the same as a school planner?", "acceptedAnswer": {"@type": "Answer", "text": "No. There are no homework or timetable pages. It’s a journal about how they’re feeling and what they’re noticing."}}, {"@type": "Question", "name": "Does it work for a new school in another year?", "acceptedAnswer": {"@type": "Answer", "text": "It’s written for starting secondary, but a child moving schools at any age would find most of the pages useful."}}]}</script>
 </head>
@@ -153,6 +153,16 @@
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){
