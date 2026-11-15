@@ -181,5 +181,37 @@
   "cup-of-somewhere-else",
   "little-everyday-magic",
   "dark-romance-stickers"
- ]
+ ],
+ "luxe": {
+  "word": "CHAPTER",
+  "specs": [
+   "8.5 × 11 in · Paperback",
+   "84 pp · 40 designs"
+  ],
+  "strip": [
+   "For grown-ups",
+   "40 designs",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "book",
+    "Bookish places"
+   ],
+   [
+    "chat",
+    "Little stories"
+   ],
+   [
+    "pencil",
+    "Room to colour"
+   ],
+   [
+    "heart",
+    "Slow evenings"
+   ]
+  ],
+  "gift": "A cosy present for the friend who always has a book on the go",
+  "kit": "Make a cosy evening of it"
+ }
 }

@@ -194,5 +194,37 @@
   "needle-tip-gel-pens",
   "noisebud-earplugs",
   "vintage-quote-stickers"
- ]
+ ],
+ "luxe": {
+  "word": "ESCAPE",
+  "specs": [
+   "8.5 × 11 in · Paperback",
+   "84 pp · single-sided"
+  ],
+  "strip": [
+   "For grown-ups",
+   "40 places",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "map",
+    "Forty places"
+   ],
+   [
+    "leaf",
+    "Simple or detailed"
+   ],
+   [
+    "pencil",
+    "Single-sided pages"
+   ],
+   [
+    "heart",
+    "Proper rest"
+   ]
+  ],
+  "gift": "A cosy present for someone who needs a breather",
+  "kit": "Make a cosy evening of it"
+ }
 }
