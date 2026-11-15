@@ -212,6 +212,19 @@
    ]
   ],
   "gift": "A cosy present for the friend who always has a book on the go",
-  "kit": "Make a cosy evening of it"
- }
+  "kit": "Make a cosy evening of it",
+  "reviews_h": "What colourers say"
+ },
+ "quotes": [
+  {
+   "title": "Perfect for book lovers!",
+   "text": "As someone who spends far too much time reading, I couldn’t resist this one. The cosy reading rooms and little bookish details are right up my street. I’ve been colouring while listening to my audiobooks and it’s honestly such a lovely combination.",
+   "stars": 5
+  },
+  {
+   "title": "Bought it as a gift, now I want one",
+   "text": "I bought this for my sister because she’s always got her head in a book. She absolutely loved the illustrations, especially all the bookshelves and cosy corners. Had a look through it before wrapping it and ended up adding one to my own wishlist!",
+   "stars": 5
+  }
+ ]
 }
