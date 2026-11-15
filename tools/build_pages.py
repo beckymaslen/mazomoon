@@ -24,8 +24,12 @@ SITE = 'https://www.mazomoon.com'
 IMG = SITE + '/img/og-image.jpg'
 
 PAGES = {
-    'journals': ('Journals & colouring books | Mazo Moon',
-                 'Keepsake journals for kids, parents and grown-ups, and cosy colouring books for adults. Made in Yorkshire, delivered by Amazon.'),
+    'journals': ('Journals and planners | Mazo Moon',
+                 'Keepsake journals for kids, parents and grown-ups, and planners for the everyday. Made in Yorkshire, delivered by Amazon.'),
+    'colouring-books': ('Colouring books for adults | Mazo Moon',
+                        'Cosy colouring books for grown-ups: little cafés, everyday magic and bookish corners to colour. Made in Yorkshire, delivered by Amazon.'),
+    'create-your-own': ('Create your own comic, football club and video game books | Mazo Moon',
+                        'A4 activity books for children who love to make things: draw their own comics, run a football club and design video games. Made in Yorkshire, delivered by Amazon.'),
     'shop': ('Shop stickers, pens, journals and more | Mazo Moon',
              'Stickers, gel and brush pens, sleep masks, journals and colouring books from Mazo Moon. Buy securely on Amazon, where you can see current prices and delivery options.'),
     'reading': ('The Reading Corner | Mazo Moon',
@@ -67,10 +71,21 @@ def site_books(src):
     return out
 
 
-def books_ld(src, url):
-    """Book details for Google (schema.org JSON-LD): every published book, its author, cover and its Amazon page."""
+BOOK_PAGES = {  # which books each page lists
+    'journals': lambda b: not b.get('colour') and not b.get('cr'),
+    'colouring-books': lambda b: bool(b.get('colour')),
+    'create-your-own': lambda b: bool(b.get('cr')),
+}
+LD_NAMES = {'journals': 'Mazo Moon journals', 'colouring-books': 'Mazo Moon colouring books',
+            'create-your-own': 'Mazo Moon create your own books'}
+
+
+def books_ld(src, url, page='journals'):
+    """Book details for Google (schema.org JSON-LD): every published book on the page, its author, cover and its Amazon page."""
     items = []
     for b in site_books(src):
+        if not BOOK_PAGES[page](b):
+            continue
         if b.get('soon') or not b.get('a'):
             continue  # not on Amazon yet
         pages = re.match(r'(\d+) pages', b.get('spec', ''))
@@ -78,7 +93,7 @@ def books_ld(src, url):
                 'author': {'@type': 'Person', 'name': 'Rebecca Maslen'},
                 'publisher': {'@type': 'Organization', 'name': 'Mazo Moon', 'url': SITE + '/'},
                 'inLanguage': 'en-GB', 'bookFormat': 'https://schema.org/Paperback',
-                'genre': 'Colouring book' if b.get('colour') else 'Journal',
+                'genre': 'Colouring book' if b.get('colour') else 'Activity book' if b.get('cr') else 'Journal',
                 'url': url, 'sameAs': f'https://www.amazon.co.uk/dp/{b["a"]}'}
         # no price here on purpose: Amazon sets the live price, and a price that doesn't match it confuses Google
         if b.get('img'):
@@ -86,7 +101,7 @@ def books_ld(src, url):
         if pages:
             book['numberOfPages'] = int(pages.group(1))
         items.append({'@type': 'ListItem', 'position': len(items) + 1, 'item': book})
-    ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'Mazo Moon journals and colouring books',
+    ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': LD_NAMES[page],
           'itemListElement': items}
     return '\n<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace('</', '<\\/') + '</script>'
 
@@ -107,7 +122,7 @@ def main():
     urls = [SITE + '/']
     for path, (title, desc) in PAGES.items():
         url = f'{SITE}/{path}/'
-        extra = books_ld(src, url) if path == 'journals' else ''
+        extra = books_ld(src, url, path) if path in BOOK_PAGES else ''
         out = re.sub(r'<!--meta-start-->.*?<!--meta-end-->', lambda m: meta(title, desc, url, extra=extra), show(src, path), flags=re.S)
         out = re.sub(r'<title>.*?</title><!--title-end-->', f'<title>{html.escape(title)}</title><!--title-end-->', out, flags=re.S)
         d = os.path.join(ROOT, path)
