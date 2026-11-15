@@ -175,5 +175,37 @@
   "year-of-being",
   "our-journey-together",
   "positive-affirmation-stickers"
- ]
+ ],
+ "luxe": {
+  "word": "SECONDARY",
+  "specs": [
+   "6 × 9 in · Paperback",
+   "110 pp · Cream paper"
+  ],
+  "strip": [
+   "Year 6 to 7",
+   "Private",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "map",
+    "School map"
+   ],
+   [
+    "leaf",
+    "Calm toolkit"
+   ],
+   [
+    "people",
+    "My people"
+   ],
+   [
+    "lock",
+    "Just for them"
+   ]
+  ],
+  "gift": "A kind gift for the summer before Year 7",
+  "kit": "For the next chapter"
+ }
 }

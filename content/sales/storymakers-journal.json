@@ -182,5 +182,37 @@
   "storymakers-comic",
   "adventure-travel-journal",
   "needle-tip-gel-pens"
- ]
+ ],
+ "luxe": {
+  "word": "STORIES",
+  "specs": [
+   "6 × 9 in · Paperback",
+   "110 pp · Cream paper"
+  ],
+  "strip": [
+   "Ages 7–11",
+   "Draw & write",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "person",
+    "Characters"
+   ],
+   [
+    "map",
+    "World maps"
+   ],
+   [
+    "spark",
+    "Story starters"
+   ],
+   [
+    "grid",
+    "Comic pages"
+   ]
+  ],
+  "gift": "A Christmas present for little storytellers",
+  "kit": "The little storyteller’s kit"
+ }
 }

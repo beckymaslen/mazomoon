@@ -171,5 +171,37 @@
   "our-journey-together",
   "storymakers-journal",
   "travel-map-stickers"
- ]
+ ],
+ "luxe": {
+  "word": "TRAVEL",
+  "specs": [
+   "6 × 9 in · Paperback",
+   "106 pp · Cream paper"
+  ],
+  "strip": [
+   "Primary ages",
+   "Journey games",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "passport",
+    "Their passport"
+   ],
+   [
+    "dice",
+    "Journey games"
+   ],
+   [
+    "calendar",
+    "Daily pages"
+   ],
+   [
+    "sun",
+    "Moods & weather"
+   ]
+  ],
+  "gift": "A Christmas present for the next family trip",
+  "kit": "The young explorer’s set"
+ }
 }

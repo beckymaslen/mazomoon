@@ -176,5 +176,37 @@
   "little-words-archive",
   "year-of-being",
   "started-secondary"
- ]
+ ],
+ "luxe": {
+  "word": "TOGETHER",
+  "specs": [
+   "6 × 9 in · Paperback",
+   "113 pp · Cream paper"
+  ],
+  "strip": [
+   "Grown-up + child",
+   "Ages 7+",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "people",
+    "Two voices"
+   ],
+   [
+    "swap",
+    "Pass it back"
+   ],
+   [
+    "tree",
+    "Family tree"
+   ],
+   [
+    "chat",
+    "Easy questions"
+   ]
+  ],
+  "gift": "A thoughtful Christmas present for grandparents too",
+  "kit": "Keep the conversation going"
+ }
 }
