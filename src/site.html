@@ -330,13 +330,13 @@ button.pill:hover{border-color:var(--border-strong)}
   .chip{flex:none}
 }
 @media (max-width:520px){
-  #shopGrid,#bookGrid,#journalGrid,#colourGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
-  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
-  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small{display:none}
-  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s{font-size:13px}
-  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
-  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta{flex-wrap:wrap;gap:4px}
-  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek{display:none}
+  #shopGrid,#bookGrid,#journalGrid,#colourGrid,#createGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t,#createGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
+  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small,#createGrid .card .small{display:none}
+  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s,#createGrid .card .strong-s{font-size:13px}
+  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn,#createGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
+  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta,#createGrid .card .meta{flex-wrap:wrap;gap:4px}
+  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek,#createGrid .peek{display:none}
 }
 
 
@@ -711,6 +711,10 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
   </div>
   <div class="wrap sec-tight">
+    <div class="sec-head"><span class="label">Create your own</span><h2 class="h">Comics, clubs and games, drawn by them.</h2></div>
+    <div class="grid g3" id="createGrid"></div>
+  </div>
+  <div class="wrap sec-tight">
     <div class="sec-head"><span class="label">Planners</span><h2 class="h">Make it personal.</h2></div>
     <div class="grid g3" id="journalGrid"></div>
   </div>
@@ -757,6 +761,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       <button class="chip" aria-pressed="false" data-f="pens">Pens &amp; stationery</button>
       <button class="chip" aria-pressed="false" data-f="rest">Rest &amp; relaxation</button>
       <button class="chip" aria-pressed="false" data-f="journals">Journals</button>
+      <button class="chip" aria-pressed="false" data-f="create">Create your own</button>
       <button class="chip" aria-pressed="false" data-f="colouring">Colouring books</button>
     </div>
     <div class="grid g4" id="shopGrid"></div>
@@ -965,7 +970,9 @@ const books = [
   {p:9.99,n:'Our Journey Together',a:'B0HNXQFDD2',l:'Your words. Their words.',d:'A shared journal for a grown-up and child to fill in, pass back and keep.',spec:'113 pages · 6 × 9 in',img:'our-journey-together'},
   {p:9.99,n:'The Year I Started Secondary School',a:'B0HPGTGRH9',l:'You don\'t have to have it all figured out.',d:'A private, pressure-free place for a big new chapter.',spec:'110 pages · 6 × 9 in',img:'started-secondary'},
   {p:7.99,n:'The Storymaker\'s Journal',a:'B0HP8HW6B5',l:'Every story starts with one small idea.',d:'Draw, imagine and create your own adventures, one prompt at a time.',spec:'110 pages · 6 × 9 in',img:'storymakers-journal'},
-  {p:7.99,n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic'},
+  {p:7.99,n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic',cr:1},
+  {p:7.99,n:'The Storymaker’s Football Club Book',soon:1,cr:1,l:'Every club starts with a pencil.',d:'Six football clubs to build, from the badge and kit to lifting the cup.',spec:'112 pages · A4',img:'storymakers-football-club'},
+  {p:7.99,n:'The Storymaker’s Video Game Book',soon:1,cr:1,l:'Every game starts with a pencil.',d:'Six video games to design, from the hero and boss to the box art.',spec:'112 pages · A4',img:'storymakers-video-game'},
   {p:9.99,n:'The Little Words Archive',a:'B0GMH7FGRF',h:'B0GMCNFFRL',l:'The things they say, kept safe.',d:'A keepsake journal for remembering the funny, wise and wonderful words children say.',spec:'Paperback or hardcover',img:'little-words',inside:'little-words'},
   {p:9.99,n:'The Year of Being 7',a:'B0GM15C6P8',h:'B0GM1GL82B',l:'Feelings, confidence and everyday magic.',d:'A keepsake journal for 7-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-7',inside:'year-of-being'},
   {p:9.99,n:'The Year of Being 8',a:'B0GM5JKMCW',h:'B0GM89ZG4J',l:'Growth, self-trust and everyday moments.',d:'A keepsake journal for 8-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-8',inside:'year-of-being'},
@@ -1009,7 +1016,7 @@ const svgs = {
 function paint(root){ (root||document).querySelectorAll('[data-art]').forEach(el=>{ if(el.dataset.done) return; const f=svgs[el.dataset.art]; if(f){ el.insertAdjacentHTML('afterbegin', f(el.dataset.c||'sage')); el.dataset.done=1; } }); }
 
 const price = p => '£' + p.toFixed(2);
-const AR={'storymakers-comic':.707,'cup-of-somewhere-else':.773,'little-everyday-magic':.773,'just-one-more-chapter':.773};
+const AR={'storymakers-comic':.707,'storymakers-football-club':.703,'storymakers-video-game':.703,'cup-of-somewhere-else':.773,'little-everyday-magic':.773,'just-one-more-chapter':.773};
 const artFor = x => x.pic ? `<div class="art shopimg"><img class="m" src="img/products/${x.pic}.jpg?v=2" alt="${x.n}" loading="lazy"></div>` : x.shop ? `<div class="art shopimg"><img class="m" src="img/shop/${x.shop}.jpg?v=2" alt="${x.n}" loading="lazy"><img class="h" src="img/shop/${x.shop}-hover.jpg?v=2" alt="" loading="lazy" aria-hidden="true"></div>` : (x.img && x.cover) ? `<div class="art cover book3d"><div class="bk" style="--ar:${AR[x.img]||.667}"><img class="inside" src="img/inside-${x.inside||x.img}.jpg" alt="" loading="lazy"><span class="pages" aria-hidden="true"></span><span class="front"><img src="img/${x.img}.jpg" alt="${x.n} cover" loading="lazy"><span class="crease" aria-hidden="true"></span></span></div><span class="peek">Peek inside</span></div>` : x.img ? `<div class="art tilt"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy">${x.a?amzImg(x.a,x.n):''}</div>` : `<div class="art tilt" data-art="${x.art}" data-c="${x.c}">${x.a?amzImg(x.a,x.n):''}</div>`;
 function productCard(x){
   return `<article class="card" data-cat="${GROUP[x.cat]||x.cat}">
@@ -1029,7 +1036,7 @@ function bookBtns(x){
   if(x.soon||!x.a) return `<span class="btn btn-secondary" aria-disabled="true">Coming soon to Amazon</span>`;
   return `<a class="btn btn-primary" href="${AMZ(x.a)}" target="_blank" rel="noopener">${x.h?'Paperback on Amazon':'Buy on Amazon'}</a>`;
 }
-const bookCard = x=>`<article class="card" data-cat="${x.colour?'colouring':'journals'}">
+const bookCard = x=>`<article class="card" data-cat="${x.colour?'colouring':x.cr?'create':'journals'}">
     ${artFor({...x,cover:!!x.img})}
     ${T(x)}<p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>${MORE(x)}
     <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
@@ -1037,7 +1044,8 @@ const bookCard = x=>`<article class="card" data-cat="${x.colour?'colouring':'jou
   </article>`;
 document.getElementById('homeFavs').innerHTML = BEST.map(a=>products.find(p=>p.a===a)).filter(Boolean).map(productCard).join('') + books.filter(x=>x.colour).slice(0,1).map(bookCard).join('');
 document.getElementById('shopGrid').innerHTML = books.map(bookCard).join('') + products.map(productCard).join('');
-document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x=>`<article class="card">
+document.getElementById('createGrid').innerHTML = books.filter(x=>x.cr).map(bookCard).join('');
+document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour&&!x.cr).map(x=>`<article class="card">
     ${artFor({...x,cover:!!x.img})}
     ${T(x)}<p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>${MORE(x)}
     <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>

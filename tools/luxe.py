@@ -119,7 +119,8 @@ def _ld(x):
 def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     L = p['luxe']
     name, where = p['name'], p['slug']
-    buy = e(amz(p['asin']))
+    soon = bool(p.get('soon'))  # not on Amazon yet: every Buy button goes to the 'tell me when it's out' form
+    buy = '#notify' if soon else e(amz(p['asin']))
     cover = (p.get('hero') or p['gallery'][0])[0]
     cw, ch = _size(cover)
     spreads = [g for g in p['gallery'] if len(g) > 2 and g[2] == 'spread']
@@ -166,7 +167,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
 
     kit = ''
     mates = [by_slug[s] for s in p.get('related', []) if s in by_slug and by_slug[s].get('asin') and by_slug[s].get('price') and not by_slug[s].get('soon') and not by_slug[s].get('hub')][:2]
-    if len(mates) == 2:
+    if len(mates) == 2 and not soon:
         items = [p] + mates
         cart = e(maas_store)  # Amazon's multi-item basket link breaks in the app, so the button opens the storefront
         total = price(sum(x['price'] for x in items))
@@ -217,7 +218,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     gift = f'<p class="gift">{GIFT}{e(L["gift"])}</p>' if L.get('gift') else ''
     lds = ''.join(_ld(x) for x in ld)
 
-    return f'''<!doctype html>
+    out = f'''<!doctype html>
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
@@ -347,3 +348,10 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
 </body>
 </html>
 '''
+    if soon:
+        import sales
+        out = out.replace(f'href="{buy}" target="_blank" rel="noopener"', f'href="{buy}"')
+        out = out.replace(f'>Buy on Amazon{ARROW}</a>', f'>Tell me when it’s out{ARROW}</a>')
+        out = out.replace('data-where="' + e(where) + ': bar">Buy</a>', 'data-where="' + e(where) + ': bar">Notify me</a>')
+        out = out.replace('<section class="close" aria-labelledby="closeH">', '<section class="wrap soon-form">' + sales.NOTIFY + '</section>\n  <section class="close" aria-labelledby="closeH">', 1)
+    return out

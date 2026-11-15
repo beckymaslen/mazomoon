@@ -24,7 +24,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.mazomoon.com'
 MAAS = 'maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&ref_=aa_maas&tag=maas'
 STORE = 'https://www.amazon.co.uk/stores/MazoMoon/page/298754B3-2DA8-49CE-B163-4EA6E7FEA0E0?' + MAAS
-GROUPS = [('journals', 'Journals'), ('colouring', 'Colouring books'), ('stickers', 'Stickers'),
+GROUPS = [('journals', 'Journals'), ('create', 'Create your own'), ('colouring', 'Colouring books'), ('stickers', 'Stickers'),
           ('pens', 'Pens'), ('rest', 'Rest and relaxation')]
 
 e = lambda s: html.escape(str(s), quote=True)
@@ -208,7 +208,7 @@ def page(p, by_slug):
         thing.update({'author': {'@type': 'Person', 'name': 'Rebecca Maslen'},
                       'publisher': {'@type': 'Organization', 'name': 'Mazo Moon', 'url': SITE + '/'},
                       'inLanguage': 'en-GB', 'bookFormat': 'https://schema.org/Paperback',
-                      'genre': 'Colouring book' if p['group'] == 'colouring' else 'Journal'})
+                      'genre': {'colouring': 'Colouring book', 'create': 'Activity book'}.get(p['group'], 'Journal')})
         thing.pop('brand')
         if p.get('pages_count'):
             thing['numberOfPages'] = p['pages_count']
