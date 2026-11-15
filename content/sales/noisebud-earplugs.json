@@ -47,8 +47,8 @@
  ],
  "proofbar": "Soft silicone · reusable · five colours",
  "hero": [
-  "/img/sales/noisebud-earplugs/01.jpg",
-  "Pink NoiseBud ring earplugs"
+  "/img/sales/noisebud-earplugs/hero-white.jpg",
+  "White NoiseBud ring earplugs"
  ],
  "problem": {
   "h": "Noise wears you down",
@@ -195,5 +195,49 @@
   "cup-of-somewhere-else",
   "dark-romance-stickers",
   "positive-affirmation-stickers"
- ]
+ ],
+ "luxe": {
+  "word": "SOFTER",
+  "specs": [
+   "Soft silicone",
+   "5 colours"
+  ],
+  "strip": [
+   "Reusable",
+   "5 colours",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "wave",
+    "Softer sound"
+   ],
+   [
+    "moon",
+    "Easier sleep"
+   ],
+   [
+    "spark",
+    "Calmer focus"
+   ],
+   [
+    "drop",
+    "Rinse and reuse"
+   ]
+  ],
+  "gift": "A thoughtful stocking filler",
+  "kit": "Make a quiet evening of it",
+  "block": "#3a2c35",
+  "deep": "#2a1f27",
+  "ink": "#e8b9c1",
+  "fmt": "Reusable silicone earplugs",
+  "colours": {
+   "White": "/img/sales/noisebud-earplugs/hero-white.jpg",
+   "Pink": "/img/sales/noisebud-earplugs/hero-pink.jpg",
+   "Blue": "/img/sales/noisebud-earplugs/hero-blue.jpg",
+   "Green": "/img/sales/noisebud-earplugs/hero-green.jpg",
+   "Black": "/img/sales/noisebud-earplugs/hero-black.jpg"
+  },
+  "by": "Chosen by Rebecca in Yorkshire"
+ }
 }

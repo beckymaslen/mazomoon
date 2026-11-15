@@ -39,6 +39,9 @@ ICONS = {
     'person': '<circle cx="12" cy="7.5" r="3.5"/><path d="M5 21a7 7 0 0 1 14 0"/>',
     'spark': '<path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="M12 8l1.4 2.6L16 12l-2.6 1.4L12 16l-1.4-2.6L8 12l2.6-1.4z"/>',
     'pencil': '<path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/>',
+    'moon': '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+    'wave': '<path d="M2 12c2.5-4 4.5-4 7 0s4.5 4 7 0 4.5-4 6 0"/>',
+    'drop': '<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
     'heart': '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
 }
 ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'
@@ -69,6 +72,16 @@ SCRIPT = '''<script>
     var go=function(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});};
     document.getElementById('prev').onclick=function(){go(-1);};
     document.getElementById('next').onclick=function(){go(1);};}
+  /* colours: swap the picture and point every Buy button at that colour */
+  var cs=document.querySelector('.colours');
+  if(cs)cs.addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;
+    cs.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    document.querySelectorAll('[data-buy]').forEach(function(a){a.href=b.dataset.href;});
+    document.getElementById('barFmt').textContent=b.dataset.fmt;
+    var f=document.querySelector('.buy .fmt');if(f)f.textContent=b.dataset.name+' · '+cs.children.length+' colours';
+    img.src=b.dataset.src;img.alt=b.dataset.name+' earplugs';
+  });
   /* paperback or hardcover: point every Buy button at the chosen one */
   var fm=document.querySelector('.formats');
   if(fm)fm.addEventListener('click',function(ev){
@@ -113,13 +126,16 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     word = L['word']
     style = ''
     if L.get('block') or L.get('ink'):
-        style = f' style="--block:{e(L.get("block", "#1e1c3b"))};--ink:{e(L.get("ink", "#d9b88a"))}"'
+        style = f' style="--block:{e(L.get("block", "#1e1c3b"))};--ink:{e(L.get("ink", "#d9b88a"))}' + (f';--block-deep:{e(L["deep"])}' if L.get('deep') else '') + '"'
 
     def thumb(src, alt, pressed):
         w, h = _size(src)
         return (f'<button type="button" aria-pressed="{pressed}" aria-label="Show: {e(alt)}" data-src="{e(src)}" data-alt="{e(alt)}" '
                 f'data-w="{w}" data-h="{h}"><img src="{e(src)}" alt="" loading="lazy"></button>')
+    is_book = p.get('kind') == 'book'
     thumbs = thumb(cover, f'{name} cover', 'true') + ''.join(thumb(g[0], g[1], 'false') for g in spreads[:3])
+    if not is_book:
+        thumbs = ''  # products show a colour choice instead of a look inside
 
     benefits = ''.join(f'<div>{_P.format(ICONS[i])}{e(t)}</div>' for i, t in L['benefits'])
 
@@ -152,7 +168,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     mates = [by_slug[s] for s in p.get('related', []) if s in by_slug and by_slug[s].get('asin') and by_slug[s].get('price') and not by_slug[s].get('soon') and not by_slug[s].get('hub')][:2]
     if len(mates) == 2:
         items = [p] + mates
-        cart = 'https://www.amazon.co.uk/gp/aws/cart/add.html?' + '&amp;'.join(f'ASIN.{i + 1}={x["asin"]}&amp;Quantity.{i + 1}=1' for i, x in enumerate(items))
+        cart = e(maas_store)  # Amazon's multi-item basket link breaks in the app, so the button opens the storefront
         total = price(sum(x['price'] for x in items))
         tiles = []
         for x in items:
@@ -165,14 +181,14 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     <div class="kit">
       <div><p class="label">Complete the set</p><h2 class="serif" id="kitH">{e(L.get("kit", "Make it a set"))}</h2></div>
       <div class="kit-items">{'<span class="plus" aria-hidden="true">+</span>'.join(tiles)}</div>
-      <a class="cta" href="{cart}" target="_blank" rel="noopener" data-where="{e(where)}: kit all">Add all three to Amazon basket<span>{total}</span></a>
+      <a class="cta" href="{cart}" target="_blank" rel="noopener" data-where="{e(where)}: kit store">Find all three in my Amazon shop<span>{total}</span></a>
     </div>'''
 
     inside = ''.join(f'<li>{e(x)}</li>' for x in p['inside']['items'])
     specs = ''.join(f'<div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in p['specs'])
     faq = ''.join(f'<details{" open" if i == 0 else ""}><summary>{e(q)}</summary><p>{e(a)}</p></details>' for i, (q, a) in enumerate(p['faq']))
     pr = price(p['price'])
-    fmt_label = 'Paperback'
+    fmt_label = 'Paperback' if p.get('kind') == 'book' else L.get('fmt', p.get('label', ''))
     formats = ''
     if p.get('hardcover'):  # paperback or hardcover: a two-way choice that changes every Buy link
         fmt_label = 'Paperback or hardcover'
@@ -183,6 +199,21 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
         pr_hero = 'From ' + pr
     else:
         pr_hero = pr
+    if p.get('variants') and L.get('colours'):  # one Amazon page per colour: swatches change the picture and every Buy link
+        vs = p['variants']
+        fmt_label = f'{len(vs)} colours'
+        first = next((v for v in vs if v['asin'] == p['asin']), vs[0])
+        fmt_label = first['name'] + ' · ' + fmt_label
+        btns = ''
+        for v in vs:
+            img = L['colours'][v['name']]
+            w, h = _size(img)
+            btns += (f'<button type="button" class="sw" aria-pressed="{"true" if v is first else "false"}" aria-label="{e(v["name"])}" '
+                     f'data-href="{e(amz(v["asin"]))}" data-fmt="{e(v["name"])} · {pr}" data-name="{e(v["name"])}" data-src="{e(img)}" data-w="{w}" data-h="{h}" '
+                     f'style="--sw:{e(v["colour"])}"></button>')
+        formats = f'<div class="colours" role="group" aria-label="{e(p.get("variant_label", "Colour"))}">{btns}</div>'
+    bar_fmt = (fmt_label.split(' · ')[0] + ' · ' + pr) if not is_book else 'Paperback · ' + pr
+    back, back_label = ('/journals/', 'Back to journals and colouring books') if is_book else ('/shop/', 'Back to the shop')
     gift = f'<p class="gift">{GIFT}{e(L["gift"])}</p>' if L.get('gift') else ''
     lds = ''.join(_ld(x) for x in ld)
 
@@ -223,25 +254,25 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
   <div class="hero">
     <div class="stage">
       <div class="bar">
-        <a href="/journals/" aria-label="Back to journals and colouring books"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+        <a href="{back}" aria-label="{back_label}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
         <a href="/" aria-label="Mazo Moon home" style="width:auto"><span class="wordmark"></span></a>
         <a href="#" id="share" aria-label="Share this page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></a>
       </div>
       <div class="speclabels label"><span>{e(L['specs'][0])}</span><span>{e(L['specs'][1])}</span></div>
       <p class="big" aria-hidden="true" style="--n:{max(len(word), 5)}">{e(word)}</p>
       <div class="show">
-        <div class="book" id="book"><img id="bookImg" src="{e(cover)}" alt="{e(name)} cover" width="{cw}" height="{ch}" fetchpriority="high"></div>
+        <div class="book{'' if is_book else ' obj'}" id="book"><img id="bookImg" src="{e(cover)}" alt="{e(name)}{' cover' if is_book else ''}" width="{cw}" height="{ch}" fetchpriority="high"></div>
       </div>
     </div>
 
     <div class="buy">
       <div>
         <h1>{e(name)}</h1>
-        <p class="by">Designed by Rebecca in Yorkshire</p>
+        <p class="by">{e(L.get("by", "Designed by Rebecca in Yorkshire"))}</p>
       </div>
       <div class="row">
         <div><div class="price">{pr_hero}</div><div class="fmt">{fmt_label}</div></div>
-        <div class="thumbs" role="group" aria-label="Look inside">{thumbs}</div>
+        {f'<div class="thumbs" role="group" aria-label="Look inside">{thumbs}</div>' if thumbs else ''}
       </div>
       {formats}
       {gift}
@@ -255,7 +286,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
 
   <section class="flip" aria-labelledby="flipH">
     <div class="wrap flip-head">
-      <h2 class="serif" id="flipH">Flip through it</h2>
+      <h2 class="serif" id="flipH">{'Flip through it' if is_book else 'Take a closer look'}</h2>
       <span class="count" id="count" aria-live="polite">01 / {n:02d}</span>
     </div>
     <div class="track" id="track" tabindex="0" aria-label="Pages from the book, swipe to see more">{figs}</div>
@@ -277,7 +308,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
   </section>
 {reviews}
   <section class="wrap inside" aria-labelledby="inH">
-    <p class="label" id="inH">Everything in the book</p>
+    <p class="label" id="inH">{'Everything in the book' if is_book else 'In the box'}</p>
     <ul>{inside}</ul>
     <dl class="specs">{specs}</dl>
   </section>
@@ -309,7 +340,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
 
 <div class="buybar" id="buybar">
   <img src="{e(cover)}" alt="">
-  <div><b>{e(name)}</b><span id="barFmt">Paperback · {pr}</span></div>
+  <div><b>{e(name)}</b><span id="barFmt">{e(bar_fmt)}</span></div>
   <a data-buy href="{buy}" target="_blank" rel="noopener" data-product="{e(name)}" data-where="{e(where)}: bar">Buy</a>
 </div>
 {SCRIPT}
