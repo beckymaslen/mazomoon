@@ -26,9 +26,9 @@ IMG = SITE + '/img/og-image.jpg'
 PAGES = {
     'journals': ('Journals and planners | Mazo Moon',
                  'Keepsake journals for kids, parents and grown-ups, and planners for the everyday. Made in Yorkshire, delivered by Amazon.'),
-    'colouring-books': ('Colouring books for adults | Mazo Moon',
+    'colouring': ('Colouring books for adults | Mazo Moon',
                         'Cosy colouring books for grown-ups: little cafés, everyday magic and bookish corners to colour. Made in Yorkshire, delivered by Amazon.'),
-    'create-your-own': ('Create your own comic, football club and video game books | Mazo Moon',
+    'create': ('Create your own comic, football club and video game books | Mazo Moon',
                         'A4 activity books for children who love to make things: draw their own comics, run a football club and design video games. Made in Yorkshire, delivered by Amazon.'),
     'shop': ('Shop stickers, pens, journals and more | Mazo Moon',
              'Stickers, gel and brush pens, sleep masks, journals and colouring books from Mazo Moon. Buy securely on Amazon, where you can see current prices and delivery options.'),
@@ -71,13 +71,14 @@ def site_books(src):
     return out
 
 
+MOVED = {'colouring-books': 'colouring', 'create-your-own': 'create'}  # PR #16's first addresses
 BOOK_PAGES = {  # which books each page lists
     'journals': lambda b: not b.get('colour') and not b.get('cr'),
-    'colouring-books': lambda b: bool(b.get('colour')),
-    'create-your-own': lambda b: bool(b.get('cr')),
+    'colouring': lambda b: bool(b.get('colour')),
+    'create': lambda b: bool(b.get('cr')),
 }
-LD_NAMES = {'journals': 'Mazo Moon journals', 'colouring-books': 'Mazo Moon colouring books',
-            'create-your-own': 'Mazo Moon create your own books'}
+LD_NAMES = {'journals': 'Mazo Moon journals', 'colouring': 'Mazo Moon colouring books',
+            'create': 'Mazo Moon create your own books'}
 
 
 def books_ld(src, url, page='journals'):
@@ -129,6 +130,14 @@ def main():
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(out)
         urls.append(url)
+    for old, new in MOVED.items():  # old addresses send visitors on to the new ones
+        d = os.path.join(ROOT, old)
+        os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(
+            f'<!doctype html>\n<html lang="en-GB"><head><meta charset="utf-8"><title>Moved | Mazo Moon</title>'
+            f'<meta name="robots" content="noindex"><link rel="canonical" href="{SITE}/{new}/">'
+            f'<meta http-equiv="refresh" content="0; url=/{new}/"><script>location.replace("/{new}/"+location.hash)</script></head>'
+            f'<body><p>This page has moved to <a href="/{new}/">mazomoon.com/{new}/</a>.</p></body></html>\n')
     posts = blog.write(b, src, show, meta)  # {url: (lastmod, [images])} for the sitemap
     for u, im in sales.write().items():  # product sales pages
         posts.setdefault(u, ('', im))

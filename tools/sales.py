@@ -75,8 +75,8 @@ HEADER = '''<a class="skip" href="#main">Skip to the page</a>
       <ul>
         <li><a href="/">The desk</a></li>
         <li><a href="/journals/"{j}>Journals</a></li>
-        <li><a href="/colouring-books/"{c}>Colouring Books</a></li>
-        <li><a href="/create-your-own/"{k}>Create Your Own</a></li>
+        <li><a href="/colouring/"{c}>Colouring Books</a></li>
+        <li><a href="/create/"{k}>Create Your Own</a></li>
         <li><a href="/shop/"{s}>Shop</a></li>
         <li><a href="/reading/">The Reading Corner</a></li>
         <li><a href="/little-things/">Little Things I Love</a></li>
@@ -104,8 +104,8 @@ FOOTER = f'''<footer class="site">
       <ul>
         <li><a href="/products/">All products</a></li>
         <li><a href="/journals/">Journals</a></li>
-        <li><a href="/colouring-books/">Colouring Books</a></li>
-        <li><a href="/create-your-own/">Create Your Own</a></li>
+        <li><a href="/colouring/">Colouring Books</a></li>
+        <li><a href="/create/">Create Your Own</a></li>
         <li><a href="/shop/">Shop Mazo Moon</a></li>
         <li><a href="/reading/">The Reading Corner</a></li>
         <li><a href="/our-story/">Our Story &amp; Contact</a></li>
@@ -389,8 +389,8 @@ def page(p, by_slug):
             f'\n<body>\n{nav}\n<main id="main">\n{body}\n</main>\n{FOOTER}\n{SCRIPT}\n</body>\n</html>\n')
 
 
-BOOK_HOMES = {'colouring': ('/colouring-books/', 'Back to the colouring books'),
-              'create': ('/create-your-own/', 'Back to Create your own')}
+BOOK_HOMES = {'colouring': ('/colouring/', 'Back to the colouring books'),
+              'create': ('/create/', 'Back to Create your own')}
 
 
 def book_home(p):
@@ -404,8 +404,8 @@ def header(p):
     if p.get('kind') != 'book':
         return HEADER.format(j='', c='', k='', s=cur)
     home = book_home(p)[0]
-    return HEADER.format(j=cur if home == '/journals/' else '', c=cur if home == '/colouring-books/' else '',
-                         k=cur if home == '/create-your-own/' else '', s='')
+    return HEADER.format(j=cur if home == '/journals/' else '', c=cur if home == '/colouring/' else '',
+                         k=cur if home == '/create/' else '', s='')
 
 
 def href(p):
