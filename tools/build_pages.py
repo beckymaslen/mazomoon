@@ -26,6 +26,10 @@ IMG = SITE + '/img/og-image.jpg'
 PAGES = {
     'journals': ('Journals and planners | Mazo Moon',
                  'Keepsake journals for kids, parents and grown-ups, and planners for the everyday. Made in Yorkshire, delivered by Amazon.'),
+    'stickers': ('Stickers for journals, laptops and bottles | Mazo Moon',
+                 'Waterproof vinyl stickers from Mazo Moon: affirmations, vintage quotes, cats, witches and flowers. Delivered by Amazon.'),
+    'pens': ('Pens and highlighters | Mazo Moon',
+             'Gel pens, metallic brush pens, pattern line pens and stationery from Mazo Moon. Delivered by Amazon.'),
     'colouring': ('Colouring books for adults | Mazo Moon',
                         'Cosy colouring books for grown-ups: little cafés, everyday magic and bookish corners to colour. Made in Yorkshire, delivered by Amazon.'),
     'create': ('Create your own comic, football club and video game books | Mazo Moon',
