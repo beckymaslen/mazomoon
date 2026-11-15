@@ -333,13 +333,13 @@ button.pill:hover{border-color:var(--border-strong)}
   .chip{flex:none}
 }
 @media (max-width:520px){
-  #shopGrid,#bookGrid,#journalGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
-  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
-  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small{display:none}
-  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s{font-size:13px}
-  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
-  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta{flex-wrap:wrap;gap:4px}
-  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek{display:none}
+  #shopGrid,#bookGrid,#journalGrid,#colourGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
+  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small{display:none}
+  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s{font-size:13px}
+  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
+  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta{flex-wrap:wrap;gap:4px}
+  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek{display:none}
 }
 
 
@@ -717,6 +717,10 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <div class="sec-head"><span class="label">Planners</span><h2 class="h">Make it personal.</h2></div>
     <div class="grid g3" id="journalGrid"></div>
   </div>
+  <div class="wrap sec-tight">
+    <div class="sec-head"><span class="label">Colouring books</span><h2 class="h">Cosy colouring for grown-ups.</h2></div>
+    <div class="grid g3" id="colourGrid"></div>
+  </div>
   <div class="colourin" data-colourin>
     <div class="wrap sticky">
       <div class="ctext">
@@ -767,14 +771,15 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
 <section class="page" data-page="reading" hidden>
   <div class="wrap page-hero rise">
     <span class="label">The Reading Corner</span>
-    <h1 class="d-xl">What I've been reading lately.</h1>
-    <p class="lead">My shelf so far: 144 books from 52 series and standalones, mostly romantasy and fantasy with plenty of fae, dragons and morally grey men. Honest reviews, clearly marked spoilers and plenty of tea.</p>
+    <h1 class="d-xl">Books I've read, loved and occasionally ranted about.</h1>
+    <p class="lead">I've read 140+ books across 52 series (and a couple of standalones) in the last 2-3 years. Mostly fantasy and romance, with a questionable number of fictional men I'm far too invested in.</p>
+    <p class="lead">This is where I am beginning to keep track of everything, including the books I couldn't put down, the ones that broke my heart and the ones I probably wouldn’t recommend. I’m going through each one to remember the read and write a blog on each. Spoilers are marked, because I'm not a monster.</p>
   </div>
   <div class="wrap sec-tight" style="padding-top:0">
     <div class="libroom">
       <span class="label">My bookshelf</span>
-      <h2 class="libt">One more chapter. Always.</h2>
-      <p class="libl" id="libLead">Every book I've read so far, newest first. Choose a spine to explore a series. A gold ribbon means I've written a review.</p>
+      <h2 class="libt">The evidence of my reading addiction 😅🙈</h2>
+      <p class="libl" id="libLead">All 140+ books, organised by series, with my most recent reads first. Tap a spine to see what's in the series. If there's a gold ribbon, I've written a review.</p>
       <div class="shtools"><label class="sr-only" for="shq">Search my shelf</label><input type="search" id="shq" placeholder="Search by book, series or author" autocomplete="off" aria-describedby="shqHelp">
         <button type="button" class="lbtn" id="shList" aria-pressed="false" aria-controls="slist">List view</button></div>
       <p class="small lhelp" id="shqHelp">Searching lists the matching books below and highlights their spines on the shelf.</p>
@@ -960,7 +965,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
 const MAAS = 'maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&ref_=aa_maas&tag=maas';
 const AMZ = a => 'https://www.amazon.co.uk/dp/' + a + '?' + MAAS;
 /* each product's own sales page (/products/...), filled in by tools/build_pages.py from content/sales */
-const SALES = {"B0GM15C6P8": "/products/year-of-being-7/", "B0GM5JKMCW": "/products/year-of-being-8/", "B0GMQLBMR8": "/products/year-of-being-9/", "B0GM2SSLJB": "/products/year-of-being-10/", "B0GM9PC4CM": "/products/year-of-being-11/", "B0GM2TPC12": "/products/year-of-being-12/", "B0GM1GL82B": "/products/year-of-being-7/", "B0GM89ZG4J": "/products/year-of-being-8/", "B0GM7X4CDH": "/products/year-of-being-9/", "B0GM28DT2C": "/products/year-of-being-10/", "B0GM7WG4PH": "/products/year-of-being-11/", "B0GM2SHZWL": "/products/year-of-being-12/", "B0FRYHQ97G": "/products/noisebud-earplugs/", "B0FRYLQX7N": "/products/noisebud-earplugs/", "B0FRYJGVR9": "/products/noisebud-earplugs/", "B0FRYGBW79": "/products/noisebud-earplugs/", "B0FRYJ7JTK": "/products/noisebud-earplugs/", "My Adventure Travel Journal": "/products/adventure-travel-journal/", "B0HNY91X4S": "/products/adventure-travel-journal/", "Our Journey Together": "/products/our-journey-together/", "B0HNXQFDD2": "/products/our-journey-together/", "The Year I Started Secondary School": "/products/started-secondary/", "B0HPGTGRH9": "/products/started-secondary/", "The Storymaker\u2019s Journal": "/products/storymakers-journal/", "B0HP8HW6B5": "/products/storymakers-journal/", "The Storymaker\u2019s Comic Book": "/products/storymakers-comic/", "B0HQ58GQHC": "/products/storymakers-comic/", "The Little Words Archive": "/products/little-words-archive/", "B0GMH7FGRF": "/products/little-words-archive/", "B0GMCNFFRL": "/products/little-words-archive/", "The Year of Being journals": "/products/year-of-being/", "The Year of Being 7": "/products/year-of-being-7/", "The Year of Being 8": "/products/year-of-being-8/", "The Year of Being 9": "/products/year-of-being-9/", "The Year of Being 10": "/products/year-of-being-10/", "The Year of Being 11": "/products/year-of-being-11/", "The Year of Being 12": "/products/year-of-being-12/", "A Cup of Somewhere Else": "/products/cup-of-somewhere-else/", "B0HQMNRV6L": "/products/cup-of-somewhere-else/", "Just One More Chapter": "/products/just-one-more-chapter/", "B0HR61TKFL": "/products/just-one-more-chapter/", "A Little Everyday Magic": "/products/little-everyday-magic/", "B0HR61HP7C": "/products/little-everyday-magic/", "Positive Affirmation Stickers": "/products/positive-affirmation-stickers/", "B0FY7V22J1": "/products/positive-affirmation-stickers/", "Vintage Quote Stickers": "/products/vintage-quote-stickers/", "B0FY94K1BW": "/products/vintage-quote-stickers/", "Holographic Glitter Stickers": "/products/holographic-stickers/", "B0FQ42GN9B": "/products/holographic-stickers/", "Dark Romance Reader Stickers": "/products/dark-romance-stickers/", "B0FQ43L496": "/products/dark-romance-stickers/", "Travel Map Stickers": "/products/travel-map-stickers/", "B0GHYJQTXC": "/products/travel-map-stickers/", "Motivational Quote Stickers": "/products/motivational-quote-stickers/", "B0FY817MDV": "/products/motivational-quote-stickers/", "Needle Tip Gel Pens, 3-pack": "/products/needle-tip-gel-pens/", "B0FY3R7ZVM": "/products/needle-tip-gel-pens/", "Metallic Brush Pens, 3-pack": "/products/metallic-brush-pens/", "B0FY439TS9": "/products/metallic-brush-pens/", "NoiseBud Ring Earplugs": "/products/noisebud-earplugs/"};
+const SALES = {"B0GM15C6P8": "/products/year-of-being-7/", "B0GM5JKMCW": "/products/year-of-being-8/", "B0GMQLBMR8": "/products/year-of-being-9/", "B0GM2SSLJB": "/products/year-of-being-10/", "B0GM9PC4CM": "/products/year-of-being-11/", "B0GM2TPC12": "/products/year-of-being-12/", "B0GM1GL82B": "/products/year-of-being-7/", "B0GM89ZG4J": "/products/year-of-being-8/", "B0GM7X4CDH": "/products/year-of-being-9/", "B0GM28DT2C": "/products/year-of-being-10/", "B0GM7WG4PH": "/products/year-of-being-11/", "B0GM2SHZWL": "/products/year-of-being-12/", "B0FRYHQ97G": "/products/noisebud-earplugs/", "B0FRYLQX7N": "/products/noisebud-earplugs/", "B0FRYJGVR9": "/products/noisebud-earplugs/", "B0FRYGBW79": "/products/noisebud-earplugs/", "B0FRYJ7JTK": "/products/noisebud-earplugs/", "My Adventure Travel Journal": "/products/adventure-travel-journal/", "B0HNY91X4S": "/products/adventure-travel-journal/", "Our Journey Together": "/products/our-journey-together/", "B0HNXQFDD2": "/products/our-journey-together/", "The Year I Started Secondary School": "/products/started-secondary/", "B0HPGTGRH9": "/products/started-secondary/", "The Storymaker\u2019s Journal": "/products/storymakers-journal/", "B0HP8HW6B5": "/products/storymakers-journal/", "The Storymaker\u2019s Comic Book": "/comic/", "B0HQ58GQHC": "/comic/", "The Little Words Archive": "/products/little-words-archive/", "B0GMH7FGRF": "/products/little-words-archive/", "B0GMCNFFRL": "/products/little-words-archive/", "The Year of Being journals": "/products/year-of-being/", "The Year of Being 7": "/products/year-of-being-7/", "The Year of Being 8": "/products/year-of-being-8/", "The Year of Being 9": "/products/year-of-being-9/", "The Year of Being 10": "/products/year-of-being-10/", "The Year of Being 11": "/products/year-of-being-11/", "The Year of Being 12": "/products/year-of-being-12/", "A Cup of Somewhere Else": "/products/cup-of-somewhere-else/", "B0HQMNRV6L": "/products/cup-of-somewhere-else/", "Just One More Chapter": "/products/just-one-more-chapter/", "B0HR61TKFL": "/products/just-one-more-chapter/", "A Little Everyday Magic": "/products/little-everyday-magic/", "B0HR61HP7C": "/products/little-everyday-magic/", "Positive Affirmation Stickers": "/products/positive-affirmation-stickers/", "B0FY7V22J1": "/products/positive-affirmation-stickers/", "Vintage Quote Stickers": "/products/vintage-quote-stickers/", "B0FY94K1BW": "/products/vintage-quote-stickers/", "Holographic Glitter Stickers": "/products/holographic-stickers/", "B0FQ42GN9B": "/products/holographic-stickers/", "Dark Romance Reader Stickers": "/products/dark-romance-stickers/", "B0FQ43L496": "/products/dark-romance-stickers/", "Travel Map Stickers": "/products/travel-map-stickers/", "B0GHYJQTXC": "/products/travel-map-stickers/", "Motivational Quote Stickers": "/products/motivational-quote-stickers/", "B0FY817MDV": "/products/motivational-quote-stickers/", "Needle Tip Gel Pens, 3-pack": "/products/needle-tip-gel-pens/", "B0FY3R7ZVM": "/products/needle-tip-gel-pens/", "Metallic Brush Pens, 3-pack": "/products/metallic-brush-pens/", "B0FY439TS9": "/products/metallic-brush-pens/", "NoiseBud Ring Earplugs": "/products/noisebud-earplugs/"};
 const SP = x => SALES[x.a] || SALES[x.n];
 const T = x => SP(x) ? `<h3 class="t"><a class="t-link" href="${SP(x)}">${x.n}</a></h3>` : `<h3 class="t">${x.n}</h3>`;
 const MORE = x => SP(x) ? `<a class="more-link" href="${SP(x)}">Look inside and read more</a>` : '';
@@ -1089,6 +1094,7 @@ document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x
     <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
     ${bookBtns(x)}
   </article>`).join('');
+document.getElementById('colourGrid').innerHTML = books.filter(x=>x.colour).map(bookCard).join('');
 document.getElementById('ltList').innerHTML = little.map(x=>`<article class="libt">
     ${x.pic?`<div class="art"><img src="img/products/${x.pic}.jpg?v=2" alt="${x.n}" loading="lazy"></div>`:x.img?`<div class="art"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy"></div>`:`<div class="art" data-art="${x.art}" data-c="${x.c}">${x.ours&&x.a?amzImg(x.a,x.n):''}</div>`}
     <div class="lt-body">
@@ -1333,8 +1339,6 @@ document.querySelectorAll('.band').forEach(b=>b.addEventListener('click',()=>b.c
   const span=b=>{ const d=b.map(t=>WHEN[t]).filter(Boolean).sort(); if(!d.length) return ''; const x=mon(d[0]), y=mon(d[d.length-1]); return x===y?x:`${x} to ${y}`; };
   const stars=n=>n?`<span class="stars" aria-label="${n} out of 5">${'★'.repeat(n)}${'☆'.repeat(5-n)}</span>`:'';
   const SHELF=READ.map(([series,author,books])=>({series,author,books:books.map(t=>({title:t,when:WHEN[t]||''}))}));
-  const total=SHELF.reduce((n,x)=>n+x.books.length,0);
-  document.getElementById('libLead').textContent=`My reading log so far: ${total} books from ${SHELF.length} series and standalones, newest first. Choose a spine to explore a series. A gold ribbon means I’ve written a review.`;
   let REVS=[], sel=-1;
   const revsOf=x=>REVS.filter(r=>x.books.some(b=>b.title===r.book));
 

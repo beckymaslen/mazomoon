@@ -475,10 +475,9 @@ function pileHTML(){
   return `<div class="pile">${rows.map(([k, t]) => `<div><span class="eyebrow">${t}</span><ul>${P[k].map(b => `<li><strong>${esc(b.title)}</strong>${b.author ? ` <span>by ${esc(b.author)}</span>` : ''}</li>`).join('')}</ul></div>`).join('')}</div>`;
 }
 function openLibrary(from){
-  const total = MM.shelf.reduce((n, s) => n + s.books.length, 0);
   showSheet('The Reading Corner', `
-    <h2 class="t">One more chapter. Always.</h2>
-    <p class="lead" style="margin-top:10px">My reading log so far: ${total} books from ${MM.shelf.length} series and standalones, newest first. Choose a spine to explore a book. A gold ribbon means I’ve written a review.</p>
+    <h2 class="t">The evidence of my reading addiction 😅🙈</h2>
+    <p class="lead" style="margin-top:10px">All 140+ books, organised by series, with my most recent reads first. Tap a spine to see what's in the series. If there's a gold ribbon, I've written a review.</p>
     ${pileHTML()}
     <div class="shtools"><label class="sr" for="shq">Search my shelf</label><input type="search" id="shq" placeholder="Search by book, series or author" autocomplete="off" aria-describedby="shqHelp">
       <button type="button" class="btn line" id="shList" aria-pressed="false" aria-controls="slist">List view</button></div>
