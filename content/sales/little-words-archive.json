@@ -197,5 +197,17 @@
   ],
   "gift": "A lovely baby shower, first birthday or Christmas present",
   "kit": "Keep every little word"
- }
+ },
+ "quotes": [
+  {
+   "title": "Wish I’d bought this sooner!",
+   "text": "My youngest comes out with the funniest little things and I always think I’ll remember them, but of course I never do! This is such a lovely way to keep all those little sayings in one place. I’ve already filled in quite a few pages and I know I’ll absolutely love reading them back in a few years.",
+   "stars": 5
+  },
+  {
+   "title": "Such a thoughtful gift",
+   "text": "Bought this for my sister after she had her second baby. She loved the idea of writing down all the funny and sweet things the kids say as they grow up. It’s a bit different from the usual baby books and something she’ll actually want to keep forever.",
+   "stars": 5
+  }
+ ]
 }
