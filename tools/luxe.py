@@ -144,7 +144,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
                       + f'<blockquote>“{e(q["text"])}”</blockquote></figure>')
         reviews = f'''
   <section class="wrap reviews" aria-labelledby="revH">
-    <h2 class="serif" id="revH">What parents say</h2>
+    <h2 class="serif" id="revH">{e(L.get("reviews_h", "What parents say"))}</h2>
     <div class="rev-grid">{cards}</div>
   </section>'''
 
