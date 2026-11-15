@@ -1079,22 +1079,20 @@ setSeason(season);
 
 /* ---------- menu ---------- */
 function openMenu(){
+  // items: a website address (/...), a desk object to open, or an action (a:...)
+  const night = root.classList.contains('night');
   const G = [
-    ['Shop by Category', [['shop:create','Create Your Own'], ['shop:colouring','Colouring Books'], ['shop:journals','Journals'], ['shop:all','Shop Everything']]],
-    ['Read & Discover', [['books','The Reading Corner'], ['mug','What’s on Becky’s Desk']]],
+    ['Shop Mazo Moon', [['/shop/','Shop All'], ['/create/','Create Your Own'], ['/colouring/','Colouring Books'], ['/journals/','Journals']]],
+    ['Read & Discover', [['/reading/','The Reading Corner'], ['mug','What’s on Becky’s Desk']]],
     ['Take a Little Break', [['notebook','Doodle'], ['stickers','Stickers'], ['puzzle','Moon & Stars']]],
-    ['About & Contact', [['scrapbook','My Story'], ['envelope','Letters & Contact']]]
+    ['About Mazo Moon', [['/our-story/','Our Story'], ['/our-story/#contact','Contact'], ['a:lamp','Appearance', night ? 'Night · switch to day' : 'Day · switch to night']]]
   ];
+  const item = ([k, t, sub]) => k.startsWith('/') ? `<li><a href="${k}">${esc(t)}</a></li>`
+    : k.startsWith('a:') ? `<li><button type="button" data-a="${k.slice(2)}">${esc(t)}${sub ? `<small>${esc(sub)}</small>` : ''}</button></li>`
+    : `<li><button type="button" data-k="${k}">${esc(t)}</button></li>`;
   $('#menuBody').innerHTML = `
     <div class="row" style="justify-content:space-between"><span class="eyebrow">Menu</span><button class="back" type="button" data-close>Close</button></div>
-    ${G.map(([g, list]) => `<section class="mgrp" aria-label="${esc(g)}"><h3 class="eyebrow">${esc(g)}</h3><ul>${list.map(([k, t]) => `<li><button type="button" data-k="${k}">${esc(t)}</button></li>`).join('')}</ul></section>`).join('')}
-    <div class="msec">
-      <button type="button" class="quiet" data-a="lamp">${root.classList.contains('night') ? 'Switch to daytime' : 'Switch to moonlight'}</button>
-      <button type="button" class="quiet" data-a="intro">Replay the introduction</button>
-    </div>
-    <nav class="mgrp mpages" aria-label="All pages"><h3 class="eyebrow">All pages</h3><ul>
-      <li><a href="/shop/">Shop Mazo Moon</a></li><li><a href="/create/">Create Your Own</a></li><li><a href="/colouring/">Colouring Books</a></li><li><a href="/journals/">Journals</a></li><li><a href="/reading/">The Reading Corner</a></li>
-      <li><a href="/little-things/">Little Things I Love</a></li><li><a href="/our-story/">Our Story &amp; Contact</a></li></ul></nav>
+    ${G.map(([g, list]) => `<section class="mgrp" aria-label="${esc(g)}"><h3 class="eyebrow">${esc(g)}</h3><ul>${list.map(item).join('')}</ul></section>`).join('')}
     <p class="small muted mlegal"><a href="/privacy/">Privacy</a> · <a href="/cookies/">Cookies</a> · <a href="/cookies/" data-cookie-settings>Cookie settings</a> · <a href="/terms/">Terms</a></p>
     <p class="small muted">© Mazo Moon Ltd, company no. 16988519</p>`;
   menu.showModal();
