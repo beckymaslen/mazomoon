@@ -34,12 +34,16 @@ window.MM = {
    "name": "Shop all"
   },
   {
-   "id": "journals",
-   "name": "Journals"
+   "id": "create",
+   "name": "Create your own"
   },
   {
    "id": "colouring",
    "name": "Colouring books"
+  },
+  {
+   "id": "journals",
+   "name": "Journals"
   },
   {
    "id": "stickers",
@@ -144,6 +148,7 @@ window.MM = {
    "hardcover": null,
    "soon": false,
    "colouring": false,
+   "create": true,
    "cover": "/desk/img/journals/storymakers-comic.jpg",
    "pages": [
     "/desk/img/journals/pages/com-003.jpg",
@@ -151,6 +156,46 @@ window.MM = {
     "/desk/img/journals/pages/com-009.jpg",
     "/desk/img/journals/pages/com-010.jpg",
     "/desk/img/journals/pages/com-109.jpg"
+   ]
+  },
+  {
+   "name": "The Storymaker's Football Club Book",
+   "line": "Every club starts with a pencil.",
+   "about": "Six football clubs to build, from the badge and kit to lifting the cup.",
+   "spec": "112 pages · A4",
+   "price": 7.99,
+   "asin": null,
+   "hardcover": null,
+   "soon": true,
+   "colouring": false,
+   "create": true,
+   "cover": "/desk/img/journals/storymakers-football-club.jpg",
+   "pages": [
+    "/desk/img/journals/pages/fbc-003.jpg",
+    "/desk/img/journals/pages/fbc-005.jpg",
+    "/desk/img/journals/pages/fbc-008.jpg",
+    "/desk/img/journals/pages/fbc-019.jpg",
+    "/desk/img/journals/pages/fbc-111.jpg"
+   ]
+  },
+  {
+   "name": "The Storymaker's Video Game Book",
+   "line": "Every game starts with a pencil.",
+   "about": "Six video games to design, from the hero and boss to the box art.",
+   "spec": "112 pages · A4",
+   "price": 7.99,
+   "asin": null,
+   "hardcover": null,
+   "soon": true,
+   "colouring": false,
+   "create": true,
+   "cover": "/desk/img/journals/storymakers-video-game.jpg",
+   "pages": [
+    "/desk/img/journals/pages/vgb-003.jpg",
+    "/desk/img/journals/pages/vgb-005.jpg",
+    "/desk/img/journals/pages/vgb-008.jpg",
+    "/desk/img/journals/pages/vgb-019.jpg",
+    "/desk/img/journals/pages/vgb-111.jpg"
    ]
   },
   {

@@ -271,7 +271,7 @@ function drawJournal(){
       <button class="quiet" type="button" id="pZoom">Enlarge the cover</button>
     </div>
     <div class="info">
-      <span class="eyebrow">${j.colouring?'Colouring book':'Keepsake journal'}</span>
+      <span class="eyebrow">${j.colouring?'Colouring book':j.create?'Create your own':'Keepsake journal'}</span>
       <h3 style="font-size:34px">${esc(j.name)}</h3>
       <p class="for">${esc(j.line)}</p>
       <p class="muted">${esc(j.about)}</p>
@@ -624,7 +624,7 @@ function drawTune(row){
 /* ---------- the shop ---------- */
 let shopCat = 'all';
 function shopItems(){
-  const J = MM.journals.map(j => ({ name:j.name, line:j.line, price:j.soon?null:j.price, from:!!j.hardcover, asin:j.asin, soon:j.soon, img:j.cover, page:(j.pages || [])[0], cover:true, ji:MM.journals.indexOf(j), cat:j.colouring?'colouring':'journals' }));
+  const J = MM.journals.map(j => ({ name:j.name, line:j.line, price:j.soon?null:j.price, from:!!j.hardcover, asin:j.asin, soon:j.soon, img:j.cover, page:(j.pages || [])[0], cover:true, ji:MM.journals.indexOf(j), cat:j.create?'create':j.colouring?'colouring':'journals' }));
   return J.concat(MM.products.map(p => ({ ...p })));
 }
 // a category whose every item is still on its way says so in its name
@@ -642,7 +642,7 @@ function openShop(from){
   drawShop();
 }
 function drawShop(){
-  const items = shopItems().filter(x => shopCat === 'all' || x.cat === shopCat || (shopCat === 'books' && (x.cat === 'journals' || x.cat === 'colouring')));
+  const items = shopItems().filter(x => shopCat === 'all' || x.cat === shopCat || (shopCat === 'books' && (x.cat === 'journals' || x.cat === 'colouring' || x.cat === 'create')));
   $('#shopTip').innerHTML = shopCat === 'pens' ? `<p class="note tip">Want to see the colours first? <button class="quiet" type="button" id="toDoodle">Try them in the doodle pad</button></p>` : '';
   $('#toDoodle')?.addEventListener('click', () => openDoodle());
   $('#shopGrid').innerHTML = items.map(x => `
@@ -1080,6 +1080,7 @@ setSeason(season);
 /* ---------- menu ---------- */
 function openMenu(){
   const G = [
+    ['Shop by Category', [['shop:create','Create Your Own'], ['shop:colouring','Colouring Books'], ['shop:journals','Journals'], ['shop:all','Shop Everything']]],
     ['Read & Discover', [['books','The Reading Corner'], ['mug','What’s on Becky’s Desk']]],
     ['Take a Little Break', [['notebook','Doodle'], ['stickers','Stickers'], ['puzzle','Moon & Stars']]],
     ['About & Contact', [['scrapbook','My Story'], ['envelope','Letters & Contact']]]
@@ -1092,7 +1093,7 @@ function openMenu(){
       <button type="button" class="quiet" data-a="intro">Replay the introduction</button>
     </div>
     <nav class="mgrp mpages" aria-label="All pages"><h3 class="eyebrow">All pages</h3><ul>
-      <li><a href="/shop/">Shop Mazo Moon</a></li><li><a href="/journals/">Journals &amp; Colouring</a></li><li><a href="/reading/">The Reading Corner</a></li>
+      <li><a href="/shop/">Shop Mazo Moon</a></li><li><a href="/create/">Create Your Own</a></li><li><a href="/colouring/">Colouring Books</a></li><li><a href="/journals/">Journals</a></li><li><a href="/reading/">The Reading Corner</a></li>
       <li><a href="/little-things/">Little Things I Love</a></li><li><a href="/our-story/">Our Story &amp; Contact</a></li></ul></nav>
     <p class="small muted mlegal"><a href="/privacy/">Privacy</a> · <a href="/cookies/">Cookies</a> · <a href="/cookies/" data-cookie-settings>Cookie settings</a> · <a href="/terms/">Terms</a></p>
     <p class="small muted">© Mazo Moon Ltd, company no. 16988519</p>`;
