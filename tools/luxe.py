@@ -133,6 +133,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
         w, h = _size(src)
         return (f'<button type="button" aria-pressed="{pressed}" aria-label="Show: {e(alt)}" data-src="{e(src)}" data-alt="{e(alt)}" '
                 f'data-w="{w}" data-h="{h}"><img src="{e(src)}" alt="" loading="lazy"></button>')
+    import sales  # noqa: E402  (sales imports this module)
     is_book = p.get('kind') == 'book'
     thumbs = thumb(cover, f'{name} cover', 'true') + ''.join(thumb(g[0], g[1], 'false') for g in spreads[:3])
     if not is_book:
@@ -214,7 +215,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
                      f'style="--sw:{e(v["colour"])}"></button>')
         formats = f'<div class="colours" role="group" aria-label="{e(p.get("variant_label", "Colour"))}">{btns}</div>'
     bar_fmt = (fmt_label.split(' · ')[0] + ' · ' + pr) if not is_book else 'Paperback · ' + pr
-    back, back_label = ('/journals/', 'Back to journals and colouring books') if is_book else ('/shop/', 'Back to the shop')
+    back, back_label = sales.book_home(p) if is_book else ('/shop/', 'Back to the shop')
     gift = f'<p class="gift">{GIFT}{e(L["gift"])}</p>' if L.get('gift') else ''
     lds = ''.join(_ld(x) for x in ld)
 
@@ -334,7 +335,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
 
 <footer>
   <span class="wordmark" role="img" aria-label="Mazo Moon"></span>
-  <nav aria-label="Site"><a href="/">Home</a><a href="/journals/">Journals &amp; Colouring</a><a href="/shop/">Shop</a><a href="/products/">All products</a><a href="/our-story/">Our Story &amp; Contact</a><a href="{e(maas_store)}" target="_blank" rel="noopener" data-where="footer">Amazon store</a></nav>
+  <nav aria-label="Site"><a href="/">Home</a><a href="/journals/">Journals</a><a href="/colouring-books/">Colouring books</a><a href="/create-your-own/">Create your own</a><a href="/shop/">Shop</a><a href="/products/">All products</a><a href="/our-story/">Our Story &amp; Contact</a><a href="{e(maas_store)}" target="_blank" rel="noopener" data-where="footer">Amazon store</a></nav>
   <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/cookies/" data-cookie-settings>Cookie settings</a><a href="/terms/">Terms</a></nav>
   <p>© 2026 Mazo Moon Ltd. Registered in England, company no. 16988519. Made in Yorkshire.</p>
 </footer>

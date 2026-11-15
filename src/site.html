@@ -557,11 +557,13 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <nav class="main" id="mainNav" aria-label="Main">
       <ul>
         <li><a href="/" data-nav="home">The desk</a></li>
-        <li><a href="/journals/" data-nav="journals">Journals &amp; Colouring</a></li>
-        <li><a href="/shop/" data-nav="shop">Shop Mazo Moon</a></li>
+        <li><a href="/journals/" data-nav="journals">Journals</a></li>
+        <li><a href="/colouring-books/" data-nav="colouring-books">Colouring Books</a></li>
+        <li><a href="/create-your-own/" data-nav="create-your-own">Create Your Own</a></li>
+        <li><a href="/shop/" data-nav="shop">Shop</a></li>
         <li><a href="/reading/" data-nav="reading">The Reading Corner</a></li>
         <li><a href="/little-things/" data-nav="little-things">Little Things I Love</a></li>
-        <li><a href="/our-story/" data-nav="our-story">Our Story &amp; Contact</a></li>
+        <li><a href="/our-story/" data-nav="our-story">Our Story</a></li>
       </ul>
     </nav>
   </div>
@@ -578,7 +580,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       <p class="lead">Keepsake journals for kids and grown-ups, cosy colouring books, and stickers and pens for the little moments that make a day feel like yours.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#shop">Shop Mazo Moon</a>
-        <a class="btn btn-secondary" href="#journals">Explore journals &amp; colouring</a>
+        <a class="btn btn-secondary" href="#journals">Explore the journals</a>
       </div>
       <p class="hint hint-d"><span class="star">✦</span> Go on, pick up a sticker and give the journal a little personality.</p>
       <p class="clock" id="clock" aria-live="off"></p>
@@ -698,20 +700,29 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
   </div>
 </section>
 
-<!-- JOURNALS & COLOURING -->
-<section class="page" data-page="journals" hidden>
+<!-- CREATE YOUR OWN -->
+<section class="page" data-page="create-your-own" hidden>
   <div class="wrap page-hero rise">
-    <span class="label">Journals &amp; Colouring</span>
-    <h1 class="d-xl">Pages to plan, fill and wander through.</h1>
-    <p class="lead">Keepsake journals for the things you swear you'll remember, then forget by teatime. And colouring for when you'd rather not think at all.</p>
+    <span class="label">Create your own</span>
+    <h1 class="d-xl">Books they finish by making them their own.</h1>
+    <p class="lead">Comics to draw, football clubs to run and video games to design. Every page is a blank start for their ideas, and the book is done when they say it is.</p>
   </div>
   <div class="wrap sec-tight">
-    <div class="sec-head"><span class="label">Create your own</span><h2 class="h">Comics, clubs and games, drawn by them.</h2></div>
     <div class="grid g3" id="createGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
+  </div>
+</section>
+
+<!-- COLOURING BOOKS -->
+<section class="page" data-page="colouring-books" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Colouring books</span>
+    <h1 class="d-xl">Somewhere cosy to wander for ten minutes.</h1>
+    <p class="lead">Colouring for grown-ups, for when you'd rather not think at all. Little cafés, everyday magic and bookish corners, one page at a time.</p>
   </div>
   <div class="wrap sec-tight">
-    <div class="sec-head"><span class="label">Colouring books</span><h2 class="h">Cosy colouring for grown-ups.</h2></div>
     <div class="grid g3" id="colourGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
   </div>
   <div class="colourin" data-colourin>
     <div class="wrap sticky">
@@ -725,6 +736,15 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       </div>
       <div class="cframe"><canvas aria-label="A colouring page called The Courtyard Café being coloured in"></canvas><div class="pencil"><img src="img/cut/pen-red.webp" alt=""></div></div>
     </div>
+  </div>
+</section>
+
+<!-- JOURNALS -->
+<section class="page" data-page="journals" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Journals</span>
+    <h1 class="d-xl">Pages to plan, fill and keep.</h1>
+    <p class="lead">Keepsake journals for the things you swear you'll remember, then forget by teatime. And planners for the everyday.</p>
   </div>
   <div class="wrap sec-tight">
     <div class="sec-head"><span class="label">Keepsake journals</span><h2 class="h">Big adventures. Little things worth remembering.</h2></div>
@@ -743,6 +763,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     </div>
   </div>
 </section>
+
 
 <!-- SHOP -->
 <section class="page" data-page="shop" hidden>
@@ -892,7 +913,9 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <div>
       <h4>Explore</h4>
       <ul>
-        <li><a href="/journals/" data-nav="journals">Journals &amp; Colouring</a></li>
+        <li><a href="/journals/" data-nav="journals">Journals</a></li>
+        <li><a href="/colouring-books/" data-nav="colouring-books">Colouring Books</a></li>
+        <li><a href="/create-your-own/" data-nav="create-your-own">Create Your Own</a></li>
         <li><a href="/shop/" data-nav="shop">Shop Mazo Moon</a></li>
         <li><a href="/reading/" data-nav="reading">The Reading Corner</a></li>
         <li><a href="/little-things/" data-nav="little-things">Little Things I Love</a></li>
@@ -1076,7 +1099,9 @@ const pages=[...document.querySelectorAll('section.page')];
 const navMap={'review':'reading'};
 const META={
   'home':['/','Mazo Moon | Journals, colouring and stationery from Yorkshire'],
-  'journals':['/journals/','Journals & colouring books | Mazo Moon'],
+  'journals':['/journals/','Journals and planners | Mazo Moon'],
+  'colouring-books':['/colouring-books/','Colouring books for adults | Mazo Moon'],
+  'create-your-own':['/create-your-own/','Create your own comic, football club and video game books | Mazo Moon'],
   'shop':['/shop/','Shop stickers, pens, journals and more | Mazo Moon'],
   'reading':['/reading/','The Reading Corner | Mazo Moon'],
   'little-things':['/little-things/','Little Things I Love | Mazo Moon'],

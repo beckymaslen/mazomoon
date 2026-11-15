@@ -74,11 +74,13 @@ HEADER = '''<a class="skip" href="#main">Skip to the page</a>
     <nav class="main" id="mainNav" aria-label="Main">
       <ul>
         <li><a href="/">The desk</a></li>
-        <li><a href="/journals/"{j}>Journals &amp; Colouring</a></li>
-        <li><a href="/shop/"{s}>Shop Mazo Moon</a></li>
+        <li><a href="/journals/"{j}>Journals</a></li>
+        <li><a href="/colouring-books/"{c}>Colouring Books</a></li>
+        <li><a href="/create-your-own/"{k}>Create Your Own</a></li>
+        <li><a href="/shop/"{s}>Shop</a></li>
         <li><a href="/reading/">The Reading Corner</a></li>
         <li><a href="/little-things/">Little Things I Love</a></li>
-        <li><a href="/our-story/">Our Story &amp; Contact</a></li>
+        <li><a href="/our-story/">Our Story</a></li>
       </ul>
     </nav>
   </div>
@@ -101,7 +103,9 @@ FOOTER = f'''<footer class="site">
       <h4>Explore</h4>
       <ul>
         <li><a href="/products/">All products</a></li>
-        <li><a href="/journals/">Journals &amp; Colouring</a></li>
+        <li><a href="/journals/">Journals</a></li>
+        <li><a href="/colouring-books/">Colouring Books</a></li>
+        <li><a href="/create-your-own/">Create Your Own</a></li>
         <li><a href="/shop/">Shop Mazo Moon</a></li>
         <li><a href="/reading/">The Reading Corner</a></li>
         <li><a href="/our-story/">Our Story &amp; Contact</a></li>
@@ -380,9 +384,28 @@ def page(p, by_slug):
 
     title = p['title']
     body = '\n'.join([hero, problem, offer, proof, inside, decision, faqs, close])
-    nav = HEADER.format(j=' aria-current="page"' if is_book else '', s='' if is_book else ' aria-current="page"')
+    nav = header(p)
     return (head(title, p['description'], url, absu(p.get('og') or hero_img[0]), [thing, crumbs, faq]) +
             f'\n<body>\n{nav}\n<main id="main">\n{body}\n</main>\n{FOOTER}\n{SCRIPT}\n</body>\n</html>\n')
+
+
+BOOK_HOMES = {'colouring': ('/colouring-books/', 'Back to the colouring books'),
+              'create': ('/create-your-own/', 'Back to Create your own')}
+
+
+def book_home(p):
+    """The list page a book belongs on, and the back link's label."""
+    return BOOK_HOMES.get(p.get('group'), ('/journals/', 'Back to the journals'))
+
+
+def header(p):
+    """The site header with this product's section marked as the current page."""
+    cur = ' aria-current="page"'
+    if p.get('kind') != 'book':
+        return HEADER.format(j='', c='', k='', s=cur)
+    home = book_home(p)[0]
+    return HEADER.format(j=cur if home == '/journals/' else '', c=cur if home == '/colouring-books/' else '',
+                         k=cur if home == '/create-your-own/' else '', s='')
 
 
 def href(p):
@@ -420,7 +443,7 @@ def index_page(items):
 {blocks}
 <div style="height:48px"></div>'''
     return (head(title, desc, url, SITE + '/img/og-image.jpg', [ld], kind='website') +
-            f'\n<body>\n{HEADER.format(j="", s="")}\n<main id="main">\n{body}\n</main>\n{FOOTER}\n{SCRIPT}\n</body>\n</html>\n')
+            f'\n<body>\n{HEADER.format(j="", c="", k="", s="")}\n<main id="main">\n{body}\n</main>\n{FOOTER}\n{SCRIPT}\n</body>\n</html>\n')
 
 
 REQUIRED = ['name', 'kind', 'group', 'label', 'title', 'description', 'h1', 'lead', 'for', 'proofbar', 'card',
