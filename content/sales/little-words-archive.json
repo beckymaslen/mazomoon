@@ -165,5 +165,37 @@
   "year-of-being",
   "our-journey-together",
   "vintage-quote-stickers"
- ]
+ ],
+ "luxe": {
+  "word": "WORDS",
+  "specs": [
+   "6 × 9 in · Paperback or hardcover",
+   "102 pp"
+  ],
+  "strip": [
+   "Keepsake",
+   "For grown-ups",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "chat",
+    "Their words"
+   ],
+   [
+    "book",
+    "The story behind"
+   ],
+   [
+    "calendar",
+    "When and where"
+   ],
+   [
+    "heart",
+    "A note for later"
+   ]
+  ],
+  "gift": "A lovely baby shower, first birthday or Christmas present",
+  "kit": "Keep every little word"
+ }
 }
