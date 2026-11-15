@@ -214,5 +214,17 @@
   ],
   "gift": "A Christmas present for little storytellers",
   "kit": "The little storyteller’s kit"
- }
+ },
+ "quotes": [
+  {
+   "title": "My little storyteller loves it",
+   "text": "My 8-year-old is forever making up stories, so this was right up her street. She loves creating her own characters and drawing pictures to go with her adventures. It’s been lovely seeing how much imagination she puts into each story.",
+   "stars": 5
+  },
+  {
+   "title": "Brilliant for kids who love making things up",
+   "text": "Bought this for my 10-year-old who loves drawing but usually gets bored when it comes to writing. This has been a nice way to get him doing both without it feeling like homework. He proudly showed us his first finished story at the weekend!",
+   "stars": 5
+  }
+ ]
 }
