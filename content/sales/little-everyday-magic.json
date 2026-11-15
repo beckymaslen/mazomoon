@@ -181,5 +181,50 @@
   "cup-of-somewhere-else",
   "just-one-more-chapter",
   "needle-tip-gel-pens"
+ ],
+ "luxe": {
+  "word": "MAGIC",
+  "specs": [
+   "8.5 × 11 in · Paperback",
+   "84 pp · 40 designs"
+  ],
+  "strip": [
+   "For grown-ups",
+   "40 designs",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "tree",
+    "Village corners"
+   ],
+   [
+    "spark",
+    "Hidden magic"
+   ],
+   [
+    "pencil",
+    "Room to colour"
+   ],
+   [
+    "heart",
+    "Slow evenings"
+   ]
+  ],
+  "gift": "A cosy present for anyone who loves a little wonder",
+  "kit": "Make a cosy evening of it",
+  "reviews_h": "What colourers say"
+ },
+ "quotes": [
+  {
+   "title": "Such a pretty colouring book",
+   "text": "I love all the little details in this book! The illustrations are a bit different from the usual colouring books I’ve bought and it’s been really enjoyable choosing colours for everything. I’ve already got a few favourite pages that I want to do again.",
+   "stars": 5
+  },
+  {
+   "title": "A nice break from scrolling",
+   "text": "Got this as something to do in the evenings instead of sitting on my phone. It’s actually been really relaxing and I find myself looking forward to doing another page. The pictures are lovely and have that slightly magical, cosy feel I really like.",
+   "stars": 5
+  }
  ]
 }

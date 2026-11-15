@@ -194,5 +194,50 @@
   "needle-tip-gel-pens",
   "noisebud-earplugs",
   "vintage-quote-stickers"
+ ],
+ "luxe": {
+  "word": "ESCAPE",
+  "specs": [
+   "8.5 × 11 in · Paperback",
+   "84 pp · single-sided"
+  ],
+  "strip": [
+   "For grown-ups",
+   "40 places",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "map",
+    "Forty places"
+   ],
+   [
+    "leaf",
+    "Simple or detailed"
+   ],
+   [
+    "pencil",
+    "Single-sided pages"
+   ],
+   [
+    "heart",
+    "Proper rest"
+   ]
+  ],
+  "gift": "A cosy present for someone who needs a breather",
+  "kit": "Make a cosy evening of it",
+  "reviews_h": "What colourers say"
+ },
+ "quotes": [
+  {
+   "title": "My new evening wind-down",
+   "text": "Bought this on a whim because I loved the cosy pictures. I’ve been colouring a few pages in the evenings with a cup of tea and it’s become my favourite little way to switch off. The illustrations are lovely and there’s plenty of detail without it feeling overwhelming.",
+   "stars": 5
+  },
+  {
+   "title": "Lovely cosy scenes",
+   "text": "I’ve tried a few adult colouring books but this one is definitely more my sort of thing. The little camping and cosy outdoor scenes are really sweet. I like using my coloured pencils with it and just doing a bit whenever I get some quiet time. Really pleased with it.",
+   "stars": 5
+  }
  ]
 }

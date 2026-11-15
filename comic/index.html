@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Storymaker’s Comic Book | Mazo Moon</title>
+<meta name="description" content="An A4 make-your-own comic book for children aged 6 to 12: 12 comics, each with a cover page and 7 pages of ready-drawn panels, plus sound effects and a certificate. 110 pages.">
+<link rel="canonical" href="https://www.mazomoon.com/comic/">
+<meta property="og:type" content="product">
+<meta property="og:title" content="The Storymaker’s Comic Book">
+<meta property="og:description" content="Twelve comics to make, with panels, prompts and plenty of POW.">
+<meta property="og:url" content="https://www.mazomoon.com/comic/">
+<meta property="og:image" content="https://www.mazomoon.com/img/storymakers-comic.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1e1c3b">
+<link rel="icon" href="/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@400;500;800&display=swap">
+<style>
+/* The Storymaker's Comic Book landing page (/comic/). Hand-written, not made by tools/build_pages.py.
+   The block colour and ink come from the book's cover. */
+:root{
+  --block:#1e1c3b; --block-deep:#131229; --ink:#d9b88a;
+  --surface:#f7f4ef; --sunken:#ece6df; --text:#434342; --muted:#675f5b; --soft:#8a7c73; --accent:#705b65;
+  --hairline:#d9d2cb; --on-block:#e9e3da; --action:#434342; --on-action:#f7f4ef; --focus:#80615f;
+  --display:"Cormorant Garamond",Georgia,serif; --sans:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--surface);color:var(--text);font:16px/26px var(--sans);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p,h1,h2,h3{margin:0}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+[hidden]{display:none!important}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px;top:8px;z-index:30;background:var(--action);color:var(--on-action);padding:8px 14px}
+.skip:focus{left:8px}
+.label{font:500 10px/14px var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.serif{font-family:var(--display);font-weight:500}
+.wordmark{display:block;aspect-ratio:900/124;background:currentColor;-webkit-mask:url(/img/wordmark-mask.png) center/contain no-repeat;mask:url(/img/wordmark-mask.png) center/contain no-repeat}
+.ico{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+
+/* buttons */
+.cta{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:0 20px;border-radius:4px;background:var(--action);color:var(--on-action);text-decoration:none;font-weight:500;font-size:15px;letter-spacing:.02em;transition:transform .12s ease,background-color .2s ease}
+.cta:hover{background:#2f2f2e}
+.cta:active{transform:scale(.98)}
+.cta svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
+.cta:hover svg{transform:translateX(3px)}
+.cta.light{background:var(--surface);color:var(--text)}
+.cta.light:hover{background:#fff}
+
+/* top strip */
+.strip{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;padding:8px 16px;background:var(--block-deep);color:var(--on-block)}
+.strip span+span::before{content:"·";color:var(--soft);margin-right:14px}
+
+/* hero */
+.hero{display:grid}
+.stage{position:relative;background:var(--block);color:var(--ink);overflow:hidden;padding:0 0 40px}
+.stage::before,.stage::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(217,184,138,.16) 1.1px,transparent 1.5px);background-size:7px 7px}
+.stage::before{-webkit-mask-image:linear-gradient(160deg,#000,transparent 55%);mask-image:linear-gradient(160deg,#000,transparent 55%)}
+.stage::after{opacity:.75;-webkit-mask-image:linear-gradient(-20deg,#000,transparent 40%);mask-image:linear-gradient(-20deg,#000,transparent 40%)}
+.bar{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:4px 12px 0}
+.bar a{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.bar a svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.bar .wordmark{width:100px;color:var(--ink)}
+.specs{position:relative;z-index:1;display:flex;justify-content:space-between;padding:8px 20px 0;opacity:.9}
+.big{position:relative;z-index:1;text-align:center;margin:4px 0 0;font-weight:800;font-size:clamp(88px,24.5vw,176px);line-height:.9;letter-spacing:-.04em}
+.show{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-start;margin-top:clamp(-150px,-17vw,-70px);min-height:clamp(300px,82vw,430px)}
+.show::after{content:"";position:absolute;left:18%;right:18%;bottom:-30px;height:56px;border-radius:50%;background:radial-gradient(closest-side,rgba(5,4,20,.55),transparent)}
+.book{position:relative;width:clamp(200px,55vw,300px);border-radius:2px 6px 6px 2px;overflow:hidden;transform:rotate(-4deg);box-shadow:0 30px 40px -16px rgba(8,6,28,.7),0 6px 12px rgba(8,6,28,.25);animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.book img{width:100%;aspect-ratio:706/1000;object-fit:cover}
+.book::before{content:"";position:absolute;inset:0 auto 0 0;width:12px;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.38),rgba(255,255,255,.2) 55%,transparent)}
+.book::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.16),transparent 32%)}
+.book.spread{width:min(92%,580px);transform:none;border-radius:6px}
+.book.spread img{aspect-ratio:1200/861}
+.book.spread::before,.book.spread::after{display:none}
+@keyframes rise{from{opacity:0;transform:translateY(26px) rotate(-1deg)}to{opacity:1;transform:translateY(0) rotate(-4deg)}}
+@keyframes rise2{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.book.spread{animation-name:rise2}
+
+.buy{padding:24px 20px 28px;display:flex;flex-direction:column;gap:16px;animation:rise2 .6s .3s ease-out both}
+.buy h1{font-family:var(--display);font-weight:500;font-size:32px;line-height:34px;letter-spacing:-.005em;text-wrap:balance}
+.by{font-size:13px;line-height:18px;color:var(--muted);margin-top:4px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.price{font-size:26px;line-height:30px;font-weight:500;letter-spacing:-.01em}
+.fmt{font-size:11px;line-height:15px;color:var(--muted)}
+.thumbs{display:flex;gap:8px}
+.thumbs button{width:44px;height:44px;padding:2px;border-radius:6px;border:1.5px solid var(--hairline);background:var(--surface);cursor:pointer;transition:border-color .2s ease,transform .2s ease}
+.thumbs button:hover{transform:translateY(-2px)}
+.thumbs button[aria-pressed="true"]{border-color:var(--text)}
+.thumbs img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+.gift{display:flex;align-items:center;gap:10px;font-size:13px;line-height:18px}
+.gift svg{width:18px;height:18px;flex:none;fill:none;stroke:#80615f;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* sections */
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+section,section.wrap{margin-top:56px}
+h2.serif{font-size:30px;line-height:34px}
+.benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:36px;text-align:center}
+.benefits div{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;line-height:15px}
+.flip{background:var(--block);color:var(--on-block);padding:32px 0 28px}
+.flip-head{display:flex;align-items:baseline;justify-content:space-between}
+.flip-head h2{color:var(--surface)}
+.count{font-size:12px;letter-spacing:.14em;color:var(--ink)}
+.track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-top:16px;padding:0 20px;scroll-padding:0 20px}
+.track::-webkit-scrollbar{display:none}
+.track figure{margin:0;flex:0 0 min(86%,620px);scroll-snap-align:start;display:flex;flex-direction:column;gap:12px}
+.track img{width:100%;aspect-ratio:1200/861;object-fit:cover;border-radius:6px;box-shadow:0 24px 34px -16px rgba(5,4,20,.7)}
+.track figcaption{font-size:14px;line-height:21px}
+.flip-nav{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.flip-nav button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(247,244,239,.4);background:transparent;color:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .2s ease}
+.flip-nav button:hover{background:rgba(247,244,239,.1)}
+.flip-nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+blockquote{margin:0;font-family:var(--display);font-style:italic;font-size:27px;line-height:34px;text-wrap:balance}
+.who{display:flex;align-items:center;gap:12px;margin-top:18px}
+.who img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.who b{display:block;font-weight:500;font-size:14px;line-height:20px}
+.who span{font-size:12px;line-height:16px;color:var(--muted)}
+.kit{background:var(--sunken);border-radius:8px;padding:24px 18px;display:flex;flex-direction:column;gap:16px}
+.kit .label{color:var(--accent)}
+.kit .cta{font-size:14px;letter-spacing:0}
+.kit h2{font-size:26px;line-height:30px;margin-top:4px}
+.kit-items{display:flex;align-items:flex-start;justify-content:space-between;gap:4px}
+.kit-items a{width:30%;max-width:150px;display:flex;flex-direction:column;gap:6px;text-decoration:none;font-size:12px;line-height:16px}
+.kit-items img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
+.kit-items small{color:var(--muted);font-size:12px}
+.plus{padding-top:18%;font-size:18px;color:var(--soft)}
+.trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:16px 0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);text-align:center;margin-top:32px}
+.trust div{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;line-height:15px;color:var(--muted)}
+.trust .ico{width:22px;height:22px;color:var(--text)}
+.faq h2{margin-bottom:12px}
+.faq details{border-top:1px solid var(--hairline)}
+.faq details:last-child{border-bottom:1px solid var(--hairline)}
+.faq summary{list-style:none;cursor:pointer;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;font-weight:500;font-size:15px;line-height:22px;transition:color .2s ease}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:400;font-size:18px}
+.faq details[open] summary::after{content:"−"}
+.faq summary:hover{color:#80615f}
+.faq details p{padding:0 0 16px;font-size:14px;line-height:22px;color:var(--muted)}
+.close{margin-top:56px;background:var(--block);color:var(--ink);padding:44px 0 40px}
+.close .wrap{display:flex;flex-direction:column;gap:16px}
+.close h2{font-weight:800;font-size:clamp(44px,12vw,72px);line-height:.98;letter-spacing:-.035em}
+.close p{color:var(--on-block);font-size:15px;line-height:24px}
+.close .cta{max-width:420px}
+footer{padding:28px 20px calc(96px + env(safe-area-inset-bottom));text-align:center;font-size:12px;line-height:20px;color:var(--muted)}
+footer .wordmark{width:120px;margin:0 auto 12px;color:var(--text)}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margin-bottom:8px}
+
+.reviews h2{margin-bottom:16px}
+.rev-grid{display:grid;gap:12px}
+.rev-grid figure{margin:0;padding:20px;border:1px solid var(--hairline);border-radius:6px;background:#fbf9f6;display:flex;flex-direction:column;gap:8px}
+.stars{color:#80615f;letter-spacing:.12em;font-size:14px;line-height:18px}
+.rev-grid h3{font-weight:500;font-size:15px;line-height:22px}
+.rev-grid blockquote{font-family:var(--sans);font-style:normal;font-size:14px;line-height:22px;color:var(--muted);text-wrap:pretty}
+@media (min-width:700px){.rev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* buy bar */
+.buybar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;background:var(--action);color:var(--on-action);box-shadow:0 10px 24px rgba(30,28,59,.25);animation:barIn .5s .6s cubic-bezier(.2,.7,.2,1) both;max-width:560px;margin:0 auto}
+@keyframes barIn{from{transform:translateY(140%)}to{transform:none}}
+.buybar img{width:30px;height:42px;object-fit:cover;border-radius:2px;margin-left:4px}
+.buybar div{flex:1;min-width:0;display:flex;flex-direction:column}
+.buybar b{font-weight:500;font-size:13px;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.buybar span{font-size:12px;line-height:16px;color:#d6cfc8}
+.buybar a{display:flex;align-items:center;min-height:44px;padding:0 18px;border-radius:4px;background:var(--surface);color:var(--text);text-decoration:none;font-size:14px;font-weight:500}
+
+/* desktop: colour block on the left, buying on the right */
+@media (min-width:900px){
+  .hero{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);min-height:min(820px,calc(100vh - 30px))}
+  .stage{padding-bottom:60px;display:flex;flex-direction:column}
+  .specs{padding:22px 40px 0}
+  .big{font-size:clamp(120px,12.5vw,190px)}
+  .show{flex:1;align-items:center;margin-top:-90px;min-height:0}
+  .bar{padding:10px 28px 0}
+  .buy{justify-content:center;padding:48px clamp(32px,5vw,72px);gap:22px;max-width:620px}
+  .buy h1{font-size:52px;line-height:54px}
+  .benefits{gap:24px;margin-top:64px}
+  .benefits div{font-size:14px}
+  .ico{width:34px;height:34px}
+  .track{padding:0 max(20px,calc((100vw - 720px)/2));scroll-padding:0 max(20px,calc((100vw - 720px)/2))}
+  .track figure{flex-basis:620px}
+  blockquote{font-size:34px;line-height:42px}
+  .kit{padding:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .book,.buy{animation:none}
+  .buybar{animation:none}
+  .cta,.thumbs button,.flip-nav button{transition:none}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Book","name":"The Storymaker’s Comic Book","author":{"@type":"Person","name":"Rebecca Maslen"},"publisher":{"@type":"Organization","name":"Mazo Moon"},"bookFormat":"https://schema.org/Paperback","numberOfPages":110,"image":"https://www.mazomoon.com/img/storymakers-comic.jpg","url":"https://www.mazomoon.com/comic/","sameAs":"https://www.amazon.co.uk/dp/B0HQ58GQHC"}
+</script>
+<script src="/consent.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="strip label" role="note"><span>Ages 6–12</span><span>Big A4 pages</span><span>Sent by Amazon</span></div>
+
+<main id="main">
+  <div class="hero">
+    <div class="stage">
+      <div class="bar">
+        <a href="/journals/" aria-label="Back to journals and colouring books"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+        <a href="/" aria-label="Mazo Moon home" style="width:auto"><span class="wordmark"></span></a>
+        <a href="#" id="share" aria-label="Share this page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></a>
+      </div>
+      <div class="specs label"><span>A4 · Paperback</span><span>110 pp · 12 comics</span></div>
+      <p class="big" aria-hidden="true">COMICS</p>
+      <div class="show">
+        <div class="book" id="book"><img id="bookImg" src="/img/storymakers-comic.jpg" alt="The Storymaker’s Comic Book cover" width="706" height="1000" fetchpriority="high"></div>
+      </div>
+    </div>
+
+    <div class="buy">
+      <div>
+        <h1>The Storymaker’s Comic Book</h1>
+        <p class="by">Designed by Rebecca in Yorkshire</p>
+      </div>
+      <div class="row">
+        <div><div class="price">£7.99</div><div class="fmt">Paperback</div></div>
+        <div class="thumbs" role="group" aria-label="Look inside">
+          <button type="button" aria-pressed="true" aria-label="Show the cover" data-src="/img/storymakers-comic.jpg" data-alt="The Storymaker’s Comic Book cover"><img src="/img/storymakers-comic.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" aria-label="Show the comic panels" data-src="/img/sales/storymakers-comic/spread-010.jpg" data-alt="Two pages of ready-drawn comic panels in different layouts"><img src="/img/sales/storymakers-comic/spread-010.jpg" alt="" loading="lazy"></button>
+          <button type="button" aria-pressed="false" aria-label="Show the character sheet and sound effects" data-src="/img/sales/storymakers-comic/spread-006.jpg" data-alt="A character sheet and a page of sound effect bursts"><img src="/img/sales/storymakers-comic/spread-006.jpg" alt="" loading="lazy"></button>
+          <button type="button" aria-pressed="false" aria-label="Show the certificate" data-src="/img/sales/storymakers-comic/spread-108.jpg" data-alt="A sketch page and the official Comic Creator certificate"><img src="/img/sales/storymakers-comic/spread-108.jpg" alt="" loading="lazy"></button>
+        </div>
+      </div>
+      <p class="gift"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>A Christmas present they’ll actually finish</p>
+      <a class="cta" id="heroBuy" href="https://www.amazon.co.uk/dp/B0HQ58GQHC?maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&amp;ref_=aa_maas&amp;tag=maas" target="_blank" rel="noopener" data-where="comic-hero">Buy on Amazon<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="benefits">
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/><path d="M8 7h6"/></svg>12 comics</div>
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 11h18"/><path d="M12 3v8"/><path d="M9 11v10"/></svg>Panels ready</div>
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2 5 5-2-2 5 5 2-5 2 2 5-5-2-2 5-2-5-5 2 2-5-5-2 5-2-2-5 5 2z"/></svg>Sound effects</div>
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14.5L7.5 22 12 19.5 16.5 22 15 14.5"/></svg>A certificate</div>
+    </div>
+  </div>
+
+  <section class="flip" aria-labelledby="flipH">
+    <div class="wrap flip-head">
+      <h2 class="serif" id="flipH">Flip through it</h2>
+      <span class="count" id="count" aria-live="polite">01 / 04</span>
+    </div>
+    <div class="track" id="track" tabindex="0" aria-label="Pages from the book, swipe to see more">
+      <figure><img src="/img/sales/storymakers-comic/spread-010.jpg" alt="Two pages of ready-drawn comic panels" loading="lazy" width="1200" height="861"><figcaption>Seven pages of panels per comic, in different layouts.</figcaption></figure>
+      <figure><img src="/img/sales/storymakers-comic/spread-006.jpg" alt="A character sheet and sound effect bursts" loading="lazy" width="1200" height="861"><figcaption>A character sheet, and POW, BOOM and SPLAT to copy.</figcaption></figure>
+      <figure><img src="/img/inside-storymakers-comic.jpg" alt="Inside The Storymaker’s Comic Book" loading="lazy"><figcaption>Each comic starts with a cover to design and sign.</figcaption></figure>
+      <figure><img src="/img/sales/storymakers-comic/spread-108.jpg" alt="The official Comic Creator certificate" loading="lazy" width="1200" height="861"><figcaption>An official Comic Creator certificate at the end.</figcaption></figure>
+    </div>
+    <div class="wrap flip-nav">
+      <button type="button" id="prev" aria-label="Previous pages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" id="next" aria-label="Next pages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </section>
+
+  <section class="wrap" aria-label="A note from Rebecca">
+    <blockquote>“I made this for the children who are always drawing comics on scraps of paper. Now the whole lot is in one book they can keep.”</blockquote>
+    <div class="who"><img src="/img/rebecca-portrait.jpg" alt="Rebecca, founder of Mazo Moon" loading="lazy"><div><b>Rebecca</b><span>Founder of Mazo Moon, Yorkshire</span></div></div>
+  </section>
+
+  <section class="wrap reviews" aria-labelledby="revH">
+    <h2 class="serif" id="revH">What parents say</h2>
+    <div class="rev-grid">
+      <figure>
+        <p class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</p>
+        <h3>Perfect for little imaginations!</h3>
+        <blockquote>“My daughter absolutely loves this book! She’s always making up little stories and drawing characters, so having her own comic book to fill in has been brilliant. It keeps her entertained for ages, and she gets so excited showing us her finished comics. Such a lovely way to encourage creativity and get her away from screens for a bit!”</blockquote>
+      </figure>
+      <figure>
+        <p class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</p>
+        <h3>A brilliant gift for creative kids</h3>
+        <blockquote>“Bought this for my son as he loves comics and drawing, and it’s been a huge hit! He loves creating his own superheroes and coming up with funny adventures. The blank comic layouts make it easy for him to get started while still giving him plenty of freedom to make each story his own. A really fun activity that he keeps going back to!”</blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="kitH">
+    <div class="kit">
+      <div><p class="label">Complete the set</p><h2 class="serif" id="kitH">The little storyteller’s kit</h2></div>
+      <div class="kit-items">
+        <a href="https://www.amazon.co.uk/dp/B0HQ58GQHC?maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&amp;ref_=aa_maas&amp;tag=maas" target="_blank" rel="noopener" data-where="comic-kit"><img src="/img/storymakers-comic.jpg" alt="" loading="lazy">Comic Book<small>£7.99</small></a>
+        <span class="plus" aria-hidden="true">+</span>
+        <a href="/products/storymakers-journal/"><img src="/img/storymakers-journal.jpg" alt="" loading="lazy">Storymaker’s Journal<small>£7.99</small></a>
+        <span class="plus" aria-hidden="true">+</span>
+        <a href="/products/needle-tip-gel-pens/"><img src="/img/sales/needle-tip-gel-pens/01.jpg" alt="" loading="lazy">Needle Tip Gel Pens<small>£6.99</small></a>
+      </div>
+      <a class="cta" href="https://www.amazon.co.uk/gp/aws/cart/add.html?ASIN.1=B0HQ58GQHC&amp;Quantity.1=1&amp;ASIN.2=B0HP8HW6B5&amp;Quantity.2=1&amp;ASIN.3=B0FY3R7ZVM&amp;Quantity.3=1" target="_blank" rel="noopener" data-where="comic-kit-all">Add all three to Amazon basket<span>£22.97</span></a>
+    </div>
+    <div class="trust">
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Delivered by Amazon</div>
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7"/><path d="M4 4v4h4"/></svg>Returns through Amazon</div>
+      <div><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Secure Amazon checkout</div>
+    </div>
+  </section>
+
+  <section class="wrap faq" aria-labelledby="faqH">
+    <h2 class="serif" id="faqH">Questions</h2>
+    <details open><summary>What age is it for?</summary><p>Roughly six to twelve. Younger children can draw the pictures and dictate the words, and older ones will enjoy planning proper stories.</p></details>
+    <details><summary>What should they draw with?</summary><p>Pencil first, then pens or colouring pencils. The pages are white so colours look bright. Heavy markers may show through.</p></details>
+    <details><summary>Do they need to be good at drawing?</summary><p>No. The book itself says stick figures are absolutely fine. Clear is better than perfect.</p></details>
+    <details><summary>How is it different from The Storymaker’s Journal?</summary><p>This one is all comics, on big A4 pages. The Journal is smaller and covers characters, worlds and story ideas, with a little comic making.</p></details>
+  </section>
+
+  <section class="close" aria-labelledby="closeH">
+    <div class="wrap">
+      <h2 id="closeH">Twelve comics are waiting.</h2>
+      <p>All they need is a pencil and a hero.</p>
+      <a class="cta light" href="https://www.amazon.co.uk/dp/B0HQ58GQHC?maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&amp;ref_=aa_maas&amp;tag=maas" target="_blank" rel="noopener" data-where="comic-close">Buy on Amazon · £7.99<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="wordmark" role="img" aria-label="Mazo Moon"></span>
+  <nav aria-label="Site"><a href="/">Home</a><a href="/journals/">Journals &amp; Colouring</a><a href="/shop/">Shop</a><a href="/our-story/">Our Story &amp; Contact</a></nav>
+  <nav aria-label="Legal"><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/cookies/" data-cookie-settings>Cookie settings</a><a href="/terms/">Terms</a></nav>
+  <p>© 2026 Mazo Moon Ltd. Registered in England, company no. 16988519. Made in Yorkshire.</p>
+</footer>
+
+<div class="buybar" id="buybar">
+  <img src="/img/storymakers-comic.jpg" alt="">
+  <div><b>Storymaker’s Comic Book</b><span>£7.99 · Paperback</span></div>
+  <a href="https://www.amazon.co.uk/dp/B0HQ58GQHC?maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&amp;ref_=aa_maas&amp;tag=maas" target="_blank" rel="noopener" data-where="comic-bar">Buy</a>
+</div>
+
+<script>
+(function(){
+  /* look inside: swap the hero picture */
+  var book=document.getElementById('book'),img=document.getElementById('bookImg');
+  document.querySelector('.thumbs').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    var cover=b===this.querySelector('button');
+    this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
+    img.src=b.dataset.src;img.alt=b.dataset.alt;
+    book.classList.toggle('spread',!cover);
+    book.style.animation='none';void book.offsetWidth;book.style.animation='';
+  });
+  /* flip through: counter and arrows */
+  var t=document.getElementById('track'),c=document.getElementById('count'),f=t.children;
+  function at(){var w=f[0].getBoundingClientRect().width+12;return Math.max(0,Math.min(f.length-1,Math.round(t.scrollLeft/w)));}
+  t.addEventListener('scroll',function(){c.textContent='0'+(at()+1)+' / 0'+f.length;},{passive:true});
+  function go(d){var i=(at()+d+f.length)%f.length;t.scrollTo({left:f[i].offsetLeft-f[0].offsetLeft,behavior:'smooth'});}
+  document.getElementById('prev').onclick=function(){go(-1);};
+  document.getElementById('next').onclick=function(){go(1);};
+  /* share */
+  document.getElementById('share').addEventListener('click',function(e){
+    e.preventDefault();var d={title:document.title,url:location.href};
+    if(navigator.share)navigator.share(d).catch(function(){});
+    else if(navigator.clipboard)navigator.clipboard.writeText(location.href);
+  });
+})();
+</script>
+</body>
+</html>

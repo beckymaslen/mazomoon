@@ -330,13 +330,13 @@ button.pill:hover{border-color:var(--border-strong)}
   .chip{flex:none}
 }
 @media (max-width:520px){
-  #shopGrid,#bookGrid,#journalGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
-  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
-  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small{display:none}
-  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s{font-size:13px}
-  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
-  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta{flex-wrap:wrap;gap:4px}
-  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek{display:none}
+  #shopGrid,#bookGrid,#journalGrid,#colourGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
+  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small{display:none}
+  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s{font-size:13px}
+  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
+  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta{flex-wrap:wrap;gap:4px}
+  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek{display:none}
 }
 
 
@@ -714,6 +714,10 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <div class="sec-head"><span class="label">Planners</span><h2 class="h">Make it personal.</h2></div>
     <div class="grid g3" id="journalGrid"></div>
   </div>
+  <div class="wrap sec-tight">
+    <div class="sec-head"><span class="label">Colouring books</span><h2 class="h">Cosy colouring for grown-ups.</h2></div>
+    <div class="grid g3" id="colourGrid"></div>
+  </div>
   <div class="colourin" data-colourin>
     <div class="wrap sticky">
       <div class="ctext">
@@ -1039,6 +1043,7 @@ document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x
     <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
     ${bookBtns(x)}
   </article>`).join('');
+document.getElementById('colourGrid').innerHTML = books.filter(x=>x.colour).map(bookCard).join('');
 document.getElementById('ltList').innerHTML = little.map(x=>`<article class="libt">
     ${x.pic?`<div class="art"><img src="img/products/${x.pic}.jpg?v=2" alt="${x.n}" loading="lazy"></div>`:x.img?`<div class="art"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy"></div>`:`<div class="art" data-art="${x.art}" data-c="${x.c}">${x.ours&&x.a?amzImg(x.a,x.n):''}</div>`}
     <div class="lt-body">
