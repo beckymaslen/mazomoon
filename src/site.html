@@ -2,6 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<script>try{var m=localStorage.getItem("mm-mode");if(m)document.documentElement.dataset.theme=m==="night"?"dark":"light"}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <base href="/">
 <!--meta-start-->
@@ -330,13 +331,13 @@ button.pill:hover{border-color:var(--border-strong)}
   .chip{flex:none}
 }
 @media (max-width:520px){
-  #shopGrid,#bookGrid,#journalGrid,#colourGrid,#createGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
-  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t,#createGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
-  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small,#createGrid .card .small{display:none}
-  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s,#createGrid .card .strong-s{font-size:13px}
-  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn,#createGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
-  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta,#createGrid .card .meta{flex-wrap:wrap;gap:4px}
-  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek,#createGrid .peek{display:none}
+  #shopGrid,#bookGrid,#journalGrid,#colourGrid,#createGrid,#stickerGrid,#penGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t,#createGrid .card .t,#stickerGrid .card .t,#penGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
+  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small,#createGrid .card .small,#stickerGrid .card .small,#penGrid .card .small{display:none}
+  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s,#createGrid .card .strong-s,#stickerGrid .card .strong-s,#penGrid .card .strong-s{font-size:13px}
+  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn,#createGrid .card .btn,#stickerGrid .card .btn,#penGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
+  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta,#createGrid .card .meta,#stickerGrid .card .meta,#penGrid .card .meta{flex-wrap:wrap;gap:4px}
+  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek,#createGrid .peek,#stickerGrid .peek,#penGrid .peek{display:none}
 }
 
 
@@ -700,6 +701,32 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
   </div>
 </section>
 
+<!-- STICKERS -->
+<section class="page" data-page="stickers" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Stickers</span>
+    <h1 class="d-xl">Little notes, stuck where you’ll see them.</h1>
+    <p class="lead">Affirmations, vintage quotes, cats, witches and flowers in waterproof vinyl, for journals, laptops, bottles and book boxes.</p>
+  </div>
+  <div class="wrap sec-tight">
+    <div class="grid g3" id="stickerGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
+  </div>
+</section>
+
+<!-- PENS &AMP; HIGHLIGHTERS -->
+<section class="page" data-page="pens" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Pens &amp; Highlighters</span>
+    <h1 class="d-xl">Something nice to write with.</h1>
+    <p class="lead">Gel pens, metallic brush pens, pattern line pens and the little bits of stationery that make a page feel finished.</p>
+  </div>
+  <div class="wrap sec-tight">
+    <div class="grid g3" id="penGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
+  </div>
+</section>
+
 <!-- CREATE YOUR OWN -->
 <section class="page" data-page="create" hidden>
   <div class="wrap page-hero rise">
@@ -916,6 +943,8 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
         <li><a href="/journals/" data-nav="journals">Journals</a></li>
         <li><a href="/colouring/" data-nav="colouring">Colouring Books</a></li>
         <li><a href="/create/" data-nav="create">Create Your Own</a></li>
+        <li><a href="/stickers/" data-nav="stickers">Stickers</a></li>
+        <li><a href="/pens/" data-nav="pens">Pens &amp; Highlighters</a></li>
         <li><a href="/shop/" data-nav="shop">Shop Mazo Moon</a></li>
         <li><a href="/reading/" data-nav="reading">The Reading Corner</a></li>
         <li><a href="/little-things/" data-nav="little-things">Little Things I Love</a></li>
@@ -1055,6 +1084,8 @@ function productCard(x){
 }
 const BEST=['B0FY94K1BW','B0FY7V22J1','B0FQ42GN9B','B0FY439TS9','B0GHYJQTXC'];
 document.getElementById('journalGrid').innerHTML = products.filter(p=>p.cat==='journals').map(productCard).join('');
+document.getElementById('stickerGrid').innerHTML = products.filter(p=>GROUP[p.cat]==='stickers').map(productCard).join('');
+document.getElementById('penGrid').innerHTML = products.filter(p=>GROUP[p.cat]==='pens').map(productCard).join('');
 function bookBtns(x){
   if(x.soon||!x.a) return `<span class="btn btn-secondary" aria-disabled="true">Coming soon to Amazon</span>`;
   return `<a class="btn btn-primary" href="${AMZ(x.a)}" target="_blank" rel="noopener">${x.h?'Paperback on Amazon':'Buy on Amazon'}</a>`;
@@ -1100,6 +1131,8 @@ const navMap={'review':'reading'};
 const META={
   'home':['/','Mazo Moon | Journals, colouring and stationery from Yorkshire'],
   'journals':['/journals/','Journals and planners | Mazo Moon'],
+  'stickers':['/stickers/','Stickers | Mazo Moon'],
+  'pens':['/pens/','Pens and highlighters | Mazo Moon'],
   'colouring':['/colouring/','Colouring books for adults | Mazo Moon'],
   'create':['/create/','Create your own comic, football club and video game books | Mazo Moon'],
   'shop':['/shop/','Shop stickers, pens, journals and more | Mazo Moon'],

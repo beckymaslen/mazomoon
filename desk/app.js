@@ -1079,29 +1079,46 @@ setSeason(season);
 
 /* ---------- menu ---------- */
 function openMenu(){
-  // items: a website address (/...), a desk object to open, or an action (a:...)
+  // shopping first, reading second, the desk's little activities third; settings sit apart from the links
   const night = root.classList.contains('night');
-  const G = [
-    ['Shop Mazo Moon', [['/shop/','Shop All'], ['/create/','Create Your Own'], ['/colouring/','Colouring Books'], ['/journals/','Journals']]],
-    ['Read & Discover', [['/reading/','The Reading Corner'], ['mug','What’s on Becky’s Desk']]],
-    ['Take a Little Break', [['notebook','Doodle'], ['stickers','Stickers'], ['puzzle','Moon & Stars']]],
-    ['About Mazo Moon', [['/our-story/','Our Story'], ['/our-story/#contact','Contact'], ['a:lamp','Appearance', night ? 'Night · switch to day' : 'Day · switch to night']]]
-  ];
-  const item = ([k, t, sub]) => k.startsWith('/') ? `<li><a href="${k}">${esc(t)}</a></li>`
-    : k.startsWith('a:') ? `<li><button type="button" data-a="${k.slice(2)}">${esc(t)}${sub ? `<small>${esc(sub)}</small>` : ''}</button></li>`
-    : `<li><button type="button" data-k="${k}">${esc(t)}</button></li>`;
+  const link = ([href, t]) => `<li><a href="${href}">${esc(t)}</a></li>`;
+  const pill = ([k, t]) => `<li><button type="button" data-k="${k}">${esc(t)}</button></li>`;
   $('#menuBody').innerHTML = `
-    <div class="row" style="justify-content:space-between"><span class="eyebrow">Menu</span><button class="back" type="button" data-close>Close</button></div>
-    ${G.map(([g, list]) => `<section class="mgrp" aria-label="${esc(g)}"><h3 class="eyebrow">${esc(g)}</h3><ul>${list.map(item).join('')}</ul></section>`).join('')}
-    <p class="small muted mlegal"><a href="/privacy/">Privacy</a> · <a href="/cookies/">Cookies</a> · <a href="/cookies/" data-cookie-settings>Cookie settings</a> · <a href="/terms/">Terms</a></p>
-    <p class="small muted">© Mazo Moon Ltd, company no. 16988519</p>`;
+    <div class="mhead"><span class="eyebrow" tabindex="-1" autofocus>Menu</span>
+      <button class="mx" type="button" data-close aria-label="Close menu"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2.5 2.5l11 11M13.5 2.5l-11 11"/></svg></button></div>
+    <nav class="mgrp mshop" aria-label="Shop Mazo Moon"><h3 class="eyebrow">Shop Mazo Moon</h3><ul>
+      ${[['/shop/','Shop All'], ['/stickers/','Stickers'], ['/pens/','Pens & Highlighters'], ['/journals/','Journals'], ['/colouring/','Colouring Books'], ['/create/','Create Your Own']].map(link).join('')}</ul></nav>
+    <nav class="mgrp mread" aria-label="Read and discover"><h3 class="eyebrow">Read &amp; Discover</h3><ul>
+      ${link(['/reading/','The Reading Corner'])}<li><button type="button" class="row-btn" data-k="mug">What’s on Becky’s Desk</button></li></ul></nav>
+    <section class="mgrp mplay" aria-label="Take a little break"><h3 class="eyebrow">Take a Little Break</h3><ul>
+      ${[['notebook','Doodle'], ['stickers','Sticker Playground'], ['puzzle','Moon & Stars']].map(pill).join('')}</ul></section>
+    <nav class="mgrp mabout" aria-label="About Mazo Moon"><h3 class="eyebrow">About Mazo Moon</h3><ul>
+      ${[['/our-story/','Our Story'], ['/our-story/#contact','Contact']].map(link).join('')}</ul></nav>
+    <div class="mctl" role="group" aria-label="Appearance"><span class="eyebrow">Appearance</span>
+      <span class="seg"><button type="button" data-mode="day" aria-pressed="${!night}">Day</button><button type="button" data-mode="night" aria-pressed="${night}">Night</button></span></div>
+    <div class="mfoot"><p class="mlegal"><a href="/privacy/">Privacy</a>·<a href="/cookies/">Cookies</a>·<a href="/cookies/" data-cookie-settings>Cookie settings</a>·<a href="/terms/">Terms</a></p>
+      <p>© Mazo Moon Ltd, company no. 16988519</p></div>`;
+  menu.classList.remove('closing', 'scrolled'); menu.scrollTop = 0;
+  document.documentElement.classList.add('mlock');
   menu.showModal();
 }
+// close with a short fade (none when reduced motion is on); the dialog then hands focus back to the Menu button
+function closeMenu(then){
+  if (!menu.open) return;
+  const done = () => { menu.classList.remove('closing'); menu.close(); then && then(); };
+  if (reduce) return done();
+  menu.classList.add('closing'); setTimeout(done, 200);
+}
+menu.addEventListener('close', () => document.documentElement.classList.remove('mlock'));
+menu.addEventListener('cancel', e => { e.preventDefault(); closeMenu(); });  // Escape
+menu.addEventListener('scroll', () => menu.classList.toggle('scrolled', menu.scrollTop > 4), { passive: true });
 menu.addEventListener('click', e => {
-  if (e.target === menu || e.target.closest('[data-close]')) { menu.close(); return; }
-  if (e.target.closest('[data-cookie-settings]')) { menu.close(); return; }
-  const b = e.target.closest('button[data-k],button[data-a]'); if (!b) return; menu.close();
-  if (b.dataset.a === 'lamp') toggleLamp(); else if (b.dataset.a === 'intro') playIntro(); else if (b.dataset.a === 'season') { const o = ['spring','summer','autumn','winter']; setSeason(o[(o.indexOf(season) + 1) % 4]); } else if (b.dataset.k.startsWith('shop:')) shopTo(b.dataset.k.slice(5)); else openObj(b.dataset.k, $(`.hot[data-k="${b.dataset.k}"]`) || null);
+  if (e.target === menu || e.target.closest('[data-close]')) { closeMenu(); return; }  // the dimmed page behind, or the X
+  if (e.target.closest('[data-cookie-settings]')) { menu.close(); return; }  // at once, so the cookie banner can take focus
+  const m = e.target.closest('button[data-mode]');
+  if (m) { if (m.getAttribute('aria-pressed') !== 'true') { setMode(m.dataset.mode, true); menu.querySelectorAll('[data-mode]').forEach(x => x.setAttribute('aria-pressed', x === m)); } return; }
+  const b = e.target.closest('button[data-k]'); if (!b) return;
+  closeMenu(() => { if (b.dataset.k.startsWith('shop:')) shopTo(b.dataset.k.slice(5)); else openObj(b.dataset.k, $(`.hot[data-k="${b.dataset.k}"]`) || null); });
 });
 $('#navMenu').addEventListener('click', openMenu);
 const shopTo = cat => { closeShopMenu(); closeAll(); shopCat = cat || 'all'; openObj('laptop', layout === 'desk' ? $('.hot[data-k="laptop"]') : null); };

@@ -151,6 +151,7 @@ def head(title, desc, url, img, ld, kind='product'):
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<script>try{{var m=localStorage.getItem("mm-mode");if(m)document.documentElement.dataset.theme=m==="night"?"dark":"light"}}catch(e){{}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{t}</title>
 <meta name="description" content="{d}">
