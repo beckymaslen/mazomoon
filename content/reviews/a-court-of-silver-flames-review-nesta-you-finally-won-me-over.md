@@ -74,7 +74,7 @@ publish:
   status: published
   date: 2026-11-06T20:15
   updated: 2026-11-06
-views: 7
+views: 8
 ---
 # A Court of Silver Flames Review: I Almost Gave Up on Nesta
 
