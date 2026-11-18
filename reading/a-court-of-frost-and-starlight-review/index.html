@@ -2,6 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<script>try{var m=localStorage.getItem("mm-mode");if(m)document.documentElement.dataset.theme=m==="night"?"dark":"light"}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <base href="/">
 <!--meta-start-->
@@ -344,13 +345,13 @@ button.pill:hover{border-color:var(--border-strong)}
   .chip{flex:none}
 }
 @media (max-width:520px){
-  #shopGrid,#bookGrid,#journalGrid,#colourGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
-  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
-  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small{display:none}
-  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s{font-size:13px}
-  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
-  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta{flex-wrap:wrap;gap:4px}
-  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek{display:none}
+  #shopGrid,#bookGrid,#journalGrid,#colourGrid,#createGrid,#stickerGrid,#penGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
+  #shopGrid .card .t,#bookGrid .card .t,#journalGrid .card .t,#colourGrid .card .t,#createGrid .card .t,#stickerGrid .card .t,#penGrid .card .t{font-size:17px;line-height:1.25;min-height:44px}
+  #shopGrid .card .small,#bookGrid .card .small,#journalGrid .card .small,#colourGrid .card .small,#createGrid .card .small,#stickerGrid .card .small,#penGrid .card .small{display:none}
+  #shopGrid .card .strong-s,#bookGrid .card .strong-s,#journalGrid .card .strong-s,#colourGrid .card .strong-s,#createGrid .card .strong-s,#stickerGrid .card .strong-s,#penGrid .card .strong-s{font-size:13px}
+  #shopGrid .card .btn,#bookGrid .card .btn,#journalGrid .card .btn,#colourGrid .card .btn,#createGrid .card .btn,#stickerGrid .card .btn,#penGrid .card .btn{padding:10px 8px;font-size:12px;letter-spacing:.02em}
+  #shopGrid .card .meta,#bookGrid .card .meta,#journalGrid .card .meta,#colourGrid .card .meta,#createGrid .card .meta,#stickerGrid .card .meta,#penGrid .card .meta{flex-wrap:wrap;gap:4px}
+  #shopGrid .peek,#bookGrid .peek,#journalGrid .peek,#colourGrid .peek,#createGrid .peek,#stickerGrid .peek,#penGrid .peek{display:none}
 }
 
 
@@ -571,11 +572,13 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     <nav class="main" id="mainNav" aria-label="Main">
       <ul>
         <li><a href="/" data-nav="home">The desk</a></li>
-        <li><a href="/journals/" data-nav="journals">Journals &amp; Colouring</a></li>
-        <li><a href="/shop/" data-nav="shop">Shop Mazo Moon</a></li>
+        <li><a href="/journals/" data-nav="journals">Journals</a></li>
+        <li><a href="/colouring/" data-nav="colouring">Colouring Books</a></li>
+        <li><a href="/create/" data-nav="create">Create Your Own</a></li>
+        <li><a href="/shop/" data-nav="shop">Shop</a></li>
         <li><a href="/reading/" data-nav="reading">The Reading Corner</a></li>
         <li><a href="/little-things/" data-nav="little-things">Little Things I Love</a></li>
-        <li><a href="/our-story/" data-nav="our-story">Our Story &amp; Contact</a></li>
+        <li><a href="/our-story/" data-nav="our-story">Our Story</a></li>
       </ul>
     </nav>
   </div>
@@ -592,7 +595,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       <p class="lead">Keepsake journals for kids and grown-ups, cosy colouring books, and stickers and pens for the little moments that make a day feel like yours.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#shop">Shop Mazo Moon</a>
-        <a class="btn btn-secondary" href="#journals">Explore journals &amp; colouring</a>
+        <a class="btn btn-secondary" href="#journals">Explore the journals</a>
       </div>
       <p class="hint hint-d"><span class="star">✦</span> Go on, pick up a sticker and give the journal a little personality.</p>
       <p class="clock" id="clock" aria-live="off"></p>
@@ -712,25 +715,55 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
   </div>
 </section>
 
-<!-- JOURNALS & COLOURING -->
-<section class="page" data-page="journals" hidden>
+<!-- STICKERS -->
+<section class="page" data-page="stickers" hidden>
   <div class="wrap page-hero rise">
-    <span class="label">Journals &amp; Colouring</span>
-    <h1 class="d-xl">Pages to plan, fill and wander through.</h1>
-    <p class="lead">Keepsake journals for the things you swear you'll remember, then forget by teatime. And colouring for when you'd rather not think at all.</p>
+    <span class="label">Stickers</span>
+    <h1 class="d-xl">Little notes, stuck where you’ll see them.</h1>
+    <p class="lead">Affirmations, vintage quotes, cats, witches and flowers in waterproof vinyl, for journals, laptops, bottles and book boxes.</p>
   </div>
   <div class="wrap sec-tight">
-    <div class="sec-head"><span class="label">Keepsake journals</span><h2 class="h">Big adventures. Little things worth remembering.</h2></div>
-    <div class="grid g3" id="bookGrid"></div>
+    <div class="grid g3" id="stickerGrid"></div>
     <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
   </div>
-  <div class="wrap sec-tight">
-    <div class="sec-head"><span class="label">Planners</span><h2 class="h">Make it personal.</h2></div>
-    <div class="grid g3" id="journalGrid"></div>
+</section>
+
+<!-- PENS &AMP; HIGHLIGHTERS -->
+<section class="page" data-page="pens" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Pens &amp; Highlighters</span>
+    <h1 class="d-xl">Something nice to write with.</h1>
+    <p class="lead">Gel pens, metallic brush pens, pattern line pens and the little bits of stationery that make a page feel finished.</p>
   </div>
   <div class="wrap sec-tight">
-    <div class="sec-head"><span class="label">Colouring books</span><h2 class="h">Cosy colouring for grown-ups.</h2></div>
+    <div class="grid g3" id="penGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
+  </div>
+</section>
+
+<!-- CREATE YOUR OWN -->
+<section class="page" data-page="create" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Create your own</span>
+    <h1 class="d-xl">Every hero, club and game starts with a pencil.</h1>
+    <p class="lead">Comics to draw, football clubs to run and video games to design. Every page is a blank start for their ideas, and the book is done when they say it is.</p>
+  </div>
+  <div class="wrap sec-tight">
+    <div class="grid g3" id="createGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
+  </div>
+</section>
+
+<!-- COLOURING BOOKS -->
+<section class="page" data-page="colouring" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Colouring books</span>
+    <h1 class="d-xl">Somewhere cosy to wander for ten minutes.</h1>
+    <p class="lead">Colouring for grown-ups, for when you'd rather not think at all. Little cafés, everyday magic and bookish corners, one page at a time.</p>
+  </div>
+  <div class="wrap sec-tight">
     <div class="grid g3" id="colourGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
   </div>
   <div class="colourin" data-colourin>
     <div class="wrap sticky">
@@ -745,6 +778,24 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       <div class="cframe"><canvas aria-label="A colouring page called The Courtyard Café being coloured in"></canvas><div class="pencil"><img src="img/cut/pen-red.webp" alt=""></div></div>
     </div>
   </div>
+</section>
+
+<!-- JOURNALS -->
+<section class="page" data-page="journals" hidden>
+  <div class="wrap page-hero rise">
+    <span class="label">Journals</span>
+    <h1 class="d-xl">Pages to plan, fill and keep.</h1>
+    <p class="lead">Keepsake journals for the things you swear you'll remember, then forget by teatime. And planners for the everyday.</p>
+  </div>
+  <div class="wrap sec-tight">
+    <div class="sec-head"><span class="label">Keepsake journals</span><h2 class="h">Big adventures. Little things worth remembering.</h2></div>
+    <div class="grid g3" id="bookGrid"></div>
+  </div>
+  <div class="wrap sec-tight">
+    <div class="sec-head"><span class="label">Other books</span><h2 class="h">Planners to make it personal.</h2></div>
+    <div class="grid g3" id="journalGrid"></div>
+    <p class="note" style="margin-top:32px">Prices are my usual Amazon prices. Amazon always shows the latest price and delivery.</p>
+  </div>
   <div class="sunken">
     <div class="wrap sec-tight" style="display:grid;gap:12px;max-width:760px;text-align:left">
       <span class="label">A little tip</span>
@@ -753,6 +804,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
     </div>
   </div>
 </section>
+
 
 <!-- SHOP -->
 <section class="page" data-page="shop" hidden>
@@ -771,6 +823,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
       <button class="chip" aria-pressed="false" data-f="pens">Pens &amp; stationery</button>
       <button class="chip" aria-pressed="false" data-f="rest">Rest &amp; relaxation</button>
       <button class="chip" aria-pressed="false" data-f="journals">Journals</button>
+      <button class="chip" aria-pressed="false" data-f="create">Create your own</button>
       <button class="chip" aria-pressed="false" data-f="colouring">Colouring books</button>
     </div>
     <div class="grid g4" id="shopGrid"></div>
@@ -1144,7 +1197,11 @@ f.addEventListener('submit',function(ev){ev.preventDefault();
     <div>
       <h4>Explore</h4>
       <ul>
-        <li><a href="/journals/" data-nav="journals">Journals &amp; Colouring</a></li>
+        <li><a href="/journals/" data-nav="journals">Journals</a></li>
+        <li><a href="/colouring/" data-nav="colouring">Colouring Books</a></li>
+        <li><a href="/create/" data-nav="create">Create Your Own</a></li>
+        <li><a href="/stickers/" data-nav="stickers">Stickers</a></li>
+        <li><a href="/pens/" data-nav="pens">Pens &amp; Highlighters</a></li>
         <li><a href="/shop/" data-nav="shop">Shop Mazo Moon</a></li>
         <li><a href="/reading/" data-nav="reading">The Reading Corner</a></li>
         <li><a href="/little-things/" data-nav="little-things">Little Things I Love</a></li>
@@ -1171,7 +1228,7 @@ f.addEventListener('submit',function(ev){ev.preventDefault();
 const MAAS = 'maas=maas_adg_5620BE20E00531051704C67F4D1D438F_afap_abs&ref_=aa_maas&tag=maas';
 const AMZ = a => 'https://www.amazon.co.uk/dp/' + a + '?' + MAAS;
 /* each product's own sales page (/products/...), filled in by tools/build_pages.py from content/sales */
-const SALES = {"B0GM15C6P8": "/products/year-of-being-7/", "B0GM5JKMCW": "/products/year-of-being-8/", "B0GMQLBMR8": "/products/year-of-being-9/", "B0GM2SSLJB": "/products/year-of-being-10/", "B0GM9PC4CM": "/products/year-of-being-11/", "B0GM2TPC12": "/products/year-of-being-12/", "B0GM1GL82B": "/products/year-of-being-7/", "B0GM89ZG4J": "/products/year-of-being-8/", "B0GM7X4CDH": "/products/year-of-being-9/", "B0GM28DT2C": "/products/year-of-being-10/", "B0GM7WG4PH": "/products/year-of-being-11/", "B0GM2SHZWL": "/products/year-of-being-12/", "B0FRYHQ97G": "/products/noisebud-earplugs/", "B0FRYLQX7N": "/products/noisebud-earplugs/", "B0FRYJGVR9": "/products/noisebud-earplugs/", "B0FRYGBW79": "/products/noisebud-earplugs/", "B0FRYJ7JTK": "/products/noisebud-earplugs/", "My Adventure Travel Journal": "/products/adventure-travel-journal/", "B0HNY91X4S": "/products/adventure-travel-journal/", "Our Journey Together": "/products/our-journey-together/", "B0HNXQFDD2": "/products/our-journey-together/", "The Year I Started Secondary School": "/products/started-secondary/", "B0HPGTGRH9": "/products/started-secondary/", "The Storymaker\u2019s Journal": "/products/storymakers-journal/", "B0HP8HW6B5": "/products/storymakers-journal/", "The Storymaker\u2019s Comic Book": "/comic/", "B0HQ58GQHC": "/comic/", "The Little Words Archive": "/products/little-words-archive/", "B0GMH7FGRF": "/products/little-words-archive/", "B0GMCNFFRL": "/products/little-words-archive/", "The Year of Being journals": "/products/year-of-being/", "The Year of Being 7": "/products/year-of-being-7/", "The Year of Being 8": "/products/year-of-being-8/", "The Year of Being 9": "/products/year-of-being-9/", "The Year of Being 10": "/products/year-of-being-10/", "The Year of Being 11": "/products/year-of-being-11/", "The Year of Being 12": "/products/year-of-being-12/", "A Cup of Somewhere Else": "/products/cup-of-somewhere-else/", "B0HQMNRV6L": "/products/cup-of-somewhere-else/", "Just One More Chapter": "/products/just-one-more-chapter/", "B0HR61TKFL": "/products/just-one-more-chapter/", "A Little Everyday Magic": "/products/little-everyday-magic/", "B0HR61HP7C": "/products/little-everyday-magic/", "Positive Affirmation Stickers": "/products/positive-affirmation-stickers/", "B0FY7V22J1": "/products/positive-affirmation-stickers/", "Vintage Quote Stickers": "/products/vintage-quote-stickers/", "B0FY94K1BW": "/products/vintage-quote-stickers/", "Holographic Glitter Stickers": "/products/holographic-stickers/", "B0FQ42GN9B": "/products/holographic-stickers/", "Dark Romance Reader Stickers": "/products/dark-romance-stickers/", "B0FQ43L496": "/products/dark-romance-stickers/", "Travel Map Stickers": "/products/travel-map-stickers/", "B0GHYJQTXC": "/products/travel-map-stickers/", "Motivational Quote Stickers": "/products/motivational-quote-stickers/", "B0FY817MDV": "/products/motivational-quote-stickers/", "Needle Tip Gel Pens, 3-pack": "/products/needle-tip-gel-pens/", "B0FY3R7ZVM": "/products/needle-tip-gel-pens/", "Metallic Brush Pens, 3-pack": "/products/metallic-brush-pens/", "B0FY439TS9": "/products/metallic-brush-pens/", "NoiseBud Ring Earplugs": "/products/noisebud-earplugs/"};
+const SALES = {"B0GM15C6P8": "/products/year-of-being-7/", "B0GM5JKMCW": "/products/year-of-being-8/", "B0GMQLBMR8": "/products/year-of-being-9/", "B0GM2SSLJB": "/products/year-of-being-10/", "B0GM9PC4CM": "/products/year-of-being-11/", "B0GM2TPC12": "/products/year-of-being-12/", "B0GM1GL82B": "/products/year-of-being-7/", "B0GM89ZG4J": "/products/year-of-being-8/", "B0GM7X4CDH": "/products/year-of-being-9/", "B0GM28DT2C": "/products/year-of-being-10/", "B0GM7WG4PH": "/products/year-of-being-11/", "B0GM2SHZWL": "/products/year-of-being-12/", "B0FRYHQ97G": "/products/noisebud-earplugs/", "B0FRYLQX7N": "/products/noisebud-earplugs/", "B0FRYJGVR9": "/products/noisebud-earplugs/", "B0FRYGBW79": "/products/noisebud-earplugs/", "B0FRYJ7JTK": "/products/noisebud-earplugs/", "My Adventure Travel Journal": "/products/adventure-travel-journal/", "B0HNY91X4S": "/products/adventure-travel-journal/", "Our Journey Together": "/products/our-journey-together/", "B0HNXQFDD2": "/products/our-journey-together/", "The Year I Started Secondary School": "/products/started-secondary/", "B0HPGTGRH9": "/products/started-secondary/", "The Storymaker\u2019s Journal": "/products/storymakers-journal/", "B0HP8HW6B5": "/products/storymakers-journal/", "The Little Words Archive": "/products/little-words-archive/", "B0GMH7FGRF": "/products/little-words-archive/", "B0GMCNFFRL": "/products/little-words-archive/", "The Year of Being journals": "/products/year-of-being/", "The Year of Being 7": "/products/year-of-being-7/", "The Year of Being 8": "/products/year-of-being-8/", "The Year of Being 9": "/products/year-of-being-9/", "The Year of Being 10": "/products/year-of-being-10/", "The Year of Being 11": "/products/year-of-being-11/", "The Year of Being 12": "/products/year-of-being-12/", "The Storymaker\u2019s Comic Book": "/comic/", "B0HQ58GQHC": "/comic/", "The Storymaker\u2019s Football Club Book": "/products/storymakers-football-club/", "B0HRVZGZ6W": "/products/storymakers-football-club/", "The Storymaker\u2019s Video Game Book": "/products/storymakers-video-game/", "B0HRW71GQ6": "/products/storymakers-video-game/", "A Cup of Somewhere Else": "/products/cup-of-somewhere-else/", "B0HQMNRV6L": "/products/cup-of-somewhere-else/", "Just One More Chapter": "/products/just-one-more-chapter/", "B0HR61TKFL": "/products/just-one-more-chapter/", "A Little Everyday Magic": "/products/little-everyday-magic/", "B0HR61HP7C": "/products/little-everyday-magic/", "Positive Affirmation Stickers": "/products/positive-affirmation-stickers/", "B0FY7V22J1": "/products/positive-affirmation-stickers/", "Vintage Quote Stickers": "/products/vintage-quote-stickers/", "B0FY94K1BW": "/products/vintage-quote-stickers/", "Holographic Glitter Stickers": "/products/holographic-stickers/", "B0FQ42GN9B": "/products/holographic-stickers/", "Dark Romance Reader Stickers": "/products/dark-romance-stickers/", "B0FQ43L496": "/products/dark-romance-stickers/", "Travel Map Stickers": "/products/travel-map-stickers/", "B0GHYJQTXC": "/products/travel-map-stickers/", "Motivational Quote Stickers": "/products/motivational-quote-stickers/", "B0FY817MDV": "/products/motivational-quote-stickers/", "Needle Tip Gel Pens, 3-pack": "/products/needle-tip-gel-pens/", "B0FY3R7ZVM": "/products/needle-tip-gel-pens/", "Metallic Brush Pens, 3-pack": "/products/metallic-brush-pens/", "B0FY439TS9": "/products/metallic-brush-pens/", "NoiseBud Ring Earplugs": "/products/noisebud-earplugs/"};
 const SP = x => SALES[x.a] || SALES[x.n];
 const T = x => SP(x) ? `<h3 class="t"><a class="t-link" href="${SP(x)}">${x.n}</a></h3>` : `<h3 class="t">${x.n}</h3>`;
 const MORE = x => SP(x) ? `<a class="more-link" href="${SP(x)}">Look inside and read more</a>` : '';
@@ -1222,7 +1279,9 @@ const books = [
   {p:9.99,n:'Our Journey Together',a:'B0HNXQFDD2',l:'Your words. Their words.',d:'A shared journal for a grown-up and child to fill in, pass back and keep.',spec:'113 pages · 6 × 9 in',img:'our-journey-together'},
   {p:9.99,n:'The Year I Started Secondary School',a:'B0HPGTGRH9',l:'You don\'t have to have it all figured out.',d:'A private, pressure-free place for a big new chapter.',spec:'110 pages · 6 × 9 in',img:'started-secondary'},
   {p:7.99,n:'The Storymaker\'s Journal',a:'B0HP8HW6B5',l:'Every story starts with one small idea.',d:'Draw, imagine and create your own adventures, one prompt at a time.',spec:'110 pages · 6 × 9 in',img:'storymakers-journal'},
-  {p:7.99,n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic'},
+  {p:7.99,n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic',cr:1},
+  {p:7.99,n:'The Storymaker’s Football Club Book',a:'B0HRVZGZ6W',cr:1,l:'Every club starts with a pencil.',d:'Six football clubs to build, from the badge and kit to lifting the cup.',spec:'112 pages · A4',img:'storymakers-football-club'},
+  {p:7.99,n:'The Storymaker’s Video Game Book',a:'B0HRW71GQ6',cr:1,l:'Every game starts with a pencil.',d:'Six video games to design, from the hero and boss to the box art.',spec:'112 pages · A4',img:'storymakers-video-game'},
   {p:9.99,n:'The Little Words Archive',a:'B0GMH7FGRF',h:'B0GMCNFFRL',l:'The things they say, kept safe.',d:'A keepsake journal for remembering the funny, wise and wonderful words children say.',spec:'Paperback or hardcover',img:'little-words',inside:'little-words'},
   {p:9.99,n:'The Year of Being 7',a:'B0GM15C6P8',h:'B0GM1GL82B',l:'Feelings, confidence and everyday magic.',d:'A keepsake journal for 7-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-7',inside:'year-of-being'},
   {p:9.99,n:'The Year of Being 8',a:'B0GM5JKMCW',h:'B0GM89ZG4J',l:'Growth, self-trust and everyday moments.',d:'A keepsake journal for 8-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-8',inside:'year-of-being'},
@@ -1266,7 +1325,7 @@ const svgs = {
 function paint(root){ (root||document).querySelectorAll('[data-art]').forEach(el=>{ if(el.dataset.done) return; const f=svgs[el.dataset.art]; if(f){ el.insertAdjacentHTML('afterbegin', f(el.dataset.c||'sage')); el.dataset.done=1; } }); }
 
 const price = p => '£' + p.toFixed(2);
-const AR={'storymakers-comic':.707,'cup-of-somewhere-else':.773,'little-everyday-magic':.773,'just-one-more-chapter':.773};
+const AR={'storymakers-comic':.707,'storymakers-football-club':.703,'storymakers-video-game':.703,'cup-of-somewhere-else':.773,'little-everyday-magic':.773,'just-one-more-chapter':.773};
 const artFor = x => x.pic ? `<div class="art shopimg"><img class="m" src="img/products/${x.pic}.jpg?v=2" alt="${x.n}" loading="lazy"></div>` : x.shop ? `<div class="art shopimg"><img class="m" src="img/shop/${x.shop}.jpg?v=2" alt="${x.n}" loading="lazy"><img class="h" src="img/shop/${x.shop}-hover.jpg?v=2" alt="" loading="lazy" aria-hidden="true"></div>` : (x.img && x.cover) ? `<div class="art cover book3d"><div class="bk" style="--ar:${AR[x.img]||.667}"><img class="inside" src="img/inside-${x.inside||x.img}.jpg" alt="" loading="lazy"><span class="pages" aria-hidden="true"></span><span class="front"><img src="img/${x.img}.jpg" alt="${x.n} cover" loading="lazy"><span class="crease" aria-hidden="true"></span></span></div><span class="peek">Peek inside</span></div>` : x.img ? `<div class="art tilt"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy">${x.a?amzImg(x.a,x.n):''}</div>` : `<div class="art tilt" data-art="${x.art}" data-c="${x.c}">${x.a?amzImg(x.a,x.n):''}</div>`;
 function productCard(x){
   return `<article class="card" data-cat="${GROUP[x.cat]||x.cat}">
@@ -1282,11 +1341,13 @@ function productCard(x){
 }
 const BEST=['B0FY94K1BW','B0FY7V22J1','B0FQ42GN9B','B0FY439TS9','B0GHYJQTXC'];
 document.getElementById('journalGrid').innerHTML = products.filter(p=>p.cat==='journals').map(productCard).join('');
+document.getElementById('stickerGrid').innerHTML = products.filter(p=>GROUP[p.cat]==='stickers').map(productCard).join('');
+document.getElementById('penGrid').innerHTML = products.filter(p=>GROUP[p.cat]==='pens').map(productCard).join('');
 function bookBtns(x){
   if(x.soon||!x.a) return `<span class="btn btn-secondary" aria-disabled="true">Coming soon to Amazon</span>`;
   return `<a class="btn btn-primary" href="${AMZ(x.a)}" target="_blank" rel="noopener">${x.h?'Paperback on Amazon':'Buy on Amazon'}</a>`;
 }
-const bookCard = x=>`<article class="card" data-cat="${x.colour?'colouring':'journals'}">
+const bookCard = x=>`<article class="card" data-cat="${x.colour?'colouring':x.cr?'create':'journals'}">
     ${artFor({...x,cover:!!x.img})}
     ${T(x)}<p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>${MORE(x)}
     <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
@@ -1294,7 +1355,8 @@ const bookCard = x=>`<article class="card" data-cat="${x.colour?'colouring':'jou
   </article>`;
 document.getElementById('homeFavs').innerHTML = BEST.map(a=>products.find(p=>p.a===a)).filter(Boolean).map(productCard).join('') + books.filter(x=>x.colour).slice(0,1).map(bookCard).join('');
 document.getElementById('shopGrid').innerHTML = books.map(bookCard).join('') + products.map(productCard).join('');
-document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour).map(x=>`<article class="card">
+document.getElementById('createGrid').innerHTML = books.filter(x=>x.cr).map(bookCard).join('');
+document.getElementById('bookGrid').innerHTML = books.filter(x=>!x.colour&&!x.cr).map(x=>`<article class="card">
     ${artFor({...x,cover:!!x.img})}
     ${T(x)}<p class="strong-s">${x.l}</p><p class="small muted">${x.d}</p>${MORE(x)}
     <div class="meta">${x.p&&!x.soon?`<span class="price">${x.h?'From ':''}${price(x.p)}</span>`:''}<span class="caption">${x.h?'Paperback or hardcover':x.spec}</span>${x.h?`<a class="hc-link" href="${AMZ(x.h)}" target="_blank" rel="noopener">Hardcover</a>`:''}</div>
@@ -1325,7 +1387,11 @@ const pages=[...document.querySelectorAll('section.page')];
 const navMap={'review':'reading'};
 const META={
   'home':['/','Mazo Moon | Journals, colouring and stationery from Yorkshire'],
-  'journals':['/journals/','Journals & colouring books | Mazo Moon'],
+  'journals':['/journals/','Journals and planners | Mazo Moon'],
+  'stickers':['/stickers/','Stickers | Mazo Moon'],
+  'pens':['/pens/','Pens and highlighters | Mazo Moon'],
+  'colouring':['/colouring/','Colouring books for adults | Mazo Moon'],
+  'create':['/create/','Create your own comic, football club and video game books | Mazo Moon'],
   'shop':['/shop/','Shop stickers, pens, journals and more | Mazo Moon'],
   'reading':['/reading/','The Reading Corner | Mazo Moon'],
   'little-things':['/little-things/','Little Things I Love | Mazo Moon'],

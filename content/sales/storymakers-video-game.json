@@ -1,8 +1,8 @@
 {
  "slug": "storymakers-video-game",
  "name": "The Storymaker’s Video Game Book",
+ "asin": "B0HRW71GQ6",
  "price": 7.99,
- "soon": true,
  "kind": "book",
  "group": "create",
  "pages_count": 112,
@@ -89,7 +89,7 @@
  ],
  "proof": {
   "h": "A look at the book",
-  "p": "Interior pages coming soon.",
+  "p": "Every game gets its own pages, from the hero and boss to the world map, levels and box art.",
   "note": [
    "I made this for the children who are always telling me about the game they’re going to make one day. Now they can make six.",
    "I love the box art page. Seeing their game “on the shop shelf” makes it feel real."
@@ -146,7 +146,7 @@
    "No subscription and nothing to download. Open it and start.",
    "Amazon handles delivery and returns, just like anything else you buy there."
   ],
-  "price_note": "planned price"
+  "price_note": "at the time of writing"
  },
  "faq": [
   [

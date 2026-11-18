@@ -1,8 +1,8 @@
 {
  "slug": "storymakers-football-club",
  "name": "The Storymaker’s Football Club Book",
+ "asin": "B0HRVZGZ6W",
  "price": 7.99,
- "soon": true,
  "kind": "book",
  "group": "create",
  "pages_count": 112,
@@ -89,7 +89,7 @@
  ],
  "proof": {
   "h": "A look at the book",
-  "p": "Interior pages coming soon.",
+  "p": "Every club gets its own pages, from the badge and kits to the stadium, squad and cup final.",
   "note": [
    "I made this for the children who are always drawing kits and badges and arguing about the team sheet. Now they get to run the whole club.",
    "The dice football season is my favourite part. Every match is a surprise, and the league table really matters."
@@ -145,7 +145,7 @@
    "No subscription and nothing to download. Open it and start.",
    "Amazon handles delivery and returns, just like anything else you buy there."
   ],
-  "price_note": "planned price"
+  "price_note": "at the time of writing"
  },
  "faq": [
   [
