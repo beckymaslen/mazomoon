@@ -58,7 +58,7 @@ SCRIPT = '''<script>
   var book=document.getElementById('book'),img=document.getElementById('bookImg'),th=document.querySelector('.thumbs');
   if(th)th.addEventListener('click',function(ev){
     var b=ev.target.closest('button');if(!b)return;
-    var cover=b===th.querySelector('button');
+    var cover=b===th.querySelector('button')||(+b.dataset.w<+b.dataset.h);  /* portrait pictures (covers) keep the cover shape */
     th.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});
     img.src=b.dataset.src;img.alt=b.dataset.alt;img.width=b.dataset.w;img.height=b.dataset.h;
     book.classList.toggle('spread',!cover);
@@ -136,6 +136,8 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     import sales  # noqa: E402  (sales imports this module)
     is_book = p.get('kind') == 'book'
     thumbs = thumb(cover, f'{name} cover', 'true') + ''.join(thumb(g[0], g[1], 'false') for g in spreads[:3])
+    if is_book and not spreads:  # no look-inside pages yet: show the back cover as a thumbnail, no flip-through
+        thumbs += ''.join(thumb(g[0], g[1], 'false') for g in p['gallery'] if g[0] != cover)
     if not is_book:
         thumbs = ''  # products show a colour choice instead of a look inside
 
@@ -218,6 +220,17 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     back, back_label = sales.book_home(p) if is_book else ('/shop/', 'Back to the shop')
     gift = f'<p class="gift">{GIFT}{e(L["gift"])}</p>' if L.get('gift') else ''
     lds = ''.join(_ld(x) for x in ld)
+    flip = '' if is_book and not spreads else f'''  <section class="flip" aria-labelledby="flipH">
+    <div class="wrap flip-head">
+      <h2 class="serif" id="flipH">{'Flip through it' if is_book else 'Take a closer look'}</h2>
+      <span class="count" id="count" aria-live="polite">01 / {n:02d}</span>
+    </div>
+    <div class="track" id="track" tabindex="0" aria-label="Pages from the book, swipe to see more">{figs}</div>
+    <div class="wrap flip-nav">
+      <button type="button" id="prev" aria-label="Previous pages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" id="next" aria-label="Next pages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </section>'''
 
     out = f'''<!doctype html>
 <html lang="en-GB">
@@ -286,17 +299,7 @@ def page(p, by_slug, url, ld, amz, price, maas_store, css_v):
     <div class="benefits">{benefits}</div>
   </div>
 
-  <section class="flip" aria-labelledby="flipH">
-    <div class="wrap flip-head">
-      <h2 class="serif" id="flipH">{'Flip through it' if is_book else 'Take a closer look'}</h2>
-      <span class="count" id="count" aria-live="polite">01 / {n:02d}</span>
-    </div>
-    <div class="track" id="track" tabindex="0" aria-label="Pages from the book, swipe to see more">{figs}</div>
-    <div class="wrap flip-nav">
-      <button type="button" id="prev" aria-label="Previous pages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button type="button" id="next" aria-label="Next pages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-    </div>
-  </section>
+{flip}
 
   <section class="wrap made" aria-label="Who it’s for">
     <p class="label">Made for</p>
