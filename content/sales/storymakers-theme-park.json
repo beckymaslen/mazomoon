@@ -57,8 +57,8 @@
  },
  "gallery": [
   [
-   "/img/storymakers-theme-park.jpg",
-   "The front cover",
+   "/img/sales/storymakers-theme-park/back.jpg",
+   "The back cover: what’s inside the book",
    "aplus"
   ]
  ],
@@ -145,7 +145,7 @@
  ],
  "close": {
   "h": "Six parks are waiting",
-  "p": "The gates are open. Hold on tight!"
+  "p": "Draw. Design. Hold on tight!"
  },
  "related": [
   "storymakers-football-club",

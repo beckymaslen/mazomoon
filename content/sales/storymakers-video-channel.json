@@ -57,8 +57,8 @@
  },
  "gallery": [
   [
-   "/img/storymakers-video-channel.jpg",
-   "The front cover",
+   "/img/sales/storymakers-video-channel/back.jpg",
+   "The back cover: what’s inside the book",
    "aplus"
   ]
  ],
@@ -145,7 +145,7 @@
  ],
  "close": {
   "h": "Six channels are waiting",
-  "p": "Draw. Design. Lights, camera, pencil!"
+  "p": "Draw. Plan. Premiere!"
  },
  "related": [
   "storymakers-video-game",
