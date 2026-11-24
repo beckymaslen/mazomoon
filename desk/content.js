@@ -199,6 +199,34 @@ window.MM = {
    ]
   },
   {
+   "name": "The Storymaker's Theme Park Book",
+   "line": "Every theme park starts with a pencil.",
+   "about": "Six theme parks to design, from the map and rollercoaster to opening day.",
+   "spec": "112 pages · A4",
+   "price": 7.99,
+   "asin": "B0HSPHJPL1",
+   "hardcover": null,
+   "soon": false,
+   "colouring": false,
+   "create": true,
+   "cover": "/desk/img/journals/storymakers-theme-park.jpg",
+   "pages": []
+  },
+  {
+   "name": "The Storymaker's Video Channel Book",
+   "line": "Every great channel starts with a pencil.",
+   "about": "Six video channels to create on paper, from the logo to the premiere night.",
+   "spec": "112 pages · A4",
+   "price": 7.99,
+   "asin": "B0HSPH7BTR",
+   "hardcover": null,
+   "soon": false,
+   "colouring": false,
+   "create": true,
+   "cover": "/desk/img/journals/storymakers-video-channel.jpg",
+   "pages": []
+  },
+  {
    "name": "The Little Words Archive",
    "line": "The things they say, kept safe.",
    "about": "A keepsake journal for remembering the funny, wise and wonderful words children say.",
