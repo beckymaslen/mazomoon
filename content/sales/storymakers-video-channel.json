@@ -1,0 +1,188 @@
+{
+ "slug": "storymakers-video-channel",
+ "name": "The Storymaker’s Video Channel Book",
+ "price": 7.99,
+ "asin": "B0HSPH7BTR",
+ "kind": "book",
+ "group": "create",
+ "pages_count": 112,
+ "label": "Design-your-own video channel book for kids",
+ "title": "The Storymaker’s Video Channel Book: draw, design and create your own video channels, A4 | Mazo Moon",
+ "description": "A screen-free A4 activity book for children who love making up shows: design six video channels from the logo and banner to storyboards, scripts and thumbnails, with a Creator of the Year certificate. 112 pages.",
+ "card": "Six video channels to create, all on paper.",
+ "h1": "Every great channel starts with <em>a pencil</em>",
+ "lead": "For children who love making up shows, vlogs and stories.",
+ "for": [
+  "For children who are always narrating their own show",
+  "For future presenters, animators and storytellers",
+  "For young creators who aren’t ready for a real channel"
+ ],
+ "proofbar": "112 pages · A4",
+ "hero": [
+  "/img/storymakers-video-channel.jpg",
+  "The Storymaker’s Video Channel Book cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "They want a channel. You’d rather they waited.",
+  "p": [
+   "Lots of children dream of having their own video channel, with a name, a logo and a show of their own.",
+   "They aren’t ready for a camera, an account or the internet watching, but the ideas are already bursting out."
+  ]
+ },
+ "approach": {
+  "h": "The whole channel, all on paper",
+  "p": [
+   "The book lets them dream up, design and plan six video channels without a camera, a phone or an account. Every page is for drawing and writing.",
+   "Each channel has fifteen pages, from the channel file and logo to storyboards, scripts and a premiere night poster."
+  ]
+ },
+ "offer": {
+  "h": "Six channels, created by them",
+  "p": "Big A4 pages with room for every storyboard and thumbnail.",
+  "features": [
+   [
+    "6 complete channels",
+    "Logos, banners, hosts, storyboards and scripts, fifteen pages per channel."
+   ],
+   [
+    "The Creator’s Academy",
+    "Ten quick lessons, from channel ideas and thumbnails to filming tips and being kind online."
+   ],
+   [
+    "Safe and screen-free",
+    "A safety promise to sign with a grown-up, and no camera, phone or account needed."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/img/storymakers-video-channel.jpg",
+   "The front cover",
+   "aplus"
+  ]
+ ],
+ "proof": {
+  "h": "A look at the book",
+  "p": "More pages from inside coming soon.",
+  "note": [
+   "I made this for the children who are always telling me about the channel they’re going to have one day. This way they can have six, on paper, with no camera needed.",
+   "I love the premiere night poster. Seeing their show “go live” on the page makes it feel real."
+  ]
+ },
+ "inside": {
+  "h": "Everything in the book",
+  "items": [
+   "Ten Creator’s Academy lessons: channel ideas, names and logos, banners, scripts, storyboards, thumbnails and being kind online",
+   "6 complete channels, fifteen pages each",
+   "Channel files, logos and banners",
+   "A host or mascot for every channel",
+   "Episode lists, storyboards and scripts",
+   "Thumbnails and merch designs",
+   "Fan mail, a pretend stats tracker and a premiere night poster",
+   "100 video ideas for when inspiration runs dry",
+   "Spare storyboard and thumbnail pages",
+   "A Creator ID card and a safety promise to sign with a grown-up",
+   "A Creator of the Year certificate",
+   "112 pages in total, A4, on white paper"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "112"
+  ],
+  [
+   "Size",
+   "A4 (21 × 29.7 cm)"
+  ],
+  [
+   "Paper",
+   "White"
+  ],
+  [
+   "Channels",
+   "6"
+  ],
+  [
+   "Written by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Sold by",
+   "Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "One book, six channels",
+  "points": [
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
+  ]
+ },
+ "faq": [
+  [
+   "What age is it for?",
+   "Roughly seven to twelve. Younger children love the logos and mascots, and older ones will enjoy writing scripts and planning episodes."
+  ],
+  [
+   "Do they need a camera, phone or account?",
+   "No. Everything happens on paper with a pencil. Nothing goes online."
+  ],
+  [
+   "Do they need to be good at drawing?",
+   "No. Storyboard and thumbnail frames give them a start, and stick figures are fine for everything else."
+  ],
+  [
+   "How is it different from The Storymaker’s Comic Book?",
+   "The Comic Book is for telling stories in panels. This one is about planning whole channels, from the logo to the premiere night."
+  ]
+ ],
+ "close": {
+  "h": "Six channels are waiting",
+  "p": "Draw. Design. Lights, camera, pencil!"
+ },
+ "related": [
+  "storymakers-video-game",
+  "storymakers-theme-park",
+  "needle-tip-gel-pens"
+ ],
+ "luxe": {
+  "word": "GO LIVE",
+  "specs": [
+   "A4 · Paperback",
+   "112 pp · White paper"
+  ],
+  "strip": [
+   "Ages 7 to 12",
+   "6 channels to make",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "spark",
+    "Six channels"
+   ],
+   [
+    "grid",
+    "Storyboards"
+   ],
+   [
+    "chat",
+    "Scripts"
+   ],
+   [
+    "lock",
+    "Screen-free"
+   ]
+  ],
+  "gift": "A Christmas present they’ll actually use",
+  "kit": "The little creator’s kit"
+ },
+ "order": 50
+}

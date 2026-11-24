@@ -1,0 +1,188 @@
+{
+ "slug": "storymakers-theme-park",
+ "name": "The Storymaker’s Theme Park Book",
+ "price": 7.99,
+ "asin": "B0HSPHJPL1",
+ "kind": "book",
+ "group": "create",
+ "pages_count": 112,
+ "label": "Design-your-own theme park book for kids",
+ "title": "The Storymaker’s Theme Park Book: draw, design and build your own theme parks, A4 | Mazo Moon",
+ "description": "An A4 activity book for children who love a day out: design six theme parks from the map and rollercoaster to the mascot, tickets and opening day, with a Park Designer of the Year certificate. 112 pages.",
+ "card": "Six theme parks to design, start to finish.",
+ "h1": "Every theme park starts with <em>a pencil</em>",
+ "lead": "For children who love rollercoasters, fairgrounds and a big day out.",
+ "for": [
+  "For children who come home from the fair with a ride already planned",
+  "For future rollercoaster engineers and map makers",
+  "For thrill-seekers who love to draw their own worlds"
+ ],
+ "proofbar": "112 pages · A4",
+ "hero": [
+  "/img/storymakers-theme-park.jpg",
+  "The Storymaker’s Theme Park Book cover"
+ ],
+ "hero_cover": true,
+ "problem": {
+  "h": "They’ve already got a rollercoaster in their head",
+  "p": [
+   "Children who love theme parks are always dreaming up the next ride: a loop round a volcano, a ghost train run by real ghosts. Most of it never leaves their head.",
+   "A blank notebook doesn’t show them how a whole park comes together, so the idea fizzles out."
+  ]
+ },
+ "approach": {
+  "h": "Fifteen pages, from first sketch to opening day",
+  "p": [
+   "The book takes young designers through six complete theme parks. Each one goes from the first ride sketch all the way to opening day, fifteen pages at a time.",
+   "A “Stuck for an idea?” prompt waits at the start of every park, and there’s a list of 100 park ideas at the back. The rest is up to them."
+  ]
+ },
+ "offer": {
+  "h": "Six parks, designed by them",
+  "p": "Big A4 pages with room for every loop, map and mascot.",
+  "features": [
+   [
+    "6 complete theme parks",
+    "Maps, rollercoasters, rides and mascots, fifteen pages per park."
+   ],
+   [
+    "Park Designer’s Academy",
+    "Ten short lessons on maps, how rollercoasters work, rides, mascots and happy visitors."
+   ],
+   [
+    "Opening day game",
+    "A dice game for every park: roll for each hour and see how many visitors come through the gates."
+   ]
+  ]
+ },
+ "gallery": [
+  [
+   "/img/storymakers-theme-park.jpg",
+   "The front cover",
+   "aplus"
+  ]
+ ],
+ "proof": {
+  "h": "A look at the book",
+  "p": "More pages from inside coming soon.",
+  "note": [
+   "I made this for the children who step off a ride and immediately tell me how they’d make it better. Now they can build six whole parks.",
+   "I love the opening day game. Rolling the dice to see who comes through the gates makes their park feel real."
+  ]
+ },
+ "inside": {
+  "h": "Everything in the book",
+  "items": [
+   "Ten Park Designer’s Academy lessons: maps, rollercoasters, rides, mascots, food and tickets",
+   "6 complete theme parks, fifteen pages each",
+   "Park maps and rollercoaster track plans",
+   "Thrill rides, family rides and coaster trains",
+   "Mascots, staff uniforms, food stands and gift shops",
+   "Tickets, posters and visitor reviews",
+   "An opening day dice game for every park",
+   "A “Stuck for an idea?” prompt for every park, plus 100 park ideas",
+   "Theme park words, a Park Designer ID card and a park passport",
+   "Spare map grids and ride sheets",
+   "A Park Designer of the Year certificate",
+   "112 pages in total, A4, on white paper"
+  ]
+ },
+ "specs": [
+  [
+   "Format",
+   "Paperback"
+  ],
+  [
+   "Pages",
+   "112"
+  ],
+  [
+   "Size",
+   "A4 (21 × 29.7 cm)"
+  ],
+  [
+   "Paper",
+   "White"
+  ],
+  [
+   "Parks",
+   "6"
+  ],
+  [
+   "Written by",
+   "Rebecca Maslen, Mazo Moon"
+  ],
+  [
+   "Sold by",
+   "Amazon UK"
+  ]
+ ],
+ "decision": {
+  "h": "One book, six theme parks",
+  "points": [
+   "One paperback book, printed and posted by Amazon.",
+   "No subscription and nothing to download. Open it and start.",
+   "Amazon handles delivery and returns, just like anything else you buy there."
+  ]
+ },
+ "faq": [
+  [
+   "What age is it for?",
+   "Roughly seven to twelve. Younger children love the rides and mascots, and older ones will enjoy planning maps, coaster tracks and ticket prices."
+  ],
+  [
+   "Do they need a screen?",
+   "No. Everything happens on paper with a pencil. No screens and no experience needed."
+  ],
+  [
+   "Do they need to be good at drawing?",
+   "No. Map grids and track plans give them a start, and stick figures are fine for everything else."
+  ],
+  [
+   "Are the parks real?",
+   "No. Every park, ride and mascot in the book is made up, so the parks your child creates are completely their own."
+  ]
+ ],
+ "close": {
+  "h": "Six parks are waiting",
+  "p": "The gates are open. Hold on tight!"
+ },
+ "related": [
+  "storymakers-football-club",
+  "storymakers-video-channel",
+  "needle-tip-gel-pens"
+ ],
+ "luxe": {
+  "word": "HOLD ON",
+  "specs": [
+   "A4 · Paperback",
+   "112 pp · White paper"
+  ],
+  "strip": [
+   "Ages 7 to 12",
+   "6 parks to build",
+   "Sent by Amazon"
+  ],
+  "benefits": [
+   [
+    "map",
+    "Park maps"
+   ],
+   [
+    "wave",
+    "Rollercoasters"
+   ],
+   [
+    "person",
+    "Mascots"
+   ],
+   [
+    "dice",
+    "Opening day"
+   ]
+  ],
+  "gift": "A Christmas present they’ll actually use",
+  "kit": "The little park designer’s kit"
+ },
+ "order": 40
+}

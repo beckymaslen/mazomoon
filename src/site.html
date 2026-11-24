@@ -732,7 +732,7 @@ footer.site .giant.in .wordmark{transform:none;opacity:.22}
   <div class="wrap page-hero rise">
     <span class="label">Create your own</span>
     <h1 class="d-xl">Every hero, club and game starts with a pencil.</h1>
-    <p class="lead">Comics to draw, football clubs to run and video games to design. Every page is a blank start for their ideas, and the book is done when they say it is.</p>
+    <p class="lead">Comics to draw, football clubs to run, video games to design, theme parks to build and video channels to plan. Every page is a blank start for their ideas, and the book is done when they say it is.</p>
   </div>
   <div class="wrap sec-tight">
     <div class="grid g3" id="createGrid"></div>
@@ -1025,6 +1025,8 @@ const books = [
   {p:7.99,n:'The Storymaker\'s Comic Book',a:'B0HQ58GQHC',l:'Every hero starts with a pencil.',d:'Twelve comics to make, with panels, prompts and plenty of POW.',spec:'110 pages · A4',img:'storymakers-comic',cr:1},
   {p:7.99,n:'The Storymaker’s Football Club Book',a:'B0HRVZGZ6W',cr:1,l:'Every club starts with a pencil.',d:'Six football clubs to build, from the badge and kit to lifting the cup.',spec:'112 pages · A4',img:'storymakers-football-club'},
   {p:7.99,n:'The Storymaker’s Video Game Book',a:'B0HRW71GQ6',cr:1,l:'Every game starts with a pencil.',d:'Six video games to design, from the hero and boss to the box art.',spec:'112 pages · A4',img:'storymakers-video-game'},
+  {p:7.99,n:'The Storymaker’s Theme Park Book',a:'B0HSPHJPL1',cr:1,l:'Every theme park starts with a pencil.',d:'Six theme parks to design, from the map and rollercoaster to opening day.',spec:'112 pages · A4',img:'storymakers-theme-park'},
+  {p:7.99,n:'The Storymaker’s Video Channel Book',a:'B0HSPH7BTR',cr:1,l:'Every great channel starts with a pencil.',d:'Six video channels to create on paper, from the logo to the premiere night.',spec:'112 pages · A4',img:'storymakers-video-channel'},
   {p:9.99,n:'The Little Words Archive',a:'B0GMH7FGRF',h:'B0GMCNFFRL',l:'The things they say, kept safe.',d:'A keepsake journal for remembering the funny, wise and wonderful words children say.',spec:'Paperback or hardcover',img:'little-words',inside:'little-words'},
   {p:9.99,n:'The Year of Being 7',a:'B0GM15C6P8',h:'B0GM1GL82B',l:'Feelings, confidence and everyday magic.',d:'A keepsake journal for 7-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-7',inside:'year-of-being'},
   {p:9.99,n:'The Year of Being 8',a:'B0GM5JKMCW',h:'B0GM89ZG4J',l:'Growth, self-trust and everyday moments.',d:'A keepsake journal for 8-year-olds to fill in, look back on and keep.',spec:'Paperback or hardcover',img:'year-of-being-8',inside:'year-of-being'},
@@ -1068,7 +1070,7 @@ const svgs = {
 function paint(root){ (root||document).querySelectorAll('[data-art]').forEach(el=>{ if(el.dataset.done) return; const f=svgs[el.dataset.art]; if(f){ el.insertAdjacentHTML('afterbegin', f(el.dataset.c||'sage')); el.dataset.done=1; } }); }
 
 const price = p => '£' + p.toFixed(2);
-const AR={'storymakers-comic':.707,'storymakers-football-club':.703,'storymakers-video-game':.703,'cup-of-somewhere-else':.773,'little-everyday-magic':.773,'just-one-more-chapter':.773};
+const AR={'storymakers-comic':.707,'storymakers-football-club':.703,'storymakers-video-game':.703,'storymakers-theme-park':.708,'storymakers-video-channel':.708,'cup-of-somewhere-else':.773,'little-everyday-magic':.773,'just-one-more-chapter':.773};
 const artFor = x => x.pic ? `<div class="art shopimg"><img class="m" src="img/products/${x.pic}.jpg?v=2" alt="${x.n}" loading="lazy"></div>` : x.shop ? `<div class="art shopimg"><img class="m" src="img/shop/${x.shop}.jpg?v=2" alt="${x.n}" loading="lazy"><img class="h" src="img/shop/${x.shop}-hover.jpg?v=2" alt="" loading="lazy" aria-hidden="true"></div>` : (x.img && x.cover) ? `<div class="art cover book3d"><div class="bk" style="--ar:${AR[x.img]||.667}"><img class="inside" src="img/inside-${x.inside||x.img}.jpg" alt="" loading="lazy"><span class="pages" aria-hidden="true"></span><span class="front"><img src="img/${x.img}.jpg" alt="${x.n} cover" loading="lazy"><span class="crease" aria-hidden="true"></span></span></div><span class="peek">Peek inside</span></div>` : x.img ? `<div class="art tilt"><img src="img/${x.img}.jpg" alt="${x.n}" loading="lazy">${x.a?amzImg(x.a,x.n):''}</div>` : `<div class="art tilt" data-art="${x.art}" data-c="${x.c}">${x.a?amzImg(x.a,x.n):''}</div>`;
 function productCard(x){
   return `<article class="card" data-cat="${GROUP[x.cat]||x.cat}">
@@ -1134,7 +1136,7 @@ const META={
   'stickers':['/stickers/','Stickers | Mazo Moon'],
   'pens':['/pens/','Pens and highlighters | Mazo Moon'],
   'colouring':['/colouring/','Colouring books for adults | Mazo Moon'],
-  'create':['/create/','Create your own comic, football club and video game books | Mazo Moon'],
+  'create':['/create/','Create your own comic, football club, video game, theme park and video channel books | Mazo Moon'],
   'shop':['/shop/','Shop stickers, pens, journals and more | Mazo Moon'],
   'reading':['/reading/','The Reading Corner | Mazo Moon'],
   'little-things':['/little-things/','Little Things I Love | Mazo Moon'],
