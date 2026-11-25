@@ -74,7 +74,7 @@ publish:
   status: published
   date: 2026-11-06T20:29
   updated: 2026-11-06
-views: 11
+views: 13
 ---
 # A Court of Splintered Harmony Review: The Bat Boys Are in My Bad Books
 
