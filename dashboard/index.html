@@ -192,7 +192,9 @@ table.dt { display: none; width: 100%; border-collapse: collapse; font-variant-n
 .conn .dot { margin-top: 7px; }
 .conn .n { font-weight: 500; }
 .conn .w { font-size: 13px; color: var(--muted); text-align: right; }
-.conn .note { grid-column: 2 / -1; font-size: 13.5px; color: var(--ink-2); }
+.conn .note { grid-column: 2 / -1; font-size: 13.5px; color: var(--ink-2); line-height: 1.45; }
+.conn .note b { font-weight: 600; color: var(--ink); }
+.conn .note.warn { color: var(--warn); }
 .dot.wait { background: var(--stone); }
 .linkbtn { background: none; border: 0; padding: 0; color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; }
 
@@ -792,13 +794,20 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   function more() {
     const el = $('conns'); el.replaceChildren();
     const rows = data.status || [];
+    const explain = {
+      fba: ['3-day recheck', 'Every refresh looks back over the last 3 days of FBA sales in case Amazon has changed any recent figures.'],
+      kdp: ['30-day recheck', 'Every refresh looks back over the last 30 days of KDP royalties because book earnings can take longer to settle.'],
+      'ads-fba': ['7-day attribution', 'If someone clicks an FBA ad and buys within 7 days, Amazon can count that sale as coming from the ad.'],
+      'ads-kdp': ['14-day attribution', 'If someone clicks a book ad and buys within 14 days, Amazon can still count that sale as coming from the ad.'],
+    };
     for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads']]) {
       const r = rows.find((x) => x && x.id === id) || {};
       const d = h('div', 'conn');
       const dot = h('span', 'dot' + (r.state === 'ok' ? '' : r.state === 'error' ? ' stale' : ' wait'));
       const last = typeof r.lastSync === 'string' && !isNaN(Date.parse(r.lastSync)) ? when.format(new Date(r.lastSync)) : '–';
       d.append(dot, h('span', 'n', name), h('span', 'w', r.state === 'ok' ? last : r.state === 'error' ? 'Needs attention' : 'Waiting'));
-      if (r.note) d.append(h('span', 'note', r.note));
+      const ex = h('span', 'note'); ex.append(Object.assign(h('b'), { textContent: explain[id][0] + ' — ' }), explain[id][1]); d.append(ex);
+      if (r.note && r.state !== 'ok') d.append(h('span', 'note warn', r.note));
       el.append(d);
     }
   }
