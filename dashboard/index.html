@@ -102,12 +102,18 @@ h2.sec { margin: 0 0 12px; font: 400 21px/1.15 var(--serif); }
 .delta.up { color: var(--up); } .delta.down { color: var(--warn); }
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.bar + .split { margin-top: 16px; }
 .chan { border-radius: 22px; padding: 16px 16px 14px; background: var(--w); border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
-  text-align: left; transition: transform .2s var(--ease), box-shadow .2s var(--ease); display: block; width: 100%; }
+  text-align: left; transition: transform .2s var(--ease), box-shadow .2s var(--ease); display: flex; flex-direction: column; justify-content: flex-start; width: 100%; }
 .chan:active { transform: scale(.98); }
 @media (hover: hover) { .chan:hover { transform: translateY(-2px); box-shadow: var(--shadow); } }
 .chan.fba { --c: var(--fba); --w: var(--fba-wash); --i: var(--fba-ink); }
 .chan.kdp { --c: var(--kdp); --w: var(--kdp-wash); --i: var(--kdp-ink); }
+.chan.adf, .chan.adk { --c: var(--ads); --w: var(--ads-wash); --i: var(--ads-ink); }
+.chan.adf .eyebrow::before { background: var(--fba); } .chan.adk .eyebrow::before { background: var(--kdp); }
+.chan .roas { margin-top: 8px; padding-top: 8px; border-top: 1px solid color-mix(in srgb, var(--ads) 40%, transparent); font-size: 12.5px; color: var(--ink-2); line-height: 1.35; }
+.chan .roas b { font-weight: 600; color: var(--ink); }
+.chan .roas .bad { color: var(--warn); }
 .chan .eyebrow { color: var(--i); display: flex; align-items: center; gap: 6px; }
 .chan .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
 .chan .v { font: 400 28px/1.1 var(--serif); margin: 8px 0 2px; letter-spacing: -.01em; }
@@ -301,6 +307,10 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
         <div class="bar" id="splitBar">
           <div class="track"><i id="barF" style="background:var(--fba)"></i><i id="barK" style="background:var(--kdp)"></i></div>
           <div class="legend num"><span id="legF">FBA</span><span id="legK">KDP</span></div>
+        </div>
+        <div class="split">
+          <button class="chan adf" data-go="ads"><div class="eyebrow">FBA ad spend</div><div class="v num" id="ovAdF">—</div><div class="sub num" id="ovAdFSub">—</div><div class="roas num" id="ovAdFRoas"></div></button>
+          <button class="chan adk" data-go="ads"><div class="eyebrow">KDP ad spend</div><div class="v num" id="ovAdK">—</div><div class="sub num" id="ovAdKSub">—</div><div class="roas num" id="ovAdKRoas"></div></button>
         </div>
         <section class="panel">
           <div class="panelhead">
@@ -566,6 +576,18 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     $('barF').style.opacity = $('barK').style.opacity = s.total > 0 ? 1 : .35;
     $('legF').innerHTML = ''; $('legF').append(Object.assign(h('b'), { textContent: 'FBA ' }), s.total > 0 ? pct.format(f) : '–');
     $('legK').innerHTML = ''; $('legK').append(Object.assign(h('b'), { textContent: 'KDP ' }), s.total > 0 ? pct.format(1 - f) : '–');
+    const adBlock = (pre, spend, chSales, adSales, what) => {
+      count($(pre), spend);
+      $(pre + 'Sub').textContent = 'ad sales ' + gbp.format(adSales);
+      const r = $(pre + 'Roas'); r.replaceChildren();
+      if (spend > 0) {
+        const t = chSales / spend, a = adSales / spend;
+        const b1 = Object.assign(h('b'), { textContent: 'ROAS ' + t.toFixed(2) }); if (t < 1) b1.className = 'bad';
+        r.append(b1, ' vs ' + what + ' sales', h('br'), 'ads only ' + a.toFixed(2));
+      } else r.textContent = 'No ad spend';
+    };
+    adBlock('ovAdF', s.fs, s.fba, s.fsl, 'FBA');
+    adBlock('ovAdK', s.ks, s.kdp, s.ksl, 'KDP');
     document.querySelectorAll('#series button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.s === prefs.series)));
     chart($('chart'), a, b, prefs.series, 230);
     quickRead(a, b, s);
