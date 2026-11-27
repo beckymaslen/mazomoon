@@ -66,6 +66,8 @@ button { cursor: pointer; }
 .brand h1 { margin: 0; font: 400 27px/1.05 var(--serif); letter-spacing: -.01em; }
 .brand p { margin: 4px 0 0; color: var(--ink-2); font-size: 14px; }
 .fresh { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); white-space: nowrap; padding-top: 6px; }
+.freshbox { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+.sched { font-size: 10.5px; color: var(--muted); opacity: .8; white-space: nowrap; margin-top: 3px; letter-spacing: .01em; }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--up); position: relative; }
 .dot.stale { background: var(--warn); }
 .dot.ping::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 1.2s var(--ease) 2; }
@@ -279,7 +281,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     <nav class="topnav" aria-label="Sections">
       <button data-go="overview">Overview</button><button data-go="sales">Sales</button><button data-go="ads">Ads</button><button data-go="more">Connections</button>
     </nav>
-    <span class="fresh" id="fresh"><span class="dot" id="dot"></span><span id="freshText">—</span></span>
+    <div class="freshbox"><span class="fresh" id="fresh"><span class="dot" id="dot"></span><span id="freshText">—</span></span><span class="sched">Refreshes 7am · 11am · 4pm · 8pm</span></div>
   </header>
 
   <div class="rangebar">
