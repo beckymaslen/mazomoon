@@ -936,7 +936,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       ['Sales', gbp.format(s.fba)], ['Orders · units', intf.format(s.fo) + ' · ' + intf.format(s.fu)], ['Est. costs (25%)', '−' + gbp.format(fCost)], ['Ad spend', '−' + gbp.format(s.fs)]], fProfit < 0);
     card('kdp', 'KDP', gbp.format(kProfit), `royalties after ads · ${s.kdp > 0 ? pc1.format(kProfit / s.kdp) : '–'}`, [
       ['Royalties', gbp.format(s.kdp)], ['Books sold', intf.format(s.ku)], ['Pages read', intf.format(s.kp)], ['Ad spend', '−' + gbp.format(s.ks)]], kProfit < 0);
-    for (const n of ['Shopify', 'TikTok Shop', 'eBay']) { const d = h('div', 'kc todo'); d.append(h('div', 'eyebrow', n), h('div', 'v', 'Not connected yet'), h('div', 'sub', 'Net sales, orders and profit will show here')); ch.append(d); }
+    for (const n of ['TikTok Shop', 'eBay']) { const d = h('div', 'kc todo'); d.append(h('div', 'eyebrow', n), h('div', 'v', 'Not connected yet'), h('div', 'sub', 'Net sales, orders and profit will show here')); ch.append(d); }
     const tile = (el, k, v, sTxt, neg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
     const r2 = (x, y) => (y > 0 ? (x / y).toFixed(2) : '–'), pr = (x, y) => (y > 0 ? pc1.format(x / y) : '–');
     const ad = $('kpAds'); ad.replaceChildren();
@@ -956,7 +956,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     tile(bk, 'Clicks per book', s.kso > 0 ? (s.kc / s.kso).toFixed(0) : '–', 'ad clicks ÷ ad orders');
     const td = $('kpTodo'); td.replaceChildren();
     for (const [n, w, d] of [
-      ['Shopify', 'Connect', 'Net sales, orders, units, refunds, fulfilment costs and website conversion.'],
+      ['mazomoon.com', 'Connect', 'Visits by source, top pages and clicks through to Amazon. Needs a privacy-friendly visitor counter on the site, or Amazon Attribution links to see which clicks became sales.'],
       ['TikTok Shop', 'Connect', 'Net sales, orders and product clicks.'],
       ['eBay', 'Connect', 'Net sales, orders and units.'],
       ['Instagram and Pinterest', 'Connect', 'Link taps, outbound clicks, saves, reach and follower growth (business accounts).'],
