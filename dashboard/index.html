@@ -206,8 +206,54 @@ table.dt { display: none; width: 100%; border-collapse: collapse; font-variant-n
 .dot.wait { background: var(--stone); }
 .linkbtn { background: none; border: 0; padding: 0; color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; }
 
+/* ---------- KPI ---------- */
+.kpi-hero .big { color: var(--ink); }
+.kpi-hero .sub b { font-weight: 600; }
+.assume { margin-top: 10px; font-size: 13px; color: var(--muted); line-height: 1.45; }
+.kcards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.kc { background: var(--raise); border: 1px solid var(--line); border-radius: 20px; padding: 14px 15px 15px; box-shadow: var(--shadow); min-width: 0; }
+.kc .eyebrow { color: var(--i, var(--muted)); display: flex; align-items: center; gap: 6px; }
+.kc .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--c, var(--stone)); }
+.kc .v { font: 400 25px/1.15 var(--serif); margin-top: 6px; }
+.kc .v.neg { color: var(--warn); }
+.kc .sub { font-size: 13px; color: var(--ink-2); margin-top: 2px; }
+.kc dl { margin: 10px 0 0; padding-top: 9px; border-top: 1px solid var(--line); display: grid; grid-template-columns: auto auto; gap: 3px 10px; font-size: 13px; }
+.kc dt { color: var(--muted); }
+.kc dd { margin: 0; text-align: right; color: var(--ink-2); }
+.kc.fba { --c: var(--fba); --i: var(--fba-ink); }
+.kc.kdp { --c: var(--kdp); --i: var(--kdp-ink); }
+.kc.ads { --c: var(--ads); --i: var(--ads-ink); }
+.kc.tot { --c: var(--total); --i: var(--total-ink); }
+.kc.todo { background: none; box-shadow: none; border-style: dashed; }
+.kc.todo .v { font: 500 14px/1.3 var(--sans); color: var(--muted); margin-top: 8px; }
+.kc.todo .sub { color: var(--muted); }
+.kgrid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.kgrid > div { padding: 11px 0 12px; border-bottom: 1px solid var(--line); min-width: 0; }
+.kgrid > div:nth-child(odd) { padding-right: 12px; border-right: 1px solid var(--line); }
+.kgrid > div:nth-child(even) { padding-left: 14px; }
+.kgrid .v { font: 400 20px/1.2 var(--serif); margin-top: 3px; }
+.kgrid .v.neg { color: var(--warn); }
+.kgrid .s { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+.todos { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.todos > div { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.todos .n { font-weight: 500; }
+.todos .w { font-size: 12px; color: var(--muted); white-space: nowrap; align-self: start; padding: 2px 9px; border: 1px dashed var(--line); border-radius: 999px; }
+.todos .w.you { color: var(--ads-ink); border-color: var(--ads); }
+.todos .d { grid-column: 1 / -1; font-size: 13.5px; color: var(--ink-2); line-height: 1.45; }
+
+.mform { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.mgroup { font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 14px 0 2px; }
+.mrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.mrow small { display: block; font-size: 12px; color: var(--muted); }
+.mrow input { font: inherit; color: var(--ink); background: var(--raise); border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; width: 120px; text-align: right; }
+.mrow input[type=month] { width: auto; text-align: left; }
+.gbp { position: relative; }
+.gbp::before { content: "£"; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.mform .primary { margin-top: 14px; padding: 12px; font-size: 15px; }
+.mnote { margin: 8px 0 0; font-size: 12.5px; color: var(--muted); }
+
 /* ---------- bottom nav ---------- */
-.bnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: grid; grid-template-columns: repeat(4, 1fr);
+.bnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: grid; grid-template-columns: repeat(5, 1fr);
   padding: 6px max(10px, env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--raise) 92%, transparent);
   backdrop-filter: saturate(1.3) blur(14px); -webkit-backdrop-filter: saturate(1.3) blur(14px); border-top: 1px solid var(--line); }
 .bnav button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0; font-size: 11.5px; color: var(--muted); font-weight: 500; }
@@ -250,6 +296,8 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   .hero .big { font-size: 96px; }
   .days { display: none; }
   table.dt { display: table; }
+  .kpiwrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .85fr); gap: 56px; align-items: start; }
+  .kcards.four { grid-template-columns: repeat(2, 1fr); }
   .chwrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .8fr); gap: 56px; align-items: start; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -279,7 +327,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       <p id="context" class="num">—</p>
     </div>
     <nav class="topnav" aria-label="Sections">
-      <button data-go="overview">Overview</button><button data-go="sales">Sales</button><button data-go="ads">Ads</button><button data-go="more">Connections</button>
+      <button data-go="overview">Overview</button><button data-go="sales">Sales</button><button data-go="ads">Ads</button><button data-go="kpi">KPI</button><button data-go="more">Connections</button>
     </nav>
     <div class="freshbox"><span class="fresh" id="fresh"><span class="dot" id="dot"></span><span id="freshText">—</span></span><span class="sched">Refreshes 7am · 11am · 4pm · 8pm</span></div>
   </header>
@@ -381,6 +429,56 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     </div>
   </main>
 
+  <!-- KPI -->
+  <main id="v-kpi" class="view" hidden>
+    <div class="kpiwrap">
+      <div>
+        <section class="hero kpi-hero">
+          <div class="eyebrow">Profit after ads · estimate</div>
+          <div class="big num" id="kpBig">—</div>
+          <div class="sub num" id="kpSub">—</div>
+          <p class="assume" id="kpAssume"></p>
+        </section>
+        <section class="panel">
+          <h2 class="sec">By channel</h2>
+          <div class="kcards" id="kpChannels"></div>
+        </section>
+        <section class="panel">
+          <h2 class="sec">Ad spend and return</h2>
+          <div class="kgrid" id="kpAds"></div>
+        </section>
+      </div>
+      <div>
+        <section class="panel">
+          <h2 class="sec">KDP per book</h2>
+          <div class="kgrid" id="kpBook"></div>
+        </section>
+        <section class="panel">
+          <h2 class="sec">Monthly figures</h2>
+          <p class="sub" style="margin:-4px 0 12px">A two-minute check-in once a month. These turn channel profit into business profit and cash.</p>
+          <form class="mform" id="mForm" autocomplete="off">
+            <label class="mrow"><span>Month</span><input type="month" id="mMonth"></label>
+            <div class="mgroup">Costs</div>
+            <label class="mrow"><span>Overheads<small>subscriptions, software, freelancers</small></span><span class="gbp"><input inputmode="decimal" data-k="overheads" placeholder="0"></span></label>
+            <div class="mgroup">Cash</div>
+            <label class="mrow"><span>Business bank balance</span><span class="gbp"><input inputmode="decimal" data-k="bank" placeholder="0"></span></label>
+            <label class="mrow"><span>Unpaid stock orders</span><span class="gbp"><input inputmode="decimal" data-k="stock" placeholder="0"></span></label>
+            <label class="mrow"><span>Upcoming bills</span><span class="gbp"><input inputmode="decimal" data-k="bills" placeholder="0"></span></label>
+            <label class="mrow"><span>Tax set aside<small>money for HMRC</small></span><span class="gbp"><input inputmode="decimal" data-k="tax" placeholder="0"></span></label>
+            <button class="primary" type="submit">Save month</button>
+            <p class="mnote">Saved on this device only for now.</p>
+          </form>
+          <div class="kgrid" id="kpMonth" style="margin-top:16px"></div>
+        </section>
+        <section class="panel">
+          <h2 class="sec">Connections to add</h2>
+          <p class="sub" style="margin:-4px 0 12px">These can update automatically once connected. Nothing here is estimated.</p>
+          <div class="todos" id="kpTodo"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
   <!-- MORE -->
   <main id="v-more" class="view" hidden>
     <section class="panel">
@@ -400,6 +498,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   <button data-go="overview"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg>Overview</button>
   <button data-go="sales"><svg viewBox="0 0 24 24"><path d="M5 19V11M10 19V6M15 19v-9M20 19V4"/></svg>Sales</button>
   <button data-go="ads"><svg viewBox="0 0 24 24"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1zM17 9a4 4 0 0 1 0 6"/></svg>Ads</button>
+  <button data-go="kpi"><svg viewBox="0 0 24 24"><path d="M4 15a8 8 0 0 1 16 0M12 15l4-5M4 19h16"/></svg>KPI</button>
   <button data-go="more"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="18" cy="12" r="1.2"/></svg>More</button>
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -484,7 +583,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   const num = (r, k) => { const x = Number(r && r[k]); return Number.isFinite(x) ? x : 0; };
   const asDate = (d) => new Date(d + 'T00:00:00Z');
   let days = {}, first = {};   // days[date] = per-day sums; first[source] = earliest date with data
-  function blank(d) { return { date: d, fba: 0, fu: 0, fo: 0, kdp: 0, ku: 0, kp: 0, fs: 0, fsl: 0, fso: 0, ks: 0, ksl: 0, kso: 0 }; }
+  function blank(d) { return { date: d, fba: 0, fu: 0, fo: 0, kdp: 0, ku: 0, kp: 0, fs: 0, fsl: 0, fso: 0, fc: 0, fi: 0, ks: 0, ksl: 0, kso: 0, kc: 0, ki: 0 }; }
   function index() {
     days = {}; first = {};
     for (const r of data.daily || []) {
@@ -493,8 +592,8 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       if (!first[r.source] || r.date < first[r.source]) first[r.source] = r.date;
       if (r.source === 'fba') { x.fba += num(r, 'sales'); x.fu += num(r, 'units'); x.fo += num(r, 'orders'); }
       else if (r.source === 'kdp') { x.kdp += num(r, 'royalties'); x.ku += num(r, 'units'); x.kp += num(r, 'pages'); }
-      else if (r.source === 'ads-fba') { x.fs += num(r, 'spend'); x.fsl += num(r, 'sales'); x.fso += num(r, 'orders'); }
-      else if (r.source === 'ads-kdp') { x.ks += num(r, 'spend'); x.ksl += num(r, 'sales'); x.kso += num(r, 'orders'); }
+      else if (r.source === 'ads-fba') { x.fs += num(r, 'spend'); x.fsl += num(r, 'sales'); x.fso += num(r, 'orders'); x.fc += num(r, 'clicks'); x.fi += num(r, 'impressions'); }
+      else if (r.source === 'ads-kdp') { x.ks += num(r, 'spend'); x.ksl += num(r, 'sales'); x.kso += num(r, 'orders'); x.kc += num(r, 'clicks'); x.ki += num(r, 'impressions'); }
     }
   }
   const dayAt = (d) => days[d] || blank(d);
@@ -553,6 +652,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     if (prefs.tab === 'overview') overview(a, b, s, lab);
     if (prefs.tab === 'sales') sales(a, b, s, lab);
     if (prefs.tab === 'ads') ads(a, b, s, lab);
+    if (prefs.tab === 'kpi') kpi(a, b, s, lab);
     if (prefs.tab === 'more') more();
     if (first) milestones();
   }
@@ -814,6 +914,94 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       return trow('td', [dShort.format(asDate(d.date)), gbp.format(d.fs), gbp.format(d.ks), gbp.format(sp), gbp.format(sl), sl > 0 ? pct.format(sp / sl) : '–']); }));
   }
 
+  // ---------- KPI ----------
+  // Becky's figure: FBA fees, Amazon selling fees and product (wholesale/landed) cost come to about 25% of FBA sales.
+  // Used until real per-SKU costs are connected.
+  const FBA_COST = 0.25;
+  const pc1 = new Intl.NumberFormat('en-GB', { style: 'percent', maximumFractionDigits: 1 });
+  function kpi(a, b, s, lab) {
+    const fCost = s.fba * FBA_COST;
+    const fProfit = s.fba - fCost - s.fs, kProfit = s.kdp - s.ks, tot = fProfit + kProfit, inc = s.fba + s.kdp;
+    const big = $('kpBig'); count(big, tot, { pence: true }); big.style.color = tot < 0 ? 'var(--warn)' : '';
+    const sub = $('kpSub'); sub.replaceChildren();
+    sub.append(lab + ' · ', Object.assign(h('b'), { textContent: inc > 0 ? pc1.format(tot / inc) : '–' }), ' of ' + gbp.format(inc) + ' FBA sales + KDP royalties');
+    $('kpAssume').textContent = `FBA costs are estimated at ${pct.format(FBA_COST)} of FBA sales (Amazon fees, FBA fulfilment and product cost). FBA sales are ordered sales, before refunds. KDP royalties already have printing and Amazon's share taken off.`;
+    const ch = $('kpChannels'); ch.replaceChildren();
+    const card = (cls, name, val, subTxt, rows, neg) => {
+      const d = h('div', 'kc ' + cls); d.append(h('div', 'eyebrow', name), h('div', 'v num' + (neg ? ' neg' : ''), val), h('div', 'sub num', subTxt));
+      if (rows) { const dl = h('dl', 'num'); for (const [k, v] of rows) dl.append(h('dt', null, k), h('dd', null, v)); d.append(dl); }
+      ch.append(d);
+    };
+    card('fba', 'Amazon FBA', gbp.format(fProfit), `profit after ads · ${s.fba > 0 ? pc1.format(fProfit / s.fba) : '–'}`, [
+      ['Sales', gbp.format(s.fba)], ['Orders · units', intf.format(s.fo) + ' · ' + intf.format(s.fu)], ['Est. costs (25%)', '−' + gbp.format(fCost)], ['Ad spend', '−' + gbp.format(s.fs)]], fProfit < 0);
+    card('kdp', 'KDP', gbp.format(kProfit), `royalties after ads · ${s.kdp > 0 ? pc1.format(kProfit / s.kdp) : '–'}`, [
+      ['Royalties', gbp.format(s.kdp)], ['Books sold', intf.format(s.ku)], ['Pages read', intf.format(s.kp)], ['Ad spend', '−' + gbp.format(s.ks)]], kProfit < 0);
+    for (const n of ['Shopify', 'TikTok Shop', 'eBay']) { const d = h('div', 'kc todo'); d.append(h('div', 'eyebrow', n), h('div', 'v', 'Not connected yet'), h('div', 'sub', 'Net sales, orders and profit will show here')); ch.append(d); }
+    const tile = (el, k, v, sTxt, neg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
+    const r2 = (x, y) => (y > 0 ? (x / y).toFixed(2) : '–'), pr = (x, y) => (y > 0 ? pc1.format(x / y) : '–');
+    const ad = $('kpAds'); ad.replaceChildren();
+    tile(ad, 'FBA ROAS', r2(s.fsl, s.fs), 'ad sales ÷ FBA ad spend', s.fs > 0 && s.fsl < s.fs);
+    tile(ad, 'FBA TACoS', pr(s.fs, s.fba), 'FBA ad spend ÷ all FBA sales');
+    tile(ad, 'FBA ACoS', pr(s.fs, s.fsl), `breaks even below ${pct.format(1 - FBA_COST)}`, s.fsl > 0 && s.fs / s.fsl > 1 - FBA_COST);
+    tile(ad, 'FBA cost per click', s.fc > 0 ? gbp.format(s.fs / s.fc) : '–', `${intf.format(s.fc)} clicks · ${s.fi > 0 ? pc1.format(s.fc / s.fi) : '–'} CTR`);
+    tile(ad, 'FBA ad conversion', pr(s.fso, s.fc), `${intf.format(s.fso)} ad orders`);
+    tile(ad, 'Total ad spend', gbp.format(s.spend), `FBA ${gbp0.format(s.fs)} · KDP ${gbp0.format(s.ks)}`);
+    tile(ad, 'KDP ROAS', r2(s.ksl, s.ks), 'ad sales ÷ KDP ad spend', s.ks > 0 && s.ksl < s.ks);
+    tile(ad, 'KDP TACoS', pr(s.ks, s.kdp), 'KDP ad spend ÷ royalties');
+    const bk = $('kpBook'); bk.replaceChildren();
+    const per = s.ku > 0 ? s.kdp / s.ku : null;
+    tile(bk, 'Royalty per book', per == null ? '–' : gbp.format(per), `${intf.format(s.ku)} books sold`);
+    tile(bk, 'Ad spend per book', s.ku > 0 ? gbp.format(s.ks / s.ku) : '–', per == null ? '' : `break even at ${gbp.format(per)}`, per != null && s.ks / s.ku > per);
+    tile(bk, 'KDP cost per click', s.kc > 0 ? gbp.format(s.ks / s.kc) : '–', `${intf.format(s.kc)} clicks`);
+    tile(bk, 'Clicks per book', s.kso > 0 ? (s.kc / s.kso).toFixed(0) : '–', 'ad clicks ÷ ad orders');
+    const td = $('kpTodo'); td.replaceChildren();
+    for (const [n, w, d] of [
+      ['Shopify', 'Connect', 'Net sales, orders, units, refunds, fulfilment costs and website conversion.'],
+      ['TikTok Shop', 'Connect', 'Net sales, orders and product clicks.'],
+      ['eBay', 'Connect', 'Net sales, orders and units.'],
+      ['Instagram and Pinterest', 'Connect', 'Link taps, outbound clicks, saves, reach and follower growth (business accounts).'],
+      ['Email platform', 'Connect', 'New subscribers, unsubscribes, net growth and email revenue.'],
+      ['Google Search Console', 'Connect', 'Search impressions, clicks and the pages and terms bringing people in.'],
+      ['Amazon refunds, fees and stock', 'Next step', 'Settlement and inventory reports for net sales, real fees, payouts, bestsellers and stock cover against your three-week lead time.'],
+      ['KDP books by title', 'Next step', 'Books sold and royalties per title, from the KDP report, once KDP is signed back in.'],
+    ]) { const x = h('div'); x.append(h('span', 'n', n), h('span', 'w', w), h('span', 'd', d)); td.append(x); }
+    monthly();
+  }
+
+  // ---------- monthly figures (saved on this device) ----------
+  const MONTHLY = 'sd-monthly-v1';
+  const mval = (x) => { const v = parseFloat(String(x || '').replace(/[£,\s]/g, '')); return Number.isFinite(v) ? v : null; };
+  function monthOf() {
+    const el = $('mMonth'); if (!el.value) el.value = today().slice(0, 7); return el.value;
+  }
+  function fillForm() {
+    const all = get(MONTHLY) || {}, m = all[monthOf()] || {};
+    document.querySelectorAll('#mForm [data-k]').forEach((i) => { i.value = m[i.dataset.k] != null ? String(m[i.dataset.k]) : ''; });
+  }
+  function monthly() {
+    const m = monthOf(); const all = get(MONTHLY) || {}, v = all[m] || {};
+    if (!$('mForm').dataset.filled) { fillForm(); $('mForm').dataset.filled = '1'; }
+    const a = m + '-01', last = shift(shift(m + '-28', 4).slice(0, 7) + '-01', -1), b = last > today() ? today() : last;
+    const s = sum(a, b), prof = s.fba * (1 - FBA_COST) - s.fs + s.kdp - s.ks;
+    const mn = new Intl.DateTimeFormat('en-GB', { month: 'long', timeZone: 'UTC' }).format(asDate(a));
+    const el = $('kpMonth'); el.replaceChildren();
+    const tile = (k, val, sTxt, neg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), val)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
+    tile('Profit after ads', gbp.format(prof), mn + (b < last ? ' so far' : '') + ' · estimate', prof < 0);
+    if (v.overheads != null) { const bp = prof - v.overheads; tile('Business profit before tax', gbp.format(bp), 'after ' + gbp.format(v.overheads) + ' overheads', bp < 0); }
+    else tile('Business profit before tax', '–', 'add overheads above');
+    if (v.bank != null) { const c = v.bank - (v.stock || 0) - (v.bills || 0) - (v.tax || 0); tile('Cash available', gbp.format(c), 'after stock, bills and tax', c < 0); }
+    else tile('Cash available', '–', 'add bank balance above');
+    const tax = v.tax != null && v.overheads != null && prof - v.overheads > 0 ? v.tax / (prof - v.overheads) : null;
+    tile('Tax pot', v.tax != null ? gbp.format(v.tax) : '–', tax != null ? pct.format(tax) + ' of this month\u2019s profit' : 'money set aside for tax');
+  }
+  $('mMonth').addEventListener('change', () => { fillForm(); monthly(); });
+  $('mForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const all = get(MONTHLY) || {}, m = monthOf(), v = {};
+    document.querySelectorAll('#mForm [data-k]').forEach((i) => { const x = mval(i.value); if (x != null) v[i.dataset.k] = x; });
+    all[m] = v; put(MONTHLY, all); monthly(); toast('Saved ' + new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(asDate(m + '-01')) + ' ✓');
+  });
+
   // ---------- more ----------
   function more() {
     const el = $('conns'); el.replaceChildren();
@@ -838,9 +1026,9 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
 
   // ---------- navigation ----------
   function go(tab, silent) {
-    if (!['overview', 'sales', 'ads', 'more'].includes(tab)) tab = 'overview';
+    if (!['overview', 'sales', 'ads', 'kpi', 'more'].includes(tab)) tab = 'overview';
     prefs.tab = tab; savePrefs();
-    for (const t of ['overview', 'sales', 'ads', 'more']) $('v-' + t).hidden = t !== tab;
+    for (const t of ['overview', 'sales', 'ads', 'kpi', 'more']) $('v-' + t).hidden = t !== tab;
     document.querySelectorAll('.bnav [data-go], .topnav [data-go]').forEach((b) => {
       if (b.dataset.go === tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
     });
