@@ -454,6 +454,11 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
           <div class="kgrid" id="kpBook"></div>
         </section>
         <section class="panel">
+          <h2 class="sec">Social, via Metricool</h2>
+          <p class="sub" id="kpSocSub" style="margin:-4px 0 12px"></p>
+          <div class="kgrid" id="kpSoc"></div>
+        </section>
+        <section class="panel">
           <h2 class="sec">Monthly figures</h2>
           <p class="sub" style="margin:-4px 0 12px">A two-minute check-in once a month. These turn channel profit into business profit and cash.</p>
           <form class="mform" id="mForm" autocomplete="off">
@@ -582,12 +587,13 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   const span = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / DAY) + 1;
   const num = (r, k) => { const x = Number(r && r[k]); return Number.isFinite(x) ? x : 0; };
   const asDate = (d) => new Date(d + 'T00:00:00Z');
-  let days = {}, first = {};   // days[date] = per-day sums; first[source] = earliest date with data
+  let days = {}, first = {}, soc = {};   // days[date] = per-day sums; first[source] = earliest date with data
   function blank(d) { return { date: d, fba: 0, fu: 0, fo: 0, kdp: 0, ku: 0, kp: 0, fs: 0, fsl: 0, fso: 0, fc: 0, fi: 0, ks: 0, ksl: 0, kso: 0, kc: 0, ki: 0 }; }
   function index() {
-    days = {}; first = {};
+    days = {}; first = {}; soc = {};
     for (const r of data.daily || []) {
       if (!r || typeof r.date !== 'string') continue;
+      if (r.source === 'social') { soc[r.date] = r; continue; }
       const x = days[r.date] || (days[r.date] = blank(r.date));
       if (!first[r.source] || r.date < first[r.source]) first[r.source] = r.date;
       if (r.source === 'fba') { x.fba += num(r, 'sales'); x.fu += num(r, 'units'); x.fo += num(r, 'orders'); }
@@ -953,16 +959,51 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     tile(bk, 'Ad spend per book', s.ku > 0 ? gbp.format(s.ks / s.ku) : '–', per == null ? '' : `break even at ${gbp.format(per)}`, per != null && s.ks / s.ku > per);
     tile(bk, 'KDP cost per click', s.kc > 0 ? gbp.format(s.ks / s.kc) : '–', `${intf.format(s.kc)} clicks`);
     tile(bk, 'Clicks per book', s.kso > 0 ? (s.kc / s.kso).toFixed(0) : '–', 'ad clicks ÷ ad orders');
+    social(a, b);
     const td = $('kpTodo'); td.replaceChildren();
     for (const [n, w, d] of [
       ['mazomoon.com', 'Connect', 'Visits by source, top pages and clicks through to Amazon. Needs a privacy-friendly visitor counter on the site, or Amazon Attribution links to see which clicks became sales.'],
-      ['Social, via Metricool', 'Connect', 'Instagram, Facebook, YouTube, LinkedIn, Google Business and Pinterest: link clicks, reach, saves and follower growth.'],
       ['Email platform', 'Connect', 'New subscribers, unsubscribes, net growth and email revenue.'],
       ['Google Search Console', 'Connect', 'Search impressions, clicks and the pages and terms bringing people in.'],
       ['Amazon refunds, fees and stock', 'Next step', 'Settlement and inventory reports for net sales, real fees, payouts, bestsellers and stock cover against your three-week lead time.'],
       ['KDP books by title', 'Next step', 'Books sold and royalties per title, from the KDP report, once KDP is signed back in.'],
     ]) { const x = h('div'); x.append(h('span', 'n', n), h('span', 'w', w), h('span', 'd', d)); td.append(x); }
     monthly();
+  }
+
+  // ---------- social (Metricool, a day behind) ----------
+  const SOC_FLOW = ['igGained', 'igLost', 'igReach', 'igInteractions', 'pinImpressions', 'pinOutbound', 'pinSaves', 'fbViews'];
+  function latest(k, upto) {   // last running total on or before a date
+    let best = null; for (const d in soc) if (d <= upto && soc[d][k] != null && (!best || d > best)) best = d;
+    return best ? num(soc[best], k) : null;
+  }
+  function social(a, b) {
+    const el = $('kpSoc'), sub = $('kpSocSub'); el.replaceChildren();
+    const dates = Object.keys(soc).sort();
+    if (!dates.length) { sub.textContent = 'No Metricool figures yet.'; return; }
+    let note = '';
+    if (!dates.some((d) => d >= a && d <= b)) {   // e.g. Today: Metricool hasn't reported yet, so show the newest days instead
+      const n = span(a, b); b = dates[dates.length - 1]; a = shift(b, -(n - 1));
+      note = (n === 1 ? 'Newest day from Metricool: ' + dShort.format(asDate(b)) : 'Newest ' + n + ' days from Metricool, to ' + dShort.format(asDate(b))) + '. ';
+    }
+    const t = {}; for (const k of SOC_FLOW) t[k] = 0;
+    for (const d of dates) if (d >= a && d <= b) for (const k of SOC_FLOW) t[k] += num(soc[d], k);
+    sub.textContent = note + 'Instagram, Facebook and Pinterest. Metricool updates once a day.';
+    const tile = (k, v, sTxt, neg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
+    const sign = (x) => (x > 0 ? '+' : x < 0 ? '−' : '±') + intf.format(Math.abs(x));
+    const fol = (k, name) => {
+      const now = latest(k, b); let was = latest(k, shift(a, -1));
+      if (was == null) { const d0 = dates.find((d) => d >= a && d <= b && soc[d][k] != null); if (d0) was = num(soc[d0], k); }   // no figure before the range: compare with its first day
+      tile(name, now == null ? '–' : intf.format(now), now != null && was != null ? sign(now - was) + ' in this period' : 'followers', now != null && was != null && now < was);
+    };
+    fol('igFollowers', 'Instagram followers');
+    tile('Instagram reach', intf.format(t.igReach), 'accounts reached, daily totals added up');
+    tile('Instagram interactions', intf.format(t.igInteractions), 'likes, comments, saves and shares');
+    tile('Instagram new vs lost', '+' + intf.format(t.igGained) + ' / −' + intf.format(t.igLost), 'followers gained and lost');
+    tile('Pinterest outbound clicks', intf.format(t.pinOutbound), 'clicks from pins to your site or Amazon');
+    tile('Pinterest impressions', intf.format(t.pinImpressions), intf.format(t.pinSaves) + ' saves');
+    fol('fbFollowers', 'Facebook followers');
+    tile('Facebook views', intf.format(t.fbViews), 'page and post views');
   }
 
   // ---------- monthly figures (saved on this device) ----------
@@ -1008,8 +1049,9 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       kdp: ['30-day recheck', 'Every refresh looks back over the last 30 days of KDP royalties because book earnings can take longer to settle.'],
       'ads-fba': ['7-day attribution', 'If someone clicks an FBA ad and buys within 7 days, Amazon can count that sale as coming from the ad.'],
       'ads-kdp': ['14-day attribution', 'If someone clicks a book ad and buys within 14 days, Amazon can still count that sale as coming from the ad.'],
+      social: ['A day behind', 'Metricool updates Instagram, Facebook and Pinterest once a day, so the newest figures are usually from yesterday.'],
     };
-    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads']]) {
+    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads'], ['social', 'Social (Metricool)']]) {
       const r = rows.find((x) => x && x.id === id) || {};
       const d = h('div', 'conn');
       const dot = h('span', 'dot' + (r.state === 'ok' ? '' : r.state === 'error' ? ' stale' : ' wait'));
