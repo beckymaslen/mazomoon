@@ -4,51 +4,54 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Sales Desk</title>
+<title>Moonbase</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Sales Desk">
+<meta name="apple-mobile-web-app-title" content="Moonbase">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#f6f1e8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#15161c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#211D35" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14111f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/img/favicon.png">
 <link rel="apple-touch-icon" href="/img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght,SOFT@9..144,300..500,50&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
 :root {
-  --bg: #f6f1e8; --raise: #fdfaf5; --ink: #1b1e2e; --ink-2: #4d4f5c; --muted: #8a8478; --line: #e7dfd2; --line-2: #efe8dc;
-  --fba: #b3a6e6; --fba-ink: #5f50b8; --fba-wash: #efebfa;
-  --kdp: #e8b4c1; --kdp-ink: #ac5770; --kdp-wash: #faedf0;
-  --total: #9fc4b6; --total-ink: #3b7565; --total-wash: #e9f2ee;
-  --ads: #e3cc98; --ads-ink: #946f22; --ads-wash: #f7efdc;
-  --up: #4f8f66; --warn: #d27a64; --warn-wash: #f8e6df; --stone: #8a8478;
-  --shadow: 0 1px 2px rgba(40, 32, 20, .04), 0 8px 24px -12px rgba(40, 32, 20, .10);
-  --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --bg: #F7F6FA; --raise: #ffffff; --ink: #211D35; --ink-2: #57526b; --muted: #8a85a0; --line: #e7e4ef; --line-2: #f0eef5;
+  --fba: #A58BFA; --fba-ink: #6a4ddb; --fba-wash: #f2eeff;
+  --kdp: #DF8DAE; --kdp-ink: #b2416f; --kdp-wash: #fcedf3;
+  --total: #51B89D; --total-ink: #1f7f65; --total-wash: #e6f5f0;
+  --ads: #EBC477; --ads-ink: #8f6312; --ads-wash: #fdf5e4;
+  --up: #1f7f65; --warn: #d9536a; --warn-wash: #fde9ec; --stone: #8a85a0;
+  --night: #211D35; --night-2: #2d2650; --night-ink: #ffffff; --night-soft: rgba(255,255,255,.66); --on: #211D35; --on-ink: #ffffff;
+  --shadow: 0 1px 2px rgba(33, 29, 53, .05), 0 10px 30px -14px rgba(33, 29, 53, .18);
+  --serif: "Manrope", system-ui, -apple-system, sans-serif;
+  --sans: "Manrope", system-ui, -apple-system, sans-serif;
   --ease: cubic-bezier(.22, .8, .3, 1);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15161c; --raise: #1d1f27; --ink: #f1ede6; --ink-2: #c3bfb8; --muted: #8f8a82; --line: #2c2e38; --line-2: #24262f;
-    --fba: #9488d6; --fba-ink: #c4bbf5; --fba-wash: #24223a;
-    --kdp: #d496a6; --kdp-ink: #f0b9c7; --kdp-wash: #33232b;
-    --total: #7fb0a1; --total-ink: #a8d8c8; --total-wash: #1d2c29;
-    --ads: #cdb27a; --ads-ink: #e8cf98; --ads-wash: #2f2a1d;
-    --up: #86c49c; --warn: #ec9a85; --warn-wash: #3a2520; --stone: #8f8a82;
-    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px -12px rgba(0, 0, 0, .5); color-scheme: dark;
+    --bg: #14111f; --raise: #1e1a2e; --ink: #f3f1f9; --ink-2: #c6c1d8; --muted: #8f89a8; --line: #2e2943; --line-2: #262138;
+    --fba: #A58BFA; --fba-ink: #c9bbff; --fba-wash: #2a2346;
+    --kdp: #DF8DAE; --kdp-ink: #f3b6cd; --kdp-wash: #3a2232;
+    --total: #51B89D; --total-ink: #8ee0c8; --total-wash: #18302a;
+    --ads: #EBC477; --ads-ink: #f3d89c; --ads-wash: #33291a;
+    --up: #74d6b8; --warn: #f28b98; --warn-wash: #3d2028; --stone: #8f89a8;
+    --night: #0e0b17; --night-2: #2a2250; --night-ink: #ffffff; --night-soft: rgba(255,255,255,.66); --on: #A58BFA; --on-ink: #14111f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px -14px rgba(0, 0, 0, .6); color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #15161c; --raise: #1d1f27; --ink: #f1ede6; --ink-2: #c3bfb8; --muted: #8f8a82; --line: #2c2e38; --line-2: #24262f;
-  --fba: #9488d6; --fba-ink: #c4bbf5; --fba-wash: #24223a;
-  --kdp: #d496a6; --kdp-ink: #f0b9c7; --kdp-wash: #33232b;
-  --total: #7fb0a1; --total-ink: #a8d8c8; --total-wash: #1d2c29;
-  --ads: #cdb27a; --ads-ink: #e8cf98; --ads-wash: #2f2a1d;
-  --up: #86c49c; --warn: #ec9a85; --warn-wash: #3a2520; --stone: #8f8a82;
-  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px -12px rgba(0, 0, 0, .5); color-scheme: dark;
+  --bg: #14111f; --raise: #1e1a2e; --ink: #f3f1f9; --ink-2: #c6c1d8; --muted: #8f89a8; --line: #2e2943; --line-2: #262138;
+  --fba: #A58BFA; --fba-ink: #c9bbff; --fba-wash: #2a2346;
+  --kdp: #DF8DAE; --kdp-ink: #f3b6cd; --kdp-wash: #3a2232;
+  --total: #51B89D; --total-ink: #8ee0c8; --total-wash: #18302a;
+  --ads: #EBC477; --ads-ink: #f3d89c; --ads-wash: #33291a;
+  --up: #74d6b8; --warn: #f28b98; --warn-wash: #3d2028; --stone: #8f89a8;
+  --night: #0e0b17; --night-2: #2a2250; --night-ink: #ffffff; --night-soft: rgba(255,255,255,.66); --on: #A58BFA; --on-ink: #14111f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px -14px rgba(0, 0, 0, .6); color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--bg); color: var(--ink); }
@@ -100,7 +103,7 @@ button { cursor: pointer; }
 .stk td { text-align: right; padding: 8px 4px; border-bottom: 1px solid var(--line-2); font-variant-numeric: tabular-nums; vertical-align: top; }
 .stk td:first-child { max-width: 0; width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .stk .low { color: var(--warn); font-weight: 600; }
-.stk .mid { color: #b7791f; font-weight: 600; }
+.stk .mid { color: var(--ads-ink); font-weight: 700; }
 .rank .none { color: var(--muted); font-size: 13px; padding: 4px 0; }
 .eyebrow { font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
 .serif { font-family: var(--serif); font-weight: 400; }
@@ -315,6 +318,126 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   .kcards.four { grid-template-columns: repeat(2, 1fr); }
   .chwrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .8fr); gap: 56px; align-items: start; }
 }
+
+/* ================= Moonbase ================= */
+body { font-size: 14.5px; }
+.num, .v, .big, .dv { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+.eyebrow { font-size: 11px; letter-spacing: .1em; font-weight: 600; }
+.brand h1 { font: 800 24px/1.05 var(--sans); letter-spacing: -.03em; display: flex; align-items: center; gap: 9px; }
+.brand h1 small { font-size: 12px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.moon { width: 26px; height: 26px; flex: none; }
+h2.sec { font: 700 17px/1.2 var(--sans); letter-spacing: -.01em; }
+.hero .big, .chhead .big { font-weight: 800; letter-spacing: -.045em; }
+.pence { font-size: .45em; vertical-align: .95em; font-weight: 700; opacity: .7; }
+.chan .v, .qr .v, .highlights .v, .day .dv, .ret .row .v, .acct .v, .kc .v, .kgrid .v, .tip .t { font-family: var(--sans); font-weight: 700; letter-spacing: -.02em; }
+.kgrid .v { font-size: 21px; } .qr .v { font-size: 22px; }
+
+/* cards */
+.panel, .card { background: var(--raise); border: 1px solid var(--line); border-radius: 24px; padding: 20px; box-shadow: var(--shadow); margin-top: 14px; }
+.panel .kgrid, .panel .qr, .panel .todos, .panel .conns, .panel .mform { border-top-color: var(--line-2); }
+.kgrid > div, .qr > div { border-color: var(--line-2) !important; }
+
+/* headline panels: midnight with a scatter of stars */
+.hero { position: relative; overflow: hidden; color: var(--night-ink); border-radius: 28px; padding: 22px 22px 20px; margin-top: 14px;
+  background:
+    radial-gradient(1.2px 1.2px at 18% 22%, rgba(255,255,255,.9), transparent 60%),
+    radial-gradient(1px 1px at 72% 14%, rgba(255,255,255,.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 88% 64%, rgba(255,255,255,.8), transparent 60%),
+    radial-gradient(1px 1px at 42% 78%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(1px 1px at 61% 41%, rgba(255,255,255,.5), transparent 60%),
+    radial-gradient(120% 90% at 100% 0%, rgba(165,139,250,.38), transparent 55%),
+    radial-gradient(90% 80% at 0% 100%, rgba(223,141,174,.22), transparent 60%),
+    linear-gradient(150deg, var(--night-2), var(--night));
+  box-shadow: 0 18px 40px -22px rgba(33,29,53,.65); }
+.hero::after { content: ""; position: absolute; right: -36px; top: -36px; width: 150px; height: 150px; border-radius: 50%;
+  box-shadow: inset -22px 14px 0 0 rgba(255,255,255,.10); pointer-events: none; }
+.hero .eyebrow { color: var(--night-soft) !important; }
+input[type=checkbox] { accent-color: var(--fba-ink); }
+.panel .dt th, .panel .dt td { padding: 11px 6px; } .panel { overflow-x: auto; }
+.hero .sub, .hero .assume { color: var(--night-soft); }
+.hero .sub b { color: #fff; }
+.hero .delta.up { color: #8ee8cd; } .hero .delta.down { color: #ffadb8; }
+.hero .bar .track { background: rgba(255,255,255,.12); }
+.hero .bar .legend { color: var(--night-soft); } .hero .bar .legend b { color: #fff; }
+#kpBig[style*="warn"] { color: #ffadb8 !important; }
+
+/* overview bento */
+.bento { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+.bento > * { margin-top: 0 !important; min-width: 0; }
+.bento .hero, .bento .wide, .bento .profit, .bento .side2 { grid-column: 1 / -1; }
+.brand h1 small { display: none; }
+@media (min-width: 600px) { .brand h1 small { display: inline; } }
+.profit { border-radius: 24px; padding: 18px 20px; background: var(--total-wash); border: 1px solid color-mix(in srgb, var(--total) 45%, transparent); }
+.profit .eyebrow { color: var(--total-ink); display: flex; align-items: center; gap: 6px; }
+.profit .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--total); }
+.profit .v { font: 800 38px/1.05 var(--sans); letter-spacing: -.03em; margin: 8px 0 2px; color: var(--ink); }
+.profit .v.neg { color: var(--warn); }
+.profit .sub { font-size: 13px; color: var(--ink-2); }
+.profit .spark { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+.profit .spark span { font-size: 12px; padding: 4px 9px; border-radius: 999px; background: var(--raise); border: 1px solid var(--line); color: var(--ink-2); }
+.profit .spark b { color: var(--ink); font-weight: 700; }
+.chan { border-radius: 22px; background: var(--raise); border: 1px solid var(--line); box-shadow: var(--shadow); position: relative; overflow: hidden; padding: 16px; }
+.chan::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4px; background: var(--c); }
+.chan .v { font-size: 25px; margin-top: 10px; }
+.chan .sub { font-size: 12.5px; }
+.chan.adf, .chan.adk { background: var(--ads-wash); border-color: color-mix(in srgb, var(--ads) 45%, transparent); }
+.chan.adf::before, .chan.adk::before { background: var(--ads); }
+.split { display: contents; }
+.bar { margin-top: 18px; }
+
+/* buttons, segments */
+.seg { background: var(--raise); border-color: var(--line); box-shadow: var(--shadow); }
+.seg button[aria-pressed="true"] { background: var(--on); color: var(--on-ink); }
+.kpi-hero .big { color: #fff; }
+.seg.small { box-shadow: none; background: var(--line-2); }
+.seg.small button[aria-pressed="true"] { background: var(--raise); color: var(--ink); box-shadow: 0 1px 3px rgba(33,29,53,.15); }
+.primary { background: var(--on); color: var(--on-ink); border-radius: 14px; }
+.rangebar { background: color-mix(in srgb, var(--bg) 90%, transparent); }
+
+/* lists & tables */
+.rank li i { background: color-mix(in srgb, var(--fba) 16%, transparent); }
+.rank li b { font-weight: 700; }
+.verdict { border-radius: 18px; }
+.acct, .kc { border-radius: 20px; box-shadow: none; }
+.kc { position: relative; overflow: hidden; }
+.kc::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4px; background: var(--c, var(--line)); }
+.day { border-radius: 18px; background: var(--raise); border-color: var(--line); }
+
+/* bottom nav: a floating midnight dock */
+.bnav { left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom)); border-radius: 22px; padding: 6px 8px; border: 0;
+  background: color-mix(in srgb, var(--night) 94%, transparent); box-shadow: 0 14px 34px -12px rgba(20,16,36,.6); }
+.bnav button { color: rgba(255,255,255,.55); border-radius: 16px; }
+.bnav button[aria-current="page"] { color: #fff; background: rgba(165,139,250,.22); }
+.toast { background: var(--night); color: #fff; bottom: calc(96px + env(safe-area-inset-bottom)); }
+
+/* lock screen */
+.lockbox h1 { font: 800 40px/1.05 var(--sans); letter-spacing: -.035em; display: flex; align-items: center; gap: 12px; }
+.lockbox .moon { width: 40px; height: 40px; }
+
+/* desktop: dark navigation rail + 12-column bento */
+@media (min-width: 900px) {
+  body { padding: 28px 40px 48px 132px; }
+  .topnav { position: fixed; left: 0; top: 0; bottom: 0; width: 96px; z-index: 40; margin: 0; flex-direction: column; align-items: center; gap: 6px;
+    padding: 26px 10px; background: var(--night); }
+  .topnav .railmoon { width: 34px; height: 34px; margin-bottom: 22px; }
+  .topnav button { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 76px; padding: 10px 0; border-radius: 16px;
+    color: rgba(255,255,255,.55); font-size: 11.5px; font-weight: 600; }
+  .topnav button svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .topnav button:hover { color: #fff; background: rgba(255,255,255,.06); }
+  .topnav button[aria-current="page"] { color: #fff; background: rgba(165,139,250,.24); }
+  .brand h1 { font-size: 28px; }
+  .bento { grid-template-columns: repeat(12, 1fr); gap: 16px; }
+  .bento .hero { grid-column: span 8; }
+  .bento .profit { grid-column: span 4; display: flex; flex-direction: column; justify-content: center; }
+  .bento .chan { grid-column: span 3; }
+  .bento .wide { grid-column: span 8; }
+  .bento .side2 { grid-column: span 4; }
+  .hero { padding: 28px 30px 24px; }
+  .hero .big { font-size: 88px; }
+  .profit .v { font-size: 46px; }
+  .kpiwrap, .chwrap { gap: 20px; }
+  .kpiwrap > div > .panel:first-child, .chwrap > .panel { margin-top: 14px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
@@ -325,8 +448,8 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
 
 <section id="lock" class="lock" hidden>
   <form class="lockbox" id="lockform" autocomplete="on">
-    <h1>Sales Desk</h1>
-    <p class="sub" style="margin:0">Enter your dashboard password.</p>
+    <h1><svg class="moon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#211D35"/><path d="M20.5 7.5a9.5 9.5 0 1 0 4 13.6 7.6 7.6 0 1 1-4-13.6z" fill="#EBC477"/><circle cx="24" cy="9" r="1.1" fill="#fff"/></svg>Moonbase</h1>
+    <p class="sub" style="margin:0">Mazo Moon’s mission control. Enter your password.</p>
     <input type="text" name="username" value="Sales Desk" autocomplete="username" hidden>
     <input type="password" id="pw" autocomplete="current-password" aria-label="Password" required>
     <label class="row"><input type="checkbox" id="remember" checked> Keep me signed in on this device</label>
@@ -338,11 +461,11 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
 <div id="app" hidden>
   <header class="top">
     <div class="brand">
-      <h1>Sales Desk</h1>
+      <h1><svg class="moon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#211D35"/><path d="M20.5 7.5a9.5 9.5 0 1 0 4 13.6 7.6 7.6 0 1 1-4-13.6z" fill="#EBC477"/><circle cx="24" cy="9" r="1.1" fill="#fff"/></svg>Moonbase <small>by Mazo Moon</small></h1>
       <p id="context" class="num">—</p>
     </div>
     <nav class="topnav" aria-label="Sections">
-      <button data-go="overview">Overview</button><button data-go="sales">Sales</button><button data-go="ads">Ads</button><button data-go="kpi">KPI</button><button data-go="more">Connections</button>
+      <svg class="moon railmoon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#211D35"/><path d="M20.5 7.5a9.5 9.5 0 1 0 4 13.6 7.6 7.6 0 1 1-4-13.6z" fill="#EBC477"/><circle cx="24" cy="9" r="1.1" fill="#fff"/></svg><button data-go="overview"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg>Overview</button><button data-go="sales"><svg viewBox="0 0 24 24"><path d="M5 19V11M10 19V6M15 19v-9M20 19V4"/></svg>Sales</button><button data-go="ads"><svg viewBox="0 0 24 24"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1zM17 9a4 4 0 0 1 0 6"/></svg>Ads</button><button data-go="kpi"><svg viewBox="0 0 24 24"><path d="M4 15a8 8 0 0 1 16 0M12 15l4-5M4 19h16"/></svg>KPI</button><button data-go="more"><svg viewBox="0 0 24 24"><path d="M9 7H6a3 3 0 0 0 0 6h3M15 7h3a3 3 0 0 1 0 6h-3M8 10h8"/></svg>Links</button>
     </nav>
     <div class="freshbox"><span class="fresh" id="fresh"><span class="dot" id="dot"></span><span id="freshText">—</span></span><span class="sched">Refreshes hourly 7–11am<br>4pm · hourly 8–11pm</span></div>
   </header>
@@ -358,42 +481,44 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
 
   <!-- OVERVIEW -->
   <main id="v-overview" class="view">
-    <div class="ov">
-      <div>
-        <section class="hero">
-          <div class="eyebrow">Total sales</div>
-          <div class="big num" id="heroTotal">—</div>
-          <div class="meta"><span class="sub" id="heroLabel">—</span><span class="delta" id="heroDelta"></span></div>
-        </section>
-        <div class="split">
-          <button class="chan fba" data-go="sales" data-ch="fba"><div class="eyebrow">Amazon FBA</div><div class="v num" id="ovFba">—</div><div class="sub num" id="ovFbaSub">—</div></button>
-          <button class="chan kdp" data-go="sales" data-ch="kdp"><div class="eyebrow">KDP</div><div class="v num" id="ovKdp">—</div><div class="sub num" id="ovKdpSub">—</div></button>
-        </div>
+    <div class="bento">
+      <section class="hero">
+        <div class="eyebrow">Sales and royalties</div>
+        <div class="big num" id="heroTotal">—</div>
+        <div class="meta"><span class="sub" id="heroLabel">—</span><span class="delta" id="heroDelta"></span></div>
         <div class="bar" id="splitBar">
           <div class="track"><i id="barF" style="background:var(--fba)"></i><i id="barK" style="background:var(--kdp)"></i></div>
           <div class="legend num"><span id="legF">FBA</span><span id="legK">KDP</span></div>
         </div>
-        <div class="split">
-          <button class="chan adf" data-go="ads"><div class="eyebrow">FBA ad spend</div><div class="v num" id="ovAdF">—</div><div class="sub num" id="ovAdFSub">—</div><div class="roas num" id="ovAdFRoas"></div></button>
-          <button class="chan adk" data-go="ads"><div class="eyebrow">KDP ad spend</div><div class="v num" id="ovAdK">—</div><div class="sub num" id="ovAdKSub">—</div><div class="roas num" id="ovAdKRoas"></div></button>
-        </div>
-        <section class="panel">
-          <div class="panelhead">
-            <h2 class="sec">Sales trend</h2>
-            <div class="seg small" id="series" role="group" aria-label="Chart">
-              <button data-s="combined">Combined</button><button data-s="fba">FBA</button><button data-s="kdp">KDP</button><button data-s="ads">Ads</button>
-            </div>
-          </div>
-          <div class="chart" id="chart"></div>
-        </section>
+      </section>
+      <button class="profit" data-go="kpi" style="text-align:left;font:inherit;color:inherit;cursor:pointer">
+        <div class="eyebrow">Profit after ads · estimate</div>
+        <div class="v num" id="ovProfit">—</div>
+        <div class="sub num" id="ovProfitSub">—</div>
+        <div class="spark num" id="ovProfitBits"></div>
+      </button>
+      <div class="split">
+        <button class="chan fba" data-go="sales" data-ch="fba"><div class="eyebrow">Amazon FBA</div><div class="v num" id="ovFba">—</div><div class="sub num" id="ovFbaSub">—</div></button>
+        <button class="chan kdp" data-go="sales" data-ch="kdp"><div class="eyebrow">KDP royalties</div><div class="v num" id="ovKdp">—</div><div class="sub num" id="ovKdpSub">—</div></button>
       </div>
-      <aside class="side">
-        <section class="panel" style="margin-top:30px">
-          <h2 class="sec">Quick read</h2>
-          <div class="qr" id="qr"></div>
-          <ul class="notes" id="notes"></ul>
-        </section>
-      </aside>
+      <div class="split">
+        <button class="chan adf" data-go="ads"><div class="eyebrow">FBA ad spend</div><div class="v num" id="ovAdF">—</div><div class="sub num" id="ovAdFSub">—</div><div class="roas num" id="ovAdFRoas"></div></button>
+        <button class="chan adk" data-go="ads"><div class="eyebrow">KDP ad spend</div><div class="v num" id="ovAdK">—</div><div class="sub num" id="ovAdKSub">—</div><div class="roas num" id="ovAdKRoas"></div></button>
+      </div>
+      <section class="panel wide">
+        <div class="panelhead">
+          <h2 class="sec">Sales trend</h2>
+          <div class="seg small" id="series" role="group" aria-label="Chart">
+            <button data-s="combined">Combined</button><button data-s="fba">FBA</button><button data-s="kdp">KDP</button><button data-s="ads">Ads</button>
+          </div>
+        </div>
+        <div class="chart" id="chart"></div>
+      </section>
+      <section class="panel side2">
+        <h2 class="sec">Quick read</h2>
+        <div class="qr" id="qr"></div>
+        <ul class="notes" id="notes"></ul>
+      </section>
     </div>
   </main>
 
@@ -407,8 +532,10 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
           <div class="big num" id="chBig">—</div>
           <div class="sub num" id="chSub">—</div>
         </section>
-        <div class="chart" id="chChart" style="margin-top:14px"></div>
-        <div class="highlights" id="chHi"></div>
+        <section class="panel">
+          <div class="chart" id="chChart"></div>
+          <div class="highlights" id="chHi"></div>
+        </section>
       </div>
       <section class="panel">
         <h2 class="sec">Day by day</h2>
@@ -427,9 +554,11 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
           <div class="big num" id="adBig">—</div>
           <div class="sub num" id="adSub">—</div>
         </section>
-        <div class="ret" id="adRet"></div>
-        <div class="verdict" id="adVerdict"></div>
-        <div class="accts" id="adAccts"></div>
+        <section class="panel">
+          <div class="ret" id="adRet" style="margin-top:0"></div>
+          <div class="verdict" id="adVerdict"></div>
+          <div class="accts" id="adAccts"></div>
+        </section>
         <section class="panel">
           <h2 class="sec">Spend and return</h2>
           <div class="chart" id="adChart"></div>
@@ -515,7 +644,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   <main id="v-more" class="view" hidden>
     <section class="panel">
       <h2 class="sec">Connections</h2>
-      <p class="sub" style="margin:-4px 0 14px">Sales Desk refreshes every hour from 7am to 11am, at 4pm, and every hour from 8pm to 11pm.</p>
+      <p class="sub" style="margin:-4px 0 14px">Moonbase refreshes every hour from 7am to 11am, at 4pm, and every hour from 8pm to 11pm.</p>
       <div class="conns" id="conns"></div>
     </section>
     <section class="panel">
@@ -531,7 +660,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   <button data-go="sales"><svg viewBox="0 0 24 24"><path d="M5 19V11M10 19V6M15 19v-9M20 19V4"/></svg>Sales</button>
   <button data-go="ads"><svg viewBox="0 0 24 24"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1zM17 9a4 4 0 0 1 0 6"/></svg>Ads</button>
   <button data-go="kpi"><svg viewBox="0 0 24 24"><path d="M4 15a8 8 0 0 1 16 0M12 15l4-5M4 19h16"/></svg>KPI</button>
-  <button data-go="more"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="18" cy="12" r="1.2"/></svg>More</button>
+  <button data-go="more"><svg viewBox="0 0 24 24"><path d="M9 7H6a3 3 0 0 0 0 6h3M15 7h3a3 3 0 0 1 0 6h-3M8 10h8"/></svg>Links</button>
 </nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -724,6 +853,12 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
         r.append(b1, ' vs ' + what + ' sales', h('br'), 'ads only ' + a.toFixed(2));
       } else r.textContent = 'No ad spend';
     };
+    const prof = s.fba * (1 - FBA_COST) - s.fs + s.kdp - s.ks;
+    count($('ovProfit'), prof); $('ovProfit').classList.toggle('neg', prof < 0);
+    $('ovProfitSub').textContent = s.total > 0 ? pc1.format(prof / s.total) + ' of sales · FBA costs at ' + pct.format(FBA_COST) : 'No sales yet';
+    const bits = $('ovProfitBits'); bits.replaceChildren();
+    const bit = (k, v) => { const x = h('span'); x.append(k + ' ', Object.assign(h('b'), { textContent: v })); bits.append(x); };
+    bit('Ad spend', gbp.format(s.spend)); bit('Ad sales', gbp.format(s.adSales));
     adBlock('ovAdF', s.fs, s.fba, s.fsl, 'FBA');
     adBlock('ovAdK', s.ks, s.kdp, s.ksl, 'KDP');
     document.querySelectorAll('#series button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.s === prefs.series)));
