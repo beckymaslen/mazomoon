@@ -87,6 +87,14 @@ button { cursor: pointer; }
 .custom input { border: 1px solid var(--line); background: var(--raise); border-radius: 12px; padding: 7px 10px; min-width: 0; flex: 1; }
 
 /* ---------- type ---------- */
+.rank { margin-top: 16px; }
+.rank h3 { margin: 0 0 6px; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.rank ol { list-style: none; margin: 0; padding: 0; }
+.rank li { position: relative; display: flex; justify-content: space-between; gap: 12px; padding: 7px 8px; font-size: 14px; border-radius: 8px; overflow: hidden; }
+.rank li i { position: absolute; inset: 0 auto 0 0; background: var(--line-2); border-radius: 8px; z-index: 0; }
+.rank li span { position: relative; z-index: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank li b { position: relative; z-index: 1; font-weight: 500; font-variant-numeric: tabular-nums; }
+.rank .none { color: var(--muted); font-size: 13px; padding: 4px 0; }
 .eyebrow { font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
 .serif { font-family: var(--serif); font-weight: 400; }
 .sub { color: var(--ink-2); font-size: 14px; }
@@ -447,6 +455,12 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
           <h2 class="sec">Ad spend and return</h2>
           <div class="kgrid" id="kpAds"></div>
         </section>
+        <section class="panel">
+          <h2 class="sec">mazomoon.com</h2>
+          <p class="sub" id="kpWebSub" style="margin:-4px 0 12px"></p>
+          <div class="kgrid" id="kpWeb"></div>
+          <div id="kpWebLists"></div>
+        </section>
       </div>
       <div>
         <section class="panel">
@@ -587,13 +601,14 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   const span = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / DAY) + 1;
   const num = (r, k) => { const x = Number(r && r[k]); return Number.isFinite(x) ? x : 0; };
   const asDate = (d) => new Date(d + 'T00:00:00Z');
-  let days = {}, first = {}, soc = {};   // days[date] = per-day sums; first[source] = earliest date with data
+  let days = {}, first = {}, soc = {}, web = {};   // days[date] = per-day sums; first[source] = earliest date with data
   function blank(d) { return { date: d, fba: 0, fu: 0, fo: 0, kdp: 0, ku: 0, kp: 0, fs: 0, fsl: 0, fso: 0, fc: 0, fi: 0, ks: 0, ksl: 0, kso: 0, kc: 0, ki: 0 }; }
   function index() {
-    days = {}; first = {}; soc = {};
+    days = {}; first = {}; soc = {}; web = {};
     for (const r of data.daily || []) {
       if (!r || typeof r.date !== 'string') continue;
       if (r.source === 'social') { soc[r.date] = r; continue; }
+      if (r.source === 'web') { web[r.date] = r; continue; }
       const x = days[r.date] || (days[r.date] = blank(r.date));
       if (!first[r.source] || r.date < first[r.source]) first[r.source] = r.date;
       if (r.source === 'fba') { x.fba += num(r, 'sales'); x.fu += num(r, 'units'); x.fo += num(r, 'orders'); }
@@ -959,10 +974,10 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     tile(bk, 'Ad spend per book', s.ku > 0 ? gbp.format(s.ks / s.ku) : '–', per == null ? '' : `break even at ${gbp.format(per)}`, per != null && s.ks / s.ku > per);
     tile(bk, 'KDP cost per click', s.kc > 0 ? gbp.format(s.ks / s.kc) : '–', `${intf.format(s.kc)} clicks`);
     tile(bk, 'Clicks per book', s.kso > 0 ? (s.kc / s.kso).toFixed(0) : '–', 'ad clicks ÷ ad orders');
-    social(a, b);
+    social(a, b); website(a, b);
     const td = $('kpTodo'); td.replaceChildren();
     for (const [n, w, d] of [
-      ['mazomoon.com', 'Connect', 'Visits by source, top pages and clicks through to Amazon. Needs a privacy-friendly visitor counter on the site, or Amazon Attribution links to see which clicks became sales.'],
+      ['Amazon Attribution', 'Later', 'Shows which mazomoon.com clicks turned into Amazon sales. Google Analytics only sees the click.'],
       ['Email platform', 'Connect', 'New subscribers, unsubscribes, net growth and email revenue.'],
       ['Google Search Console', 'Connect', 'Search impressions, clicks and the pages and terms bringing people in.'],
       ['Amazon refunds, fees and stock', 'Next step', 'Settlement and inventory reports for net sales, real fees, payouts, bestsellers and stock cover against your three-week lead time.'],
@@ -1004,6 +1019,35 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     tile('Pinterest impressions', intf.format(t.pinImpressions), intf.format(t.pinSaves) + ' saves');
     fol('fbFollowers', 'Facebook followers');
     tile('Facebook views', intf.format(t.fbViews), 'page and post views');
+  }
+
+  // ---------- website (Google Analytics; only visitors who accepted cookies) ----------
+  const NICE_SRC = { 'Organic Social': 'Social', 'Organic Search': 'Google and other search', Direct: 'Direct or typed in', Referral: 'Other websites', Unassigned: 'Unknown', 'Organic Shopping': 'Shopping search', 'Cross-network': 'Google ads', 'Paid Social': 'Paid social', Email: 'Email' };
+  const NICE_PAGE = { '/': 'Home (desk)', '/journals/': 'Journals', '/reading/': 'Reading corner', '/links/': 'Links page', '/shop/': 'Shop', '/create/': 'Create your own', '/blog/': 'Blog' };
+  function website(a, b) {
+    const el = $('kpWeb'), sub = $('kpWebSub'), ls = $('kpWebLists'); el.replaceChildren(); ls.replaceChildren();
+    const t = { sessions: 0, users: 0, newUsers: 0, pageViews: 0, engaged: 0, amazonClicks: 0, signUps: 0 }, src = {}, pages = {}, prods = {};
+    const add = (to, m) => { if (m && typeof m === 'object') for (const k in m) to[k] = (to[k] || 0) + num(m, k); };
+    let n = 0;
+    for (const d in web) if (d >= a && d <= b) { n++; const r = web[d]; for (const k in t) t[k] += num(r, k); add(src, r.src); add(pages, r.pages); add(prods, r.products); }
+    for (const k of ['Buy', 'Buy on Amazon', 'Buy now']) delete prods[k];   // links with no product name
+    sub.textContent = 'From Google Analytics. Only visitors who accept cookies are counted, so real visits are higher. Today fills in through the day.';
+    const tile = (k, v, sTxt) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num', v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
+    tile('Visits', intf.format(t.sessions), `${intf.format(t.users)} people · ${intf.format(t.newUsers)} new`);
+    tile('Clicks to Amazon', intf.format(t.amazonClicks), t.sessions > 0 ? pc1.format(t.amazonClicks / t.sessions) + ' of visits' : 'Buy on Amazon taps');
+    tile('Pages viewed', intf.format(t.pageViews), t.sessions > 0 ? (t.pageViews / t.sessions).toFixed(1) + ' per visit' : '');
+    tile('Engaged visits', t.sessions > 0 ? pc1.format(t.engaged / t.sessions) : '–', 'stayed 10s+ or viewed 2+ pages');
+    const list = (title, obj, nice, max) => {
+      const box = h('div', 'rank'); box.append(h('h3', null, title));
+      const rows = Object.entries(obj).filter(([, v]) => v > 0).sort((x, y) => y[1] - x[1]).slice(0, max);
+      if (!rows.length) { box.append(h('div', 'none', n ? 'Nothing yet in this period.' : 'No visits recorded in this period.')); ls.append(box); return; }
+      const top = rows[0][1], ol = h('ol');
+      for (const [k, v] of rows) { const li = h('li'), bar = h('i'); bar.style.width = Math.max(4, (v / top) * 100) + '%'; li.append(bar, h('span', null, nice ? nice(k) : k), h('b', null, intf.format(v))); ol.append(li); }
+      box.append(ol); ls.append(box);
+    };
+    list('Where visitors came from', src, (k) => NICE_SRC[k] || k, 6);
+    list('Top pages', pages, (k) => NICE_PAGE[k] || (k.split('/').filter(Boolean).pop() || k).replace(/-/g, ' ').replace(/^storymakers /, 'Storymaker\u2019s ').replace(/^./, (c) => c.toUpperCase()), 6);
+    list('Most clicked to Amazon', prods, null, 5);
   }
 
   // ---------- monthly figures (saved on this device) ----------
@@ -1049,9 +1093,10 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       kdp: ['30-day recheck', 'Every refresh looks back over the last 30 days of KDP royalties because book earnings can take longer to settle.'],
       'ads-fba': ['7-day attribution', 'If someone clicks an FBA ad and buys within 7 days, Amazon can count that sale as coming from the ad.'],
       'ads-kdp': ['14-day attribution', 'If someone clicks a book ad and buys within 14 days, Amazon can still count that sale as coming from the ad.'],
+      web: ['Cookie consent', 'Google Analytics only counts visitors who accept the cookie banner, so real visits are higher than shown.'],
       social: ['A day behind', 'Metricool updates Instagram, Facebook and Pinterest once a day, so the newest figures are usually from yesterday.'],
     };
-    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads'], ['social', 'Social (Metricool)']]) {
+    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads'], ['social', 'Social (Metricool)'], ['web', 'mazomoon.com (Google Analytics)']]) {
       const r = rows.find((x) => x && x.id === id) || {};
       const d = h('div', 'conn');
       const dot = h('span', 'dot' + (r.state === 'ok' ? '' : r.state === 'error' ? ' stale' : ' wait'));
