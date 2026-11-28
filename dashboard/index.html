@@ -438,12 +438,239 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
   .kpiwrap, .chwrap { gap: 20px; }
   .kpiwrap > div > .panel:first-child, .chwrap > .panel { margin-top: 14px; }
 }
+/* ================= Moonbase v2: art, icons, rings ================= */
+html { scroll-behavior: smooth; }
+/* celestial artwork */
+.hero::after { display: none; }
+.hero > * { position: relative; z-index: 1; }
+.hero > .sky { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+.sky .orb { fill: none; stroke: rgba(255,255,255,.10); stroke-width: 1; }
+.sky .orb.o2 { stroke-dasharray: 2 6; stroke: rgba(255,255,255,.12); }
+.sky .con { fill: none; stroke: rgba(255,255,255,.22); stroke-width: .8; }
+.sky .cs { fill: rgba(255,255,255,.85); }
+.sky .sp { fill: rgba(255,255,255,.7); }
+.sky .tw { animation: twinkle 4.5s ease-in-out infinite; }
+.sky .glow { fill: url(#moonGlow); }
+.sky .cr { fill: #EBC477; }
+.sky .mn { animation: drift 14s ease-in-out infinite alternate; transform-origin: 342px 52px; }
+@keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes drift { from { transform: translate(0, 0) rotate(0); } to { transform: translate(-6px, 4px) rotate(-4deg); } }
+.topnav .railsky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.topnav > * { position: relative; z-index: 1; }
+.topnav .phases { width: 16px; height: 96px; margin-top: auto; opacity: .75; }
+.phases .ph0 { fill: rgba(255,255,255,.08); stroke: rgba(255,255,255,.18); stroke-width: .8; }
+.phases .ph1 { fill: #EBC477; }
+.bnav { background-image: radial-gradient(1px 1px at 12% 30%, rgba(255,255,255,.5), transparent 60%), radial-gradient(1px 1px at 58% 78%, rgba(255,255,255,.4), transparent 60%), radial-gradient(1px 1px at 86% 22%, rgba(255,255,255,.45), transparent 60%); }
+
+/* illustrated icons: duotone glyph on a soft tile */
+.ico { --c: var(--stone); --w: var(--line-2); --i: var(--ink-2); flex: none; width: 34px; height: 34px; border-radius: 11px; display: inline-grid; place-items: center;
+  background: linear-gradient(145deg, var(--w), color-mix(in srgb, var(--c) 30%, var(--w))); color: var(--i);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent); transition: transform .3s var(--ease); }
+.ico svg { width: 21px; height: 21px; }
+.ico.sm { width: 26px; height: 26px; border-radius: 8px; } .ico.sm svg { width: 16px; height: 16px; }
+.ico.lg { width: 44px; height: 44px; border-radius: 14px; } .ico.lg svg { width: 26px; height: 26px; }
+.ico.fba { --c: var(--fba); --w: var(--fba-wash); --i: var(--fba-ink); }
+.ico.kdp { --c: var(--kdp); --w: var(--kdp-wash); --i: var(--kdp-ink); }
+.ico.ads { --c: var(--ads); --w: var(--ads-wash); --i: var(--ads-ink); }
+.ico.tot { --c: var(--total); --w: var(--total-wash); --i: var(--total-ink); }
+.hero .ico { --w: rgba(255,255,255,.10); --i: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); background: rgba(255,255,255,.10); }
+@media (hover: hover) { .chan:hover .ico, .kc:hover .ico, .pcard:hover .thumb { transform: rotate(-6deg) scale(1.06); } }
+.chan .eyebrow::before, .kc .eyebrow::before, .profit .eyebrow::before { display: none; }
+.chan .eyebrow, .kc .eyebrow, .profit .eyebrow { gap: 8px; }
+.chan .eyebrow .ico, .kc .eyebrow .ico { width: 30px; height: 30px; border-radius: 10px; }
+.chan .eyebrow .ico svg, .kc .eyebrow .ico svg { width: 19px; height: 19px; }
+
+/* rings */
+.ring { position: relative; display: inline-grid; place-items: center; flex: none; }
+.ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ring .rt { fill: none; stroke: var(--line-2); }
+.ring .rv { fill: none; stroke-linecap: round; transition: stroke-dashoffset 1s var(--ease); }
+.ring .rk { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; opacity: .55; }
+.ring .rl { position: relative; font-weight: 800; font-size: 12px; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; text-align: center; }
+.ring .rl small { display: block; font-size: 9.5px; font-weight: 600; letter-spacing: .04em; color: var(--muted); margin-top: 3px; text-transform: uppercase; }
+.hero .ring .rt { stroke: rgba(255,255,255,.12); } .hero .ring .rl small { color: var(--night-soft); } .hero .ring .rk { stroke: #fff; }
+.chan .roas { display: flex; align-items: center; gap: 10px; }
+.chan .ring .rl { font-size: 10px; }
+.chan.adf .ring .rt, .chan.adk .ring .rt { stroke: color-mix(in srgb, var(--ads) 28%, transparent); }
+
+/* sparklines + comparisons */
+.spk { display: block; width: 100%; height: 34px; margin-top: 12px; overflow: visible; }
+.cmp { display: grid; gap: 7px; margin-top: 16px; max-width: 460px; }
+.cmp-r { display: grid; grid-template-columns: 84px 1fr auto; gap: 10px; align-items: center; font-size: 12.5px; }
+.cmp-k { color: var(--night-soft); white-space: nowrap; }
+.cmp-t { height: 8px; border-radius: 999px; background: rgba(255,255,255,.10); overflow: hidden; }
+.cmp-t i { display: block; height: 100%; border-radius: 999px; width: 0; transition: width .9s var(--ease); }
+.cmp-v { font-weight: 700; min-width: 64px; text-align: right; }
+.hgrid { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.hgrid > div:first-child { min-width: 0; }
+
+/* profit flow */
+.flow-bar { display: flex; height: 16px; border-radius: 999px; overflow: hidden; gap: 2px; background: var(--line-2); position: relative; }
+.flow-bar i { display: block; flex-basis: 0; flex-grow: 0; transition: flex-grow .9s var(--ease); min-width: 0; }
+.flow-bar i.est { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.35) 0 3px, transparent 3px 7px) !important; background-blend-mode: normal; }
+.flow-bar.thin { height: 8px; margin-top: 12px; }
+.flow-bar .mark { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); border-radius: 2px; }
+.flow-in { margin-bottom: 18px; }
+.flow-in .flow-bar { height: 10px; }
+.flow-cap { display: flex; justify-content: space-between; gap: 10px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 7px; }
+.flow-cap b { color: var(--ink); letter-spacing: -.01em; text-transform: none; font-size: 13px; }
+.flow-lg { display: grid; gap: 0; margin-top: 12px; }
+.flow-lg > div { display: grid; grid-template-columns: auto 1fr auto 46px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line-2); font-size: 13.5px; }
+.flow-lg > div:last-child { border-bottom: 0; }
+.flow-lg i { width: 10px; height: 10px; border-radius: 3px; }
+.flow-lg b { font-weight: 700; }
+.flow-lg em { font-style: normal; color: var(--muted); font-size: 12px; text-align: right; }
+.flow-lg .pf b { color: var(--total-ink); } .flow-lg .ls b { color: var(--warn); }
+.profit .spark { gap: 5px; margin-top: 10px; }
+.profit .spark span { display: inline-flex; align-items: center; gap: 5px; }
+.profit .spark span i { width: 7px; height: 7px; border-radius: 2px; display: inline-block; }
+.profit .flow-bar { margin-top: 12px; height: 12px; background: color-mix(in srgb, var(--total) 18%, transparent); }
+
+/* chart polish */
+.chart .avg { stroke: var(--ink); stroke-dasharray: 3 4; opacity: .45; stroke-width: 1; }
+.chart text.avgt { fill: var(--ink-2); font-weight: 700; font-size: 10.5px; }
+.chart .cur { position: absolute; top: 4px; bottom: 22px; border-radius: 10px; background: color-mix(in srgb, var(--fba) 14%, transparent); pointer-events: none; opacity: 0; transition: opacity .15s, left .12s var(--ease); }
+.chart .cur.on { opacity: 1; }
+.tip { background: color-mix(in srgb, var(--night) 96%, transparent); color: #fff; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; box-shadow: 0 18px 40px -16px rgba(20,16,36,.6); }
+.tip .d { color: rgba(255,255,255,.7); font-weight: 600; font-size: 12px; }
+.tip .r { color: rgba(255,255,255,.78); }
+.tip .r span:last-child { color: #fff; font-weight: 700; }
+.tip .sh { display: flex; height: 5px; border-radius: 999px; overflow: hidden; gap: 2px; margin: 2px 0 8px; background: rgba(255,255,255,.1); }
+.tip .sh i { display: block; height: 100%; }
+.tip .vs { margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,.12); font-size: 12px; color: rgba(255,255,255,.7); }
+.tip .vs b { color: #8ee8cd; } .tip .vs b.dn { color: #ffadb8; }
+.day summary { background: linear-gradient(90deg, color-mix(in srgb, var(--c, var(--fba)) 16%, transparent) var(--w, 0%), transparent var(--w, 0%)); border-radius: 18px; }
+.dt td.barc { background: linear-gradient(90deg, transparent calc(100% - var(--w, 0%)), color-mix(in srgb, var(--c, var(--fba)) 20%, transparent) calc(100% - var(--w, 0%))); background-clip: padding-box; }
+.ret .row .t i { background-image: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.35)); }
+
+/* entrance */
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.view .bento > *, .view .chwrap > * > section, .view .chwrap > section, .chapter .cgrid > *, .pcard { animation: rise .55s var(--ease) both; }
+.bento > :nth-child(2) { animation-delay: 50ms; } .bento > :nth-child(3) { animation-delay: 90ms; } .bento > :nth-child(4) { animation-delay: 120ms; }
+.bento > :nth-child(5) { animation-delay: 150ms; } .bento > :nth-child(6) { animation-delay: 180ms; } .bento > :nth-child(n+7) { animation-delay: 220ms; }
+.cgrid > :nth-child(2) { animation-delay: 60ms; } .cgrid > :nth-child(3) { animation-delay: 110ms; } .cgrid > :nth-child(n+4) { animation-delay: 150ms; }
+
+/* tiles */
+.kgrid { gap: 8px; border-top: 0 !important; }
+.kgrid > div:nth-child(n) { border: 0 !important; padding: 12px 14px; border-radius: 16px; background: var(--line-2); position: relative; }
+.kgrid > div.hasring { padding-right: 64px; }
+.kgrid > div > .ring { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
+.kgrid .spk { height: 26px; margin-top: 8px; }
+.kgrid .s { color: var(--ink-2); opacity: .8; }
+
+/* KPI chapters */
+.kpnav { position: sticky; top: 62px; z-index: 15; display: flex; gap: 6px; margin: 14px -18px 0; padding: 6px 18px; overflow-x: auto; scrollbar-width: none;
+  background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.kpnav::-webkit-scrollbar { display: none; }
+.kpnav button { flex: none; display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: var(--raise); border-radius: 999px; padding: 6px 13px 6px 7px; font-size: 13px; font-weight: 600; color: var(--ink-2); transition: background .2s, color .2s, border-color .2s; }
+.kpnav button .ico { width: 22px; height: 22px; border-radius: 7px; } .kpnav button .ico svg { width: 14px; height: 14px; }
+.kpnav button[aria-current="true"] { background: var(--night); color: #fff; border-color: var(--night); }
+.chapter { margin-top: 30px; scroll-margin-top: 120px; }
+.chapter:first-of-type { margin-top: 10px; }
+.chap { display: flex; align-items: center; gap: 12px; margin: 0 2px 2px; }
+.chap .kicker { font-size: 11px; font-weight: 800; letter-spacing: .14em; color: var(--muted); }
+.chap h2 { margin: 0; font: 800 24px/1.05 var(--sans); letter-spacing: -.03em; }
+.chap .cmeta { margin-left: auto; font-size: 12px; color: var(--muted); font-weight: 600; text-align: right; }
+.chap::after { content: ""; display: none; }
+.cgrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 12px; }
+.cgrid > * { margin-top: 0 !important; min-width: 0; }
+.panel h2.sec { display: flex; align-items: center; gap: 9px; }
+.why { margin-top: 10px; font-size: 12.5px; }
+.why summary { list-style: none; cursor: pointer; color: var(--muted); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+.why summary::-webkit-details-marker { display: none; }
+.why summary::before { content: "i"; display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; border: 1.3px solid currentColor; font: 800 10px/1 var(--sans); }
+.why p { margin: 6px 0 0; color: var(--ink-2); line-height: 1.5; max-width: 62ch; }
+.hero .why summary, .hero .why p { color: var(--night-soft); }
+
+/* products */
+.reorder { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin: 4px 0 16px; scrollbar-width: thin; }
+.ro { flex: none; display: flex; align-items: center; gap: 9px; padding: 6px 12px 6px 6px; border-radius: 999px; background: var(--warn-wash); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); font-size: 13px; max-width: 280px; }
+.ro.mid { background: var(--ads-wash); border-color: color-mix(in srgb, var(--ads) 50%, transparent); }
+.ro img, .ro .noimg { width: 30px; height: 30px; border-radius: 50%; object-fit: contain; background: #fff; flex: none; }
+.ro span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.ro b { flex: none; font-weight: 800; color: var(--warn); } .ro.mid b { color: var(--ads-ink); }
+.pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.pcard { border-radius: 20px; background: var(--line-2); padding: 14px 12px 12px; display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; position: relative; }
+.pcard .rk { position: absolute; left: 10px; top: 10px; font-size: 11px; font-weight: 800; color: var(--muted); }
+.thumb { position: relative; width: 78px; height: 78px; display: grid; place-items: center; transition: transform .3s var(--ease); }
+.thumb .ring { position: absolute; inset: 0; }
+.thumb img, .thumb .noimg { width: 58px; height: 58px; border-radius: 50%; object-fit: contain; background: #fff; position: relative; }
+.noimg { display: grid; place-items: center; color: var(--fba-ink); background: var(--fba-wash) !important; }
+.noimg svg { width: 55%; height: 55%; }
+.thumb .dl { position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: var(--total); color: #fff; white-space: nowrap; }
+.thumb .dl.low { background: var(--warn); } .thumb .dl.mid { background: var(--ads); color: #3b2a05; }
+.pcard .pn { margin-top: 14px; font-weight: 700; font-size: 13px; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.5em; overflow-wrap: anywhere; }
+.pcard .pv { margin-top: 6px; font-weight: 800; font-size: 17px; letter-spacing: -.02em; }
+.pcard .ps { font-size: 12px; color: var(--ink-2); margin-top: 1px; }
+.pcard .pst { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+.showall { margin-top: 12px; width: 100%; border: 1px dashed var(--line); background: none; border-radius: 14px; padding: 10px; color: var(--ink-2); font-weight: 600; font-size: 13px; }
+.legend3 { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); margin-top: 12px; }
+.legend3 i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+
+/* ranked bars (titles, web lists) */
+.rank li { padding: 9px 10px; }
+.rank li i { background: linear-gradient(90deg, color-mix(in srgb, var(--bc, var(--fba)) 26%, transparent), color-mix(in srgb, var(--bc, var(--fba)) 10%, transparent)); transition: width .9s var(--ease); }
+.rank li em { position: relative; z-index: 1; font-style: normal; color: var(--muted); font-size: 12px; margin-left: auto; white-space: nowrap; }
+.rank li span { flex: 1; }
+.rank.kd li i { --bc: var(--kdp); }
+
+/* web funnel */
+.funnel { display: grid; gap: 6px; margin: 16px 0 4px; }
+.funnel > div { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 14px; overflow: hidden; font-size: 13.5px; }
+.funnel > div i { position: absolute; inset: 0 auto 0 0; border-radius: 14px; transition: width .9s var(--ease); }
+.funnel > div span, .funnel > div b { position: relative; z-index: 1; }
+.funnel > div b { font-weight: 800; }
+.funnel > div em { position: relative; z-index: 1; font-style: normal; color: var(--ink-2); font-size: 12px; margin-left: 8px; font-weight: 600; }
+
+.accttop { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.acct .eyebrow { display: flex; align-items: center; gap: 7px; }
+.acct .ring .rl { font-size: 10px; }
+.hero:has(.ring) .sky .mn, .hero:has(.ring) .sky .sp { display: none; }
+.pcard .ring .rt { stroke: var(--line); }
+.kgrid .ring .rt { stroke: var(--line); }
+.cgrid { align-items: start; }
+/* finances */
+.cash { margin-top: 16px; }
+.todos > div { grid-template-columns: auto 1fr auto; align-items: start; }
+.todos .ico { grid-row: span 2; margin-top: 1px; }
+.todos .d { grid-column: 2 / -1; }
+
+@media (min-width: 640px) { .pgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 900px) {
+  .kpnav { top: 0; margin: 18px 0 0; padding: 8px 0; }
+  .chapter { scroll-margin-top: 70px; margin-top: 38px; }
+  .cgrid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+  .cgrid > * { grid-column: span 12; }
+  .cgrid > .s7 { grid-column: span 7; } .cgrid > .s5 { grid-column: span 5; } .cgrid > .s6 { grid-column: span 6; } .cgrid > .s8 { grid-column: span 8; } .cgrid > .s4 { grid-column: span 4; }
+  .pgrid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .kgrid.k4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #kpWebLists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+  #kpWebLists > .funnel { grid-column: 1 / -1; }
+  .chap h2 { font-size: 28px; }
+}
+@media (min-width: 1300px) { .pgrid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="moonGlow"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <symbol id="i-fba" viewBox="0 0 24 24"><path d="M4 8.5 12 4l8 4.5v7L12 20l-8-4.5z" fill="currentColor" fill-opacity=".22"/><path d="M4 8.5 12 13l8-4.5M12 13v7M4 8.5 12 4l8 4.5v7L12 20l-8-4.5zM8 6.3l8 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M15.9 13.1a1.9 1.9 0 1 0 1.3 2.6 1.5 1.5 0 1 1-1.3-2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-kdp" viewBox="0 0 24 24"><path d="M12 7.5c-2-1.5-4.8-1.9-8-1.5v12c3.2-.4 6 0 8 1.5 2-1.5 4.8-1.9 8-1.5V6c-3.2-.4-6 0-8 1.5z" fill="currentColor" fill-opacity=".22"/><path d="M12 7.5c-2-1.5-4.8-1.9-8-1.5v12c3.2-.4 6 0 8 1.5 2-1.5 4.8-1.9 8-1.5V6c-3.2-.4-6 0-8 1.5zM12 7.5v12M6.5 9.5c1.3 0 2.5.3 3.4.8M6.5 12.5c1.3 0 2.5.3 3.4.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M17 1.6l.55 1.35 1.35.55-1.35.55L17 5.4l-.55-1.35L15.1 3.5l1.35-.55z" fill="currentColor"/></symbol>
+    <symbol id="i-ads" viewBox="0 0 24 24"><path d="M3.5 10v4a1 1 0 0 0 1 1h2l7 4.5V4.5l-7 4.5h-2a1 1 0 0 0-1 1z" fill="currentColor" fill-opacity=".22"/><path d="M3.5 10v4a1 1 0 0 0 1 1h2l7 4.5V4.5l-7 4.5h-2a1 1 0 0 0-1 1zM6.5 15l1 4.5M16.5 9.5a3.5 3.5 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M19.5 3.6l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5zM20.3 15.5l.35.9.9.35-.9.35-.35.9-.35-.9-.9-.35.9-.35z" fill="currentColor"/></symbol>
+    <symbol id="i-profit" viewBox="0 0 24 24"><circle cx="12" cy="12.3" r="8" fill="currentColor" fill-opacity=".22"/><circle cx="12" cy="12.3" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12.3" r="5.6" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.2 1.8" opacity=".7"/><path d="M12.00 8.30L13.00 10.92L15.80 11.06L13.62 12.83L14.35 15.54L12.00 14.00L9.65 15.54L10.38 12.83L8.20 11.06L11.00 10.92Z" fill="currentColor"/></symbol>
+    <symbol id="i-stock" viewBox="0 0 24 24"><path d="M5 11h6v8H5zM13 7h6v12h-6z" fill="currentColor" fill-opacity=".22"/><path d="M3 19.5h18M5 11h6v8.5H5zM13 7h6v12.5h-6zM7 11v2.5M15 7v2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><path d="M8.6 3.2a1.7 1.7 0 1 0 1.2 2.3 1.35 1.35 0 1 1-1.2-2.3z" fill="currentColor"/></symbol>
+    <symbol id="i-web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5.6" fill="currentColor" fill-opacity=".22"/><circle cx="12" cy="12" r="5.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.2 9.6C3.4 11 2 12.6 2.5 13.8c.9 2 6.2 1.6 11.8-.8s9.3-5.8 8.4-7.8c-.5-1.2-2.6-1.4-5.4-.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="19.5" cy="18.5" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-social" viewBox="0 0 24 24"><path d="M5 4.5h14a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-7L8 19.5v-3H5A1.5 1.5 0 0 1 3.5 15V6A1.5 1.5 0 0 1 5 4.5z" fill="currentColor" fill-opacity=".22"/><path d="M5 4.5h14a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-7L8 19.5v-3H5A1.5 1.5 0 0 1 3.5 15V6A1.5 1.5 0 0 1 5 4.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 13.6s-3.2-1.9-3.2-3.9a1.7 1.7 0 0 1 3.2-.8 1.7 1.7 0 0 1 3.2.8c0 2-3.2 3.9-3.2 3.9z" fill="currentColor"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="currentColor" fill-opacity=".22"/><path d="M15 15l5 5M10.5 4.5a6 6 0 1 1 0 12 6 6 0 0 1 0-12z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M10.5 7.6l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z" fill="currentColor"/></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2.5" fill="currentColor" fill-opacity=".22"/><path d="M6 7.5 15.5 4l1.4 3.5M20.5 11.5H16a2 2 0 0 0 0 4h4.5M6 7.5h12a2.5 2.5 0 0 1 2.5 2.5v7a2.5 2.5 0 0 1-2.5 2.5H6A2.5 2.5 0 0 1 3.5 17v-7A2.5 2.5 0 0 1 6 7.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="16.2" cy="13.5" r="1" fill="currentColor"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M7 8h10v3a5 5 0 0 1-10 0z" fill="currentColor" fill-opacity=".22"/><path d="M9 3.5V8M15 3.5V8M7 8h10v3a5 5 0 0 1-10 0zM12 16v4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
 <div class="wrap">
 
 <section id="lock" class="lock" hidden>
@@ -490,20 +717,21 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
           <div class="track"><i id="barF" style="background:var(--fba)"></i><i id="barK" style="background:var(--kdp)"></i></div>
           <div class="legend num"><span id="legF">FBA</span><span id="legK">KDP</span></div>
         </div>
+        <div class="cmp num" id="heroCmp"></div>
       </section>
       <button class="profit" data-go="kpi" style="text-align:left;font:inherit;color:inherit;cursor:pointer">
-        <div class="eyebrow">Profit after ads · estimate</div>
+        <div class="eyebrow"><span class="ico tot sm"><svg aria-hidden="true"><use href="#i-profit"/></svg></span>Profit after ads · estimate</div>
         <div class="v num" id="ovProfit">—</div>
         <div class="sub num" id="ovProfitSub">—</div>
-        <div class="spark num" id="ovProfitBits"></div>
+        <div id="ovProfitBits"></div>
       </button>
       <div class="split">
-        <button class="chan fba" data-go="sales" data-ch="fba"><div class="eyebrow">Amazon FBA</div><div class="v num" id="ovFba">—</div><div class="sub num" id="ovFbaSub">—</div></button>
-        <button class="chan kdp" data-go="sales" data-ch="kdp"><div class="eyebrow">KDP royalties</div><div class="v num" id="ovKdp">—</div><div class="sub num" id="ovKdpSub">—</div></button>
+        <button class="chan fba" data-go="sales" data-ch="fba"><div class="eyebrow"><span class="ico fba"><svg aria-hidden="true"><use href="#i-fba"/></svg></span>Amazon FBA</div><div class="v num" id="ovFba">—</div><div class="sub num" id="ovFbaSub">—</div><div id="ovFbaSpk"></div></button>
+        <button class="chan kdp" data-go="sales" data-ch="kdp"><div class="eyebrow"><span class="ico kdp"><svg aria-hidden="true"><use href="#i-kdp"/></svg></span>KDP royalties</div><div class="v num" id="ovKdp">—</div><div class="sub num" id="ovKdpSub">—</div><div id="ovKdpSpk"></div></button>
       </div>
       <div class="split">
-        <button class="chan adf" data-go="ads"><div class="eyebrow">FBA ad spend</div><div class="v num" id="ovAdF">—</div><div class="sub num" id="ovAdFSub">—</div><div class="roas num" id="ovAdFRoas"></div></button>
-        <button class="chan adk" data-go="ads"><div class="eyebrow">KDP ad spend</div><div class="v num" id="ovAdK">—</div><div class="sub num" id="ovAdKSub">—</div><div class="roas num" id="ovAdKRoas"></div></button>
+        <button class="chan adf" data-go="ads"><div class="eyebrow"><span class="ico ads"><svg aria-hidden="true"><use href="#i-ads"/></svg></span>FBA ads</div><div class="v num" id="ovAdF">—</div><div class="sub num" id="ovAdFSub">—</div><div class="roas num" id="ovAdFRoas"></div></button>
+        <button class="chan adk" data-go="ads"><div class="eyebrow"><span class="ico ads"><svg aria-hidden="true"><use href="#i-ads"/></svg></span>Book ads</div><div class="v num" id="ovAdK">—</div><div class="sub num" id="ovAdKSub">—</div><div class="roas num" id="ovAdKRoas"></div></button>
       </div>
       <section class="panel wide">
         <div class="panelhead">
@@ -528,9 +756,12 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     <div class="chwrap">
       <div>
         <section class="chhead hero">
+          <div class="hgrid"><div>
           <div class="eyebrow" id="chEyebrow">—</div>
           <div class="big num" id="chBig">—</div>
           <div class="sub num" id="chSub">—</div>
+          </div><div id="chRing"></div></div>
+          <div class="cmp num" id="chCmp"></div>
         </section>
         <section class="panel">
           <div class="chart" id="chChart"></div>
@@ -550,9 +781,12 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     <div class="chwrap">
       <div>
         <section class="chhead hero">
+          <div class="hgrid"><div>
           <div class="eyebrow">Advertising</div>
           <div class="big num" id="adBig">—</div>
           <div class="sub num" id="adSub">—</div>
+          </div><div id="adRing"></div></div>
+          <div class="cmp num" id="adCmp"></div>
         </section>
         <section class="panel">
           <div class="ret" id="adRet" style="margin-top:0"></div>
@@ -575,49 +809,81 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
 
   <!-- KPI -->
   <main id="v-kpi" class="view" hidden>
-    <div class="kpiwrap">
-      <div>
-        <section class="hero kpi-hero">
-          <div class="eyebrow">Profit after ads · estimate</div>
-          <div class="big num" id="kpBig">—</div>
-          <div class="sub num" id="kpSub">—</div>
-          <p class="assume" id="kpAssume"></p>
+    <nav class="kpnav" id="kpNav" aria-label="KPI sections">
+      <button type="button" data-kp="kp-profit"><span class="ico tot"><svg aria-hidden="true"><use href="#i-profit"/></svg></span>Profit</button><button type="button" data-kp="kp-stock"><span class="ico fba"><svg aria-hidden="true"><use href="#i-stock"/></svg></span>Inventory</button><button type="button" data-kp="kp-mkt"><span class="ico ads"><svg aria-hidden="true"><use href="#i-ads"/></svg></span>Marketing</button><button type="button" data-kp="kp-fin"><span class="ico kdp"><svg aria-hidden="true"><use href="#i-cash"/></svg></span>Finances</button>
+    </nav>
+
+    <section class="chapter" id="kp-profit">
+      <header class="chap"><span class="ico tot lg"><svg aria-hidden="true"><use href="#i-profit"/></svg></span><div><div class="kicker">01</div><h2>Profit</h2></div><span class="cmeta num" id="kpProfitMeta"></span></header>
+      <div class="cgrid">
+        <section class="hero kpi-hero s7">
+          <div class="hgrid"><div>
+            <div class="eyebrow">Profit after ads · estimate</div>
+            <div class="big num" id="kpBig">—</div>
+            <div class="sub num" id="kpSub">—</div>
+          </div><div id="kpRing"></div></div>
+          <details class="why"><summary>How this is worked out</summary><p class="assume" id="kpAssume"></p></details>
         </section>
-        <section class="panel">
+        <section class="panel s5">
+          <h2 class="sec">Where the money went</h2>
+          <div id="kpFlow"></div>
+        </section>
+        <section class="panel s7">
           <h2 class="sec">By channel</h2>
           <div class="kcards" id="kpChannels"></div>
         </section>
-        <section class="panel">
-          <h2 class="sec">Ad spend and return</h2>
-          <div class="kgrid" id="kpAds"></div>
-        </section>
-        <section class="panel">
-          <h2 class="sec">mazomoon.com</h2>
-          <p class="sub" id="kpWebSub" style="margin:-4px 0 12px"></p>
-          <div class="kgrid" id="kpWeb"></div>
-          <div id="kpWebLists"></div>
+        <section class="panel s5">
+          <h2 class="sec"><span class="ico kdp sm"><svg aria-hidden="true"><use href="#i-kdp"/></svg></span>KDP per book</h2>
+          <div class="kgrid" id="kpBook"></div>
         </section>
       </div>
-      <div>
+    </section>
+
+    <section class="chapter" id="kp-stock">
+      <header class="chap"><span class="ico fba lg"><svg aria-hidden="true"><use href="#i-stock"/></svg></span><div><div class="kicker">02</div><h2>Inventory</h2></div><span class="cmeta num" id="kpStockMeta"></span></header>
+      <div class="cgrid">
         <section class="panel">
-          <h2 class="sec">KDP per book</h2>
-          <div class="kgrid" id="kpBook"></div>
+          <h2 class="sec"><span class="ico fba sm"><svg aria-hidden="true"><use href="#i-fba"/></svg></span>FBA bestsellers and stock cover</h2>
+          <div id="kpStock"></div>
+          <details class="why"><summary>About these figures</summary><p id="kpStockSub"></p></details>
+        </section>
+        <section class="panel">
+          <h2 class="sec"><span class="ico kdp sm"><svg aria-hidden="true"><use href="#i-kdp"/></svg></span>Books by title</h2>
           <div id="kpTitles"></div>
         </section>
-        <section class="panel">
-          <h2 class="sec">FBA stock and bestsellers</h2>
-          <p class="sub" id="kpStockSub" style="margin:-4px 0 12px"></p>
-          <div id="kpStock"></div>
+      </div>
+    </section>
+
+    <section class="chapter" id="kp-mkt">
+      <header class="chap"><span class="ico ads lg"><svg aria-hidden="true"><use href="#i-ads"/></svg></span><div><div class="kicker">03</div><h2>Marketing</h2></div><span class="cmeta num" id="kpMktMeta"></span></header>
+      <div class="cgrid">
+        <section class="panel s6">
+          <h2 class="sec"><span class="ico ads sm"><svg aria-hidden="true"><use href="#i-ads"/></svg></span>Ad spend and return</h2>
+          <div class="kgrid" id="kpAds"></div>
+        </section>
+        <section class="panel s6">
+          <h2 class="sec"><span class="ico tot sm"><svg aria-hidden="true"><use href="#i-web"/></svg></span>mazomoon.com</h2>
+          <div class="kgrid" id="kpWeb"></div>
+          <div id="kpWebLists"></div>
+          <details class="why"><summary>About these figures</summary><p id="kpWebSub"></p></details>
         </section>
         <section class="panel">
-          <h2 class="sec">Social, via Metricool</h2>
+          <h2 class="sec"><span class="ico kdp sm"><svg aria-hidden="true"><use href="#i-social"/></svg></span>Social, via Metricool</h2>
           <p class="sub" id="kpSocSub" style="margin:-4px 0 12px"></p>
-          <div class="kgrid" id="kpSoc"></div>
+          <div class="kgrid k4" id="kpSoc"></div>
         </section>
-        <section class="panel">
+      </div>
+    </section>
+
+    <section class="chapter" id="kp-fin">
+      <header class="chap"><span class="ico kdp lg"><svg aria-hidden="true"><use href="#i-cash"/></svg></span><div><div class="kicker">04</div><h2>Business finances</h2></div><span class="cmeta num" id="kpFinMeta"></span></header>
+      <div class="cgrid">
+        <section class="panel s7">
           <h2 class="sec">Monthly figures</h2>
-          <p class="sub" style="margin:-4px 0 12px">A two-minute check-in once a month. These turn channel profit into business profit and cash.</p>
-          <form class="mform" id="mForm" autocomplete="off">
+          <div class="kgrid" id="kpMonth"></div>
+          <div class="cash" id="kpCash"></div>
+          <details class="why" id="mWhy" open><summary>Update this month</summary>
+          <form class="mform" id="mForm" autocomplete="off" style="margin-top:10px">
             <label class="mrow"><span>Month</span><input type="month" id="mMonth"></label>
             <div class="mgroup">Costs</div>
             <label class="mrow"><span>Overheads<small>subscriptions, software, freelancers</small></span><span class="gbp"><input inputmode="decimal" data-k="overheads" placeholder="0"></span></label>
@@ -627,17 +893,16 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
             <label class="mrow"><span>Upcoming bills</span><span class="gbp"><input inputmode="decimal" data-k="bills" placeholder="0"></span></label>
             <label class="mrow"><span>Tax set aside<small>money for HMRC</small></span><span class="gbp"><input inputmode="decimal" data-k="tax" placeholder="0"></span></label>
             <button class="primary" type="submit">Save month</button>
-            <p class="mnote">Saved on this device only for now.</p>
+            <p class="mnote">A two-minute check-in once a month. Saved on this device only for now.</p>
           </form>
-          <div class="kgrid" id="kpMonth" style="margin-top:16px"></div>
+          </details>
         </section>
-        <section class="panel">
-          <h2 class="sec">Connections to add</h2>
-          <p class="sub" style="margin:-4px 0 12px">These can update automatically once connected. Nothing here is estimated.</p>
+        <section class="panel s5">
+          <h2 class="sec"><span class="ico fba sm"><svg aria-hidden="true"><use href="#i-plug"/></svg></span>Connections to add</h2>
           <div class="todos" id="kpTodo"></div>
         </section>
       </div>
-    </div>
+    </section>
   </main>
 
   <!-- MORE -->
@@ -710,7 +975,7 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     $('app').hidden = true; $('bnav').hidden = true; $('lock').hidden = false; $('err').textContent = msg || '';
     setTimeout(() => $('pw').focus(), 50);
   }
-  function showApp() { $('lock').hidden = true; $('app').hidden = false; $('bnav').hidden = false; index(); go(prefs.tab, true); render(true); }
+  function showApp() { $('lock').hidden = true; $('app').hidden = false; $('bnav').hidden = false; decorate(); index(); go(prefs.tab, true); render(true); }
   async function start() {
     try { enc = await loadEnc(); } catch (e) { showLock('Could not load the figures. Check your connection and reload.'); return; }
     const saved = get(STORE);
@@ -805,6 +1070,115 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     el.textContent = (c >= 0 ? '↑ ' : '↓ ') + pct.format(Math.abs(c)) + ' vs ' + what;
   }
 
+  // ---------- Moonbase visuals: icons, rings, sparklines, comparisons, flows, sky ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const sv = (tag, at) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); return e; };
+  let uid = 0;
+  const later = (fn) => { if (reduce) fn(); else requestAnimationFrame(() => requestAnimationFrame(fn)); };
+  function icon(name, cls) {
+    const s = h('span', 'ico ' + (cls || name)), g = sv('svg', { 'aria-hidden': 'true' });
+    g.append(sv('use', { href: '#i-' + name })); s.append(g); return s;
+  }
+  // A ring shows a real fraction (0–1). Values above 1 fill the ring; tick marks a threshold such as break-even.
+  function ring(frac, color, o) {
+    o = o || {}; const size = o.size || 44, sw = o.sw || 5, r = (size - sw) / 2, C = 2 * Math.PI * r, c = size / 2;
+    const f = Number.isFinite(frac) ? Math.max(0, Math.min(1, frac)) : 0;
+    const box = h('span', 'ring' + (o.cls ? ' ' + o.cls : '')); box.style.width = box.style.height = size + 'px';
+    const g = sv('svg', { viewBox: `0 0 ${size} ${size}`, 'aria-hidden': 'true' });
+    g.append(sv('circle', { cx: c, cy: c, r, class: 'rt', 'stroke-width': sw }));
+    const arc = sv('circle', { cx: c, cy: c, r, class: 'rv', 'stroke-width': sw, 'stroke-dasharray': C.toFixed(2), 'stroke-dashoffset': C.toFixed(2), transform: `rotate(-90 ${c} ${c})` });
+    arc.style.stroke = color; if (f <= 0) arc.style.strokeOpacity = 0; g.append(arc);
+    if (o.tick != null) { const a = o.tick * 2 * Math.PI - Math.PI / 2;
+      g.append(sv('line', { x1: c + (r - sw * .9) * Math.cos(a), y1: c + (r - sw * .9) * Math.sin(a), x2: c + (r + sw * .9) * Math.cos(a), y2: c + (r + sw * .9) * Math.sin(a), class: 'rk' })); }
+    box.append(g);
+    if (o.label != null) { const l = h('span', 'rl', o.label); if (o.cap) l.append(h('small', null, o.cap)); box.append(l); }
+    if (o.title) { box.setAttribute('role', 'img'); box.setAttribute('aria-label', o.title); box.title = o.title; }
+    later(() => { arc.style.strokeDashoffset = (C * (1 - f)).toFixed(2); });
+    return box;
+  }
+  function spark(vals, color, o) {
+    o = o || {}; const W = 120, H = o.h || 34, n = vals.length, mx = Math.max(0, ...vals);
+    const g = sv('svg', { class: 'spk', viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'none', 'aria-hidden': 'true' });
+    if (n < 2 || mx <= 0) return g;
+    const id = 'sg' + (++uid), x = (i) => (i * W / (n - 1)).toFixed(1), y = (v) => (H - 2 - (H - 5) * v / mx).toFixed(1);
+    const gr = sv('linearGradient', { id, x1: 0, y1: 0, x2: 0, y2: 1 });
+    const s1 = sv('stop', { offset: 0 }), s2 = sv('stop', { offset: 1 });
+    s1.style.stopColor = color; s1.style.stopOpacity = .35; s2.style.stopColor = color; s2.style.stopOpacity = 0; gr.append(s1, s2);
+    const df = sv('defs', {}); df.append(gr); g.append(df);
+    const d = vals.map((v, i) => (i ? 'L' : 'M') + x(i) + ' ' + y(v)).join('');
+    g.append(sv('path', { d: d + `L${W} ${H}L0 ${H}Z`, fill: `url(#${id})` }));
+    const ln = sv('path', { d, fill: 'none', 'stroke-width': 1.8, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'vector-effect': 'non-scaling-stroke' });
+    ln.style.stroke = color; g.append(ln);
+    return g;
+  }
+  const grow = (i, f) => { later(() => { i.style.width = (Math.max(0, Math.min(1, f)) * 100).toFixed(2) + '%'; }); };
+  // Real side-by-side bars: [label, value, colour]
+  function compare(el, rows) {
+    el.replaceChildren(); if (!rows || !rows.length) return;
+    const mx = Math.max(1e-9, ...rows.map((r) => r[1]));
+    for (const [k, v, c] of rows) { const r = h('div', 'cmp-r'), t = h('div', 'cmp-t'), i = h('i'); i.style.background = c; t.append(i);
+      r.append(h('span', 'cmp-k', k), t, h('span', 'cmp-v num', gbp.format(v))); el.append(r); grow(i, v / mx); }
+  }
+  // Where the money went: segments [label, value, colour, est?] out of income; profit fills what is left.
+  function flow(el, inc, segs, profit, o) {
+    o = o || {}; el.replaceChildren();
+    const costs = segs.reduce((x, s) => x + Math.max(0, s[1]), 0), all = Math.max(inc, costs);
+    const items = segs.filter((s) => s[1] > 0); if (profit > 0) items.push([o.keep || 'Profit', profit, 'var(--total)', false, 'pf']);
+    const bar = h('div', 'flow-bar' + (o.thin ? ' thin' : ''));
+    if (all > 0) for (const [k, v, c, est] of items) { const i = h('i', est ? 'est' : null); i.style.background = c; i.title = k + ' ' + gbp.format(v); bar.append(i); later(() => { i.style.flexGrow = (v / all).toFixed(4); }); }
+    if (profit < 0 && inc > 0 && all > 0) { const m = h('span', 'mark'); m.style.left = (inc / all * 100).toFixed(2) + '%'; m.title = 'Income ' + gbp.format(inc); bar.append(m); }
+    el.append(bar);
+    if (o.thin) return;
+    if (o.chips) {
+      const box = h('div', 'spark num');
+      for (const [k, v, c] of items) { const x = h('span'), dot = h('i'); dot.style.background = c; x.append(dot, k + ' ', Object.assign(h('b'), { textContent: gbp0.format(v) })); box.append(x); }
+      if (profit < 0) { const x = h('span'); x.append('Loss ', Object.assign(h('b'), { textContent: gbp0.format(-profit) })); box.append(x); }
+      el.append(box); return;
+    }
+    const lg = h('div', 'flow-lg num');
+    const row = (k, v, c, cls) => { const r = h('div', cls || null), dot = h('i'); dot.style.background = c; r.append(dot, h('span', null, k), h('b', null, gbp.format(v)), h('em', null, inc > 0 ? pct.format(v / inc) : '–')); lg.append(r); };
+    for (const [k, v, c, , cls] of items) row(k, v, c, cls);
+    if (profit < 0) row(o.loss || 'Loss', profit, 'var(--warn)', 'ls');
+    el.append(lg);
+  }
+  // Celestial artwork for midnight panels (decorative only).
+  function rnd(seed) { let x = (seed * 2654435761) >>> 0 || 1; return () => ((x = (x * 1664525 + 1013904223) >>> 0) / 4294967296); }
+  const star4 = (x, y, s) => `M${x} ${y - s}Q${x} ${y} ${x + s} ${y}Q${x} ${y} ${x} ${y + s}Q${x} ${y} ${x - s} ${y}Q${x} ${y} ${x} ${y - s}Z`;
+  const crescent = (cx, cy, r) => `M${cx} ${cy - r}A${r} ${r} 0 1 1 ${cx} ${cy + r}A${r * .55} ${r} 0 1 0 ${cx} ${cy - r}Z`;
+  function sky(seed) {
+    const R = rnd(seed), g = sv('svg', { class: 'sky', viewBox: '0 0 400 220', preserveAspectRatio: 'xMaxYMin slice', 'aria-hidden': 'true' });
+    g.append(sv('ellipse', { cx: 342, cy: 52, rx: 120, ry: 46, class: 'orb', transform: 'rotate(-16 342 52)' }),
+      sv('ellipse', { cx: 342, cy: 52, rx: 190, ry: 82, class: 'orb o2', transform: 'rotate(-16 342 52)' }));
+    const pts = []; for (let i = 0; i < 5; i++) pts.push([268 + i * 27 + R() * 10, 158 + (R() - .5) * 44]);
+    g.append(sv('polyline', { points: pts.map((p) => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' '), class: 'con' }));
+    for (const p of pts) g.append(sv('circle', { cx: p[0].toFixed(1), cy: p[1].toFixed(1), r: (1.3 + R() * 1.3).toFixed(1), class: 'cs' }));
+    for (let i = 0; i < 10; i++) { const p = sv('path', { d: star4(+(250 + R() * 145).toFixed(1), +(8 + R() * 200).toFixed(1), +(1.8 + R() * 4).toFixed(1)), class: 'sp' + (i % 3 ? '' : ' tw') });
+      p.style.animationDelay = (R() * 4).toFixed(2) + 's'; g.append(p); }
+    const m = sv('g', { class: 'mn' }); m.append(sv('circle', { cx: 342, cy: 52, r: 44, class: 'glow' }), sv('path', { d: crescent(342, 52, 21), class: 'cr' })); g.append(m);
+    return g;
+  }
+  function phase(cx, cy, r, p) { const rx = Math.abs(1 - 2 * p) * r; return `M${cx} ${cy - r}A${r} ${r} 0 0 1 ${cx} ${cy + r}A${rx.toFixed(2)} ${r} 0 0 ${p < .5 ? 0 : 1} ${cx} ${cy - r}Z`; }
+  function decorate() {
+    document.querySelectorAll('.hero').forEach((el, i) => { if (!el.querySelector(':scope > .sky')) el.prepend(sky(i + 3)); });
+    const nav = document.querySelector('.topnav');
+    if (nav && !nav.querySelector('.phases')) {
+      const ph = sv('svg', { class: 'phases', viewBox: '0 0 16 96', 'aria-hidden': 'true' });
+      [0.14, 0.32, 0.5, 0.68, 0.86].forEach((p, i) => { const cy = 8 + i * 20; ph.append(sv('circle', { cx: 8, cy, r: 6, class: 'ph0' }), sv('path', { d: phase(8, cy, 6, p), class: 'ph1' })); });
+      nav.append(ph);
+      const rs = sv('svg', { class: 'railsky', viewBox: '0 0 96 800', preserveAspectRatio: 'xMidYMin slice', 'aria-hidden': 'true' }), R = rnd(7);
+      for (let i = 0; i < 16; i++) { const p = sv('path', { d: star4(+(8 + R() * 80).toFixed(1), +(470 + R() * 330).toFixed(1), +(1 + R() * 2.2).toFixed(1)), class: 'sp' + (i % 4 ? '' : ' tw') }); p.style.animationDelay = (R() * 4).toFixed(2) + 's'; rs.append(p); }
+      rs.classList.add('sky'); nav.prepend(rs);
+    }
+  }
+  const imgOf = (u) => typeof u === 'string' && /^https:\/\/m\.media-amazon\.com\/images\/I\/[\w+%-]+\.(jpg|jpeg|png)$/i.test(u) ? u.replace(/\.(jpg|jpeg|png)$/i, '._SL200_.$1') : null;
+  function thumbImg(i) {
+    const u = imgOf(i && i.img);
+    if (!u) { const d = h('span', 'noimg'); d.append(icon('fba').firstChild); return d; }
+    const im = h('img'); im.src = u; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.referrerPolicy = 'no-referrer';
+    im.addEventListener('error', () => { const d = h('span', 'noimg'); d.append(icon('fba').firstChild); im.replaceWith(d); }, { once: true });
+    return im;
+  }
+
   // ---------- render ----------
   function render(first) {
     if (!data) return;
@@ -834,8 +1208,16 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     count($('heroTotal'), s.total, { pence: true });
     $('heroLabel').textContent = lab;
     const n = s.n, pa = shift(a, -n), pb = shift(a, -1);
-    if (prefs.period !== 'today' && comparable(pa, ['fba', 'kdp'])) delta($('heroDelta'), s.total, sum(pa, pb).total, prevLabel(a, b));
-    else $('heroDelta').textContent = '';
+    if (prefs.period !== 'today' && comparable(pa, ['fba', 'kdp'])) {
+      const p = sum(pa, pb); delta($('heroDelta'), s.total, p.total, prevLabel(a, b));
+      compare($('heroCmp'), [[lab === 'Today' ? 'Today' : 'This period', s.total, 'linear-gradient(90deg, var(--fba), var(--kdp))'], ['Previous', p.total, 'rgba(255,255,255,.38)']]);
+    } else if (prefs.period === 'today' && comparable(shift(a, -30), ['fba', 'kdp'])) {
+      $('heroDelta').textContent = '';
+      compare($('heroCmp'), [['So far today', s.total, 'linear-gradient(90deg, var(--fba), var(--kdp))'], ['Typical day', sum(shift(a, -30), shift(a, -1)).total / 30, 'rgba(255,255,255,.38)']]);
+    } else { $('heroDelta').textContent = ''; $('heroCmp').replaceChildren(); }
+    const wn = Math.max(14, n), ws = shift(b, -(wn - 1)), win = list(ws, b);
+    $('ovFbaSpk').replaceChildren(spark(win.map((x) => x.fba), 'var(--fba)'));
+    $('ovKdpSpk').replaceChildren(spark(win.map((x) => x.kdp), 'var(--kdp)'));
     count($('ovFba'), s.fba); $('ovFbaSub').textContent = intf.format(s.fu) + (s.fu === 1 ? ' unit' : ' units');
     count($('ovKdp'), s.kdp); $('ovKdpSub').textContent = intf.format(s.ku) + (s.ku === 1 ? ' book' : ' books');
     const f = s.total > 0 ? s.fba / s.total : 0.5;
@@ -847,18 +1229,19 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
       count($(pre), spend);
       $(pre + 'Sub').textContent = 'ad sales ' + gbp.format(adSales);
       const r = $(pre + 'Roas'); r.replaceChildren();
+
       if (spend > 0) {
         const t = chSales / spend, a = adSales / spend;
         const b1 = Object.assign(h('b'), { textContent: 'ROAS ' + t.toFixed(2) }); if (t < 1) b1.className = 'bad';
-        r.append(b1, ' vs ' + what + ' sales', h('br'), 'ads only ' + a.toFixed(2));
+        const tx = h('span'); tx.append(b1, ' vs ' + what + ' sales', h('br'), 'ads only ' + a.toFixed(2));
+        if (chSales > 0) r.append(ring(spend / chSales, 'var(--ads-ink)', { size: 40, sw: 4.5, label: pct.format(spend / chSales), title: 'Ad spend is ' + pct.format(spend / chSales) + ' of ' + what + ' sales' }));
+        r.append(tx);
       } else r.textContent = 'No ad spend';
     };
     const prof = s.fba * (1 - FBA_COST) - s.fs + s.kdp - s.ks;
     count($('ovProfit'), prof); $('ovProfit').classList.toggle('neg', prof < 0);
     $('ovProfitSub').textContent = s.total > 0 ? pc1.format(prof / s.total) + ' of sales · FBA costs at ' + pct.format(FBA_COST) : 'No sales yet';
-    const bits = $('ovProfitBits'); bits.replaceChildren();
-    const bit = (k, v) => { const x = h('span'); x.append(k + ' ', Object.assign(h('b'), { textContent: v })); bits.append(x); };
-    bit('Ad spend', gbp.format(s.spend)); bit('Ad sales', gbp.format(s.adSales));
+    flow($('ovProfitBits'), s.total, [['FBA costs', s.fba * FBA_COST, 'var(--fba)', true], ['Ads', s.spend, 'var(--ads)']], prof, { chips: true });
     adBlock('ovAdF', s.fs, s.fba, s.fsl, 'FBA');
     adBlock('ovAdK', s.ks, s.kdp, s.ksl, 'KDP');
     document.querySelectorAll('#series button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.s === prefs.series)));
@@ -899,13 +1282,12 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
       const bd = best(a, b, (x) => x.fba + x.kdp);
       if (bd && s.n > 1) say(`${dLong.format(asDate(bd.d))} ${dShort.format(asDate(bd.d)).split(' ').slice(1).join(' ')} was your strongest day, with ${gbp.format(bd.v)}.`, 'var(--total)');
     }
-    say(`FBA brought in ${pct.format(s.fba / s.total)} of sales, KDP ${pct.format(s.kdp / s.total)}.`, 'var(--fba)');
     const n = s.n, pa = shift(a, -n), pb = shift(a, -1);
     if (prefs.period !== 'today' && comparable(pa, ['kdp'])) {
       const p = sum(pa, pb);
       if (p.kdp > 0) { const c = (s.kdp - p.kdp) / p.kdp; say(c > 2 ? `KDP royalties jumped from ${gbp.format(p.kdp)} to ${gbp.format(s.kdp)} compared with the previous ${n} days.` : `KDP royalties ${c >= 0 ? 'rose' : 'fell'} ${pct.format(Math.abs(c))} on the previous ${n} days.`, 'var(--kdp)'); }
     }
-    if (roas != null) say(roas >= 1 ? `Ads brought back ${gbp.format(roas)} for every £1 spent.` : `Ads cost more than they brought back: ${gbp.format(roas)} per £1 spent.`, roas >= 1 ? 'var(--ads)' : 'var(--warn)');
+    if (roas != null && roas < 1) say(`Ads cost more than they brought back: ${gbp.format(roas)} per £1 spent.`, 'var(--warn)');
   }
 
   // ---------- chart ----------
@@ -958,16 +1340,31 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     }
     const n = st.rows.length, bw = (W - left - gut) / n, pad = Math.min(bw * 0.28, 6), r = Math.min(4, (bw - pad) / 2);
     const firstIn = st.rows.findIndex((x) => x.inP);
+    const defs = mk('defs', {}), grads = {};
+    const fillOf = (c) => {
+      if (grads[c]) return grads[c];
+      const id = (el.id || 'ch') + '-g' + Object.keys(grads).length, gr = document.createElementNS(NS, 'linearGradient');
+      gr.setAttribute('id', id); gr.setAttribute('x1', 0); gr.setAttribute('y1', 0); gr.setAttribute('x2', 0); gr.setAttribute('y2', 1);
+      for (const [o, op] of [[0, 1], [1, .62]]) { const st2 = document.createElementNS(NS, 'stop'); st2.setAttribute('offset', o); st2.style.stopColor = c; st2.style.stopOpacity = op; gr.append(st2); }
+      defs.append(gr); return (grads[c] = `url(#${id})`);
+    };
     if (firstIn > 0) mk('rect', { x: left + firstIn * bw, y: top - 6, width: (n - firstIn) * bw, height: H - bottom - top + 6, rx: 10, class: 'sel' });
     st.rows.forEach((row, i) => {
       let base = 0; const x = left + i * bw + pad / 2, w = Math.max(1, bw - pad);
       st.cur[i].forEach((v, j) => {
         if (v <= 0) return;
         const yt = y(base + v), hgt = y(base) - yt;
-        mk('rect', { x, y: yt, width: w, height: Math.max(0, hgt - (base > 0 ? 1.5 : 0)), rx: j === st.cur[i].length - 1 ? r : Math.min(r, 1.5), fill: def.parts[j][1], opacity: row.inP ? 1 : .38 });
+        mk('rect', { x, y: yt, width: w, height: Math.max(0, hgt - (base > 0 ? 1.5 : 0)), rx: j === st.cur[i].length - 1 ? r : Math.min(r, 1.5), fill: fillOf(def.parts[j][1]), opacity: row.inP ? 1 : .38 });
         base += v;
       });
     });
+    const inRows = st.cur.filter((v, i) => st.rows[i].inP);
+    if (inRows.length > 1) {
+      const avg = inRows.reduce((x, v) => x + v.reduce((p, q) => p + q, 0), 0) / inRows.length;
+      if (avg > 0) { const x0 = left + Math.max(0, firstIn) * bw;
+        mk('line', { x1: x0, x2: W - gut + 6, y1: y(avg), y2: y(avg), class: 'avg' });
+        mk('text', { x: x0 + 4, y: y(avg) - 5, class: 'avgt' }, 'avg ' + gbp0.format(avg)); }
+    }
     if (st.line) {
       const pts = st.line.map((v, i) => `${(left + i * bw + bw / 2).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
       mk('polyline', { points: pts, fill: 'none', stroke: def.line[1], 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
@@ -982,27 +1379,33 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
   }
   function wireTip(el) {
     el._wired = true;
-    const tip = h('div', 'tip'); el.append(tip);
+    const tip = h('div', 'tip'), cur = h('div', 'cur'); el.append(cur, tip);
     const pick = (ev) => {
       const st = charts.get(el); if (!st) return;
       const box = el.getBoundingClientRect(); const x = ev.clientX - box.left;
       const i = Math.max(0, Math.min(st.rows.length - 1, Math.floor((x - 2) / ((box.width - 38) / st.rows.length))));
-      const d = dayAt(st.rows[i].date);
+      const d = dayAt(st.rows[i].date), bwp = (box.width - 38) / st.rows.length;
+      cur.style.left = (2 + i * bwp) + 'px'; cur.style.width = bwp + 'px'; cur.classList.add('on');
       tip.replaceChildren(h('div', 'd', dShort.format(asDate(d.date))));
+      const ins = st.rows.filter((x) => x.inP), val = st.key === 'ads' ? d.fs + d.ks : st.key === 'fba' ? d.fba : st.key === 'kdp' ? d.kdp : d.fba + d.kdp;
+      const avg = ins.length > 1 ? ins.reduce((x, r) => x + (st.key === 'ads' ? r.spend : st.key === 'fba' ? r.fba : st.key === 'kdp' ? r.kdp : r.fba + r.kdp), 0) / ins.length : 0;
       const row = (k, v, c) => { const r = h('div', 'r num'); r.style.setProperty('--c', c); r.append(h('span', null, k), h('span', null, v)); tip.append(r); };
       if (st.key === 'ads') {
         tip.append(h('div', 't num', gbp.format(d.fs + d.ks) + ' spent'));
         row('FBA ads', gbp.format(d.fs), 'var(--fba)'); row('Book ads', gbp.format(d.ks), 'var(--kdp)'); row('Ad sales', gbp.format(d.fsl + d.ksl), 'var(--ads)');
       } else {
         tip.append(h('div', 't num', gbp.format(d.fba + d.kdp) + ' total'));
+        if (d.fba + d.kdp > 0) { const sh = h('div', 'sh'), f1 = h('i'), f2 = h('i'); f1.style.cssText = `flex:${d.fba};background:var(--fba)`; f2.style.cssText = `flex:${d.kdp};background:var(--kdp)`; sh.append(f1, f2); tip.append(sh); }
         row('FBA', gbp.format(d.fba), 'var(--fba)'); row('KDP', gbp.format(d.kdp), 'var(--kdp)');
       }
+      if (avg > 0 && st.rows[i].inP) { const c = (val - avg) / avg, vs = h('div', 'vs num'), bb = h('b', c < 0 ? 'dn' : null, (c >= 0 ? '+' : '−') + pct.format(Math.abs(c)));
+        vs.append(bb, ' vs this period\u2019s daily average'); tip.append(vs); }
       const tw = 170; tip.style.left = Math.min(Math.max(x - tw / 2, 0), box.width - tw) + 'px';
       tip.style.top = '-8px'; tip.style.transform = ''; tip.classList.add('on');
     };
     el.addEventListener('pointerdown', pick); el.addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse' || tip.classList.contains('on')) pick(e); });
-    el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') tip.classList.remove('on'); });
-    document.addEventListener('pointerdown', (e) => { if (!el.contains(e.target)) tip.classList.remove('on'); });
+    el.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { tip.classList.remove('on'); cur.classList.remove('on'); } });
+    document.addEventListener('pointerdown', (e) => { if (!el.contains(e.target)) { tip.classList.remove('on'); cur.classList.remove('on'); } });
   }
 
   // ---------- sales (FBA / KDP) ----------
@@ -1014,6 +1417,11 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     count($('chBig'), isF ? s.fba : s.kdp, { pence: true });
     $('chSub').textContent = isF ? `${intf.format(s.fu)} units · ${intf.format(s.fo)} orders` : `${intf.format(s.ku)} books sold · ${intf.format(s.kp)} KENP pages`;
     chart($('chChart'), a, b, ch, 150);
+    const cv = isF ? s.fba : s.kdp, col = isF ? 'var(--fba)' : 'var(--kdp)';
+    $('chRing').replaceChildren(s.total > 0 ? ring(cv / s.total, col, { size: 92, sw: 8, label: pct.format(cv / s.total), cap: 'of sales', title: (isF ? 'FBA' : 'KDP') + ' is ' + pct.format(cv / s.total) + ' of all sales' }) : '');
+    const pa = shift(a, -s.n), pb = shift(a, -1);
+    if (prefs.period !== 'today' && comparable(pa, [ch])) { const p = sum(pa, pb); compare($('chCmp'), [['This period', cv, col], ['Previous', isF ? p.fba : p.kdp, 'rgba(255,255,255,.38)']]); }
+    else $('chCmp').replaceChildren();
     const hi = $('chHi'); hi.replaceChildren();
     const cell = (k, v) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num', v)); hi.append(d); };
     const bd = best(a, b, ch);
@@ -1023,10 +1431,11 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     cell(isF ? 'Orders' : 'KENP pages', intf.format(isF ? s.fo : s.kp));
     const rows = list(a, b).reverse();
     const daysEl = $('chDays'); daysEl.replaceChildren();
+    const dmax = Math.max(1e-9, ...rows.map((d) => isF ? d.fba : d.kdp));
     rows.forEach((d, i) => {
       const v = isF ? d.fba : d.kdp;
       const det = h('details', 'day' + (v > 0 ? '' : ' zero')); det.style.animationDelay = Math.min(i, 12) * 18 + 'ms';
-      const sm = h('summary'); sm.append(h('span', 'dd', dShort.format(asDate(d.date))), h('span', 'dv num', gbp.format(v)),
+      const sm = h('summary'); sm.style.setProperty('--w', (v / dmax * 100).toFixed(1) + '%'); sm.style.setProperty('--c', col); sm.append(h('span', 'dd', dShort.format(asDate(d.date))), h('span', 'dv num', gbp.format(v)),
         h('span', 'ds num', isF ? `${intf.format(d.fu)} units · ${intf.format(d.fo)} orders` : `${intf.format(d.ku)} books · ${intf.format(d.kp)} pages`));
       const more = h('div', 'more num');
       const kv = (k, val) => { const x = h('div', null, k); x.prepend(Object.assign(h('b'), { textContent: val })); more.append(x); };
@@ -1040,9 +1449,10 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     });
     const tb = $('chTable');
     tb.tHead.replaceChildren(trow('th', isF ? ['Day', 'Sales', 'Units', 'Orders', 'Ad spend'] : ['Day', 'Royalties', 'Books', 'KENP pages', 'Ad spend']));
-    tb.tBodies[0].replaceChildren(...rows.map((d) => trow('td', isF
+    tb.tBodies[0].replaceChildren(...rows.map((d) => { const tr = trow('td', isF
       ? [dShort.format(asDate(d.date)), gbp.format(d.fba), intf.format(d.fu), intf.format(d.fo), gbp.format(d.fs)]
-      : [dShort.format(asDate(d.date)), gbp.format(d.kdp), intf.format(d.ku), intf.format(d.kp), gbp.format(d.ks)])));
+      : [dShort.format(asDate(d.date)), gbp.format(d.kdp), intf.format(d.ku), intf.format(d.kp), gbp.format(d.ks)]);
+      const c1 = tr.children[1]; c1.className = 'barc'; c1.style.setProperty('--w', ((isF ? d.fba : d.kdp) / dmax * 100).toFixed(1) + '%'); c1.style.setProperty('--c', col); return tr; }));
   }
   function trow(tag, cells) { const tr = h('tr'); for (const c of cells) tr.append(h(tag, null, c)); return tr; }
 
@@ -1051,6 +1461,10 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     count($('adBig'), s.spend, { pence: true });
     const roas = s.spend > 0 ? s.adSales / s.spend : null, acos = s.adSales > 0 ? s.spend / s.adSales : null;
     $('adSub').textContent = `spent on ads · ${lab}`;
+    $('adRing').replaceChildren(acos != null ? ring(acos, acos > 1 ? '#ffadb8' : 'var(--ads)', { size: 92, sw: 8, label: pct.format(acos), cap: 'ACoS', title: 'Ad spend is ' + pct.format(acos) + ' of ad sales' }) : '');
+    const apa = shift(a, -s.n), apb = shift(a, -1);
+    if (prefs.period !== 'today' && comparable(apa, ['ads-fba', 'ads-kdp'])) { const p = sum(apa, apb); compare($('adCmp'), [['This period', s.spend, 'var(--ads)'], ['Previous', p.spend, 'rgba(255,255,255,.38)']]); }
+    else $('adCmp').replaceChildren();
     const ret = $('adRet'); ret.replaceChildren();
     const mx = Math.max(s.spend, s.adSales, 1);
     const bar = (k, v, c) => { const r = h('div', 'row'); const t = h('div', 't'); const i = h('i'); i.style.background = c; i.style.width = '0%'; t.append(i);
@@ -1064,9 +1478,11 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
       v.style.background = roas >= 1 ? '' : 'var(--warn-wash)';
     }
     const ac = $('adAccts'); ac.replaceChildren();
-    const acct = (name, sp, sl, c) => { const d = h('div', 'acct'); const e = h('div', 'eyebrow', name); e.style.color = c;
-      d.append(e, h('div', 'v num', gbp.format(sp)), h('div', 'sub num', `spent · ${gbp.format(sl)} back`)); ac.append(d); };
-    acct('FBA ads', s.fs, s.fsl, 'var(--fba-ink)'); acct('Book ads', s.ks, s.ksl, 'var(--kdp-ink)');
+    const acct = (name, sp, sl, c, ic, tick) => { const d = h('div', 'acct'); const e = h('div', 'eyebrow', name); e.style.color = c; e.prepend(icon(ic, ic + ' sm'));
+      const top = h('div', 'accttop'); top.append(e);
+      if (sl > 0) top.append(ring(sp / sl, sp / sl > (tick || 1) ? 'var(--warn)' : c, { size: 40, sw: 4.5, label: pct.format(sp / sl), tick, title: 'ACoS ' + pct.format(sp / sl) + (tick ? ', breaks even below ' + pct.format(tick) : '') }));
+      d.append(top, h('div', 'v num', gbp.format(sp)), h('div', 'sub num', `spent · ${gbp.format(sl)} back`)); ac.append(d); };
+    acct('FBA ads', s.fs, s.fsl, 'var(--fba-ink)', 'fba', 1 - FBA_COST); acct('Book ads', s.ks, s.ksl, 'var(--kdp-ink)', 'kdp');
     chart($('adChart'), a, b, 'ads', 170);
     const rows = list(a, b).reverse();
     const daysEl = $('adDays'); daysEl.replaceChildren();
@@ -1096,32 +1512,51 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     const big = $('kpBig'); count(big, tot, { pence: true }); big.style.color = tot < 0 ? 'var(--warn)' : '';
     const sub = $('kpSub'); sub.replaceChildren();
     sub.append(lab + ' · ', Object.assign(h('b'), { textContent: inc > 0 ? pc1.format(tot / inc) : '–' }), ' of ' + gbp.format(inc) + ' FBA sales + KDP royalties');
+    $('kpProfitMeta').textContent = lab; $('kpMktMeta').textContent = lab;
+    const mg = inc > 0 ? tot / inc : null;
+    $('kpRing').replaceChildren(mg == null ? '' : ring(mg, mg < 0 ? '#ffadb8' : 'var(--total)', { size: 104, sw: 9, label: pc1.format(mg), cap: 'margin', title: 'Profit is ' + pc1.format(mg) + ' of sales and royalties' }));
+    const fl = $('kpFlow'); fl.replaceChildren();
+    if (inc > 0 || s.spend > 0) {
+      const top = h('div', 'flow-in'), cap = h('div', 'flow-cap num'); cap.append(h('span', null, 'Money in'), Object.assign(h('b'), { textContent: gbp.format(inc) }));
+      const ib = h('div'); flow(ib, inc, [['FBA sales', s.fba, 'var(--fba)'], ['KDP royalties', s.kdp, 'var(--kdp)']], 0, { thin: true });
+      top.append(cap, ib); fl.append(top);
+      const cap2 = h('div', 'flow-cap num'); cap2.append(h('span', null, 'Where it went'), Object.assign(h('b'), { textContent: tot >= 0 ? gbp.format(tot) + ' kept' : gbp.format(-tot) + ' loss' }));
+      const ob = h('div'); flow(ob, inc, [['FBA costs · est. ' + pct.format(FBA_COST), fCost, 'var(--fba)', true], ['FBA ads', s.fs, 'var(--ads)'], ['KDP ads', s.ks, 'color-mix(in srgb, var(--ads) 55%, var(--kdp))']], tot);
+      fl.append(cap2, ob);
+    } else fl.append(h('div', 'empty', 'No sales or ad spend in this period.'));
     $('kpAssume').textContent = `FBA costs are estimated at ${pct.format(FBA_COST)} of FBA sales (Amazon fees, FBA fulfilment and product cost). FBA sales are ordered sales, before refunds. KDP royalties already have printing and Amazon's share taken off.`;
     const ch = $('kpChannels'); ch.replaceChildren();
-    const card = (cls, name, val, subTxt, rows, neg) => {
-      const d = h('div', 'kc ' + cls); d.append(h('div', 'eyebrow', name), h('div', 'v num' + (neg ? ' neg' : ''), val), h('div', 'sub num', subTxt));
+    const card = (cls, name, val, subTxt, rows, neg, fl) => {
+      const d = h('div', 'kc ' + cls), e = h('div', 'eyebrow', name); e.prepend(icon(cls === 'fba' ? 'fba' : 'kdp', cls));
+      d.append(e, h('div', 'v num' + (neg ? ' neg' : ''), val), h('div', 'sub num', subTxt));
+      if (fl) { const fb = h('div'); flow(fb, fl[0], fl[1], fl[2], { thin: true }); d.append(fb); }
       if (rows) { const dl = h('dl', 'num'); for (const [k, v] of rows) dl.append(h('dt', null, k), h('dd', null, v)); d.append(dl); }
       ch.append(d);
     };
     card('fba', 'Amazon FBA', gbp.format(fProfit), `profit after ads · ${s.fba > 0 ? pc1.format(fProfit / s.fba) : '–'}`, [
-      ['Sales', gbp.format(s.fba)], ['Orders · units', intf.format(s.fo) + ' · ' + intf.format(s.fu)], ['Est. costs (25%)', '−' + gbp.format(fCost)], ['Ad spend', '−' + gbp.format(s.fs)]], fProfit < 0);
+      ['Sales', gbp.format(s.fba)], ['Orders · units', intf.format(s.fo) + ' · ' + intf.format(s.fu)], ['Est. costs (25%)', '−' + gbp.format(fCost)], ['Ad spend', '−' + gbp.format(s.fs)]], fProfit < 0,
+      [s.fba, [['Est. costs', fCost, 'var(--fba)', true], ['Ads', s.fs, 'var(--ads)']], fProfit]);
     card('kdp', 'KDP', gbp.format(kProfit), `royalties after ads · ${s.kdp > 0 ? pc1.format(kProfit / s.kdp) : '–'}`, [
-      ['Royalties', gbp.format(s.kdp)], ['Books sold', intf.format(s.ku)], ['Pages read', intf.format(s.kp)], ['Ad spend', '−' + gbp.format(s.ks)]], kProfit < 0);
-    const tile = (el, k, v, sTxt, neg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
+      ['Royalties', gbp.format(s.kdp)], ['Books sold', intf.format(s.ku)], ['Pages read', intf.format(s.kp)], ['Ad spend', '−' + gbp.format(s.ks)]], kProfit < 0,
+      [s.kdp, [['Ads', s.ks, 'var(--ads)']], kProfit]);
+    const tile = (el, k, v, sTxt, neg, rg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), v)); if (sTxt) d.append(h('div', 's', sTxt));
+      if (rg && Number.isFinite(rg[0])) { d.classList.add('hasring'); d.append(ring(rg[0], rg[1], { size: 44, sw: 5, tick: rg[2], title: rg[3] })); } el.append(d); return d; };
     const r2 = (x, y) => (y > 0 ? (x / y).toFixed(2) : '–'), pr = (x, y) => (y > 0 ? pc1.format(x / y) : '–');
     const ad = $('kpAds'); ad.replaceChildren();
     tile(ad, 'FBA ROAS', r2(s.fsl, s.fs), 'ad sales ÷ FBA ad spend', s.fs > 0 && s.fsl < s.fs);
-    tile(ad, 'FBA TACoS', pr(s.fs, s.fba), 'FBA ad spend ÷ all FBA sales');
-    tile(ad, 'FBA ACoS', pr(s.fs, s.fsl), `breaks even below ${pct.format(1 - FBA_COST)}`, s.fsl > 0 && s.fs / s.fsl > 1 - FBA_COST);
+    tile(ad, 'FBA TACoS', pr(s.fs, s.fba), 'FBA ad spend ÷ all FBA sales', false, s.fba > 0 ? [s.fs / s.fba, 'var(--ads-ink)'] : null);
+    tile(ad, 'FBA ACoS', pr(s.fs, s.fsl), `breaks even below ${pct.format(1 - FBA_COST)}`, s.fsl > 0 && s.fs / s.fsl > 1 - FBA_COST,
+      s.fsl > 0 ? [s.fs / s.fsl, s.fs / s.fsl > 1 - FBA_COST ? 'var(--warn)' : 'var(--total)', 1 - FBA_COST, 'Tick marks break-even at ' + pct.format(1 - FBA_COST)] : null);
     tile(ad, 'FBA cost per click', s.fc > 0 ? gbp.format(s.fs / s.fc) : '–', `${intf.format(s.fc)} clicks · ${s.fi > 0 ? pc1.format(s.fc / s.fi) : '–'} CTR`);
-    tile(ad, 'FBA ad conversion', pr(s.fso, s.fc), `${intf.format(s.fso)} ad orders`);
+    tile(ad, 'FBA ad conversion', pr(s.fso, s.fc), `${intf.format(s.fso)} ad orders`, false, s.fc > 0 ? [s.fso / s.fc, 'var(--fba-ink)'] : null);
     tile(ad, 'Total ad spend', gbp.format(s.spend), `FBA ${gbp0.format(s.fs)} · KDP ${gbp0.format(s.ks)}`);
     tile(ad, 'KDP ROAS', r2(s.ksl, s.ks), 'ad sales ÷ KDP ad spend', s.ks > 0 && s.ksl < s.ks);
-    tile(ad, 'KDP TACoS', pr(s.ks, s.kdp), 'KDP ad spend ÷ royalties');
+    tile(ad, 'KDP TACoS', pr(s.ks, s.kdp), 'KDP ad spend ÷ royalties', false, s.kdp > 0 ? [s.ks / s.kdp, s.ks > s.kdp ? 'var(--warn)' : 'var(--kdp-ink)'] : null);
     const bk = $('kpBook'); bk.replaceChildren();
     const per = s.ku > 0 ? s.kdp / s.ku : null;
     tile(bk, 'Royalty per book', per == null ? '–' : gbp.format(per), `${intf.format(s.ku)} books sold`);
-    tile(bk, 'Ad spend per book', s.ku > 0 ? gbp.format(s.ks / s.ku) : '–', per == null ? '' : `break even at ${gbp.format(per)}`, per != null && s.ks / s.ku > per);
+    tile(bk, 'Ad spend per book', s.ku > 0 ? gbp.format(s.ks / s.ku) : '–', per == null ? '' : `break even at ${gbp.format(per)}`, per != null && s.ks / s.ku > per,
+      per ? [s.ks / s.ku / per, s.ks / s.ku > per ? 'var(--warn)' : 'var(--kdp-ink)', null, 'Ad spend per book as a share of the royalty per book'] : null);
     tile(bk, 'KDP cost per click', s.kc > 0 ? gbp.format(s.ks / s.kc) : '–', `${intf.format(s.kc)} clicks`);
     tile(bk, 'Clicks per book', s.kso > 0 ? (s.kc / s.kso).toFixed(0) : '–', 'ad clicks ÷ ad orders');
     social(a, b); website(a, b); titles(a, b); stockPanel();
@@ -1129,7 +1564,7 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     for (const [n, w, d] of [
       ['Amazon Attribution', 'Later', 'Shows which mazomoon.com clicks turned into Amazon sales. Google Analytics only sees the click.'],
       ['Amazon fees, refunds and payouts', 'Needs permission', 'Real Amazon fees instead of the 25% estimate, refunds and payouts. Your Amazon app needs the Finance and Accounting role first.'],
-    ]) { const x = h('div'); x.append(h('span', 'n', n), h('span', 'w', w), h('span', 'd', d)); td.append(x); }
+    ]) { const x = h('div'); x.append(icon(n.startsWith('Amazon fees') ? 'cash' : 'search', 'sm ' + (n.startsWith('Amazon fees') ? 'kdp' : 'fba')), h('span', 'n', n), h('span', 'w', w), h('span', 'd', d)); td.append(x); }
     monthly();
   }
 
@@ -1150,8 +1585,10 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     }
     const t = {}; for (const k of SOC_FLOW) t[k] = 0;
     for (const d of dates) if (d >= a && d <= b) for (const k of SOC_FLOW) t[k] += num(soc[d], k);
-    sub.textContent = note + 'Instagram, Facebook and Pinterest. Metricool updates once a day.';
-    const tile = (k, v, sTxt, neg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
+    sub.textContent = note || 'Instagram, Facebook and Pinterest. Metricool updates once a day.';
+    const tile = (k, v, sTxt, neg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num' + (neg ? ' neg' : ''), v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); return d; };
+    const inr = dates.filter((d) => d >= a && d <= b);
+    const trend = (d, k, c) => { if (inr.length > 1) d.append(spark(inr.map((x) => num(soc[x], k)), c, { h: 26 })); };
     const sign = (x) => (x > 0 ? '+' : x < 0 ? '−' : '±') + intf.format(Math.abs(x));
     const fol = (k, name) => {
       const now = latest(k, b); let was = latest(k, shift(a, -1));
@@ -1159,13 +1596,13 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
       tile(name, now == null ? '–' : intf.format(now), now != null && was != null ? sign(now - was) + ' in this period' : 'followers', now != null && was != null && now < was);
     };
     fol('igFollowers', 'Instagram followers');
-    tile('Instagram reach', intf.format(t.igReach), 'accounts reached, daily totals added up');
-    tile('Instagram interactions', intf.format(t.igInteractions), 'likes, comments, saves and shares');
+    trend(tile('Instagram reach', intf.format(t.igReach), 'accounts reached, daily totals added up'), 'igReach', 'var(--kdp)');
+    trend(tile('Instagram interactions', intf.format(t.igInteractions), 'likes, comments, saves and shares'), 'igInteractions', 'var(--kdp)');
     tile('Instagram new vs lost', '+' + intf.format(t.igGained) + ' / −' + intf.format(t.igLost), 'followers gained and lost');
-    tile('Pinterest outbound clicks', intf.format(t.pinOutbound), 'clicks from pins to your site or Amazon');
-    tile('Pinterest impressions', intf.format(t.pinImpressions), intf.format(t.pinSaves) + ' saves');
+    trend(tile('Pinterest outbound clicks', intf.format(t.pinOutbound), 'clicks from pins to your site or Amazon'), 'pinOutbound', 'var(--warn)');
+    trend(tile('Pinterest impressions', intf.format(t.pinImpressions), intf.format(t.pinSaves) + ' saves'), 'pinImpressions', 'var(--warn)');
     fol('fbFollowers', 'Facebook followers');
-    tile('Facebook views', intf.format(t.fbViews), 'page and post views');
+    trend(tile('Facebook views', intf.format(t.fbViews), 'page and post views'), 'fbViews', 'var(--fba)');
   }
 
   // ---------- KDP by title (from the KDP report) and FBA stock ----------
@@ -1175,43 +1612,59 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     const t = {};
     for (const d in kbk) if (d >= a && d <= b) for (const n in kbk[d]) { const v = kbk[d][n]; if (!Array.isArray(v)) continue; const o = t[n] || (t[n] = [0, 0]); o[0] += Number(v[0]) || 0; o[1] += Number(v[1]) || 0; }
     const rows = Object.entries(t).sort((x, y) => y[1][1] - x[1][1] || y[1][0] - x[1][0]);
-    const box = h('div', 'rank'); box.append(h('h3', null, 'Books by title'));
+    const box = h('div', 'rank kd');
     if (!rows.length) { box.append(h('div', 'none', 'No KDP sales by title in this period yet.')); el.append(box); return; }
-    const tb = h('table', 'stk'), hd = h('tr'); hd.append(h('th', null, 'Book'), h('th', null, 'Sold'), h('th', null, 'Royalties')); tb.append(hd);
-    for (const [n, [u, r]] of rows) { const tr = h('tr'), td = h('td', null, shortName(n)); td.title = n; tr.append(td, h('td', null, intf.format(u)), h('td', null, gbp.format(r))); tb.append(tr); }
-    box.append(tb); el.append(box);
+    const top = Math.max(1e-9, ...rows.map((x) => x[1][1])), ol = h('ol', 'num');
+    for (const [n, [u, r]] of rows) { const li = h('li'), bar = h('i'), nm = h('span', null, shortName(n)); nm.title = n; bar.style.width = '0%'; grow(bar, Math.max(.04, r / top));
+      li.append(bar, nm, h('em', null, intf.format(u) + ' sold'), h('b', null, gbp.format(r))); ol.append(li); }
+    box.append(ol); el.append(box);
   }
   const LEAD = 21;   // Becky's restock lead time in days
   function stockPanel() {
     const el = $('kpStock'), sub = $('kpStockSub'); el.replaceChildren();
     const items = stock && Array.isArray(stock.items) ? stock.items : [];
-    if (!items.length) { sub.textContent = 'No stock figures yet.'; return; }
-    const at = typeof stock.updatedAt === 'string' && !isNaN(Date.parse(stock.updatedAt)) ? when.format(new Date(stock.updatedAt)) : '';
-    sub.textContent = `Fixed periods, not the range above: sales are the last 30 and 7 full days. Stock as of ${at}. Days left uses the faster of the two sales rates against your ${LEAD}-day lead time.`;
+    const at = stock && typeof stock.updatedAt === 'string' && !isNaN(Date.parse(stock.updatedAt)) ? when.format(new Date(stock.updatedAt)) : '';
+    $('kpStockMeta').textContent = items.length ? 'Last 30 days' + (at ? ' · stock at ' + at : '') : '';
+    if (!items.length) { sub.textContent = 'No stock figures yet.'; el.append(h('div', 'empty', 'No stock figures yet.')); return; }
+    sub.textContent = `Fixed periods, not the range above: sales are the last 30 and 7 full days. Stock as of ${at}. Days left uses the faster of the two sales rates against your ${LEAD}-day lead time. The ring fills up to 60 days of cover: red is under ${LEAD} days, amber under ${LEAD + 7}.`;
     const sold = items.filter((i) => num(i, 'u30') > 0);
-    // bestsellers
-    const bs = h('div', 'rank'); bs.append(h('h3', null, 'Bestsellers · last 30 days'));
-    const t1 = h('table', 'stk'), h1 = h('tr'); h1.append(h('th', null, 'Product'), h('th', null, 'Units'), h('th', null, 'Sales'), h('th', null, 'Conv.')); t1.append(h1);
-    for (const i of [...sold].sort((x, y) => num(y, 's30') - num(x, 's30')).slice(0, 8)) {
-      const tr = h('tr'), td = h('td', null, shortName(i.name) || i.asin); td.title = i.name || '';
-      tr.append(td, h('td', null, intf.format(num(i, 'u30'))), h('td', null, gbp0.format(num(i, 's30'))), h('td', null, num(i, 'ses30') > 0 ? pc1.format(num(i, 'u30') / num(i, 'ses30')) : '–'));
-      t1.append(tr);
-    }
-    bs.append(t1); el.append(bs);
-    // stock cover
-    const cov = sold.map((i) => { const rate = Math.max(num(i, 'u30') / 30, num(i, 'u7') / 7); return { i, rate, left: rate > 0 ? num(i, 'avail') / rate : Infinity }; }).sort((x, y) => x.left - y.left);
-    const low = cov.filter((c) => c.left < LEAD + 7).length;
-    const sc = h('div', 'rank'); sc.append(h('h3', null, low ? `Stock cover · ${low} to reorder soon` : 'Stock cover'));
-    const t2 = h('table', 'stk'), h2 = h('tr'); h2.append(h('th', null, 'Product'), h('th', null, 'In stock'), h('th', null, 'Per day'), h('th', null, 'Days left')); t2.append(h2);
     const seen = {}; for (const i of items) { const k = shortName(i.name); seen[k] = (seen[k] || 0) + 1; }
     const label = (i) => { const k = shortName(i.name); return seen[k] > 1 ? String(i.name || '').replace(/^Mazo Moon\s+/i, '') : k || i.asin; };   // variants share a short name
-    for (const c of cov.slice(0, 10)) {
-      const tr = h('tr'), td = h('td', null, label(c.i)); td.title = c.i.name || '';
-      const inb = num(c.i, 'inbound'), dl = h('td', c.left < LEAD ? 'low' : c.left < LEAD + 7 ? 'mid' : null, Number.isFinite(c.left) ? intf.format(Math.floor(c.left)) : '–');
-      tr.append(td, h('td', null, intf.format(num(c.i, 'avail')) + (inb ? ` +${intf.format(inb)}` : '')), h('td', null, c.rate.toFixed(1)), dl);
-      t2.append(tr);
+    const cover = (i) => { const rate = Math.max(num(i, 'u30') / 30, num(i, 'u7') / 7); return { rate, left: rate > 0 ? num(i, 'avail') / rate : Infinity }; };
+    const tone = (left) => left < LEAD ? 'low' : left < LEAD + 7 ? 'mid' : '';
+    const toneCol = (t) => t === 'low' ? 'var(--warn)' : t === 'mid' ? 'var(--ads)' : 'var(--total)';
+    // reorder strip: everything under lead time + a week, most urgent first
+    const urgent = sold.map((i) => Object.assign({ i }, cover(i))).filter((c) => c.left < LEAD + 7).sort((x, y) => x.left - y.left);
+    if (urgent.length) {
+      const hd = h('div', 'rank'); hd.append(h('h3', null, `Reorder soon · ${urgent.length}`)); el.append(hd);
+      const strip = h('div', 'reorder');
+      for (const c of urgent) { const x = h('div', 'ro ' + tone(c.left)), nm = h('span', null, label(c.i)); x.title = c.i.name || '';
+        x.append(thumbImg(c.i), nm, h('b', 'num', intf.format(Math.floor(c.left)) + 'd')); strip.append(x); }
+      el.append(strip);
     }
-    sc.append(t2); el.append(sc);
+    // product cards: bestsellers first, each with its stock-cover ring
+    const hd2 = h('div', 'rank'); hd2.append(h('h3', null, 'Bestsellers · last 30 days')); el.append(hd2);
+    const grid = h('div', 'pgrid'), ranked = [...sold].sort((x, y) => num(y, 's30') - num(x, 's30'));
+    ranked.forEach((i, n) => {
+      const c = cover(i), t = tone(c.left), card = h('div', 'pcard'); card.title = i.name || ''; if (n >= 8) card.hidden = true; card.style.animationDelay = Math.min(n, 8) * 35 + 'ms';
+      const th = h('div', 'thumb');
+      th.append(ring(Number.isFinite(c.left) ? c.left / 60 : 1, toneCol(t), { size: 78, sw: 5, title: Number.isFinite(c.left) ? Math.floor(c.left) + ' days of stock left' : 'No recent sales' }), thumbImg(i),
+        h('span', 'dl num ' + t, Number.isFinite(c.left) ? intf.format(Math.floor(c.left)) + ' days' : '–'));
+      const inb = num(i, 'inbound');
+      card.append(h('span', 'rk num', '#' + (n + 1)), th, h('div', 'pn', label(i)), h('div', 'pv num', gbp0.format(num(i, 's30'))),
+        h('div', 'ps num', intf.format(num(i, 'u30')) + ' sold' + (num(i, 'ses30') > 0 ? ' · ' + pc1.format(num(i, 'u30') / num(i, 'ses30')) + ' conv.' : '')),
+        h('div', 'pst num', intf.format(num(i, 'avail')) + ' in stock' + (inb ? ' +' + intf.format(inb) + ' inbound' : '') + ' · ' + c.rate.toFixed(1) + '/day'));
+      grid.append(card);
+    });
+    el.append(grid);
+    if (ranked.length > 8) {
+      const more = h('button', 'showall', `Show all ${ranked.length} products`); more.type = 'button';
+      more.addEventListener('click', () => { const open = more.dataset.open !== '1'; more.dataset.open = open ? '1' : ''; grid.querySelectorAll('.pcard').forEach((c, n) => { if (n >= 8) c.hidden = !open; }); more.textContent = open ? 'Show top 8' : `Show all ${ranked.length} products`; });
+      el.append(more);
+    }
+    const lg = h('div', 'legend3');
+    for (const [k, c] of [[`Under ${LEAD} days`, 'var(--warn)'], [`Under ${LEAD + 7} days`, 'var(--ads)'], ['Healthy cover', 'var(--total)']]) { const x = h('span'), d = h('i'); d.style.background = c; x.append(d, k); lg.append(x); }
+    el.append(lg);
   }
 
   // ---------- website (Google Analytics; only visitors who accepted cookies) ----------
@@ -1224,8 +1677,18 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     let n = 0;
     for (const d in web) if (d >= a && d <= b) { n++; const r = web[d]; for (const k in t) t[k] += num(r, k); add(src, r.src); add(pages, r.pages); add(prods, r.products); }
     for (const k of ['Buy', 'Buy on Amazon', 'Buy now']) delete prods[k];   // links with no product name
-    sub.textContent = 'From Google Analytics. Only visitors who accept cookies are counted, so real visits are higher. Today fills in through the day.';
-    const tile = (k, v, sTxt) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num', v)); if (sTxt) d.append(h('div', 's', sTxt)); el.append(d); };
+    sub.textContent = 'From Google Analytics. Only visitors who accept cookies are counted, so real visits are higher. Today fills in through the day. Google search figures come from Search Console, 2–3 days behind, and count everyone.';
+    const tile = (k, v, sTxt, rg) => { const d = h('div'); d.append(h('div', 'eyebrow', k), h('div', 'v num', v)); if (sTxt) d.append(h('div', 's', sTxt));
+      if (rg && Number.isFinite(rg[0])) { d.classList.add('hasring'); d.append(ring(rg[0], rg[1], { size: 44, sw: 5 })); } el.append(d); return d; };
+    if (t.sessions > 0) {   // visits → engaged → clicked through to Amazon
+      const fn = h('div', 'funnel num');
+      for (const [k, v, c] of [['Visits', t.sessions, 'var(--fba)'], ['Engaged', t.engaged, 'var(--kdp)'], ['Clicked to Amazon', t.amazonClicks, 'var(--total)']]) {
+        const r = h('div'), i = h('i'); i.style.background = `color-mix(in srgb, ${c} 26%, transparent)`; i.style.width = '0%'; const sp = h('span', null, k);
+        if (k !== 'Visits') sp.append(h('em', null, pc1.format(v / t.sessions)));
+        r.append(i, sp, h('b', null, intf.format(v))); fn.append(r); grow(i, Math.max(.04, v / t.sessions));
+      }
+      ls.append(fn);
+    }
     tile('Visits', intf.format(t.sessions), `${intf.format(t.users)} people · ${intf.format(t.newUsers)} new`);
     tile('Clicks to Amazon', intf.format(t.amazonClicks), t.sessions > 0 ? pc1.format(t.amazonClicks / t.sessions) + ' of visits' : 'Buy on Amazon taps');
     tile('Pages viewed', intf.format(t.pageViews), t.sessions > 0 ? (t.pageViews / t.sessions).toFixed(1) + ' per visit' : '');
@@ -1243,7 +1706,7 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
       const rows = Object.entries(obj).filter(([, v]) => v > 0).sort((x, y) => y[1] - x[1]).slice(0, max);
       if (!rows.length) { box.append(h('div', 'none', n ? 'Nothing yet in this period.' : 'No visits recorded in this period.')); ls.append(box); return; }
       const top = rows[0][1], ol = h('ol');
-      for (const [k, v] of rows) { const li = h('li'), bar = h('i'); bar.style.width = Math.max(4, (v / top) * 100) + '%'; li.append(bar, h('span', null, nice ? nice(k) : k), h('b', null, intf.format(v))); ol.append(li); }
+      for (const [k, v] of rows) { const li = h('li'), bar = h('i'); bar.style.width = '0%'; grow(bar, Math.max(.04, v / top)); li.append(bar, h('span', null, nice ? nice(k) : k), h('b', null, intf.format(v))); ol.append(li); }
       box.append(ol); ls.append(box);
     };
     list('Where visitors came from', src, (k) => NICE_SRC[k] || k, 6);
@@ -1277,6 +1740,15 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
     else tile('Cash available', '–', 'add bank balance above');
     const tax = v.tax != null && v.overheads != null && prof - v.overheads > 0 ? v.tax / (prof - v.overheads) : null;
     tile('Tax pot', v.tax != null ? gbp.format(v.tax) : '–', tax != null ? pct.format(tax) + ' of this month\u2019s profit' : 'money set aside for tax');
+    $('kpFinMeta').textContent = mn + (b < last ? ' so far' : '');
+    const has = Object.keys(v).length > 0; if (!$('mWhy').dataset.set) { $('mWhy').open = !has; $('mWhy').dataset.set = '1'; }
+    const cash = $('kpCash'); cash.replaceChildren();
+    if (v.bank != null && v.bank > 0) {   // the bank balance, split into what is already spoken for
+      const free = v.bank - (v.stock || 0) - (v.bills || 0) - (v.tax || 0);
+      const cap = h('div', 'flow-cap num'); cap.append(h('span', null, 'Bank balance'), Object.assign(h('b'), { textContent: gbp.format(v.bank) }));
+      const fb = h('div'); flow(fb, v.bank, [['Stock orders', v.stock || 0, 'var(--fba)'], ['Bills', v.bills || 0, 'var(--kdp)'], ['Tax pot', v.tax || 0, 'var(--ads)']], free, { keep: 'Cash available', loss: 'Short by' });
+      cash.append(cap, fb);
+    }
   }
   $('mMonth').addEventListener('change', () => { fillForm(); monthly(); });
   $('mForm').addEventListener('submit', (e) => {
@@ -1330,11 +1802,21 @@ input[type=checkbox] { accent-color: var(--fba-ink); }
       $('from').value = prefs.from; $('to').value = prefs.to; savePrefs(); render(); return;
     }
     const sr = e.target.closest('#series button'); if (sr) { prefs.series = sr.dataset.s; savePrefs(); render(); return; }
-    const cs = e.target.closest('#chSwitch button'); if (cs) { prefs.channel = cs.dataset.ch; savePrefs(); render(); }
+    const cs = e.target.closest('#chSwitch button'); if (cs) { prefs.channel = cs.dataset.ch; savePrefs(); render(); return; }
+    const kp = e.target.closest('[data-kp]'); if (kp) { const t = $(kp.dataset.kp); if (t) t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
   });
+  // KPI section chips follow the scroll
+  if ('IntersectionObserver' in window) {
+    const chips = () => document.querySelectorAll('#kpNav [data-kp]');
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) if (e.isIntersecting) chips().forEach((c) => c.setAttribute('aria-current', String(c.dataset.kp === e.target.id)));
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    document.querySelectorAll('#v-kpi .chapter').forEach((c) => io.observe(c));
+  }
+  document.querySelector('#kpNav [data-kp]').setAttribute('aria-current', 'true');
   for (const id of ['from', 'to']) $(id).addEventListener('change', () => { prefs.from = $('from').value; prefs.to = $('to').value; savePrefs(); render(); });
   $('from').value = prefs.from; $('to').value = prefs.to;
-  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => data && render(), 150); });
+  let rt, lastW = innerWidth; window.addEventListener('resize', () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(rt); rt = setTimeout(() => data && render(), 150); });   // width only: phones resize height as the address bar hides
 
   // ---------- fresh data, toasts, milestones ----------
   let tt;
