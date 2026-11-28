@@ -601,14 +601,15 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   const span = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / DAY) + 1;
   const num = (r, k) => { const x = Number(r && r[k]); return Number.isFinite(x) ? x : 0; };
   const asDate = (d) => new Date(d + 'T00:00:00Z');
-  let days = {}, first = {}, soc = {}, web = {};   // days[date] = per-day sums; first[source] = earliest date with data
+  let days = {}, first = {}, soc = {}, web = {}, gsc = {};   // days[date] = per-day sums; first[source] = earliest date with data
   function blank(d) { return { date: d, fba: 0, fu: 0, fo: 0, kdp: 0, ku: 0, kp: 0, fs: 0, fsl: 0, fso: 0, fc: 0, fi: 0, ks: 0, ksl: 0, kso: 0, kc: 0, ki: 0 }; }
   function index() {
-    days = {}; first = {}; soc = {}; web = {};
+    days = {}; first = {}; soc = {}; web = {}; gsc = {};
     for (const r of data.daily || []) {
       if (!r || typeof r.date !== 'string') continue;
       if (r.source === 'social') { soc[r.date] = r; continue; }
       if (r.source === 'web') { web[r.date] = r; continue; }
+      if (r.source === 'search') { gsc[r.date] = r; continue; }
       const x = days[r.date] || (days[r.date] = blank(r.date));
       if (!first[r.source] || r.date < first[r.source]) first[r.source] = r.date;
       if (r.source === 'fba') { x.fba += num(r, 'sales'); x.fu += num(r, 'units'); x.fo += num(r, 'orders'); }
@@ -978,8 +979,6 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     const td = $('kpTodo'); td.replaceChildren();
     for (const [n, w, d] of [
       ['Amazon Attribution', 'Later', 'Shows which mazomoon.com clicks turned into Amazon sales. Google Analytics only sees the click.'],
-      ['Email platform', 'Connect', 'New subscribers, unsubscribes, net growth and email revenue.'],
-      ['Google Search Console', 'Connect', 'Search impressions, clicks and the pages and terms bringing people in.'],
       ['Amazon refunds, fees and stock', 'Next step', 'Settlement and inventory reports for net sales, real fees, payouts, bestsellers and stock cover against your three-week lead time.'],
       ['KDP books by title', 'Next step', 'Books sold and royalties per title, from the KDP report, once KDP is signed back in.'],
     ]) { const x = h('div'); x.append(h('span', 'n', n), h('span', 'w', w), h('span', 'd', d)); td.append(x); }
@@ -1037,6 +1036,14 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     tile('Clicks to Amazon', intf.format(t.amazonClicks), t.sessions > 0 ? pc1.format(t.amazonClicks / t.sessions) + ' of visits' : 'Buy on Amazon taps');
     tile('Pages viewed', intf.format(t.pageViews), t.sessions > 0 ? (t.pageViews / t.sessions).toFixed(1) + ' per visit' : '');
     tile('Engaged visits', t.sessions > 0 ? pc1.format(t.engaged / t.sessions) : '–', 'stayed 10s+ or viewed 2+ pages');
+    tile('New sign-ups', intf.format(t.signUps), 'email sign-ups on the site');
+    // Google Search Console (2-3 days behind; counts everyone, cookies or not)
+    const g = { clicks: 0, impressions: 0, pw: 0 }, terms = {};
+    const gd = Object.keys(gsc).filter((d) => d >= a && d <= b);
+    for (const d of gd) { const r = gsc[d]; g.clicks += num(r, 'clicks'); g.impressions += num(r, 'impressions'); g.pw += num(r, 'position') * num(r, 'impressions');
+      if (r.queries && typeof r.queries === 'object') for (const q in r.queries) { const v = r.queries[q]; terms[q] = (terms[q] || 0) + (Array.isArray(v) ? Number(v[1]) || 0 : 0); } }
+    const gNone = !Object.keys(gsc).length;
+    tile('Google search clicks', gNone ? '–' : intf.format(g.clicks), gNone ? 'Search Console has no data yet' : `${intf.format(g.impressions)} times shown in Google`);
     const list = (title, obj, nice, max) => {
       const box = h('div', 'rank'); box.append(h('h3', null, title));
       const rows = Object.entries(obj).filter(([, v]) => v > 0).sort((x, y) => y[1] - x[1]).slice(0, max);
@@ -1048,6 +1055,7 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     list('Where visitors came from', src, (k) => NICE_SRC[k] || k, 6);
     list('Top pages', pages, (k) => NICE_PAGE[k] || (k.split('/').filter(Boolean).pop() || k).replace(/-/g, ' ').replace(/^storymakers /, 'Storymaker\u2019s ').replace(/^./, (c) => c.toUpperCase()), 6);
     list('Most clicked to Amazon', prods, null, 5);
+    if (!gNone) list('Google searches showing your site', terms, null, 6);
   }
 
   // ---------- monthly figures (saved on this device) ----------
@@ -1093,10 +1101,11 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       kdp: ['30-day recheck', 'Every refresh looks back over the last 30 days of KDP royalties because book earnings can take longer to settle.'],
       'ads-fba': ['7-day attribution', 'If someone clicks an FBA ad and buys within 7 days, Amazon can count that sale as coming from the ad.'],
       'ads-kdp': ['14-day attribution', 'If someone clicks a book ad and buys within 14 days, Amazon can still count that sale as coming from the ad.'],
+      search: ['2–3 days behind', 'Google Search Console publishes search clicks and impressions a few days late, and counts every searcher, cookies or not.'],
       web: ['Cookie consent', 'Google Analytics only counts visitors who accept the cookie banner, so real visits are higher than shown.'],
       social: ['A day behind', 'Metricool updates Instagram, Facebook and Pinterest once a day, so the newest figures are usually from yesterday.'],
     };
-    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads'], ['social', 'Social (Metricool)'], ['web', 'mazomoon.com (Google Analytics)']]) {
+    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads'], ['social', 'Social (Metricool)'], ['web', 'mazomoon.com (Google Analytics)'], ['search', 'Google Search Console']]) {
       const r = rows.find((x) => x && x.id === id) || {};
       const d = h('div', 'conn');
       const dot = h('span', 'dot' + (r.state === 'ok' ? '' : r.state === 'error' ? ' stale' : ' wait'));
