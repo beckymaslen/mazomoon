@@ -94,6 +94,13 @@ button { cursor: pointer; }
 .rank li i { position: absolute; inset: 0 auto 0 0; background: var(--line-2); border-radius: 8px; z-index: 0; }
 .rank li span { position: relative; z-index: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rank li b { position: relative; z-index: 1; font-weight: 500; font-variant-numeric: tabular-nums; }
+.stk { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 6px; }
+.stk th { text-align: right; font-weight: 500; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 6px 4px; border-bottom: 1px solid var(--line); }
+.stk th:first-child, .stk td:first-child { text-align: left; }
+.stk td { text-align: right; padding: 8px 4px; border-bottom: 1px solid var(--line-2); font-variant-numeric: tabular-nums; vertical-align: top; }
+.stk td:first-child { max-width: 0; width: 55%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stk .low { color: var(--warn); font-weight: 600; }
+.stk .mid { color: #b7791f; font-weight: 600; }
 .rank .none { color: var(--muted); font-size: 13px; padding: 4px 0; }
 .eyebrow { font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
 .serif { font-family: var(--serif); font-weight: 400; }
@@ -466,6 +473,12 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
         <section class="panel">
           <h2 class="sec">KDP per book</h2>
           <div class="kgrid" id="kpBook"></div>
+          <div id="kpTitles"></div>
+        </section>
+        <section class="panel">
+          <h2 class="sec">FBA stock and bestsellers</h2>
+          <p class="sub" id="kpStockSub" style="margin:-4px 0 12px"></p>
+          <div id="kpStock"></div>
         </section>
         <section class="panel">
           <h2 class="sec">Social, via Metricool</h2>
@@ -601,19 +614,20 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
   const span = (a, b) => Math.round((Date.parse(b) - Date.parse(a)) / DAY) + 1;
   const num = (r, k) => { const x = Number(r && r[k]); return Number.isFinite(x) ? x : 0; };
   const asDate = (d) => new Date(d + 'T00:00:00Z');
-  let days = {}, first = {}, soc = {}, web = {}, gsc = {};   // days[date] = per-day sums; first[source] = earliest date with data
+  let days = {}, first = {}, soc = {}, web = {}, gsc = {}, kbk = {}, stock = null;   // days[date] = per-day sums; first[source] = earliest date with data
   function blank(d) { return { date: d, fba: 0, fu: 0, fo: 0, kdp: 0, ku: 0, kp: 0, fs: 0, fsl: 0, fso: 0, fc: 0, fi: 0, ks: 0, ksl: 0, kso: 0, kc: 0, ki: 0 }; }
   function index() {
-    days = {}; first = {}; soc = {}; web = {}; gsc = {};
+    days = {}; first = {}; soc = {}; web = {}; gsc = {}; kbk = {}; stock = null;
     for (const r of data.daily || []) {
       if (!r || typeof r.date !== 'string') continue;
       if (r.source === 'social') { soc[r.date] = r; continue; }
       if (r.source === 'web') { web[r.date] = r; continue; }
       if (r.source === 'search') { gsc[r.date] = r; continue; }
+      if (r.source === 'stock') { stock = r; continue; }
       const x = days[r.date] || (days[r.date] = blank(r.date));
       if (!first[r.source] || r.date < first[r.source]) first[r.source] = r.date;
       if (r.source === 'fba') { x.fba += num(r, 'sales'); x.fu += num(r, 'units'); x.fo += num(r, 'orders'); }
-      else if (r.source === 'kdp') { x.kdp += num(r, 'royalties'); x.ku += num(r, 'units'); x.kp += num(r, 'pages'); }
+      else if (r.source === 'kdp') { x.kdp += num(r, 'royalties'); x.ku += num(r, 'units'); x.kp += num(r, 'pages'); if (r.books && typeof r.books === 'object') kbk[r.date] = r.books; }
       else if (r.source === 'ads-fba') { x.fs += num(r, 'spend'); x.fsl += num(r, 'sales'); x.fso += num(r, 'orders'); x.fc += num(r, 'clicks'); x.fi += num(r, 'impressions'); }
       else if (r.source === 'ads-kdp') { x.ks += num(r, 'spend'); x.ksl += num(r, 'sales'); x.kso += num(r, 'orders'); x.kc += num(r, 'clicks'); x.ki += num(r, 'impressions'); }
     }
@@ -975,12 +989,11 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     tile(bk, 'Ad spend per book', s.ku > 0 ? gbp.format(s.ks / s.ku) : '–', per == null ? '' : `break even at ${gbp.format(per)}`, per != null && s.ks / s.ku > per);
     tile(bk, 'KDP cost per click', s.kc > 0 ? gbp.format(s.ks / s.kc) : '–', `${intf.format(s.kc)} clicks`);
     tile(bk, 'Clicks per book', s.kso > 0 ? (s.kc / s.kso).toFixed(0) : '–', 'ad clicks ÷ ad orders');
-    social(a, b); website(a, b);
+    social(a, b); website(a, b); titles(a, b); stockPanel();
     const td = $('kpTodo'); td.replaceChildren();
     for (const [n, w, d] of [
       ['Amazon Attribution', 'Later', 'Shows which mazomoon.com clicks turned into Amazon sales. Google Analytics only sees the click.'],
-      ['Amazon refunds, fees and stock', 'Next step', 'Settlement and inventory reports for net sales, real fees, payouts, bestsellers and stock cover against your three-week lead time.'],
-      ['KDP books by title', 'Next step', 'Books sold and royalties per title, from the KDP report, once KDP is signed back in.'],
+      ['Amazon fees, refunds and payouts', 'Needs permission', 'Real Amazon fees instead of the 25% estimate, refunds and payouts. Your Amazon app needs the Finance and Accounting role first.'],
     ]) { const x = h('div'); x.append(h('span', 'n', n), h('span', 'w', w), h('span', 'd', d)); td.append(x); }
     monthly();
   }
@@ -1018,6 +1031,52 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
     tile('Pinterest impressions', intf.format(t.pinImpressions), intf.format(t.pinSaves) + ' saves');
     fol('fbFollowers', 'Facebook followers');
     tile('Facebook views', intf.format(t.fbViews), 'page and post views');
+  }
+
+  // ---------- KDP by title (from the KDP report) and FBA stock ----------
+  const shortName = (n) => String(n || '').replace(/^Mazo Moon\s+/i, '').split(/\s+[|–:]\s+|:\s/)[0].trim();
+  function titles(a, b) {
+    const el = $('kpTitles'); el.replaceChildren();
+    const t = {};
+    for (const d in kbk) if (d >= a && d <= b) for (const n in kbk[d]) { const v = kbk[d][n]; if (!Array.isArray(v)) continue; const o = t[n] || (t[n] = [0, 0]); o[0] += Number(v[0]) || 0; o[1] += Number(v[1]) || 0; }
+    const rows = Object.entries(t).sort((x, y) => y[1][1] - x[1][1] || y[1][0] - x[1][0]);
+    const box = h('div', 'rank'); box.append(h('h3', null, 'Books by title'));
+    if (!rows.length) { box.append(h('div', 'none', 'No KDP sales by title in this period yet.')); el.append(box); return; }
+    const tb = h('table', 'stk'), hd = h('tr'); hd.append(h('th', null, 'Book'), h('th', null, 'Sold'), h('th', null, 'Royalties')); tb.append(hd);
+    for (const [n, [u, r]] of rows) { const tr = h('tr'), td = h('td', null, shortName(n)); td.title = n; tr.append(td, h('td', null, intf.format(u)), h('td', null, gbp.format(r))); tb.append(tr); }
+    box.append(tb); el.append(box);
+  }
+  const LEAD = 21;   // Becky's restock lead time in days
+  function stockPanel() {
+    const el = $('kpStock'), sub = $('kpStockSub'); el.replaceChildren();
+    const items = stock && Array.isArray(stock.items) ? stock.items : [];
+    if (!items.length) { sub.textContent = 'No stock figures yet.'; return; }
+    const at = typeof stock.updatedAt === 'string' && !isNaN(Date.parse(stock.updatedAt)) ? when.format(new Date(stock.updatedAt)) : '';
+    sub.textContent = `Fixed periods, not the range above: sales are the last 30 and 7 full days. Stock as of ${at}. Days left uses the faster of the two sales rates against your ${LEAD}-day lead time.`;
+    const sold = items.filter((i) => num(i, 'u30') > 0);
+    // bestsellers
+    const bs = h('div', 'rank'); bs.append(h('h3', null, 'Bestsellers · last 30 days'));
+    const t1 = h('table', 'stk'), h1 = h('tr'); h1.append(h('th', null, 'Product'), h('th', null, 'Units'), h('th', null, 'Sales'), h('th', null, 'Conv.')); t1.append(h1);
+    for (const i of [...sold].sort((x, y) => num(y, 's30') - num(x, 's30')).slice(0, 8)) {
+      const tr = h('tr'), td = h('td', null, shortName(i.name) || i.asin); td.title = i.name || '';
+      tr.append(td, h('td', null, intf.format(num(i, 'u30'))), h('td', null, gbp0.format(num(i, 's30'))), h('td', null, num(i, 'ses30') > 0 ? pc1.format(num(i, 'u30') / num(i, 'ses30')) : '–'));
+      t1.append(tr);
+    }
+    bs.append(t1); el.append(bs);
+    // stock cover
+    const cov = sold.map((i) => { const rate = Math.max(num(i, 'u30') / 30, num(i, 'u7') / 7); return { i, rate, left: rate > 0 ? num(i, 'avail') / rate : Infinity }; }).sort((x, y) => x.left - y.left);
+    const low = cov.filter((c) => c.left < LEAD + 7).length;
+    const sc = h('div', 'rank'); sc.append(h('h3', null, low ? `Stock cover · ${low} to reorder soon` : 'Stock cover'));
+    const t2 = h('table', 'stk'), h2 = h('tr'); h2.append(h('th', null, 'Product'), h('th', null, 'In stock'), h('th', null, 'Per day'), h('th', null, 'Days left')); t2.append(h2);
+    const seen = {}; for (const i of items) { const k = shortName(i.name); seen[k] = (seen[k] || 0) + 1; }
+    const label = (i) => { const k = shortName(i.name); return seen[k] > 1 ? String(i.name || '').replace(/^Mazo Moon\s+/i, '') : k || i.asin; };   // variants share a short name
+    for (const c of cov.slice(0, 10)) {
+      const tr = h('tr'), td = h('td', null, label(c.i)); td.title = c.i.name || '';
+      const inb = num(c.i, 'inbound'), dl = h('td', c.left < LEAD ? 'low' : c.left < LEAD + 7 ? 'mid' : null, Number.isFinite(c.left) ? intf.format(Math.floor(c.left)) : '–');
+      tr.append(td, h('td', null, intf.format(num(c.i, 'avail')) + (inb ? ` +${intf.format(inb)}` : '')), h('td', null, c.rate.toFixed(1)), dl);
+      t2.append(tr);
+    }
+    sc.append(t2); el.append(sc);
   }
 
   // ---------- website (Google Analytics; only visitors who accepted cookies) ----------
@@ -1101,11 +1160,12 @@ canvas.fx { position: fixed; inset: 0; z-index: 50; pointer-events: none; width:
       kdp: ['30-day recheck', 'Every refresh looks back over the last 30 days of KDP royalties because book earnings can take longer to settle.'],
       'ads-fba': ['7-day attribution', 'If someone clicks an FBA ad and buys within 7 days, Amazon can count that sale as coming from the ad.'],
       'ads-kdp': ['14-day attribution', 'If someone clicks a book ad and buys within 14 days, Amazon can still count that sale as coming from the ad.'],
+      stock: ['Daily snapshot', 'Stock is what Amazon can ship right now; +N is on its way in. Sales are the last 30 and 7 full days, from the Sales and Traffic report.'],
       search: ['2–3 days behind', 'Google Search Console publishes search clicks and impressions a few days late, and counts every searcher, cookies or not.'],
       web: ['Cookie consent', 'Google Analytics only counts visitors who accept the cookie banner, so real visits are higher than shown.'],
       social: ['A day behind', 'Metricool updates Instagram, Facebook and Pinterest once a day, so the newest figures are usually from yesterday.'],
     };
-    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads'], ['social', 'Social (Metricool)'], ['web', 'mazomoon.com (Google Analytics)'], ['search', 'Google Search Console']]) {
+    for (const [id, name] of [['fba', 'Amazon FBA sales'], ['kdp', 'KDP royalties'], ['ads-fba', 'FBA ads'], ['ads-kdp', 'Book ads'], ['social', 'Social (Metricool)'], ['web', 'mazomoon.com (Google Analytics)'], ['search', 'Google Search Console'], ['stock', 'FBA stock and bestsellers']]) {
       const r = rows.find((x) => x && x.id === id) || {};
       const d = h('div', 'conn');
       const dot = h('span', 'dot' + (r.state === 'ok' ? '' : r.state === 'error' ? ' stale' : ' wait'));
